@@ -1,7 +1,7 @@
 // --- GLOBAL PATH + ERROR FIX ---
 function fixPath(path) {
     if (!path) return path;
-    return path.startsWith('/') ? path.substring(1) : path;
+    return path.startsWith('') ? path.substring(1) : path;
 }
 
 // Fix ALL images automatically
@@ -17,7 +17,7 @@ let activeWindowZIndex = 10;
 let conversationHistory = []; // For Clippy AI
 let currentFilePath = ['C:']; // For File Explorer
 let isWindowsME = false; // New flag for Windows ME mode
-let currentWallpaper = '/wallpaper.jpg'; // Track current wallpaper
+let currentWallpaper = 'wallpaper.jpg'; // Track current wallpaper
 let appStates = {}; // Track state of apps like Notepad, Paint
 
 // --- Web Audio API for Music ---
@@ -45,7 +45,7 @@ async function playMarioPaintMusic() {
 
     if (!marioPaintMusicBuffer) {
         try {
-            marioPaintMusicBuffer = await loadAudio('/Creative Exercise   Mario Paint Music Extended.mp3');
+            marioPaintMusicBuffer = await loadAudio('Creative Exercise   Mario Paint Music Extended.mp3');
         } catch (e) {
             console.error("Error loading Mario Paint music:", e);
             return;
@@ -160,7 +160,7 @@ function createSystemDialog(id, title, message, iconUrl = null, buttons = [{ tex
 
     // Play sound for error or warning dialogs
     if (dialogType === 'error' || dialogType === 'warning') {
-        const errorAudio = new Audio('/error_sound.mp3');
+        const errorAudio = new Audio('error_sound.mp3');
         errorAudio.volume = 0.8;
         errorAudio.play().catch(e => console.error("Error playing sound:", e));
     }
@@ -209,7 +209,7 @@ function createWindow(id, title, contentHtml, options = {}) {
     // Taskbar App Icon
     const appIcon = createElement('button', 'taskbar-app-icon');
     appIcon.dataset.windowId = id;
-    appIcon.innerHTML = `<img src="${options.icon || '/control.png'}" alt="${title}" style="width:24px;height:24px;">`;
+    appIcon.innerHTML = `<img src="${options.icon || 'control.png'}" alt="${title}" style="width:24px;height:24px;">`;
     taskbarIcons.appendChild(appIcon);
 
     appIcon.addEventListener('click', () => {
@@ -248,7 +248,7 @@ function createWindow(id, title, contentHtml, options = {}) {
                 `save-confirm-${id}`,
                 'Unsaved Changes',
                 `Do you want to save changes to ${appStates[id].filename || 'Untitled'}?`,
-                '/warning.png',
+                'warning.png',
                 [
                     { text: 'Save', callback: () => { appStates[id].saveFunction(); closeWindow(); } },
                     { text: "Don't Save", class: 'secondary', callback: () => closeWindow() },
@@ -341,37 +341,37 @@ const startMenuTiles = document.getElementById('start-menu-tiles');
 const startMenuAllApps = document.getElementById('start-menu-all-apps');
 
 const apps = [
-    { id: 'edge-app', name: 'Microsoft Edge', icon: '/Microsoft_Edge_logo_(2019).png', type: 'app', action: () => launchEdgeBrowser() },
-    { id: 'store-app', name: 'Microsoft Store', icon: '/Microsoft_Store_Fluent_Design_icon_(2).png', type: 'app', action: () => launchMicrosoftStore() },
-    { id: 'clippy-app', name: 'AI Clippy', icon: '/Clippy.png', type: 'app', action: () => launchClippyApp() },
-    { id: 'recycle-bin-app', name: 'Recycle Bin', icon: '/bin-windows.png', type: 'app', action: () => launchRecycleBin() },
-    { id: 'file-explorer-app', name: 'File Explorer', icon: '/file-explorer-folder-libraries-icon-18298.png', type: 'app', action: () => launchFileExplorer() }, // Placeholder icon
-    { id: 'photos-app', name: 'Photos', icon: '/photos-icon.png', type: 'app', action: () => launchPhotosApp() },
-    { id: 'calculator-app', name: 'Calculator', icon: '/calculator-icon.png', type: 'app', action: () => launchCalculatorApp() },
-    { id: 'settings-app', name: 'Settings', icon: '/settings-icon.png', type: 'app', action: () => launchSettingsApp() },
-    { id: 'duolingo-app', name: 'Duolingo', icon: '/duolingo-icon.png', type: 'app', action: () => launchDuolingoApp() },
-    { id: 'winver-app', name: 'Winver', icon: '/winver_icon.png', type: 'app', action: () => launchWinverApp() },
-    { id: 'youtube-app', name: 'YouTube', icon: '/youtube_icon.png', type: 'app', action: () => launchYoutubeApp() },
-    { id: 'virtualbox-app', name: 'VirtualBox', icon: '/virtualbox_icon.png', type: 'app', action: () => launchVirtualBoxApp() },
-    { id: 'control-panel-app', name: 'Control Panel', icon: '/control.png', type: 'app', action: () => launchControlPanelApp() },
-    { id: 'minesweeper-app', name: 'Minesweeper', icon: '/Minesweeper_2005.webp', type: 'app', action: () => launchMinesweeperApp() },
-    { id: 'ms-paint-app', name: 'MS Paint', icon: '/Paint.png', type: 'app', action: () => launchMSPaintApp() }, // New: MS Paint app
-    { id: 'notepad-app', name: 'Notepad', icon: '/forbidden.png', type: 'app', action: () => launchNotepadApp() },
+    { id: 'edge-app', name: 'Microsoft Edge', icon: 'Microsoft_Edge_logo_(2019).png', type: 'app', action: () => launchEdgeBrowser() },
+    { id: 'store-app', name: 'Microsoft Store', icon: 'Microsoft_Store_Fluent_Design_icon_(2).png', type: 'app', action: () => launchMicrosoftStore() },
+    { id: 'clippy-app', name: 'AI Clippy', icon: 'Clippy.png', type: 'app', action: () => launchClippyApp() },
+    { id: 'recycle-bin-app', name: 'Recycle Bin', icon: 'bin-windows.png', type: 'app', action: () => launchRecycleBin() },
+    { id: 'file-explorer-app', name: 'File Explorer', icon: 'file-explorer-folder-libraries-icon-18298.png', type: 'app', action: () => launchFileExplorer() }, // Placeholder icon
+    { id: 'photos-app', name: 'Photos', icon: 'photos-icon.png', type: 'app', action: () => launchPhotosApp() },
+    { id: 'calculator-app', name: 'Calculator', icon: 'calculator-icon.png', type: 'app', action: () => launchCalculatorApp() },
+    { id: 'settings-app', name: 'Settings', icon: 'settings-icon.png', type: 'app', action: () => launchSettingsApp() },
+    { id: 'duolingo-app', name: 'Duolingo', icon: 'duolingo-icon.png', type: 'app', action: () => launchDuolingoApp() },
+    { id: 'winver-app', name: 'Winver', icon: 'winver_icon.png', type: 'app', action: () => launchWinverApp() },
+    { id: 'youtube-app', name: 'YouTube', icon: 'youtube_icon.png', type: 'app', action: () => launchYoutubeApp() },
+    { id: 'virtualbox-app', name: 'VirtualBox', icon: 'virtualbox_icon.png', type: 'app', action: () => launchVirtualBoxApp() },
+    { id: 'control-panel-app', name: 'Control Panel', icon: 'control.png', type: 'app', action: () => launchControlPanelApp() },
+    { id: 'minesweeper-app', name: 'Minesweeper', icon: 'Minesweeper_2005.webp', type: 'app', action: () => launchMinesweeperApp() },
+    { id: 'ms-paint-app', name: 'MS Paint', icon: 'Paint.png', type: 'app', action: () => launchMSPaintApp() }, // New: MS Paint app
+    { id: 'notepad-app', name: 'Notepad', icon: 'forbidden.png', type: 'app', action: () => launchNotepadApp() },
 ];
 
 const tileApps = [
-    { id: 'edge-app', name: 'Edge', icon: '/Microsoft_Edge_logo_(2019).png', wide: false },
-    { id: 'store-app', name: 'Store', icon: '/Microsoft_Store_Fluent_Design_icon_(2).png', wide: false },
-    { id: 'clippy-app', name: 'Clippy', icon: '/Clippy.png', wide: true }, // Make Clippy tile wide
-    { id: 'photos-app', name: 'Photos', icon: '/photos-icon.png', wide: false },
-    { id: 'calculator-app', name: 'Calculator', icon: '/calculator-icon.png', wide: false },
-    { id: 'duolingo-app', name: 'Duolingo', icon: '/duolingo-icon.png', wide: false },
-    { id: 'youtube-app', name: 'YouTube', icon: '/youtube_icon.png', wide: false }, // New YouTube tile
-    { id: 'virtualbox-app', name: 'VirtualBox', icon: '/virtualbox_icon.png', wide: false },
-    { id: 'control-panel-app', name: 'Control Panel', icon: '/control.png', wide: false },
-    { id: 'minesweeper-app', name: 'Minesweeper', icon: '/Minesweeper_2005.webp', wide: false },
-    { id: 'ms-paint-app', name: 'MS Paint', icon: '/Paint.png', wide: false }, // New: MS Paint tile
-    { id: 'notepad-app', name: 'Notepad', icon: '/forbidden.png', wide: false },
+    { id: 'edge-app', name: 'Edge', icon: 'Microsoft_Edge_logo_(2019).png', wide: false },
+    { id: 'store-app', name: 'Store', icon: 'Microsoft_Store_Fluent_Design_icon_(2).png', wide: false },
+    { id: 'clippy-app', name: 'Clippy', icon: 'Clippy.png', wide: true }, // Make Clippy tile wide
+    { id: 'photos-app', name: 'Photos', icon: 'photos-icon.png', wide: false },
+    { id: 'calculator-app', name: 'Calculator', icon: 'calculator-icon.png', wide: false },
+    { id: 'duolingo-app', name: 'Duolingo', icon: 'duolingo-icon.png', wide: false },
+    { id: 'youtube-app', name: 'YouTube', icon: 'youtube_icon.png', wide: false }, // New YouTube tile
+    { id: 'virtualbox-app', name: 'VirtualBox', icon: 'virtualbox_icon.png', wide: false },
+    { id: 'control-panel-app', name: 'Control Panel', icon: 'control.png', wide: false },
+    { id: 'minesweeper-app', name: 'Minesweeper', icon: 'Minesweeper_2005.webp', wide: false },
+    { id: 'ms-paint-app', name: 'MS Paint', icon: 'Paint.png', wide: false }, // New: MS Paint tile
+    { id: 'notepad-app', name: 'Notepad', icon: 'forbidden.png', wide: false },
 ];
 
 
@@ -482,7 +482,7 @@ function launchFileExplorer() {
             <button id="fe-up-button"><img src="https://img.icons8.com/ios-filled/20/ffffff/up.png" alt="Up" style="filter: invert(1);"> Up</button>
             <input type="text" id="fe-path-input" class="path-input" value="C:\\" readonly>
             <button id="fe-delete-button" style="color: #f00;">
-                <img src="/error-cancel-abort-icon.png" alt="Delete" style="width: 20px; height: 20px; vertical-align: middle; filter: invert(0.8);">
+                <img src="error-cancel-abort-icon.png" alt="Delete" style="width: 20px; height: 20px; vertical-align: middle; filter: invert(0.8);">
                 Delete
             </button>
         </div>
@@ -490,15 +490,15 @@ function launchFileExplorer() {
             <div class="sidebar">
                 <h3 style="margin-top: 0; color: #ccc;">Quick access</h3>
                 <div class="sidebar-item" data-path="C:">
-                    <img src="/file-explorer-folder-libraries-icon-18298.png" alt="This PC">
+                    <img src="file-explorer-folder-libraries-icon-18298.png" alt="This PC">
                     <span>This PC</span>
                 </div>
                 <div class="sidebar-item" data-path="C:\\Users">
-                    <img src="/user_profile.png" alt="Users">
+                    <img src="user_profile.png" alt="Users">
                     <span>Users</span>
                 </div>
                 <div class="sidebar-item" data-path="C:\\Windows">
-                    <img src="/warning.png" alt="Windows">
+                    <img src="warning.png" alt="Windows">
                     <span>Windows</span>
                 </div>
                 <!-- Add more sidebar items here if desired -->
@@ -539,7 +539,7 @@ function launchFileExplorer() {
             deleteFileOrFolder(selectedItemForDeletion);
             selectedItemForDeletion = null; // Clear selection
         } else {
-            createSystemDialog('fe-select-error', 'File Explorer', "Please select a file or folder to delete.", '/error-cancel-abort-icon.png', undefined, 'error');
+            createSystemDialog('fe-select-error', 'File Explorer', "Please select a file or folder to delete.", 'error-cancel-abort-icon.png', undefined, 'error');
         }
     });
 
@@ -570,7 +570,7 @@ function launchFileExplorer() {
             const itemElement = createElement('div', item.type === 'folder' ? 'folder-item' : 'file-item');
             itemElement.dataset.name = name; // Store name for deletion
             itemElement.innerHTML = `
-                <img src="${item.type === 'folder' ? '/file-explorer-folder-libraries-icon-18298.png' : 'https://img.icons8.com/ios-glyphs/48/ffffff/file--v1.png'}" alt="${name}">
+                <img src="${item.type === 'folder' ? 'file-explorer-folder-libraries-icon-18298.png' : 'https://img.icons8.com/ios-glyphs/48/ffffff/file--v1.png'}" alt="${name}">
                 <span>${name}</span>
             `;
 
@@ -642,7 +642,7 @@ function launchFileExplorer() {
                 createSystemDialog('file-deleted', 'File Explorer', `'${itemName}' deleted.`, null, [{text: 'OK'}]);
             }
         } else {
-            createSystemDialog('delete-error', 'File Explorer', "Item not found for deletion.", '/error-cancel-abort-icon.png', undefined, 'error');
+            createSystemDialog('delete-error', 'File Explorer', "Item not found for deletion.", 'error-cancel-abort-icon.png', undefined, 'error');
         }
     }
 }
@@ -663,7 +663,7 @@ function launchCalculatorApp() {
         <div style="display: flex; flex-direction: column; align-items: center; justify-content: center; height: 100%; padding: 20px;">
             <input type="text" value="0" style="width: 90%; margin-bottom: 15px; padding: 10px; font-size: 2em; text-align: right; background-color: #333; color: white; border: 1px solid #555; border-radius: 5px;" readonly>
             <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; width: 90%;">
-                ${['7', '8', '9', '/', '4', '5', '6', '*', '1', '2', '3', '-', '0', '.', '=', '+'].map(btn => `<button style="padding: 15px; font-size: 1.5em; background-color: #555; color: white; border: none; border-radius: 5px; cursor: pointer;">${btn}</button>`).join('')}
+                ${['7', '8', '9', '', '4', '5', '6', '*', '1', '2', '3', '-', '0', '.', '=', '+'].map(btn => `<button style="padding: 15px; font-size: 1.5em; background-color: #555; color: white; border: none; border-radius: 5px; cursor: pointer;">${btn}</button>`).join('')}
             </div>
             <p style="margin-top: 20px; font-size: 0.9em; color: #aaa;">A simple calculator placeholder.</p>
         </div>
@@ -697,7 +697,7 @@ function launchSettingsApp() {
 function launchDuolingoApp() {
     const content = `
         <div style="padding: 20px; text-align: center;">
-            <img src="/duolingo-icon.png" alt="Duolingo Icon" style="width: 80px; height: 80px; margin-bottom: 20px;">
+            <img src="duolingo-icon.png" alt="Duolingo Icon" style="width: 80px; height: 80px; margin-bottom: 20px;">
             <h2>Welcome to Duolingo!</h2>
             <p>Learn a new language, for free. Forever.</p>
             <p>Imagine practicing your Spanish or French lessons here!</p>
@@ -738,15 +738,15 @@ function launchEdgeBrowser() {
                 </div>
                 <div class="ad-container">
                     <div class="ad-item" id="ad-eatables">
-                        <img src="/ad.png" alt="Ad: Eatables">
+                        <img src="ad.png" alt="Ad: Eatables">
                         <span>Click for amazing deals!</span>
                     </div>
                     <div class="ad-item" id="ad-badweek">
-                        <img src="/badweek.png" alt="Ad: Bad Week">
+                        <img src="badweek.png" alt="Ad: Bad Week">
                         <span>Feeling down? Click here!</span>
                     </div>
                     <div class="ad-item" id="ad-windows-me-downgrade">
-                        <img src="/maxresdefault.jpg" alt="Ad: Windows ME">
+                        <img src="maxresdefault.jpg" alt="Ad: Windows ME">
                         <span>Experience the Millennium! (Windows ME)</span>
                     </div>
                 </div>
@@ -889,7 +889,7 @@ function navigateToBadWeekAdPage(edgeWindow) {
     addressInput.value = 'websim://bad-week-help';
     browserMainContent.innerHTML = `
         <div style="padding: 40px; text-align: center; display: flex; flex-direction: column; align-items: center; justify-content: center; height: 100%;">
-            <img src="/badweek.png" alt="Bad Week Cat" style="max-width: 250px; margin-bottom: 20px;">
+            <img src="badweek.png" alt="Bad Week Cat" style="max-width: 250px; margin-bottom: 20px;">
             <h1 style="color: #fff; margin-bottom: 20px;">Having a Bad Week?</h1>
             <p style="color: #ccc; margin-bottom: 30px; font-size: 1.1em;">We understand! Sometimes things just don't go your way.</p>
             <p style="color: #aaa; font-size: 0.9em;">(This is a simulated support page. No actual help offered.)</p>
@@ -908,7 +908,7 @@ function navigateToBadWeekAdPage(edgeWindow) {
 async function launchClippyApp() {
     const content = `
         <div id="clippy-image-container">
-            <img src="/Clippy.png" alt="Clippy">
+            <img src="Clippy.png" alt="Clippy">
         </div>
         <div id="clippy-speech-bubble">
             Hello there! Ask me to open an app, or click "Custom Error" for fun.
@@ -985,7 +985,7 @@ async function launchClippyApp() {
 
     clippyErrorButton.addEventListener('click', () => {
         const customError = prompt("Enter a custom error message:", "Something went wrong!");
-        if (customError) createSystemDialog('clippy-custom', 'Custom Error', customError, '/error-cancel-abort-icon.png', undefined, 'error');
+        if (customError) createSystemDialog('clippy-custom', 'Custom Error', customError, 'error-cancel-abort-icon.png', undefined, 'error');
     });
 
     clippyAskButton.addEventListener('click', askClippy);
@@ -1002,7 +1002,7 @@ function launchRecycleBin() {
     const content = `
         <div style="font-size: 1.1em; margin-bottom: 15px; color: #eee;">Items in Recycle Bin:</div>
         <div id="memz-item" class="recycle-bin-item">
-            <img src="/memz.webp" alt="MEMZ">
+            <img src="memz.webp" alt="MEMZ">
             <span>MEMZ.exe</span>
         </div>
         <div style="font-size: 0.9em; color: #aaa; margin-top: 20px;">
@@ -1016,12 +1016,12 @@ function launchRecycleBin() {
 
 async function launchMemzSimulation() {
     // Play MEMZ sound
-    const memzAudio = new Audio('/memz_sound.mp3');
+    const memzAudio = new Audio('memz_sound.mp3');
     memzAudio.volume = 0.7;
     memzAudio.play();
 
     const content = `
-        <img src="/memz.webp" alt="MEMZ Robot" style="margin-bottom: 20px;">
+        <img src="memz.webp" alt="MEMZ Robot" style="margin-bottom: 20px;">
         <div class="memz-warning-text">
             WARNING: MEMZ.exe has been detected!
             <br>
@@ -1032,7 +1032,7 @@ async function launchMemzSimulation() {
             Please contact support immediately.
         </div>
         <button id="memz-abort-button" style="margin-top: 30px;">
-            <img src="/error-cancel-abort-icon.png" alt="Abort" style="width: 20px; height: 20px; vertical-align: middle; margin-right: 8px; filter: invert(1);">
+            <img src="error-cancel-abort-icon.png" alt="Abort" style="width: 20px; height: 20px; vertical-align: middle; margin-right: 8px; filter: invert(1);">
             ABORT SYSTEM
         </button>
     `;
@@ -1059,7 +1059,7 @@ async function launchMemzSimulation() {
 function launchErrorGeneratorApp() {
     const content = `
         <div style="padding: 20px; text-align: center; display: flex; flex-direction: column; align-items: center; justify-content: center; height: 100%;">
-            <img src="/error-cancel-abort-icon.png" alt="Error" style="width: 80px; height: 80px; margin-bottom: 20px;">
+            <img src="error-cancel-abort-icon.png" alt="Error" style="width: 80px; height: 80px; margin-bottom: 20px;">
             <p id="error-message" style="color: #f00; font-size: 1.1em; margin-bottom: 25px;">Click the button to simulate an error!</p>
             <button id="trigger-error-button" style="background-color: #e81123; color: white; border: none; padding: 10px 20px; border-radius: 5px; cursor: pointer; font-size: 1.1em;">
                 Trigger Error
@@ -1083,7 +1083,7 @@ function launchErrorGeneratorApp() {
 
     triggerButton.addEventListener('click', () => {
         const randomError = errorMessages[Math.floor(Math.random() * errorMessages.length)];
-        createSystemDialog('gen-error-sim', 'System Error', randomError, '/error-cancel-abort-icon.png', undefined, 'error');
+        createSystemDialog('gen-error-sim', 'System Error', randomError, 'error-cancel-abort-icon.png', undefined, 'error');
         errorMessageElem.textContent = `Last Error: ${randomError}`;
     });
 }
@@ -1092,7 +1092,7 @@ function launchErrorGeneratorApp() {
 function launchWinverApp() {
     const content = `
         <div style="display: flex; flex-direction: column; align-items: center; padding: 20px; text-align: center;">
-            <img src="/Windows_8_logo.png" alt="Windows Logo" style="width: 150px; height: auto; margin-bottom: 20px;">
+            <img src="Windows_8_logo.png" alt="Windows Logo" style="width: 150px; height: auto; margin-bottom: 20px;">
             <h2 style="margin-bottom: 10px;">About Windows</h2>
             <p style="font-size: 1em; color: #ccc;">Microsoft Windows<br>Version 22H2 (OS Build 19045.3996)</p>
             <p style="font-size: 0.9em; color: #aaa;"> 2024 Microsoft Corporation. All rights reserved.</p>
@@ -1143,7 +1143,7 @@ function launchYoutubeApp() {
         if (videoId) {
             youtubePlayer.src = `https://www.youtube.com/embed/${videoId}`;
         } else {
-            createSystemDialog('youtube-error', 'YouTube Error', 'Please enter a valid YouTube URL or Video ID.', '/error-cancel-abort-icon.png', undefined, 'error');
+            createSystemDialog('youtube-error', 'YouTube Error', 'Please enter a valid YouTube URL or Video ID.', 'error-cancel-abort-icon.png', undefined, 'error');
         }
     }
 
@@ -1162,11 +1162,11 @@ function launchVirtualBoxApp() {
             <h2>Your Virtual Machines</h2>
             <div style="display: flex; flex-direction: column; gap: 15px; margin-top: 20px;">
                 <button class="vm-button" data-vm-name="Windows XP" data-vm-url="https://windows-xp.on.websim.com/">
-                    <img src="/Windows_8_logo.png" alt="Windows XP Icon" style="width: 48px; height: 48px; margin-right: 10px;">
+                    <img src="Windows_8_logo.png" alt="Windows XP Icon" style="width: 48px; height: 48px; margin-right: 10px;">
                     <span>Windows XP</span>
                 </button>
                 <button class="vm-button" data-vm-name="Windows 7" data-vm-url="https://windows-2--alivegazelle7737247.on.websim.com/">
-                    <img src="/Windows_8_logo.png" alt="Windows 7 Icon" style="width: 48px; height: 48px; margin-right: 10px;">
+                    <img src="Windows_8_logo.png" alt="Windows 7 Icon" style="width: 48px; height: 48px; margin-right: 10px;">
                     <span>Windows 7</span>
                 </button>
             </div>
@@ -1204,15 +1204,15 @@ function launchVMWindow(vmName, vmUrl) {
 // --- Control Panel App ---
 function launchControlPanelApp() {
     if (isWindowsME) {
-        createSystemDialog('cp-me-error', 'Control Panel Error', 'Control Panel functionality is limited in Windows ME. Please upgrade to a newer OS for full features.', '/error-cancel-abort-icon.png', undefined, 'error');
+        createSystemDialog('cp-me-error', 'Control Panel Error', 'Control Panel functionality is limited in Windows ME. Please upgrade to a newer OS for full features.', 'error-cancel-abort-icon.png', undefined, 'error');
         return;
     }
 
     const wallpapers = [
-        { name: 'Windows 10 Default', url: '/wallpaper.jpg' },
-        { name: 'Abstract Grid', url: '/Wallpaper 10 5.avif' },
-        { name: 'Super Mario Pattern', url: '/supermario64.png' },
-        { name: 'Autumn Mountains', url: '/wp7510702-macos-high-sierra-wallpapers.jpg' }
+        { name: 'Windows 10 Default', url: 'wallpaper.jpg' },
+        { name: 'Abstract Grid', url: 'Wallpaper 10 5.avif' },
+        { name: 'Super Mario Pattern', url: 'supermario64.png' },
+        { name: 'Autumn Mountains', url: 'wp7510702-macos-high-sierra-wallpapers.jpg' }
     ];
 
     let wallpaperHtml = '';
@@ -1360,7 +1360,7 @@ function initMinesweeper() {
             resetBtn.textContent = '😵';
 
             revealAll();
-            createSystemDialog('minesweeper-game-over', 'Game Over', `Minesweeper: Game Over! Your time: ${timer}s`, '/error-cancel-abort-icon.png', undefined, 'error');
+            createSystemDialog('minesweeper-game-over', 'Game Over', `Minesweeper: Game Over! Your time: ${timer}s`, 'error-cancel-abort-icon.png', undefined, 'error');
         } else if (board[r][c] === 0) {
             for (let dr = -1; dr <= 1; dr++) {
                 for (let dc = -1; dc <= 1; dc++) reveal(r + dr, c + dc);
@@ -1470,7 +1470,7 @@ function launchMSPaintApp() {
             <span id="current-size-display" style="color: #333;">5px</span>
         </div>
     `;
-    const paintWindow = createWindow('ms-paint-app', 'MS Paint', content, { width: 700, height: 550, top: 100, left: 200, icon: '/Paint.png' });
+    const paintWindow = createWindow('ms-paint-app', 'MS Paint', content, { width: 700, height: 550, top: 100, left: 200, icon: 'Paint.png' });
 
     const canvas = paintWindow.querySelector('#paint-canvas');
     const ctx = canvas.getContext('2d');
@@ -1569,7 +1569,7 @@ function launchMSPaintApp() {
             'paint-clear-confirm',
             'Clear Canvas',
             'Are you sure you want to clear the entire canvas? This cannot be undone.',
-            '/warning.png',
+            'warning.png',
             [
                 {
                     text: 'Clear',
@@ -1852,8 +1852,8 @@ function initiateMEDowngrade() {
         } else {
             clearInterval(interval);
             // Show Windows ME logo
-            downgradeOverlay.innerHTML = `<img src="/dhggmui-1d7fcc55-bf4b-4c75-8197-0134c9005ef9.png" alt="Windows ME Logo" style="max-width: 400px; max-height: 400px; animation: fadeIn 2s forwards;">`;
-            const meStartupSound = new Audio('/startup.mp3'); // Windows 95 startup sound
+            downgradeOverlay.innerHTML = `<img src="dhggmui-1d7fcc55-bf4b-4c75-8197-0134c9005ef9.png" alt="Windows ME Logo" style="max-width: 400px; max-height: 400px; animation: fadeIn 2s forwards;">`;
+            const meStartupSound = new Audio('startup.mp3'); // Windows 95 startup sound
             meStartupSound.volume = 0.7;
             meStartupSound.play().catch(e => console.error("Error playing ME startup sound:", e));
 
@@ -1896,7 +1896,7 @@ function launchMEError() {
             <div class="close-button">X</div>
         </div>
         <div class="content">
-            <img src="/warning.png" alt="Warning Icon">
+            <img src="warning.png" alt="Warning Icon">
             <p>HAHAH! Have fun with windows me!</p>
         </div>
         <div class="ok-button-container">
@@ -1929,7 +1929,7 @@ function launchSystem32NotFoundError() {
             <div class="close-button">X</div>
         </div>
         <div class="content">
-            <img src="/error-cancel-abort-icon.png" alt="Error Icon">
+            <img src="error-cancel-abort-icon.png" alt="Error Icon">
             <p>System32 cannot be found.</p>
         </div>
         <div class="ok-button-container">
@@ -1960,19 +1960,19 @@ function triggerSystem32Deletion() {
 
     // 1. Warning
     setTimeout(() => {
-        createSystemDialog('sys32-warn1', 'File Explorer', 'Warning: Attempting to delete critical system files. This action cannot be undone.', '/warning.png', [{ text: 'OK' }]);
+        createSystemDialog('sys32-warn1', 'File Explorer', 'Warning: Attempting to delete critical system files. This action cannot be undone.', 'warning.png', [{ text: 'OK' }]);
     }, delay);
     delay += increment;
 
     // 2. Access Denied Error
     setTimeout(() => {
-        createSystemDialog('sys32-error1', 'File Explorer', 'Error: Access denied to C:\\Windows\\System32\\ntoskrnl.exe', '/error-cancel-abort-icon.png', [{ text: 'OK' }], 'error');
+        createSystemDialog('sys32-error1', 'File Explorer', 'Error: Access denied to C:\\Windows\\System32\\ntoskrnl.exe', 'error-cancel-abort-icon.png', [{ text: 'OK' }], 'error');
     }, delay);
     delay += increment;
 
     // 3. Critical System Error
     setTimeout(() => {
-        const criticalDialog = createSystemDialog('sys32-critical', 'Critical System Error', 'Critical System Error! Some system processes have been unexpectedly terminated.', '/error-cancel-abort-icon.png', [{ text: 'Close All Programs', callback: () => { /* noop, will BSOD anyway */ } }], 'error');
+        const criticalDialog = createSystemDialog('sys32-critical', 'Critical System Error', 'Critical System Error! Some system processes have been unexpectedly terminated.', 'error-cancel-abort-icon.png', [{ text: 'Close All Programs', callback: () => { /* noop, will BSOD anyway */ } }], 'error');
         // This dialog cannot be closed by its 'X' or 'Close All Programs' if the BSOD is imminent
         criticalDialog.querySelector('.dialog-close-button').style.display = 'none'; // Hide X
         criticalDialog.querySelector('.dialog-button').disabled = true; // Disable button temporarily
@@ -1981,7 +1981,7 @@ function triggerSystem32Deletion() {
 
     // 4. System Unstable / Restart
     setTimeout(() => {
-        createSystemDialog('sys32-unstable', 'System Message', 'Your system is unstable. A restart is required. Initiating shutdown...', '/warning.png', [{ text: 'Restart Now', callback: () => triggerBSOD() }], 'warning');
+        createSystemDialog('sys32-unstable', 'System Message', 'Your system is unstable. A restart is required. Initiating shutdown...', 'warning.png', [{ text: 'Restart Now', callback: () => triggerBSOD() }], 'warning');
     }, delay);
     delay += increment;
 
@@ -1998,7 +1998,7 @@ function initiateVirusAttack() {
     Array.from(windowContainer.children).forEach(win => win.remove());
 
     // Display a "virus installing" message initially
-    createSystemDialog('virus-install', 'VIRUS ALERT!', 'Malicious software detected and is taking over your system!', '/memz.webp', [{ text: 'OH NO!' }], 'error');
+    createSystemDialog('virus-install', 'VIRUS ALERT!', 'Malicious software detected and is taking over your system!', 'memz.webp', [{ text: 'OH NO!' }], 'error');
 
     setTimeout(() => {
         // Start app disappearance
@@ -2065,7 +2065,7 @@ function launchNotepadApp(filename = 'Untitled.txt', contentTxt = '') {
             <textarea id="notepad-textarea" style="flex-grow:1;background:#fff;color:#000;font-family:'Consolas',monospace;font-size:14px;padding:8px;border:none;resize:none;"></textarea>
         </div>
     `;
-    const notepadWindow = createWindow(appId, `${filename} - Notepad`, content, { width: 600, height: 400, top: 120, left: 220, icon: '/forbidden.png' });
+    const notepadWindow = createWindow(appId, `${filename} - Notepad`, content, { width: 600, height: 400, top: 120, left: 220, icon: 'forbidden.png' });
     
     const textarea = notepadWindow.querySelector('#notepad-textarea');
     const saveButton = notepadWindow.querySelector('#notepad-save-btn');
@@ -2116,7 +2116,7 @@ function launchSavedItemsFolder() {
         height: 400,
         top: 150,
         left: 150,
-        icon: '/file-explorer-folder-libraries-icon-18298.png'
+        icon: 'file-explorer-folder-libraries-icon-18298.png'
     });
 
     const contentArea = savedItemsWindow.querySelector('#saved-items-content-area');
@@ -2132,9 +2132,9 @@ function launchSavedItemsFolder() {
             
             let iconSrc = 'https://img.icons8.com/ios-glyphs/48/ffffff/file--v1.png'; // Generic file
             if (item.fileType === 'text') {
-                iconSrc = '/forbidden.png'; // Notepad icon
+                iconSrc = 'forbidden.png'; // Notepad icon
             } else if (item.fileType === 'image') {
-                iconSrc = '/photos-icon.png'; // Photos icon
+                iconSrc = 'photos-icon.png'; // Photos icon
             }
 
             itemElement.innerHTML = `
@@ -2174,7 +2174,7 @@ function launchSavedItemsFolder() {
         createWindow(imageAppId, filename, imageContent, {
             width: 800,
             height: 600,
-            icon: '/photos-icon.png'
+            icon: 'photos-icon.png'
         });
     }
 
