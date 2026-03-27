@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>uoogle — Results</title>
+    <link rel="icon" href="uoogle_paw.png" />
+    <link rel="stylesheet" href="styles.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+  </head>
+  <body>
+    <nav class="topbar" aria-label="Site">
+      <a href="index.html" class="toplink home" aria-label="Home">🏠</a>
+      <div class="spacer"></div>
+      <a href="umail.html" class="toplink"><img src="umail.png" alt="" />Umail</a>
+      <a href="images-index.html" class="toplink">Images</a>
+      <a href="utube.html" class="toplink"><img src="dogtube.png" alt="" />UTube</a>
+      <a href="uoogle-signin.html" class="top-signin">Sign in</a>
+    </nav>
+
+    <header class="hero" style="padding-top:1rem;">
+      <div class="logo" style="grid-auto-flow:column; align-items:center; gap:.6rem;">
+        <img class="dog" src="dog.png" alt="mascot" style="height:64px;filter:none;" />
+        <img class="wordmark" src="/googlelogo_color_272x92dp2.png" alt="googlecolor" style="height:42px;" />
+      </div>
+      <form class="search-bar" role="search" action="results.html" method="get" style="margin-top:.5rem;">
+        <input name="q" id="q" type="search" placeholder="Search uoogle…" />
+        <div class="actions">
+          <button type="submit" class="primary">Search</button>
+        </div>
+      </form>
+    </header>
+
+    <nav class="tabs" aria-label="Result types">
+      <a id="tabLinks" href="#">Links</a>
+      <a id="tabImages" href="#">Images</a>
+    </nav>
+
+    <main>
+      <section class="results serp" style="width:min(900px,95vw);">
+        <ul id="serpList" class="serp-list" aria-live="polite"></ul>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <span>Results from Wikipedia.</span>
+    </footer>
+
+    <script>
+      const qp=new URLSearchParams(location.search);const qv=qp.get("q")||"";const L=document.getElementById("tabLinks");const I=document.getElementById("tabImages");
+      L.href=`results.html${qv?`?q=${encodeURIComponent(qv)}`:""}`; I.href=`images-results.html${qv?`?q=${encodeURIComponent(qv)}`:""}`; L.classList.add("active");
+    </script>
+    <script type="module" src="results.js"></script>
+  </body>
+</html>

@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>UTube — Dog videos</title>
+    <link rel="icon" href="dogtube.png" />
+    <link rel="stylesheet" href="styles.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+      .utube-header {
+        display:flex;
+        align-items:center;
+        gap:.5rem;
+        padding:.5rem .75rem;
+      }
+      .utube-header img.logo {
+        width:32px;
+        height:32px;
+      }
+      .utube-header span {
+        font-weight:700;
+        font-size:1.2rem;
+      }
+      .utube-search {
+        flex:1;
+        display:flex;
+        justify-content:center;
+      }
+      .utube-search form {
+        width:100%;
+        max-width:480px;
+        display:flex;
+      }
+      .utube-search input {
+        flex:1;
+        padding:.45rem .6rem;
+        border:1px solid #dadce0;
+        border-right:none;
+        border-radius:999px 0 0 999px;
+        font-size:.95rem;
+      }
+      .utube-search button {
+        border-radius:0 999px 999px 0;
+        padding:0 .9rem;
+      }
+      .utube-main {
+        display:grid;
+        grid-template-columns: minmax(0, 1fr);
+        gap:1rem;
+        padding:.5rem .75rem 1.5rem;
+      }
+      .utube-grid {
+        display:grid;
+        grid-template-columns:repeat(auto-fill,minmax(150px,1fr));
+        gap:.75rem;
+      }
+      .utube-card {
+        text-decoration:none;
+        color:inherit;
+      }
+      .utube-thumb {
+        width:100%;
+        aspect-ratio:16/9;
+        border-radius:10px;
+        background:#f1f3f4;
+        overflow:hidden;
+      }
+      .utube-thumb img {
+        width:100%;
+        height:100%;
+        object-fit:cover;
+        display:block;
+      }
+      .utube-meta {
+        margin-top:.3rem;
+        display:flex;
+        gap:.4rem;
+      }
+      .utube-meta img {
+        width:28px;
+        height:28px;
+        border-radius:50%;
+      }
+      .utube-text {
+        font-size:.8rem;
+      }
+      .utube-text .title {
+        font-weight:600;
+        margin-bottom:.1rem;
+      }
+      .utube-text .channel {
+        color:#606060;
+      }
+      
+      /* Animation styles */
+      @keyframes boneCatch {
+        0% { transform: translateY(0) rotate(0deg); }
+        50% { transform: translateY(-20px) rotate(180deg); }
+        100% { transform: translateY(0) rotate(360deg); }
+      }
+      
+      @keyframes logoFall {
+        0% { transform: translateY(0) rotate(0deg); opacity: 1; }
+        100% { transform: translateY(200px) rotate(45deg); opacity: 0; }
+      }
+      
+      @keyframes logoShake {
+        0%, 100% { transform: translateX(0); }
+        25% { transform: translateX(-10px); }
+        75% { transform: translateX(10px); }
+      }
+      
+      @keyframes logoSpin {
+        0% { transform: rotate(0deg) scale(1); }
+        50% { transform: rotate(180deg) scale(1.2); }
+        100% { transform: rotate(360deg) scale(1); }
+      }
+      
+      @keyframes logoBounce {
+        0%, 100% { transform: translateY(0); }
+        50% { transform: translateY(-30px); }
+      }
+      
+      @keyframes logoWiggle {
+        0%, 100% { transform: rotate(0deg); }
+        25% { transform: rotate(-15deg); }
+        75% { transform: rotate(15deg); }
+      }
+      
+      @keyframes logoPulse {
+        0%, 100% { transform: scale(1); }
+        50% { transform: scale(1.3); }
+      }
+      
+      @keyframes logoSlide {
+        0% { transform: translateX(0); }
+        100% { transform: translateX(100px); }
+      }
+      
+      @keyframes logoDisappear {
+        0% { opacity: 1; transform: scale(1); }
+        100% { opacity: 0; transform: scale(0); }
+      }
+      
+      @keyframes logoRainbow {
+        0% { filter: hue-rotate(0deg); }
+        100% { filter: hue-rotate(360deg); }
+      }
+      
+      .logo-animation-1 { animation: boneCatch 1s ease-in-out; }
+      .logo-animation-2 { animation: logoFall 1s ease-in-out forwards; }
+      .logo-animation-3 { animation: logoShake 0.5s ease-in-out; }
+      .logo-animation-4 { animation: logoSpin 1s ease-in-out; }
+      .logo-animation-5 { animation: logoBounce 0.8s ease-in-out; }
+      .logo-animation-6 { animation: logoWiggle 0.6s ease-in-out; }
+      .logo-animation-7 { animation: logoPulse 0.8s ease-in-out; }
+      .logo-animation-8 { animation: logoSlide 1s ease-in-out forwards; }
+      .logo-animation-9 { animation: logoDisappear 1s ease-in-out forwards; }
+      .logo-animation-10 { animation: logoRainbow 2s linear; }
+    </style>
+  </head>
+  <body>
+    <nav class="topbar" aria-label="Site">
+      <a href="index.html" class="toplink home" aria-label="Home">🏠</a>
+      <div class="spacer"></div>
+      <a href="umail.html" class="toplink"><img src="umail.png" alt="" />Umail</a>
+      <a href="images-index.html" class="toplink">Images</a>
+      <a href="utube.html" class="toplink"><img src="dogtube.png" alt="" />UTube</a>
+      <a href="uoogle-signin.html" class="top-signin">Sign in</a>
+    </nav>
+
+    <header class="utube-header">
+      <img src="dogtube.png" alt="UTube logo" class="logo" id="utubeLogo" />
+      <span>UTube</span>
+      <div class="utube-search">
+        <form onsubmit="event.preventDefault(); triggerRandomAnimation();">
+          <input type="search" placeholder="Search dog videos" />
+          <button type="submit" class="primary">Search</button>
+        </form>
+      </div>
+    </header>
+
+    <main class="utube-main">
+      <section>
+        <div class="utube-grid" aria-label="Dog videos">
+          <a href="underconstruction.html" class="utube-card">
+            <div class="utube-thumb">
+              <img src="thumb1.png" alt="Puppy tricks compilation" />
+            </div>
+            <div class="utube-meta">
+              <img src="dog.png" alt="" />
+              <div class="utube-text">
+                <div class="title">10 Easy Tricks to Teach Your Puppy</div>
+                <div class="channel">Dog School · 1.2M views · 2 weeks ago</div>
+              </div>
+            </div>
+          </a>
+
+          <a href="underconstruction.html" class="utube-card">
+            <div class="utube-thumb">
+              <img src="thumb2.png" alt="Dog park adventure" />
+            </div>
+            <div class="utube-meta">
+              <img src="uoogle_paw.png" alt="" />
+              <div class="utube-text">
+                <div class="title">Ultimate Dog Park Adventure</div>
+                <div class="channel">Paws & Play · 842K views · 5 days ago</div>
+              </div>
+            </div>
+          </a>
+
+          <a href="underconstruction.html" class="utube-card">
+            <div class="utube-thumb">
+              <img src="thumb3.png" alt="Relaxing dog ASMR" />
+            </div>
+            <div class="utube-meta">
+              <img src="umail.png" alt="" />
+              <div class="utube-text">
+                <div class="title">Dog ASMR: Crunchy Treats</div>
+                <div class="channel">Calm Canines · 320K views · 1 month ago</div>
+              </div>
+            </div>
+          </a>
+
+          <a href="underconstruction.html" class="utube-card">
+            <div class="utube-thumb">
+              <img src="thumb4.png" alt="Funny dog fails" />
+            </div>
+            <div class="utube-meta">
+              <img src="police_car.png" alt="" />
+              <div class="utube-text">
+                <div class="title">Funniest Dog Fails 2025</div>
+                <div class="channel">Woof LOL · 2.4M views · 3 days ago</div>
+              </div>
+            </div>
+          </a>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <span>UTube is a fictional dog video service for this demo. Videos are under construction.</span>
+    </footer>
+
+    <script>
+      function triggerRandomAnimation() {
+        const logo = document.getElementById('utubeLogo');
+        const animations = ['logo-animation-1', 'logo-animation-2', 'logo-animation-3', 'logo-animation-4', 'logo-animation-5', 'logo-animation-6', 'logo-animation-7', 'logo-animation-8', 'logo-animation-9', 'logo-animation-10'];
+        const randomAnimation = animations[Math.floor(Math.random() * animations.length)];
+        
+        // Remove all animation classes first
+        animations.forEach(anim => logo.classList.remove(anim));
+        
+        // Add the random animation
+        logo.classList.add(randomAnimation);
+        
+        // Remove the animation class after it completes
+        setTimeout(() => {
+          logo.classList.remove(randomAnimation);
+        }, 2000);
+      }
+    </script>
+  </body>
+</html>

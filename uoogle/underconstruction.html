@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>uoogle — Under construction</title>
+    <link rel="icon" href="uoogle_paw.png" />
+    <link rel="stylesheet" href="styles.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+      .uc-wrap { min-height:70vh; display:grid; place-items:center; padding:2rem 1rem; }
+      .worker-scene { display:flex; flex-direction:column; align-items:center; gap:.9rem; }
+      .worker-dog { width:160px; height:auto; }
+      .construction-gear { display:flex; gap:.6rem; align-items:center; margin-top:.6rem; }
+      .construction-gear img { width:40px; height:40px; }
+      .uc-panel { background:#fff; border:1px solid #ececec; padding:1rem; border-radius:12px; text-align:center; max-width:560px; }
+    </style>
+  </head>
+  <body>
+    <nav class="topbar" aria-label="Site">
+      <a href="index.html" class="toplink home" aria-label="Home">🏠</a>
+      <div class="spacer"></div>
+      <a href="umail.html" class="toplink"><img src="umail.png" alt="" />Umail</a>
+      <a href="images-index.html" class="toplink">Images</a>
+      <a href="utube.html" class="toplink"><img src="dogtube.png" alt="" />UTube</a>
+      <a href="extension-store.html" class="toplink">Extensions</a>
+      <a href="uoogle-signin.html" class="top-signin">Sign in</a>
+    </nav>
+
+    <main class="uc-wrap">
+      <section class="uc-panel" role="main" aria-labelledby="ucTitle">
+        <div class="worker-scene" aria-hidden="true">
+          <img src="dog.png" alt="Worker dog" class="worker-dog" />
+          <div style="font-weight:700; font-size:1.25rem;" id="ucTitle">Under Construction</div>
+          <div style="color:#5f6368; margin-top:.25rem;">We're building something pawsome. Please check back soon.</div>
+          <div class="construction-gear" aria-hidden="true">
+            <img src="police_car.png" alt="truck" />
+            <img src="bone_icon.png" alt="bone icon" />
+            <img src="uoogle_paw.png" alt="paw icon" />
+          </div>
+        </div>
+
+        <div style="display:flex; justify-content:center; gap:.75rem; margin-top:1rem;">
+          <a href="index.html"><button class="secondary">Back to Uoogle Home</button></a>
+          <a href="extension-store.html"><button class="primary">Visit Extensions</button></a>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <span>Work in progress — thank you for your patience.</span>
+    </footer>
+  </body>
+</html>
+

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>uoogle — Viewer</title>
+    <link rel="icon" href="uoogle_paw.png" />
+    <link rel="stylesheet" href="styles.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+      /* minimal overlay styling */
+      .viewer-wrap { position: fixed; inset: 0; background:#fff; }
+      .viewer-bar {
+        position: fixed; top: 12px; left: 12px;
+        z-index: 2; display:flex; gap:.5rem;
+      }
+      .viewer-iframe { position: absolute; inset: 0; border: 0; width: 100%; height: 100%; }
+    </style>
+  </head>
+  <body>
+    <div class="viewer-wrap">
+      <div class="viewer-bar">
+        <a id="backBtn" href="results.html" class="primary" style="text-decoration:none; padding:.5rem .9rem; border-radius:6px; border:1px solid #1a73e8; background:#1a73e8; color:#fff; font-weight:700;">Back to results</a>
+
+        <!-- Controls: open iframe source in full page or new tab -->
+        <div style="display:flex; gap:.5rem; align-items:center;">
+          <button id="openFull" class="secondary" style="padding:.4rem .6rem; border-radius:6px;">Open full page</button>
+          <button id="openNewTab" class="secondary" style="padding:.4rem .6rem; border-radius:6px;">Open in new tab</button>
+        </div>
+      </div>
+      <iframe id="frame" class="viewer-iframe" title="Article viewer"></iframe>
+    </div>
+    <script>
+      const p = new URLSearchParams(location.search);
+      const title = p.get("title") || "";
+      const q = p.get("q") || "";
+      const src = `https://pierrepapierciseaux.net/.skynet/www.php?site=${encodeURIComponent(title)}&lang=en`;
+
+      const frame = document.getElementById("frame");
+      frame.src = src;
+
+      const back = document.getElementById("backBtn");
+      back.href = `results.html${q ? `?q=${encodeURIComponent(q)}` : ""}`;
+
+      // Buttons to open the iframe target as a full-page view inside this window (replace) or in a new browser tab
+      document.getElementById("openFull").addEventListener("click", () => {
+        // replace current page with the external viewer page (full-page)
+        window.location.href = src;
+      });
+      document.getElementById("openNewTab").addEventListener("click", () => {
+        window.open(src, "_blank", "noopener");
+      });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Umail — Sign up</title>
+    <link rel="icon" href="umail.png" />
+    <link rel="stylesheet" href="styles.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+  </head>
+  <body>
+    <nav class="topbar" aria-label="Site">
+      <a href="index.html" class="toplink home" aria-label="Home">🏠</a>
+      <div class="spacer"></div>
+      <a href="images-index.html" class="toplink">Images</a>
+      <a href="utube.html" class="toplink"><img src="dogtube.png" alt="" />UTube</a>
+      <a href="uoogle-signin.html" class="top-signin">Sign in</a>
+    </nav>
+
+    <main style="display:grid; place-items:center; min-height:70vh; padding:1rem;">
+      <div style="width:min(420px,95vw); border:1px solid #dadce0; border-radius:12px; padding:1.25rem; background:#fff;">
+        <div style="display:flex; align-items:center; gap:.5rem; margin-bottom:.75rem;">
+          <img src="umail.png" alt="" style="width:28px; height:28px;" />
+          <h1 style="margin:0; font-size:1.25rem;">Create your Umail account</h1>
+        </div>
+        <form onsubmit="event.preventDefault()">
+          <div style="display:grid; gap:.6rem;">
+            <input type="text" placeholder="First name" style="padding:.75rem; border:1px solid #dadce0; border-radius:6px;" />
+            <input type="text" placeholder="Last name" style="padding:.75rem; border:1px solid #dadce0; border-radius:6px;" />
+            <input type="email" placeholder="Username" style="padding:.75rem; border:1px solid #dadce0; border-radius:6px;" />
+            <div style="display:flex; gap:.5rem;">
+              <input type="password" placeholder="Password" style="flex:1; padding:.75rem; border:1px solid #dadce0; border-radius:6px;" />
+              <input type="password" placeholder="Confirm" style="flex:1; padding:.75rem; border:1px solid #dadce0; border-radius:6px;" />
+            </div>
+            <button class="primary" type="submit">Next</button>
+          </div>
+        </form>
+        <p style="color:#5f6368; font-size:.9rem; margin-top:.8rem;">This is a demo page and does not create an account.</p>
+      </div>
+    </main>
+
+    <footer class="footer">
+      <span>Umail is a fictional service for this demo.</span>
+    </footer>
+  </body>
+</html>

@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Extensions — Woofme Store</title>
+    <link rel="icon" href="uoogle_paw.png" />
+    <link rel="stylesheet" href="styles.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+      .store-wrap { width:min(1100px,95vw); margin:1.25rem auto; }
+      .store-header { display:flex; align-items:center; gap:.75rem; justify-content:space-between; }
+      .store-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(220px,1fr)); gap:.9rem; margin-top:1rem; }
+      .store-card { border:1px solid #ececec; padding:.8rem; border-radius:10px; background:#fff; display:flex; gap:.6rem; align-items:flex-start; }
+      .store-card img { width:64px; height:64px; border-radius:12px; flex:0 0 64px; }
+      .store-meta .title { font-weight:700; margin-bottom:.25rem; }
+      .store-meta .desc { color:var(--muted); font-size:.9rem; }
+      .store-actions { margin-top:.6rem; display:flex; gap:.5rem; }
+    </style>
+  </head>
+  <body>
+    <nav class="topbar" aria-label="Site">
+      <a href="index.html" class="toplink home" aria-label="Home">🏠</a>
+      <div class="spacer"></div>
+      <a href="umail.html" class="toplink"><img src="umail.png" alt="" />Umail</a>
+      <a href="images-index.html" class="toplink">Images</a>
+      <a href="utube.html" class="toplink"><img src="dogtube.png" alt="" />UTube</a>
+      <a href="extension-store.html" class="toplink">Extensions</a>
+      <a href="uoogle-signin.html" class="top-signin">Sign in</a>
+    </nav>
+
+    <main class="store-wrap">
+      <header class="store-header">
+        <div>
+          <h1 style="margin:0;">Woofme Extension Store</h1>
+          <div style="color:var(--muted); margin-top:.25rem;">Curated dog-focused extensions for the demo browser.</div>
+        </div>
+        <div>
+          <input type="search" placeholder="Search extensions…" style="padding:.5rem; border-radius:8px; border:1px solid #dadce0;" />
+        </div>
+      </header>
+
+      <section class="store-grid" aria-live="polite">
+        <div class="store-card">
+          <img src="ext1.png" alt="PawSafe" />
+          <div class="store-meta">
+            <div class="title">PawSafe</div>
+            <div class="desc">Block trackers and protect pet data.</div>
+            <div class="store-actions"><button class="primary">Add</button></div>
+          </div>
+        </div>
+
+        <div class="store-card">
+          <img src="ext2.png" alt="TreatFinder" />
+          <div class="store-meta">
+            <div class="title">TreatFinder</div>
+            <div class="desc">Locate deals and top-rated treats.</div>
+            <div class="store-actions"><button class="primary">Add</button></div>
+          </div>
+        </div>
+
+        <div class="store-card">
+          <img src="ext3.png" alt="Park Finder" />
+          <div class="store-meta">
+            <div class="title">Park Finder</div>
+            <div class="desc">Discover nearby off-leash parks.</div>
+            <div class="store-actions"><button class="primary">Add</button></div>
+          </div>
+        </div>
+
+        <div class="store-card">
+          <img src="ext4.png" alt="VetConnect" />
+          <div class="store-meta">
+            <div class="title">VetConnect</div>
+            <div class="desc">Find vets and emergency care near you.</div>
+            <div class="store-actions"><button class="primary">Add</button></div>
+          </div>
+        </div>
+
+        <div class="store-card">
+          <img src="ext5.png" alt="BarkTranslate" />
+          <div class="store-meta">
+            <div class="title">BarkTranslate</div>
+            <div class="desc">Playful mood translation for barks.</div>
+            <div class="store-actions"><button class="primary">Add</button></div>
+          </div>
+        </div>
+
+        <div class="store-card">
+          <img src="ext6.png" alt="GroomPro" />
+          <div class="store-meta">
+            <div class="title">GroomPro</div>
+            <div class="desc">Grooming guides and timers.</div>
+            <div class="store-actions"><button class="primary">Add</button></div>
+          </div>
+        </div>
+
+        <div class="store-card">
+          <img src="ext7.png" alt="TrainingCheer" />
+          <div class="store-meta">
+            <div class="title">TrainingCheer</div>
+            <div class="desc">Short, daily training plans.</div>
+            <div class="store-actions"><button class="primary">Add</button></div>
+          </div>
+        </div>
+
+        <div class="store-card">
+          <img src="ext8.png" alt="PawTranslate" />
+          <div class="store-meta">
+            <div class="title">PawTranslate</div>
+            <div class="desc">Multilingual dog resources & tips.</div>
+            <div class="store-actions"><button class="primary">Add</button></div>
+          </div>
+        </div>
+
+        <div class="store-card">
+          <img src="ext9.png" alt="TreatCam" />
+          <div class="store-meta">
+            <div class="title">TreatCam</div>
+            <div class="desc">Capture and GIF your dog's tricks.</div>
+            <div class="store-actions"><button class="primary">Add</button></div>
+          </div>
+        </div>
+
+        <div class="store-card">
+          <img src="ext10.png" alt="WoofWeather" />
+          <div class="store-meta">
+            <div class="title">WoofWeather</div>
+            <div class="desc">Walk-friendly weather and alerts.</div>
+            <div class="store-actions"><button class="primary">Add</button></div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <span>Extensions in this demo are fictional and for demonstration only.</span>
+    </footer>
+  </body>
+</html>

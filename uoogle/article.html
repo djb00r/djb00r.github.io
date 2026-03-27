@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Uikiuedia — Generating…</title>
+    <link rel="icon" href="dogpuzzle.png" />
+    <link rel="stylesheet" href="styles.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+  </head>
+  <body>
+    <nav class="topbar" aria-label="Site">
+      <a href="index.html" class="toplink home" aria-label="Home">🏠</a>
+      <div class="spacer"></div>
+      <a href="results.html" class="toplink">Results</a>
+      <a href="utube.html" class="toplink"><img src="dogtube.png" alt="" />UTube</a>
+      <button class="top-signin">Sign in</button>
+    </nav>
+
+    <header class="uikiuedia-header">
+      <img src="dog.png" alt="Uikiuedia logo" />
+      <div class="uikiuedia-title">Uikiuedia</div>
+    </header>
+
+    <main id="content" style="width:min(900px,95vw); margin: 0 auto 2rem;">
+      <section class="uikiuedia-loading" id="loading">
+        <img src="dog.png" alt="" class="spinner" />
+        <div>Generating Uikiuedia article…</div>
+      </section>
+      <article id="article" style="display:none;"></article>
+    </main>
+
+    <footer class="footer">
+      <span>Results powered by Uikiuedia.</span>
+    </footer>
+
+    <script type="module" src="article.js"></script>
+  </body>
+</html>
+

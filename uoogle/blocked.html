@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>uoogle — Blocked Search</title>
+    <link rel="icon" href="uoogle_paw.png" />
+    <link rel="stylesheet" href="styles.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+  </head>
+  <body>
+    <nav class="topbar" aria-label="Site">
+      <a href="index.html" class="toplink home" aria-label="Home">🏠</a>
+      <div class="spacer"></div>
+      <a href="umail.html" class="toplink"><img src="umail.png" alt="" />Umail</a>
+      <a href="images-index.html" class="toplink">Images</a>
+      <a href="utube.html" class="toplink"><img src="dogtube.png" alt="" />UTube</a>
+      <a href="uoogle-signin.html" class="top-signin">Sign in</a>
+    </nav>
+    <main class="blocked-wrap">
+      <section>
+        <div class="blocked-scene" aria-hidden="true">
+          <img src="dog.png" alt="Dog mascot being arrested" style="filter: grayscale(20%) brightness(0.95);" />
+          <img src="police_car.png" alt="Police car" />
+          <img src="blue_dog.png" alt="Blue police dog" />
+        </div>
+        <div class="blocked-msg">
+          <h1 style="margin:.6rem 0 0; font-size:1.6rem;">Inappropriate search keywords are not allowed</h1>
+          <p id="blockedQuery" style="color:#5f6368; margin:.25rem 0 0;"></p>
+          <div class="blocked-actions">
+            <a href="index.html">
+              <button class="primary">Go back to Uoogle Home</button>
+            </a>
+          </div>
+        </div>
+      </section>
+    </main>
+    <footer class="footer">
+      <span>Please use family-friendly searches.</span>
+    </footer>
+    <script>
+      const params = new URLSearchParams(location.search);
+      const q = params.get("q");
+      if (q) document.getElementById("blockedQuery").textContent = `Blocked query: "${q}"`;
+    </script>
+  </body>
+</html>

@@ -1,0 +1,593 @@
+/* ...existing content... */
+
+:root {
+  --bg: #ffffff;
+  --panel: #ffffff;
+  --panel-2: #ffffff;
+  --muted: #5f6368;
+  --text: #202124;
+  --primary: #1a73e8;
+  --primary-2: #1558b0;
+  --chip: #f1f3f4;
+  --chip-text: #3c4043;
+  --ring: 0 0 0 2px #1a73e84d;
+}
+
+* { box-sizing: border-box; }
+html, body { height: 100%; }
+body {
+  margin: 0;
+  background: #ffffff;
+  color: var(--text);
+  font-family: "Noto Sans", ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial, "Apple Color Emoji", "Segoe UI Emoji";
+}
+
+.hero {
+  padding: 2rem 1rem 1rem;
+  display: grid;
+  gap: 1rem;
+  justify-items: center;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: .75rem;
+}
+/* replaced paw with dog mascot */
+.logo .dog {
+  height: 160px;
+  width: auto;
+}
+/* use googlecolor image as the wordmark */
+.logo .wordmark { height: 92px; }
+/* ...existing content... */
+
+.logo h1 {
+  margin: 0;
+  font-size: clamp(2rem, 5vw, 3rem);
+  letter-spacing: .5px;
+}
+.logo h1 .u { color: #4da3ff; }
+.logo h1 .o1 { color: #ff5a5f; }
+.logo h1 .o2 { color: #f4c20d; }
+.logo h1 .g { color: #34a853; }
+.logo h1 .l { color: #4da3ff; }
+.logo h1 .e { color: #ff5a5f; }
+.logo .tagline {
+  font-size: .95rem;
+  color: var(--muted);
+}
+
+.search-bar {
+  width: min(900px, 92vw);
+  display: grid;
+  gap: .5rem;
+  position: relative;
+}
+.search-bar input[type="search"] {
+  width: 100%;
+  padding: 1rem 1.1rem;
+  border-radius: 3px;
+  border: 1px solid #dadce0;
+  background: #ffffff;
+  color: var(--text);
+  font-size: 1.05rem;
+  outline: none;
+}
+.search-bar input[type="search"]:focus {
+  box-shadow: var(--ring);
+  border-color: #1a73e8;
+}
+.actions {
+  display: flex;
+  gap: .5rem;
+  align-items: center;
+}
+button {
+  border: 1px solid #dadce0;
+  background: #ffffff;
+  color: var(--text);
+  cursor: pointer;
+}
+button.primary {
+  background: #1a73e8;
+  border-color: #1a73e8;
+  color: #ffffff;
+}
+button.secondary { background: #f8f9fa; }
+button.ghost { background: transparent; border-color: #dadce0; }
+button:focus-visible { box-shadow: var(--ring); outline: none; }
+button img { width: 18px; height: 18px; vertical-align: -3px; margin-right: .4rem; }
+
+.suggestions {
+  list-style: none;
+  margin: 0; padding: .25rem;
+  position: absolute;
+  top: calc(100% + .25rem);
+  width: 100%;
+  background: var(--panel-2);
+  border: 1px solid #dadce0;
+  border-radius: 12px;
+  display: none;
+  max-height: 280px;
+  overflow: auto;
+  z-index: 10;
+}
+.suggestions.show { display: block; }
+.suggestions li {
+  padding: .6rem .75rem;
+  border-radius: 8px;
+  cursor: pointer;
+}
+.suggestions li[aria-selected="true"], .suggestions li:hover {
+  background: #f1f3f4;
+}
+
+.chips {
+  display: flex;
+  gap: .5rem;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+.chip {
+  border-radius: 999px;
+  background: var(--chip);
+  border: 1px solid #dadce0;
+  color: var(--chip-text);
+  padding: .4rem .8rem;
+}
+
+.results {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.25rem;
+  width: min(1200px, 95vw);
+  margin: 1rem auto 3rem;
+}
+@media (min-width: 900px) {
+  .results { grid-template-columns: minmax(0, 2fr) minmax(260px, 1fr); }
+}
+
+.section-title {
+  margin: .25rem 0 .5rem;
+  font-size: 1.1rem;
+  color: var(--muted);
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(170px, 1fr));
+  gap: .75rem;
+}
+.card {
+  background: var(--panel);
+  border: 1px solid #dadce0;
+  border-radius: 14px;
+  overflow: hidden;
+  display: grid;
+  grid-template-rows: auto 40px;
+}
+.card img {
+  width: 100%; height: 170px; object-fit: cover; background: #f1f3f4;
+}
+.card .meta {
+  padding: .4rem .6rem;
+  font-size: .85rem;
+  color: var(--muted);
+  display: flex; align-items: center; justify-content: space-between;
+}
+.card .open {
+  font-size: .8rem;
+  color: #9fd7bb;
+  text-decoration: underline;
+  cursor: pointer;
+  background: none; border: none;
+}
+
+.articles {
+  list-style: none;
+  padding: 0; margin: 0;
+  display: grid; gap: .5rem;
+}
+.articles li {
+  background: var(--panel);
+  border: 1px solid #dadce0;
+  border-radius: 12px;
+  padding: .75rem .8rem;
+}
+.articles a {
+  color: #bfe7ff;
+  text-decoration: none;
+}
+.articles a:hover { text-decoration: underline; }
+.articles .snippet {
+  color: var(--muted);
+  font-size: .9rem;
+}
+
+.serp-list { list-style:none; padding:0; margin:0; display:grid; gap:1rem; }
+.result-item { padding: .8rem 1rem; border:1px solid #dadce0; border-radius:12px; background:#fff; }
+.result-item .serp-title { color:#1a0dab; font-size:1.05rem; text-decoration:none; font-weight:600; }
+.result-item .serp-url { color:#006621; font-size:.85rem; margin-top:.15rem; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
+.result-item .serp-snippet { color:#4d5156; font-size:.95rem; margin-top:.25rem; }
+
+dialog#lightbox::backdrop { background: #000a; }
+dialog#lightbox {
+  border: none; border-radius: 16px;
+  background: #ffffff;
+  color: var(--text);
+  padding: 1rem;
+  width: min(90vw, 900px);
+}
+#lightbox img {
+  width: 100%; height: auto; border-radius: 12px; background: #f1f3f4;
+}
+#lightbox .close {
+  position: absolute; top: .6rem; right: .6rem;
+}
+.lightbox-actions {
+  display: flex; gap: .5rem; justify-content: flex-end; margin-top: .6rem;
+}
+
+.footer {
+  padding: 2rem 1rem;
+  color: var(--muted);
+  border-top: 1px solid #dadce0;
+  background: #ffffff;
+  display: grid; gap: .75rem; justify-items: center;
+  position: relative;
+}
+
+/* Add copyright line consistent across pages */
+.footer::after {
+  content: "© 1995–2026 Uoogle\A Uoogle is owned by DogNett";
+  display: block;
+  white-space: pre-line;
+  font-size: 0.85rem;
+  color: var(--muted);
+  margin-top: 0.5rem;
+}
+
+/* Extras area unchanged */
+.extras { display: flex; gap: 1rem; align-items: center; flex-wrap: wrap; }
+.extras img { max-height: 40px; }
+
+/* Topbar: mimic Google 2015 dark header look */
+.topbar {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: .5rem .9rem;
+  background: #202124; /* dark bar */
+  color: #fff;
+  box-shadow: 0 1px 0 rgba(255,255,255,0.03) inset;
+}
+
+/* compact home link using house emoji */
+.toplink.home {
+  font-size: 1.15rem;
+  padding: 0.3rem 0.6rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+  border-radius: 6px;
+  text-decoration: none;
+  color: #e8eaed;
+}
+.toplink.home:hover { background: rgba(255,255,255,0.03); }
+
+/* Move branding/links to center-left, keep spacer behavior */
+.topbar .spacer { flex: 1; }
+
+/* Links in the dark header */
+.toplink {
+  color: #e8eaed;
+  text-decoration: none;
+  font-size: .95rem;
+  margin-right: .6rem;
+  display: inline-flex;
+  align-items: center;
+}
+.toplink img { height: 16px; width: 16px; vertical-align: -3px; margin-right: 6px; filter: none; }
+
+/* Square red sign-in / signup button on the left */
+.top-signin {
+  order: -1; /* place before other items visually */
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  background: #d93025; /* Google red-ish */
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  font-weight: 700;
+  text-decoration: none;
+  box-shadow: 0 1px 0 rgba(0,0,0,0.2);
+  cursor: pointer;
+}
+
+/* When top-signin contains text like "Sign in" keep it compact */
+.top-signin.small {
+  width: 44px;
+  padding: 0;
+  font-size: 0.88rem;
+}
+
+/* Ensure hover contrast */
+.toplink:hover { text-decoration: underline; color: #fff; }
+.top-signin:hover { filter: brightness(0.95); }
+
+#dogLayer {
+  position: fixed; inset: 0; pointer-events: none; z-index: 1000;
+}
+.dog-instance {
+  position: absolute; width: 64px; height: 64px; user-select: none;
+  pointer-events: auto; cursor: grab; image-rendering: auto;
+}
+.dog-instance.dragging { cursor: grabbing; }
+
+.blocked-wrap {
+  min-height: 70vh; display:grid; place-items:center; padding:2rem 1rem;
+}
+.blocked-scene {
+  display:grid; grid-template-columns: 1fr auto 1fr; gap:1rem; align-items:end;
+}
+.blocked-scene img { width: 200px; height:auto; }
+.blocked-msg { text-align:center; max-width:700px; margin-top:1rem; color: var(--text); }
+.blocked-actions { display:flex; justify-content:center; gap:.75rem; margin-top:.75rem; }
+
+.uikiuedia-header { display:flex; align-items:center; gap:.6rem; justify-content:center; padding:1rem; }
+.uikiuedia-header img { width:40px; height:40px; }
+.uikiuedia-title { font-weight:700; font-size:1.2rem; }
+.uikiuedia-loading { display:grid; place-items:center; min-height:40vh; gap:.75rem; color: var(--muted); }
+.uikiuedia-loading .spinner { width:72px; height:72px; animation: spin 1.1s linear infinite; }
+@keyframes spin { to { transform: rotate(360deg); } }
+
+.tabs { 
+  display:flex; 
+  gap:1rem; 
+  border-bottom:1px solid #dadce0; 
+  width:min(1100px,95vw); 
+  margin:0 auto .75rem; 
+}
+.tabs a { 
+  padding:.6rem .25rem; 
+  color:#5f6368; 
+  text-decoration:none; 
+  border-bottom:3px solid transparent; 
+  font-weight:600; 
+}
+.tabs a.active { 
+  color:#1a73e8; 
+  border-bottom-color:#1a73e8; 
+}
+
+/* removed Woofy animation inline styles from index.html — moved here for reuse and maintainability */
+
+/* Feeling Woofy animation helpers */
+.logo {
+  position: relative;
+}
+.logo .dog,
+.logo .wordmark {
+  transition: transform 0.5s ease, opacity 0.4s ease;
+}
+#woofyOverlay {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 1200;
+  overflow: hidden;
+}
+.woofy-floating {
+  position: absolute;
+  font-weight: 700;
+  pointer-events: none;
+}
+
+/* 1. Swap & spin dog and logo */
+@keyframes woofy-swap-spin-dog {
+  0% { transform: translateX(0) rotate(0deg); }
+  50% { transform: translateX(120px) rotate(360deg); }
+  100% { transform: translateX(0) rotate(720deg); }
+}
+@keyframes woofy-swap-spin-logo {
+  0% { transform: translateX(0) rotate(0deg); }
+  50% { transform: translateX(-120px) rotate(-360deg); }
+  100% { transform: translateX(0) rotate(-720deg); }
+}
+.woofy-swap-dog { animation: woofy-swap-spin-dog 1.5s ease-in-out; }
+.woofy-swap-logo { animation: woofy-swap-spin-logo 1.5s ease-in-out; }
+
+/* 2. Bone throw & dog run */
+@keyframes woofy-bone-fly {
+  0% { transform: translate(-40px, 40px) rotate(0deg); opacity: 0; }
+  20% { opacity: 1; }
+  60% { transform: translate(80px, -40px) rotate(360deg); opacity: 1; }
+  100% { transform: translate(140px, -60px) rotate(540deg); opacity: 0; }
+}
+@keyframes woofy-dog-run {
+  0% { transform: translateX(0); }
+  50% { transform: translateX(60px); }
+  100% { transform: translateX(0); }
+}
+@keyframes woofy-logo-hit {
+  0%,100% { transform: translateX(0); }
+  25% { transform: translateX(-6px); }
+  75% { transform: translateX(6px); }
+}
+.woofy-dog-run { animation: woofy-dog-run 1.2s ease-in-out; }
+.woofy-logo-hit { animation: woofy-logo-hit 0.4s ease-in-out 0.8s; }
+.woofy-bone { animation: woofy-bone-fly 1.2s ease-out; font-size: 2rem; }
+
+/* 3. Bark spin */
+@keyframes woofy-dog-spin {
+  0% { transform: rotate(0deg) scale(1); }
+  50% { transform: rotate(360deg) scale(1.1); }
+  100% { transform: rotate(720deg) scale(1); }
+}
+@keyframes woofy-bark-text {
+  0% { opacity: 0; transform: translate(0, 0) scale(0.6); }
+  20% { opacity: 1; }
+  100% { opacity: 0; transform: translate(0, -80px) scale(1.2); }
+}
+.woofy-dog-spin { animation: woofy-dog-spin 1.2s ease-in-out; }
+.woofy-bark { animation: woofy-bark-text 1s ease-out; font-size: 1.4rem; color:#ff6f00; }
+
+/* 4. Logo fall & explode, dog confused */
+@keyframes woofy-logo-fall {
+  0% { transform: translateY(0) scale(1); }
+  80% { transform: translateY(120px) scale(1.05); }
+  100% { transform: translateY(140px) scale(0.2); opacity: 0; }
+}
+@keyframes woofy-explosion {
+  0% { transform: scale(0.2); opacity: 0; }
+  30% { opacity: 1; }
+  100% { transform: scale(2.2); opacity: 0; }
+}
+@keyframes woofy-confused {
+  0%,100% { transform: translateY(0) rotate(0deg); }
+  25% { transform: translateY(-6px) rotate(-5deg); }
+  75% { transform: translateY(-6px) rotate(5deg); }
+}
+.woofy-logo-fall { animation: woofy-logo-fall 0.9s ease-in forwards; }
+.woofy-confused { animation: woofy-confused 0.8s ease-in-out 0.4s; }
+.woofy-explosion-burst {
+  animation: woofy-explosion 0.7s ease-out 0.8s;
+  width: 80px; height: 80px;
+  border-radius: 50%;
+  background: radial-gradient(circle, #ff9800 0, #ff5722 40%, transparent 70%);
+}
+
+/* 5. Police dog chase */
+@keyframes woofy-police-approach {
+  0% { transform: translateX(-40px); opacity: 0; }
+  20% { opacity: 1; }
+  50% { transform: translateX(0); opacity: 1; }
+  100% { transform: translateX(40px); opacity: 0; }
+}
+@keyframes woofy-dog-run-away {
+  0% { transform: translateX(0); }
+  40% { transform: translateX(60px); opacity: 1; }
+  100% { transform: translateX(120px); opacity: 0; }
+}
+@keyframes woofy-dog-return {
+  0% { transform: translateX(-120px); opacity: 0; }
+  40% { opacity: 1; }
+  100% { transform: translateX(0); opacity: 1; }
+}
+.woofy-police-dog {
+  width: 64px; height: 64px;
+  position:absolute;
+  bottom:-10px; left:10px;
+  animation: woofy-police-approach 1.4s ease-in-out;
+}
+.woofy-dog-run-away { animation: woofy-dog-run-away 1.2s ease-in forwards; }
+.woofy-dog-return { animation: woofy-dog-return 1.2s ease-out 1.2s forwards; }
+
+/* 6. Invert mode */
+.woofy-invert-site {
+  filter: invert(1) hue-rotate(180deg);
+}
+@keyframes woofy-alert {
+  0%,100% { transform: translateY(0); opacity: 0; }
+  20% { opacity: 1; }
+  50% { transform: translateY(-10px); opacity: 1; }
+}
+.woofy-alert-mark {
+  animation: woofy-alert 1.2s ease-out;
+  font-size: 2rem;
+  color:#ff1744;
+}
+
+/* 7. Lamp stomp on logo */
+@keyframes woofy-lamp-drop {
+  0% { transform: translateY(-160px) scale(0.8); opacity: 0; }
+  40% { opacity: 1; }
+  70% { transform: translateY(-10px) scale(1); }
+  100% { transform: translateY(0) scale(0.9); }
+}
+@keyframes woofy-logo-squash {
+  0%,100% { transform: scale(1); }
+  40% { transform: scale(0.7,0.4) translateY(10px); }
+}
+@keyframes woofy-lamp-to-dog {
+  0% { transform: translate(0,0) scale(1); }
+  100% { transform: translate(-80px,20px) scale(0); opacity:0; }
+}
+.woofy-lamp {
+  width: 40px; height: 80px;
+  border-radius: 16px 16px 6px 6px;
+  background: linear-gradient(#ffc107,#ff9800);
+  box-shadow: 0 6px 12px rgba(0,0,0,.25);
+  animation: woofy-lamp-drop 0.8s ease-out;
+}
+.woofy-lamp-eat { animation: woofy-lamp-to-dog 0.8s ease-in forwards; }
+.woofy-logo-squash { animation: woofy-logo-squash 1s ease-in-out; }
+
+/* 8. Whole site falls, truck runs over, dogs fix it */
+@keyframes woofy-site-shake {
+  0%,100% { transform: translate(0,0) rotate(0deg); }
+  20% { transform: translate(-4px,2px) rotate(-1deg); }
+  40% { transform: translate(4px,-2px) rotate(1deg); }
+  60% { transform: translate(-3px,1px) rotate(-1deg); }
+  80% { transform: translate(3px,-1px) rotate(1deg); }
+}
+@keyframes woofy-site-fall {
+  0% { transform: translateY(0); opacity: 1; }
+  100% { transform: translateY(140px); opacity: 0.4; }
+}
+.woofy-site-collapse body > *:not(#woofyOverlay):not(#dogLayer) {
+  animation: woofy-site-shake 0.5s ease-in-out, woofy-site-fall 0.9s ease-in forwards;
+  transform-origin: center top;
+}
+
+@keyframes woofy-truck-drive {
+  0% { transform: translateX(-160px); }
+  100% { transform: translateX(120vw); }
+}
+.woofy-truck {
+  position: fixed;
+  bottom: 12px;
+  left: 0;
+  width: 130px;
+  height: 60px;
+  border-radius: 10px;
+  background: linear-gradient(90deg,#455a64,#607d8b);
+  box-shadow: 0 6px 16px rgba(0,0,0,.35);
+  animation: woofy-truck-drive 1.4s ease-out 0.3s forwards;
+  z-index: 1300;
+  overflow: visible;
+}
+.woofy-truck::before,
+.woofy-truck::after {
+  content: "";
+  position: absolute;
+  bottom: -16px;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: #212121;
+  box-shadow: 0 0 0 4px #424242 inset;
+}
+.woofy-truck::before { left: 18px; }
+.woofy-truck::after { right: 18px; }
+
+@keyframes woofy-dog-fix {
+  0% { transform: translateY(0) scale(1); }
+  50% { transform: translateY(-18px) scale(1.05); }
+  100% { transform: translateY(0) scale(1); }
+}
+.woofy-fix-dog {
+  position: fixed;
+  bottom: 0;
+  width: 54px;
+  height: 54px;
+  animation: woofy-dog-fix 0.9s ease-in-out 1.1s infinite alternate;
+  z-index: 1301;
+}
