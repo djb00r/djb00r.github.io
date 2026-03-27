@@ -1,0 +1,951 @@
+<title>Advanced Scratch Project Corruptor</title>
+<meta charset="UTF8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<style>
+    body {
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        background-color: #4D97FF;
+        color: white;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+        margin: 0;
+        padding: 20px;
+    }
+    .container {
+        background-color: #25AAF4;
+        padding: 2rem;
+        border-radius: 15px;
+        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+        text-align: center;
+        max-width: 600px;
+        width: 100%;
+    }
+    h1 {
+        margin-bottom: 1rem;
+        color: #FFD700;
+        text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+    }
+    #fileInput {
+        display: none;
+    }
+    label, button {
+        background-color: #FF6680;
+        color: white;
+        padding: 0.7rem 1.2rem;
+        border-radius: 25px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        display: inline-block;
+        margin: 0.5rem;
+        border: none;
+        font-size: 1rem;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+    }
+    label:hover, button:hover {
+        background-color: #FF4D6A;
+        transform: translateY(-2px);
+        box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    }
+    #status {
+        margin-top: 1rem;
+        font-style: italic;
+        background-color: rgba(255,255,255,0.2);
+        padding: 10px;
+        border-radius: 10px;
+    }
+    .corruption-options {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 1rem;
+        margin-top: 1rem;
+    }
+    .corruption-option {
+        display: flex;
+        align-items: center;
+        background-color: rgba(255,255,255,0.1);
+        padding: 0.5rem 1rem;
+        border-radius: 15px;
+        transition: all 0.3s ease;
+    }
+    .corruption-option:hover {
+        background-color: rgba(255,255,255,0.2);
+    }
+    input[type="checkbox"] {
+        margin-right: 0.5rem;
+        transform: scale(1.2);
+    }
+    input[type="text"], select {
+        width: 120px;
+        text-align: center;
+        margin-top: 0.5rem;
+        padding: 8px;
+        border-radius: 5px;
+        border: 1px solid #ccc;
+        font-size: 1rem;
+    }
+    #previewBtn {
+        background-color: #FFA500;
+        margin-top: 1rem;
+    }
+    #previewBtn:hover {
+        background-color: #FF8C00;
+    }
+    .progress-bar {
+        width: 100%;
+        height: 20px;
+        background-color: rgba(255,255,255,0.3);
+        border-radius: 10px;
+        margin-top: 10px;
+        overflow: hidden;
+        display: none;
+    }
+    .progress-fill {
+        height: 100%;
+        background-color: #4CAF50;
+        width: 0%;
+        transition: width 0.3s ease;
+    }
+    .loading {
+        display: inline-block;
+        width: 20px;
+        height: 20px;
+        border: 3px solid rgba(255,255,255,0.3);
+        border-radius: 50%;
+        border-top-color: white;
+        animation: spin 1s linear infinite;
+        margin-left: 10px;
+    }
+    @keyframes spin {
+        0% { transform: rotate(0deg); }
+        100% { transform: rotate(360deg); }
+    }
+    .modal { position: fixed; inset: 0; background: rgba(0,0,0,0.5); display: none; align-items: center; justify-content: center; z-index: 1000; }
+    .modal.open { display: flex; }
+    .modal-content { background: #fff; color: #222; max-width: 600px; width: 90%; padding: 1.2rem; border-radius: 12px; line-height: 1.5; }
+    .modal-content h2 { margin: 0 0 0.5rem; }
+    .modal-content .close { float: right; cursor: pointer; font-size: 1.4rem; margin-top: -6px; }
+</style>
+</head>
+<body>
+<div class="container">
+    <h1>Advanced Scratch Project Corruptor</h1>
+    <p>Upload a Scratch project file (sb3) as a ZIP file to apply various corruption effects. The corrupted project saves as .zip and can be renamed to .sb3 to run in Scratch.</p>
+    <p><strong>Note:</strong> Corrupting images may result in a Question Mark Glitch in the Scratch project.</p>
+    <div id="dropArea" class="drop-area">
+        <p>Drag & Drop your Scratch project ZIP file here</p>
+        <p>or</p>
+        <label for="fileInput">Choose File</label>
+    </div>
+    <input type="file" id="fileInput" accept=".zip">
+    <div class="corruption-options">
+        <div class="corruption-option">
+            <input type="checkbox" id="corruptImages" checked>
+            <label for="corruptImages">Images</label>
+        </div>
+        <div class="corruption-option">
+            <input type="checkbox" id="corruptSounds" checked>
+            <label for="corruptSounds">Sounds</label>
+        </div>
+        <div class="corruption-option">
+            <input type="checkbox" id="corruptPositions" checked>
+            <label for="corruptPositions">Positions</label>
+        </div>
+        <div class="corruption-option">
+            <input type="checkbox" id="corruptScripts" checked>
+            <label for="corruptScripts">Scripts</label>
+        </div>
+    </div>
+    <div class="advanced-options">
+        <div class="option-group">
+            <h3>Presets</h3>
+            <select id="presetSelect">
+                <option value="custom">Custom</option>
+                <option value="mild">Mild Corruption</option>
+                <option value="moderate">Moderate Corruption</option>
+                <option value="severe">Severe Corruption</option>
+                <option value="glitch">Glitch Art</option>
+            </select>
+        </div>
+        <div class="option-group">
+            <h3>Image Corruption</h3>
+            <div class="corruption-option">
+                <input type="checkbox" id="invertColors">
+                <label for="invertColors">Invert Colors</label>
+            </div>
+            <div class="corruption-option">
+                <input type="checkbox" id="glitchEffect">
+                <label for="glitchEffect">Glitch Effect</label>
+            </div>
+            <div class="corruption-option">
+                <input type="checkbox" id="pngRandomPixels">
+                <label for="pngRandomPixels">PNG Random Pixels</label>
+            </div>
+            <div class="corruption-option">
+                <input type="checkbox" id="svgWeirdJitter">
+                <label for="svgWeirdJitter">SVG Jitter Text & Weird Colors</label>
+            </div>
+            <div class="corruption-option">
+                <input type="checkbox" id="swapCrossImages">
+                <label for="swapCrossImages">Swap PNG/SVG assets with others (amount scales with level)</label>
+            </div>
+        </div>
+        <div class="option-group">
+            <h3>Sound Corruption</h3>
+            <div class="corruption-option">
+                <input type="checkbox" id="pitchShift">
+                <label for="pitchShift">Pitch Shift</label>
+            </div>
+        </div>
+        <div class="option-group">
+            <h3>Script Corruption</h3>
+            <div class="corruption-option">
+                <input type="checkbox" id="corruptVariables">
+                <label for="corruptVariables">Corrupt Variables</label>
+            </div>
+            <div class="corruption-option">
+                <input type="checkbox" id="reverseScripts">
+                <label for="reverseScripts">Reverse Scripts</label>
+            </div>
+            <div class="corruption-option">
+                <input type="checkbox" id="randomSpeechBubbles">
+                <label for="randomSpeechBubbles">Random letter speech bubbles (say/think, for secs)</label>
+            </div>
+            <div class="corruption-option">
+                <input type="checkbox" id="alphaSlangSpeech">
+                <label for="alphaSlangSpeech">Alpha slang speech bubbles (skibidi, rizz, 67, etc.)</label>
+            </div>
+        </div>
+        <div class="option-group">
+            <h3>Costume Corruption</h3>
+            <div class="corruption-option">
+                <input type="checkbox" id="randomizeCostumeOrder">
+                <label for="randomizeCostumeOrder">Randomize Costume Order</label>
+            </div>
+        </div>
+        <div class="option-group">
+            <h3>Project Corruption</h3>
+            <div class="corruption-option">
+                <input type="checkbox" id="corruptMetadata">
+                <label for="corruptMetadata">Corrupt Project Metadata</label>
+            </div>
+        </div>
+        <div class="option-group">
+            <h3>Corruption Level</h3>
+            <input type="text" id="corruptionLevelInput" value="0.05" placeholder="0.05">
+        </div>
+        <div class="option-group">
+            <h3>Corruption Type</h3>
+            <select id="corruptionType">
+                <option value="random">Random</option>
+                <option value="bitflip">Bit Flip</option>
+                <option value="shuffle">Shuffle</option>
+            </select>
+        </div>
+        <div class="option-group">
+            <h3>Seed</h3>
+            <input type="text" id="seedInput" placeholder="Optional seed">
+        </div>
+        <div class="option-group">
+            <h3>Corruption Intensity</h3>
+            <input type="range" id="corruptionIntensity" min="0" max="100" value="50">
+            <span id="intensityValue">50%</span>
+        </div>
+    </div>
+    <button id="previewBtn">Preview Corruption</button>
+    <div id="bottomControls" style="margin-top:1rem;">
+        <button id="corruptBtn">Corrupt Project</button>
+        <button id="downloadBtn">Download Corrupted Project</button>
+        <p id="status"></p>
+        <div class="progress-bar" id="progressBar">
+            <div class="progress-fill" id="progressFill"></div>
+        </div>
+    </div>
+    <button id="tutorialBtn">Tutorial</button>
+</div>
+
+<div id="tutorialModal" class="modal" aria-hidden="true">
+  <div class="modal-content">
+    <span class="close" id="closeTutorial">&times;</span>
+    <h2>How to Corrupt and Load a Scratch Project</h2>
+    <ol>
+      <li>In Scratch: File → Save to your computer (gets .sb3).</li>
+      <li>In Explorer/Finder: rename .sb3 to .zip (enable file extensions if needed).</li>
+      <li>Load the .zip here and click Corrupt Project.</li>
+    </ol>
+    <h3>Load the corrupted project in Scratch</h3>
+    <ol>
+      <li>Click "Download Corrupted Project".</li>
+      <li>Rename the downloaded file from .zip to .sb3.</li>
+      <li>Open the .sb3 in Scratch. Done.</li>
+    </ol>
+  </div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.7.1/jszip.min.js"></script>
+<script>
+function xmur3(str) {
+    for(var i = 0, h = 1779033703 ^ str.length; i < str.length; i++)
+        h = Math.imul(h ^ str.charCodeAt(i), 3432918353),
+        h = h << 13 | h >>> 19;
+    return function() {
+        h = Math.imul(h ^ h >>> 16, 2246822507);
+        h = Math.imul(h ^ h >>> 13, 3266489909);
+        return (h ^= h >>> 16) >>> 0;
+    }
+}
+
+function mulberry32(a) {
+    return function() {
+        var t = a += 0x6D2B79F5;
+        t = Math.imul(t ^ t >>> 15, t | 1);
+        t ^= t + Math.imul(t ^ t >>> 7, t | 61);
+        return ((t ^ t >>> 14) >>> 0) / 4294967296;
+    }
+}
+
+let randomFunction = Math.random;
+let invertColors = false;
+let glitchEffect = false;
+let pitchShift = false;
+let reverseScripts = false;
+let corruptVariables = false;
+let corruptionIntensity = 0.5;
+let randomizeCostumeOrder = false;
+let corruptMetadata = false;
+let pngRandomPixels = false;
+let svgWeirdJitter = false;
+let swapCrossImages = false;
+let randomSpeechBubbles = false;
+let alphaSlangSpeech = false;
+const chunkSize = 50;
+
+const presets = {
+    mild: {
+        corruptionLevel: 0.01,
+        corruptImages: true,
+        corruptSounds: true,
+        corruptPositions: true,
+        corruptScripts: false,
+        invertColors: false,
+        glitchEffect: false,
+        pitchShift: false,
+        corruptVariables: false,
+        corruptionIntensity: 0.2,
+        corruptionType: 'random'
+    },
+    moderate: {
+        corruptionLevel: 0.05,
+        corruptImages: true,
+        corruptSounds: true,
+        corruptPositions: true,
+        corruptScripts: true,
+        invertColors: false,
+        glitchEffect: false,
+        pitchShift: true,
+        corruptVariables: true,
+        corruptionIntensity: 0.5,
+        corruptionType: 'bitflip'
+    },
+    severe: {
+        corruptionLevel: 0.1,
+        corruptImages: true,
+        corruptSounds: true,
+        corruptPositions: true,
+        corruptScripts: true,
+        invertColors: true,
+        glitchEffect: false,
+        pitchShift: true,
+        corruptVariables: true,
+        corruptionIntensity: 0.8,
+        corruptionType: 'shuffle'
+    },
+    glitch: {
+        corruptionLevel: 0.2,
+        corruptImages: true,
+        corruptSounds: false,
+        corruptPositions: true,
+        corruptScripts: true,
+        invertColors: true,
+        glitchEffect: true,
+        pitchShift: false,
+        corruptVariables: true,
+        corruptionIntensity: 1,
+        corruptionType: 'bitflip'
+    }
+};
+
+function applyPreset(presetName) {
+    if (presetName === 'custom') return;
+    
+    const preset = presets[presetName];
+    document.getElementById('corruptionLevelInput').value = preset.corruptionLevel;
+    document.getElementById('corruptImages').checked = preset.corruptImages;
+    document.getElementById('corruptSounds').checked = preset.corruptSounds;
+    document.getElementById('corruptPositions').checked = preset.corruptPositions;
+    document.getElementById('corruptScripts').checked = preset.corruptScripts;
+    document.getElementById('invertColors').checked = preset.invertColors;
+    document.getElementById('glitchEffect').checked = preset.glitchEffect;
+    document.getElementById('pitchShift').checked = preset.pitchShift;
+    document.getElementById('corruptVariables').checked = preset.corruptVariables;
+    document.getElementById('corruptionIntensity').value = preset.corruptionIntensity * 100;
+    document.getElementById('intensityValue').textContent = `${preset.corruptionIntensity * 100}%`;
+    document.getElementById('corruptionType').value = preset.corruptionType;
+}
+
+// Add event listener for preset selection
+document.getElementById('presetSelect').addEventListener('change', (e) => {
+    applyPreset(e.target.value);
+});
+
+// open/close tutorial modal
+const tutorialBtn = document.getElementById('tutorialBtn');
+const tutorialModal = document.getElementById('tutorialModal');
+const closeTutorial = document.getElementById('closeTutorial');
+tutorialBtn.addEventListener('click', () => tutorialModal.classList.add('open'));
+closeTutorial.addEventListener('click', () => tutorialModal.classList.remove('open'));
+tutorialModal.addEventListener('click', (e) => { if (e.target === tutorialModal) tutorialModal.classList.remove('open'); });
+
+document.getElementById('corruptBtn').addEventListener('click', corruptProject);
+document.getElementById('downloadBtn').addEventListener('click', downloadCorruptedProject);
+document.getElementById('invertColors').addEventListener('change', (e) => invertColors = e.target.checked);
+document.getElementById('glitchEffect').addEventListener('change', (e) => glitchEffect = e.target.checked);
+document.getElementById('pitchShift').addEventListener('change', (e) => pitchShift = e.target.checked);
+document.getElementById('reverseScripts').addEventListener('change', (e) => reverseScripts = e.target.checked);
+document.getElementById('corruptVariables').addEventListener('change', (e) => corruptVariables = e.target.checked);
+document.getElementById('randomizeCostumeOrder').addEventListener('change', (e) => randomizeCostumeOrder = e.target.checked);
+document.getElementById('corruptMetadata').addEventListener('change', (e) => corruptMetadata = e.target.checked);
+document.getElementById('pngRandomPixels').addEventListener('change', (e) => pngRandomPixels = e.target.checked);
+document.getElementById('svgWeirdJitter').addEventListener('change', (e) => svgWeirdJitter = e.target.checked);
+document.getElementById('swapCrossImages').addEventListener('change', (e) => swapCrossImages = e.target.checked);
+document.getElementById('randomSpeechBubbles').addEventListener('change', (e) => randomSpeechBubbles = e.target.checked);
+document.getElementById('alphaSlangSpeech').addEventListener('change', (e) => alphaSlangSpeech = e.target.checked);
+document.getElementById('corruptionIntensity').addEventListener('input', (e) => {
+    corruptionIntensity = e.target.value / 100;
+    document.getElementById('intensityValue').textContent = `${e.target.value}%`;
+});
+
+let corruptedContent = null;
+let originalFileName = '';
+
+function updateProgress(percent) {
+    const progressBar = document.getElementById('progressBar');
+    const progressFill = document.getElementById('progressFill');
+    progressBar.style.display = 'block';
+    progressFill.style.width = `${percent}%`;
+}
+
+function hideProgress() {
+    document.getElementById('progressBar').style.display = 'none';
+}
+
+async function corruptProject() {
+    const presetSelect = document.getElementById('presetSelect');
+    if (presetSelect.value !== 'custom') {
+        applyPreset(presetSelect.value);
+    }
+
+    const fileInput = document.getElementById('fileInput');
+    const statusElement = document.getElementById('status');
+    const downloadBtn = document.getElementById('downloadBtn');
+
+    if (fileInput.files.length === 0) {
+        statusElement.textContent = "Please select a file first.";
+        return;
+    }
+
+    const file = fileInput.files[0];
+    originalFileName = file.name;
+    statusElement.innerHTML = "Corrupting project... <span class='loading'></span>";
+    downloadBtn.style.display = 'none';
+    updateProgress(0);
+
+    const corruptImages = document.getElementById('corruptImages').checked;
+    const corruptSounds = document.getElementById('corruptSounds').checked;
+    const corruptPositions = document.getElementById('corruptPositions').checked;
+    const corruptScripts = document.getElementById('corruptScripts').checked;
+    const corruptionLevel = parseFloat(document.getElementById('corruptionLevelInput').value);
+    const corruptionType = document.getElementById('corruptionType').value;
+
+    if (isNaN(corruptionLevel) || corruptionLevel < 0) {
+        statusElement.textContent = "Please enter a valid non-negative number for corruption level.";
+        hideProgress();
+        return;
+    }
+
+    try {
+        const arrayBuffer = await file.arrayBuffer();
+        const zip = await JSZip.loadAsync(arrayBuffer, { createFolders: false });
+        const files = Object.keys(zip.files);
+        
+        updateProgress(10);
+
+        // Cross-swap PNG/SVG contents across different files (type-safe, avoids '?')
+        if (swapCrossImages) {
+            const pngFiles = Object.keys(zip.files).filter(f => f.match(/\.png$/i));
+            const svgFiles = Object.keys(zip.files).filter(f => f.match(/\.svg$/i));
+            const shuffle = arr => { for (let i = arr.length - 1; i > 0; i--) { const j = Math.floor(randomFunction()*(i+1)); [arr[i],arr[j]]=[arr[j],arr[i]]; } };
+
+            shuffle(pngFiles); shuffle(svgFiles);
+            const factor = Math.min(1, (corruptionLevel * corruptionIntensity) || 0);
+            const pngPairs = Math.floor((pngFiles.length/2) * factor);
+            const svgPairs = Math.floor((svgFiles.length/2) * factor);
+
+            for (let i = 0; i < pngPairs; i++) {
+                const a = pngFiles[2*i], b = pngFiles[2*i+1];
+                await swapPngPair(zip, a, b);
+                if (i % chunkSize === 0) { updateProgress(10 + (10 * i / Math.max(1, pngPairs))); await new Promise(r => setTimeout(r, 0)); }
+            }
+            for (let i = 0; i < svgPairs; i++) {
+                const a = svgFiles[2*i], b = svgFiles[2*i+1];
+                const [as, bs] = await Promise.all([zip.file(a).async('string'), zip.file(b).async('string')]);
+                zip.file(a, bs); zip.file(b, as);
+                if (i % chunkSize === 0) { updateProgress(15 + (10 * i / Math.max(1, svgPairs))); await new Promise(r => setTimeout(r, 0)); }
+            }
+        }
+
+        // Process images
+        if (corruptImages) {
+            const pngFiles = Object.keys(zip.files).filter(f => f.match(/\.png$/i));
+            const rasterOther = Object.keys(zip.files).filter(f => f.match(/\.(jpg|jpeg)$/i));
+            const svgFiles = Object.keys(zip.files).filter(f => f.match(/\.svg$/i));
+
+            // PNG handling
+            for (let i = 0; i < pngFiles.length; i++) {
+                const filename = pngFiles[i];
+                const blob = await zip.file(filename).async("blob");
+                let out;
+                if (pngRandomPixels) {
+                    out = await randomizePngPixelsBlob(blob, Math.min(1, (corruptionLevel * corruptionIntensity) || 0));
+                } else {
+                    const u8 = new Uint8Array(await blob.arrayBuffer());
+                    out = new Blob([corruptBuffer(u8, corruptionLevel * corruptionIntensity, corruptionType)], { type: 'image/png' });
+                }
+                zip.file(filename, out, { binary: true });
+                if (i % chunkSize === 0) { updateProgress(20 + (15 * i / Math.max(1, pngFiles.length))); await new Promise(r => setTimeout(r, 0)); }
+            }
+
+            // JPG/JPEG handling
+            for (let i = 0; i < rasterOther.length; i++) {
+                const filename = rasterOther[i];
+                const content = await zip.file(filename).async("uint8array");
+                zip.file(filename, corruptBuffer(content, corruptionLevel * corruptionIntensity, corruptionType), { binary: true });
+                if (i % chunkSize === 0) { updateProgress(30 + (10 * i / Math.max(1, rasterOther.length))); await new Promise(r => setTimeout(r, 0)); }
+            }
+
+            // SVG handling
+            for (let i = 0; i < svgFiles.length; i++) {
+                const filename = svgFiles[i];
+                try {
+                    if (svgWeirdJitter) {
+                        const svgStr = await zip.file(filename).async("string");
+                        const outStr = corruptSvgString(svgStr, Math.min(1, (corruptionLevel * corruptionIntensity) || 0));
+                        zip.file(filename, outStr);
+                    } else {
+                        const bytes = await zip.file(filename).async("uint8array");
+                        zip.file(filename, corruptBuffer(bytes, corruptionLevel * corruptionIntensity, corruptionType), { binary: true });
+                    }
+                } catch {}
+                if (i % chunkSize === 0) { updateProgress(40 + (10 * i / Math.max(1, svgFiles.length))); await new Promise(r => setTimeout(r, 0)); }
+            }
+            updateProgress(50);
+        }
+
+        // Process sounds
+        if (corruptSounds) {
+            const soundFiles = files.filter(filename => 
+                filename.match(/\.(wav|mp3|ogg)$/i)
+            );
+
+            for (let i = 0; i < soundFiles.length; i++) {
+                const filename = soundFiles[i];
+                const content = await zip.file(filename).async("uint8array");
+                const corruptedContent = corruptBuffer(content, corruptionLevel * corruptionIntensity, corruptionType);
+                zip.file(filename, corruptedContent, { binary: true });
+                
+                if (i % chunkSize === 0) {
+                    updateProgress(50 + (30 * i / soundFiles.length));
+                    await new Promise(resolve => setTimeout(resolve, 1));
+                }
+            }
+            updateProgress(80);
+        }
+
+        // Process JSON files (scripts and positions)
+        if (corruptPositions || corruptScripts) {
+            const jsonFiles = files.filter(filename => 
+                filename.endsWith('.json')
+            );
+
+            for (let i = 0; i < jsonFiles.length; i++) {
+                const filename = jsonFiles[i];
+                try {
+                    const content = await zip.file(filename).async("string");
+                    let jsonContent = JSON.parse(content);
+
+                    if (corruptPositions) {
+                        corruptPositionsInJson(jsonContent, corruptionLevel * corruptionIntensity);
+                    }
+
+                    if (corruptScripts) {
+                        corruptScriptsInJson(jsonContent, corruptionLevel * corruptionIntensity, false, false);
+                        if (reverseScripts) {
+                            reverseScriptsInJson(jsonContent);
+                        }
+                    }
+                    if (randomSpeechBubbles) randomizeSpeechBubblesInJson(jsonContent, alphaSlangSpeech);
+                    
+                    if (randomizeCostumeOrder) {
+                        randomizeCostumeOrderInJson(jsonContent);
+                    }
+
+                    if (corruptMetadata) {
+                        corruptProjectMetadata(jsonContent);
+                    }
+
+                    zip.file(filename, JSON.stringify(jsonContent, null, 2));
+                } catch (e) {
+                    // Skip files that aren't valid JSON
+                }
+                
+                if (i % chunkSize === 0) {
+                    updateProgress(80 + (20 * i / jsonFiles.length));
+                    await new Promise(resolve => setTimeout(resolve, 1));
+                }
+            }
+        }
+
+        updateProgress(90);
+        corruptedContent = await zip.generateAsync({
+            type: "blob",
+            mimeType: "application/zip",
+            compression: "DEFLATE",
+            compressionOptions: { level: 1 },
+            streamFiles: true
+        });
+        
+        updateProgress(100);
+        setTimeout(() => {
+            hideProgress();
+            statusElement.textContent = "Project corrupted! Click 'Download Corrupted Project' to save as .zip file, then rename to .sb3";
+            downloadBtn.style.display = 'inline-block';
+        }, 500);
+
+    } catch (error) {
+        console.error("Error corrupting project:", error);
+        hideProgress();
+        statusElement.textContent = "An error occurred while corrupting the project.";
+        downloadBtn.style.display = 'none';
+    }
+}
+
+function downloadCorruptedProject() {
+    if (corruptedContent) {
+        const downloadUrl = URL.createObjectURL(corruptedContent);
+        const downloadLink = document.createElement("a");
+        downloadLink.href = downloadUrl;
+        downloadLink.download = `corrupted_${originalFileName.replace(/\.(zip|sb3)$/, '.zip')}`;
+        downloadLink.click();
+        URL.revokeObjectURL(downloadUrl);
+    } else {
+        document.getElementById('status').textContent = "No corrupted project available. Please corrupt a project first.";
+    }
+}
+
+function createQuestionMarkGlitch(buffer) {
+    return corruptBuffer(buffer, 0.3, 'random');
+}
+
+async function corruptFiles(zip, extensions, corruptionLevel, corruptionType) {
+    const files = Object.keys(zip.files).filter(filename => 
+        extensions.some(ext => filename.endsWith(ext))
+    );
+
+    for (const filename of files) {
+        const content = await zip.file(filename).async("uint8array");
+        const corruptedContent = corruptBuffer(content, corruptionLevel, corruptionType);
+        zip.file(filename, corruptedContent);
+    }
+}
+
+function corruptBuffer(buffer, corruptionLevel, corruptionType) {
+    const corruptedBuffer = new Uint8Array(buffer);
+    const numCorruptions = Math.floor(corruptedBuffer.length * corruptionLevel);
+
+    switch (corruptionType) {
+        case 'bitflip':
+            for (let i = 0; i < numCorruptions; i++) {
+                const index = Math.floor(randomFunction() * corruptedBuffer.length);
+                const bit = Math.floor(randomFunction() * 8);
+                corruptedBuffer[index] ^= (1 << bit);
+            }
+            break;
+        case 'shuffle':
+            for (let i = 0; i < numCorruptions; i++) {
+                const index1 = Math.floor(randomFunction() * corruptedBuffer.length);
+                const index2 = Math.floor(randomFunction() * corruptedBuffer.length);
+                const temp = corruptedBuffer[index1];
+                corruptedBuffer[index1] = corruptedBuffer[index2];
+                corruptedBuffer[index2] = temp;
+            }
+            break;
+        default: // random
+            for (let i = 0; i < numCorruptions; i++) {
+                const index = Math.floor(randomFunction() * corruptedBuffer.length);
+                corruptedBuffer[index] = Math.floor(randomFunction() * 256);
+            }
+    }
+
+    return corruptedBuffer;
+}
+
+function corruptPositionsInJson(json, corruptionLevel) {
+    if (typeof json !== 'object' || json === null) return;
+
+    for (const key in json) {
+        if (key === 'x' || key === 'y') {
+            const maxOffset = 200 * corruptionLevel;
+            json[key] += (randomFunction() - 0.5) * maxOffset;
+        } else if (typeof json[key] === 'object') {
+            corruptPositionsInJson(json[key], corruptionLevel);
+        }
+    }
+}
+
+function corruptScriptsInJson(json, corruptionLevel, corruptBlockOrder, corruptBlockParams) {
+    if (typeof json !== 'object' || json === null) return;
+
+    if (Array.isArray(json) && json.length > 0 && Array.isArray(json[0])) {
+        const numCorruptions = Math.floor(json.length * corruptionLevel);
+        for (let i = 0; i < numCorruptions; i++) {
+            const index = Math.floor(randomFunction() * json.length);
+            corruptBlock(json[index], corruptBlockParams);
+        }
+
+        if (corruptBlockOrder && randomFunction() < corruptionLevel) {
+            json.sort(() => randomFunction() - 0.5);
+        }
+    } else {
+        for (const key in json) {
+            if (typeof json[key] === 'object') {
+                corruptScriptsInJson(json[key], corruptionLevel, corruptBlockOrder, corruptBlockParams);
+            }
+        }
+    }
+}
+
+function reverseScriptsInJson(json) {
+    if (Array.isArray(json) && json.length > 0 && Array.isArray(json[0])) {
+        json.reverse();
+    } else if (typeof json === 'object' && json !== null) {
+        for (const key in json) {
+            if (typeof json[key] === 'object') {
+                reverseScriptsInJson(json[key]);
+            }
+        }
+    }
+}
+
+function randomizeSpeechBubblesInJson(json, slangMode = false) {
+    const ops = new Set(['looks_say', 'looks_sayforsecs', 'looks_think', 'looks_thinkforsecs']);
+    (json.targets || []).forEach(t => {
+        Object.values(t.blocks || {}).forEach(bl => {
+            if (bl && ops.has(bl.opcode) && bl.inputs && bl.inputs.MESSAGE) {
+                const old = bl.inputs.MESSAGE?.[1]?.[1];
+                let s;
+                if (slangMode) {
+                    const pool = ['skibidi','rizz','gyatt','ohio','sigma','fanum','cap','no cap','bet','sus','based','goofy','yeet','mid','drip','npc','bussin','fr','ong','bop','delulu','cringe','ratio','slay','griddy','fire','peak','nah','bruh','lmao','lol','w','dub','67'];
+                    const words = Math.max(1, Math.min(12, (typeof old === 'string' ? old.split(/\s+/).length : 3)));
+                    s = Array.from({ length: words }, () => pool[(randomFunction() * pool.length) | 0]).join(' ');
+                } else {
+                    const n = (typeof old === 'string' && old.length) ? old.length : 8;
+                    s = Array.from({ length: n }, () => String.fromCharCode(97 + Math.floor(randomFunction() * 26))).join('');
+                }
+                bl.inputs.MESSAGE = [1, [10, s]];
+            }
+        });
+    });
+}
+
+function randomizeCostumeOrderInJson(json) {
+    if (json.costumes && Array.isArray(json.costumes)) {
+        json.costumes.sort(() => randomFunction() - 0.5);
+    }
+    if (typeof json === 'object' && json !== null) {
+        for (const key in json) {
+            if (typeof json[key] === 'object') {
+                randomizeCostumeOrderInJson(json[key]);
+            }
+        }
+    }
+}
+
+function corruptProjectMetadata(json) {
+    if (json.meta) {
+        if (json.meta.semver) {
+            json.meta.semver = corruptString(json.meta.semver);
+        }
+        if (json.meta.vm) {
+            json.meta.vm = corruptString(json.meta.vm);
+        }
+    }
+}
+
+function corruptBlock(block, corruptBlockParams) {
+    if (Array.isArray(block)) {
+        if (typeof block[0] === 'string') {
+            if (corruptBlockParams) {
+                for (let i = 1; i < block.length; i++) {
+                    if (typeof block[i] === 'string') {
+                        block[i] = corruptString(block[i]);
+                    } else if (typeof block[i] === 'number') {
+                        block[i] += (randomFunction() - 0.5) * 20;
+                    }
+                }
+            }
+        } else {
+            for (let i = 0; i < block.length; i++) {
+                corruptBlock(block[i], corruptBlockParams);
+            }
+        }
+    }
+}
+
+function corruptString(str) {
+    const chars = str.split('');
+    const index = Math.floor(randomFunction() * chars.length);
+    chars[index] = String.fromCharCode(chars[index].charCodeAt(0) + Math.floor(randomFunction() * 26) - 13);
+    return chars.join('');
+}
+
+async function randomizePngPixelsBlob(blob, strength = 0.5) {
+    const bmp = await createImageBitmap(blob);
+    const canvas = document.createElement('canvas');
+    canvas.width = bmp.width; canvas.height = bmp.height;
+    const ctx = canvas.getContext('2d', { willReadFrequently: true });
+    ctx.drawImage(bmp, 0, 0);
+    const img = ctx.getImageData(0, 0, canvas.width, canvas.height);
+    const data = img.data, p = Math.min(1, Math.max(0, strength));
+    for (let i = 0; i < data.length; i += 4) {
+        if (randomFunction() < p) { data[i] = (randomFunction()*256)|0; data[i+1]=(randomFunction()*256)|0; data[i+2]=(randomFunction()*256)|0; }
+    }
+    ctx.putImageData(img, 0, 0);
+    return await new Promise(res => canvas.toBlob(b => res(b), 'image/png'));
+}
+
+// resize-aware PNG swap helpers
+async function swapPngPair(zip, a, b) {
+    const [ab, bb] = await Promise.all([zip.file(a).async('blob'), zip.file(b).async('blob')]);
+    const [abit, bbit] = await Promise.all([createImageBitmap(ab), createImageBitmap(bb)]);
+    const a2b = await drawResizeToBlob(abit, bbit.width, bbit.height);
+    const b2a = await drawResizeToBlob(bbit, abit.width, abit.height);
+    zip.file(a, b2a, { binary: true }); zip.file(b, a2b, { binary: true });
+}
+async function drawResizeToBlob(bmp, w, h) {
+    const c = document.createElement('canvas'); c.width = w; c.height = h;
+    const ctx = c.getContext('2d'); ctx.drawImage(bmp, 0, 0, w, h);
+    return await new Promise(res => c.toBlob(b => res(b), 'image/png'));
+}
+
+function corruptSvgString(svgString, strength = 0.5) {
+    try {
+        const p = Math.min(1, Math.max(0, strength));
+        const doc = new DOMParser().parseFromString(svgString, 'image/svg+xml');
+        const all = doc.querySelectorAll('*');
+        all.forEach(el => {
+            // colors
+            ['fill','stroke'].forEach(attr => {
+                const v = el.getAttribute(attr);
+                if (v && v !== 'none' && randomFunction() < (0.6*p + 0.2)) el.setAttribute(attr, randomColor());
+            });
+            // inline style colors
+            const style = el.getAttribute('style');
+            if (style) {
+                let s = style.replace(/(fill|stroke)\s*:\s*[^;]+/g, m => m.replace(/:\s*[^;]+/, `: ${randomColor()}`));
+                if (s !== style) el.setAttribute('style', s);
+            }
+        });
+        // text jitter
+        doc.querySelectorAll('text').forEach(t => {
+            const dx = ((randomFunction()-0.5)*6*p).toFixed(2);
+            const dy = ((randomFunction()-0.5)*6*p).toFixed(2);
+            const prev = t.getAttribute('transform') || '';
+            t.setAttribute('transform', `${prev} translate(${dx},${dy})`.trim());
+            const ls = (randomFunction()*2*p).toFixed(2);
+            const cur = t.getAttribute('style') || '';
+            t.setAttribute('style', `${cur};letter-spacing:${ls}px`);
+        });
+        return new XMLSerializer().serializeToString(doc);
+    } catch { return svgString; }
+}
+
+function randomColor() {
+    const h = (randomFunction()*360)|0, s = 60 + (randomFunction()*40)|0, l = 40 + (randomFunction()*20)|0;
+    return `hsl(${h} ${s}% ${l}%)`;
+}
+
+function setupDragAndDrop() {
+    const dropArea = document.getElementById('dropArea');
+    const fileInput = document.getElementById('fileInput');
+
+    ['dragenter', 'dragover', 'dragleave', 'drop'].forEach(eventName => {
+        dropArea.addEventListener(eventName, preventDefaults, false);
+    });
+
+    function preventDefaults(e) {
+        e.preventDefault();
+        e.stopPropagation();
+    }
+
+    ['dragenter', 'dragover'].forEach(eventName => {
+        dropArea.addEventListener(eventName, highlight, false);
+    });
+
+    ['dragleave', 'drop'].forEach(eventName => {
+        dropArea.addEventListener(eventName, unhighlight, false);
+    });
+
+    function highlight() {
+        dropArea.classList.add('dragover');
+    }
+
+    function unhighlight() {
+        dropArea.classList.remove('dragover');
+    }
+
+    dropArea.addEventListener('drop', handleDrop, false);
+
+    function handleDrop(e) {
+        const dt = e.dataTransfer;
+        const files = dt.files;
+        
+        if (files.length > 0) {
+            fileInput.files = files;
+            // Update the file display
+            const fileName = files[0].name;
+            dropArea.innerHTML = `<p>File: ${fileName}</p><p>Drag another file here or click to choose</p>`;
+        }
+    }
+
+    // Also handle regular file input change
+    fileInput.addEventListener('change', (e) => {
+        if (e.target.files.length > 0) {
+            const fileName = e.target.files[0].name;
+            dropArea.innerHTML = `<p>File: ${fileName}</p><p>Drag another file here or click to choose</p>`;
+        }
+    });
+}
+
+// Call this function when the page loads
+document.addEventListener('DOMContentLoaded', setupDragAndDrop);
+document.getElementById('previewBtn').addEventListener('click', previewCorruption);
+
+function previewCorruption() {
+    alert("Preview feature is not yet implemented. It would show a sample of the corruption effects.");
+}
+</script>
+</body>
+</html>
