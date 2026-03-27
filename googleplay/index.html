@@ -1,0 +1,76 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Google Play: Download Apps Not Traps</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="game-container">
+        <header class="play-store-header">
+            <div class="header-content">
+                <img src="google-play-logo.png" alt="Google Play" class="play-logo-img">
+            </div>
+        </header>
+        
+        <div class="lineup-container">
+            <div class="height-measurements left">
+                <div class="measurement">7'0"</div>
+                <div class="measurement">6'6"</div>
+                <div class="measurement">6'0"</div>
+                <div class="measurement">5'6"</div>
+                <div class="measurement">5'0"</div>
+                <div class="measurement">4'6"</div>
+                <div class="measurement">4'0"</div>
+                <div class="measurement">3'6"</div>
+                <div class="measurement">3'0"</div>
+            </div>
+            
+            <div class="lineup-background">
+                <div class="apps-container" id="appsContainer">
+                    <!-- Apps will be dynamically inserted here -->
+                </div>
+                
+                <div class="question-overlay">
+                    <p class="question-text">[VO] Can you identify which<br>app is a trap?</p>
+                </div>
+                
+                <div class="tips-banner">
+                    <p class="tips-text">💡 Hover over the apps for tips, if they seem suspicious, click it.</p>
+                </div>
+            </div>
+            
+            <div class="height-measurements right">
+                <div class="measurement">7'0"</div>
+                <div class="measurement">6'6"</div>
+                <div class="measurement">6'0"</div>
+                <div class="measurement">5'6"</div>
+                <div class="measurement">5'0"</div>
+                <div class="measurement">4'6"</div>
+                <div class="measurement">4'0"</div>
+                <div class="measurement">3'6"</div>
+                <div class="measurement">3'0"</div>
+            </div>
+        </div>
+        
+        <div class="game-ui">
+            <button id="newGameBtn" class="new-game-btn">New Round</button>
+            <button id="hintBtn" class="hint-btn">💡 Hint</button>
+            <div class="score-display">
+                <span>Score: <span id="score">0</span></span>
+                <span>Round: <span id="round">1</span></span>
+            </div>
+        </div>
+        
+        <div id="resultModal" class="modal hidden">
+            <div class="modal-content">
+                <h2 id="resultTitle"></h2>
+                <p id="resultMessage"></p>
+                <button id="continueBtn" class="continue-btn">Continue</button>
+            </div>
+        </div>
+    </div>
+    
+    <script src="game.js"></script>
+</body>
+</html>
