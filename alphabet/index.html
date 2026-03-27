@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Alphabet</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div id="announcement-banner">
+    Unfortunately, Happs stole this project. I spent a lot of time and credits creating it, and I would really appreciate it if you even just view this project. 😀
+  </div>
+  <main id="app">
+    <div id="letter">A</div>
+    <div id="controls">
+      <button id="prev" aria-label="Previous letter">◀</button>
+      <div id="indicator"></div>
+      <button id="prev2" aria-label="Previous letter (duplicate)">◀</button>
+      <button id="next" aria-label="Next letter">▶</button>
+      <button id="auto-back" aria-label="Auto back">⏪</button>
+      <button id="auto-next" aria-label="Auto next">⏩</button>
+      <button id="copy" aria-label="Copy letter">Copy</button>
+      <button id="export-svg" aria-label="Export SVG">SVG</button>
+      <button id="export-png" aria-label="Export PNG">PNG</button>
+      <button id="cursed-btn" aria-label="Cursed mode">ई</button>
+      <button id="cursed-fast-btn" aria-label="Cursed mode x10 speed">💨</button>
+      <button id="cursed-ultra-btn" aria-label="Cursed mode x100 speed">󼤤</button>
+      <button id="cursed-super-btn" aria-label="Cursed mode x1000 speed">神</button>
+      <button id="cursed-light-btn" aria-label="Cursed mode x1,000,000,000 speed">光</button>
+      <button id="cursed-universe-btn" aria-label="Cursed mode x1,000,000,000,000 speed">﷽</button>
+      <button id="dice-btn" aria-label="Random from range">🎲</button>
+      <button id="extreme" aria-label="Extreme extension mode">EXT</button>
+      <button id="info-btn" aria-label="Information about letters">Info</button>
+      <button id="quiz-btn" aria-label="Quiz mode">❔</button>
+      <button id="category-btn" aria-label="Jump to categories">📃</button>
+      <button id="custom-db-btn" aria-label="Browse custom categories">🛜</button>
+      <button id="settings-btn" aria-label="Display settings">⚙</button>
+    </div>
+    <!-- Admin panel -->
+    <section id="admin-panel" aria-label="Admin controls">
+      <div class="admin-field">
+        <label for="speed-input">Speed (ms)</label>
+        <input id="speed-input" type="number" step="1" value="800">
+      </div>
+      <div class="admin-field">
+        <label for="step-input">Letters per step</label>
+        <input id="step-input" type="number" step="1" value="1">
+      </div>
+      <div class="admin-field">
+        <label for="max-input">Max letters</label>
+        <div class="max-wrapper">
+          <input id="max-input" type="text" value="">
+          <button id="inf-toggle" type="button" aria-label="Toggle infinite positions">∞</button>
+        </div>
+      </div>
+      <div class="admin-field">
+        <label for="teleport-input">Go to position</label>
+        <div class="max-wrapper">
+          <input id="teleport-input" type="text" inputmode="numeric" autocomplete="off" />
+          <button id="teleport-btn" type="button" aria-label="Teleport to position">Go</button>
+        </div>
+      </div>
+      <div class="admin-field">
+        <label for="find-word-input">Find word</label>
+        <div class="max-wrapper">
+          <input id="find-word-input" type="text" autocomplete="off" />
+          <button id="find-word-btn" type="button" aria-label="Find word position">Find</button>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Epilepsy warning modal -->
+  <div id="epilepsy-modal" aria-modal="true" role="dialog" hidden>
+    <div class="epilepsy-dialog">
+      <div class="epilepsy-title">Epilepsy warning</div>
+      <div class="epilepsy-body">
+        The fast modes (ई, 💨, 󼤤, 神, 光, ﷽) have intense flashing and shaking effects.
+        If you are sensitive to flashing lights, press “Close”.
+      </div>
+      <label class="epilepsy-noshow">
+        <input type="checkbox" id="epilepsy-noshow-checkbox" />
+        Don’t show this warning again
+      </label>
+      <div class="epilepsy-actions">
+        <button id="epilepsy-close-btn" type="button">Close</button>
+        <button id="epilepsy-start-btn" type="button">Start</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Settings modal -->
+  <div id="settings-modal" aria-modal="true" role="dialog" hidden>
+    <div class="settings-dialog">
+      <div class="settings-title">Display settings</div>
+      <div class="settings-body">
+        <label class="settings-row">
+          <span>Rainbow letters</span>
+          <input type="checkbox" id="settings-rainbow-checkbox" />
+        </label>
+        <div class="settings-subrow">
+          <label for="settings-color-input">Fixed letter color</label>
+          <input type="color" id="settings-color-input" value="#ffffff" />
+        </div>
+        <label class="settings-row">
+          <span>Light mode</span>
+          <input type="checkbox" id="settings-lightmode-checkbox" />
+        </label>
+        <label class="settings-row">
+          <span>Font</span>
+          <select id="settings-font-select">
+            <option value="catrinity">Catrinity</option>
+            <option value="arial">Arial</option>
+            <option value="noto">Noto (wide language/emoji)</option>
+          </select>
+        </label>
+      </div>
+      <div class="settings-actions">
+        <button id="settings-close-btn" type="button">Close</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Category jump modal -->
+  <div id="category-modal" aria-modal="true" role="dialog" hidden>
+    <div class="category-dialog">
+      <div class="category-title">Categories</div>
+      <div class="category-body">
+        <div class="category-row" data-category-key="standard">
+          <label class="category-label">
+            <input type="checkbox" class="category-checkbox" data-category-key="standard" checked />
+            <span>Standard English Alphabet (ABC abc 123 !@#)</span>
+          </label>
+          <button type="button" class="category-jump-btn" data-category-key="standard">Jump</button>
+        </div>
+        <div class="category-row" data-category-key="math">
+          <label class="category-label">
+            <input type="checkbox" class="category-checkbox" data-category-key="math" checked />
+            <span>Math Alphabet (𝜋 etc.)</span>
+          </label>
+          <button type="button" class="category-jump-btn" data-category-key="math">Jump</button>
+        </div>
+        <div class="category-row" data-category-key="cyrillic">
+          <label class="category-label">
+            <input type="checkbox" class="category-checkbox" data-category-key="cyrillic" checked />
+            <span>Cyrillic alphabet</span>
+          </label>
+          <button type="button" class="category-jump-btn" data-category-key="cyrillic">Jump</button>
+        </div>
+        <div class="category-row" data-category-key="emoji">
+          <label class="category-label">
+            <input type="checkbox" class="category-checkbox" data-category-key="emoji" checked />
+            <span>Emojis / Symbols</span>
+          </label>
+          <button type="button" class="category-jump-btn" data-category-key="emoji">Jump</button>
+        </div>
+        <div class="category-row" data-category-key="family">
+          <label class="category-label">
+            <input type="checkbox" class="category-checkbox" data-category-key="family" checked />
+            <span>Family skin tone emojis</span>
+          </label>
+          <button type="button" class="category-jump-btn" data-category-key="family">Jump</button>
+        </div>
+        <div class="category-row" data-category-key="japanese">
+          <label class="category-label">
+            <input type="checkbox" class="category-checkbox" data-category-key="japanese" checked />
+            <span>Japanese</span>
+          </label>
+          <button type="button" class="category-jump-btn" data-category-key="japanese">Jump</button>
+        </div>
+        <div class="category-row" data-category-key="chinese">
+          <label class="category-label">
+            <input type="checkbox" class="category-checkbox" data-category-key="chinese" checked />
+            <span>Chinese</span>
+          </label>
+          <button type="button" class="category-jump-btn" data-category-key="chinese">Jump</button>
+        </div>
+        <div class="category-row" data-category-key="korean">
+          <label class="category-label">
+            <input type="checkbox" class="category-checkbox" data-category-key="korean" checked />
+            <span>Korean</span>
+          </label>
+          <button type="button" class="category-jump-btn" data-category-key="korean">Jump</button>
+        </div>
+        <div class="category-row" data-category-key="words">
+          <label class="category-label">
+            <input type="checkbox" class="category-checkbox" data-category-key="words" checked />
+            <span>Other words</span>
+          </label>
+          <button type="button" class="category-jump-btn" data-category-key="words">Jump</button>
+        </div>
+        <div class="category-row" data-category-key="egyptian">
+          <label class="category-label">
+            <input type="checkbox" class="category-checkbox" data-category-key="egyptian" checked />
+            <span>Egyptian hieroglyphics</span>
+          </label>
+          <button type="button" class="category-jump-btn" data-category-key="egyptian">Jump</button>
+        </div>
+        <div class="category-row" data-category-key="braille">
+          <label class="category-label">
+            <input type="checkbox" class="category-checkbox" data-category-key="braille" checked />
+            <span>Braille</span>
+          </label>
+          <button type="button" class="category-jump-btn" data-category-key="braille">Jump</button>
+        </div>
+        <div class="category-row" data-category-key="hindi">
+          <label class="category-label">
+            <input type="checkbox" class="category-checkbox" data-category-key="hindi" checked />
+            <span>Hindi (Devanagari)</span>
+          </label>
+          <button type="button" class="category-jump-btn" data-category-key="hindi">Jump</button>
+        </div>
+        <div class="category-row" data-category-key="arabic">
+          <label class="category-label">
+            <input type="checkbox" class="category-checkbox" data-category-key="arabic" checked />
+            <span>Arabic</span>
+          </label>
+          <button type="button" class="category-jump-btn" data-category-key="arabic">Jump</button>
+        </div>
+        <div class="category-row" data-category-key="other">
+          <label class="category-label">
+            <input type="checkbox" class="category-checkbox" data-category-key="other" checked />
+            <span>Other</span>
+          </label>
+          <button type="button" class="category-jump-btn" data-category-key="other">Jump</button>
+        </div>
+        <div class="category-row" data-category-key="private">
+          <label class="category-label">
+            <input type="checkbox" class="category-checkbox" data-category-key="private" checked />
+            <span>Private Use</span>
+          </label>
+          <button type="button" class="category-jump-btn" data-category-key="private">Jump</button>
+        </div>
+        <div class="category-row" data-category-key="separateSymbols">
+          <label class="category-label">
+            <input type="checkbox" class="category-checkbox" data-category-key="separateSymbols" checked />
+            <span>Separate symbols</span>
+          </label>
+          <button type="button" class="category-jump-btn" data-category-key="separateSymbols">Jump</button>
+        </div>
+      </div>
+      <div class="category-actions">
+        <button id="category-select-all-btn" type="button">Select all</button>
+        <button id="category-deselect-all-btn" type="button">Deselect all</button>
+        <button id="category-save-btn" type="button">Save</button>
+        <button id="category-add-custom-btn" type="button">+ Custom</button>
+        <button id="category-close-btn" type="button">Close</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Custom category editor modal -->
+  <div id="custom-category-modal" aria-modal="true" role="dialog" hidden>
+    <div class="customcat-dialog">
+      <div class="customcat-title">Custom category</div>
+      <div class="customcat-body">
+        <label class="customcat-row">
+          <span>Name</span>
+          <input type="text" id="customcat-name-input" placeholder="My cool set" />
+        </label>
+        <label class="customcat-row">
+          <span>Start position (optional)</span>
+          <input type="number" id="customcat-position-input" placeholder="1" min="1" />
+        </label>
+        <label class="customcat-row">
+          <span>Unicode blocks (optional)</span>
+          <input type="text" id="customcat-blocks-input" placeholder="e.g. 10A0-10FF, 0400-04FF" />
+        </label>
+        <label class="customcat-column">
+          <span>Characters (one big string, or one per line)</span>
+          <textarea id="customcat-chars-input" rows="4" placeholder="Paste or type characters here"></textarea>
+        </label>
+      </div>
+      <div class="customcat-actions">
+        <button id="customcat-save-btn" type="button">Save locally</button>
+        <button id="customcat-upload-btn" type="button">Upload online</button>
+        <button id="customcat-cancel-btn" type="button">Close</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Online custom categories modal -->
+  <div id="custom-db-modal" aria-modal="true" role="dialog" hidden>
+    <div class="customdb-dialog">
+      <div class="customdb-header">
+        <div class="customdb-title">Online custom categories</div>
+        <div class="customdb-subtitle">5 per page · newest first</div>
+      </div>
+      <div class="customdb-body">
+        <div id="customdb-list"></div>
+        <div class="customdb-pagination">
+          <button id="customdb-prev-page" type="button">&lt;</button>
+          <span id="customdb-page-indicator">1 / 1</span>
+          <button id="customdb-next-page" type="button">&gt;</button>
+        </div>
+      </div>
+      <div class="customdb-actions">
+        <button id="customdb-refresh-btn" type="button">Refresh</button>
+        <button id="customdb-close-btn" type="button">Close</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Quiz modal -->
+  <div id="quiz-modal" aria-modal="true" role="dialog" hidden>
+    <div class="quiz-dialog">
+      <div class="quiz-header">
+        <div class="quiz-title">Letter quiz</div>
+        <label class="quiz-mute">
+          <input type="checkbox" id="quiz-mute-checkbox" />
+          Mute music
+        </label>
+      </div>
+      <div class="quiz-body">
+        <div class="quiz-config">
+          <label class="quiz-row">
+            <span>Questions</span>
+            <input type="number" id="quiz-count-input" min="1" max="50" value="10" />
+          </label>
+          <label class="quiz-row">
+            <span>Difficulty</span>
+            <select id="quiz-difficulty-select">
+              <option value="name">Letter name</option>
+              <option value="category">Category</option>
+              <option value="position">Position (hard)</option>
+              <option value="choice">Zoomed multiple choice</option>
+            </select>
+          </label>
+          <label class="quiz-row">
+            <span>Mode</span>
+            <select id="quiz-mode-select">
+              <option value="limited">Limited (use question count)</option>
+              <option value="endless">Endless (3 lives)</option>
+            </select>
+          </label>
+          <label class="quiz-row">
+            <span>Lives (limited)</span>
+            <span>
+              <input type="checkbox" id="quiz-use-lives-checkbox" />
+              <input type="number" id="quiz-lives-input" min="1" max="99" value="3" />
+            </span>
+          </label>
+        </div>
+        <div id="quiz-description" class="quiz-description"></div>
+        <div class="quiz-status-row">
+          <span id="quiz-lives-display"></span>
+          <span id="quiz-highscore-display"></span>
+        </div>
+        <div class="quiz-current" id="quiz-current-wrapper" hidden>
+          <div class="quiz-letter" id="quiz-letter-display">A</div>
+          <div class="quiz-question-text" id="quiz-question-text"></div>
+
+          <div id="quiz-input-wrapper">
+            <input type="text" id="quiz-answer-input" autocomplete="off" />
+          </div>
+
+          <div id="quiz-options-wrapper" hidden>
+            <div class="quiz-options-row">
+              <button type="button" class="quiz-option-btn"></button>
+              <button type="button" class="quiz-option-btn"></button>
+            </div>
+            <div class="quiz-options-row">
+              <button type="button" class="quiz-option-btn"></button>
+              <button type="button" class="quiz-option-btn"></button>
+            </div>
+          </div>
+
+          <div class="quiz-feedback" id="quiz-feedback"></div>
+          <div class="quiz-progress" id="quiz-progress"></div>
+        </div>
+      </div>
+      <div class="quiz-actions">
+        <button id="quiz-start-btn" type="button">Start</button>
+        <button id="quiz-submit-btn" type="button" disabled>Submit</button>
+        <button id="quiz-close-btn" type="button">Close</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Dice random modal -->
+  <div id="dice-modal" aria-modal="true" role="dialog" hidden>
+    <div class="dice-dialog">
+      <div class="dice-title">Random letter</div>
+      <div class="dice-body">
+        <div class="dice-section">
+          <div class="dice-section-title">Before a letter</div>
+          <label class="dice-row">
+            <span>Letter / word</span>
+            <input type="text" id="dice-before-word-input" autocomplete="off" />
+          </label>
+          <button type="button" id="dice-before-run-btn">Random before</button>
+        </div>
+        <div class="dice-section">
+          <div class="dice-section-title">Between positions</div>
+          <label class="dice-row">
+            <span>Start position</span>
+            <input type="text" id="dice-range-start-input" inputmode="numeric" autocomplete="off" />
+          </label>
+          <label class="dice-row">
+            <span>End position</span>
+            <input type="text" id="dice-range-end-input" inputmode="numeric" autocomplete="off" />
+          </label>
+          <button type="button" id="dice-range-run-btn">Random in range</button>
+        </div>
+        <div id="dice-error" class="dice-error"></div>
+      </div>
+      <div class="dice-actions">
+        <button id="dice-close-btn" type="button">Close</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Letter error modal -->
+  <div id="letter-error-modal" aria-modal="true" role="dialog" hidden>
+    <div class="letter-error-dialog">
+      <div class="letter-error-title">Error</div>
+      <div class="letter-error-body">
+        Sorry! The letter was too big and has failed to load, we have put you back to the letter "A".
+      </div>
+      <div class="letter-error-actions">
+        <button id="letter-error-ok-btn" type="button">OK</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Emoji support warning modal -->
+  <div id="emoji-warning-modal" aria-modal="true" role="dialog" hidden>
+    <div class="emoji-warning-dialog">
+      <div class="emoji-warning-title">Emoji support notice</div>
+      <div class="emoji-warning-body">
+        Most letters in this project use advanced symbols and emojis.<br /><br />
+        Your device may not support many of these characters, so some letters or emojis
+        could look like empty boxes or question marks.
+      </div>
+      <div class="emoji-warning-actions">
+        <button id="emoji-warning-ok-btn" type="button">OK</button>
+      </div>
+    </div>
+  </div>
+
+  <script type="module" src="script.js"></script>
+</body>
+</html>
+

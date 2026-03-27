@@ -1,0 +1,1744 @@
+@font-face {
+  font-family: "Catrinity";
+  src: url("/Catrinity.otf.ttf") format("truetype");
+  font-display: swap;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html,
+body {
+  width: 100%;
+  height: 100%;
+}
+
+body {
+  background: #000;
+  color: #fff;
+  font-family: "Catrinity", system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+/* Ensure all buttons use Catrinity font */
+button {
+  font-family: "Catrinity", system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+/* Font mode overrides */
+body.font-catrinity {
+  font-family: "Catrinity", system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+body.font-arial {
+  font-family: Arial, Helvetica, system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+body.font-noto {
+  font-family:
+    "Noto Sans",
+    "Noto Sans Symbols",
+    "Noto Sans Symbols 2",
+    "Noto Sans CJK JP",
+    "Noto Sans CJK KR",
+    "Noto Sans CJK SC",
+    "Noto Sans CJK TC",
+    "Noto Color Emoji",
+    system-ui,
+    -apple-system,
+    BlinkMacSystemFont,
+    sans-serif;
+}
+
+/* Ensure letter always follows the chosen font family */
+body.font-catrinity #letter {
+  font-family: "Catrinity", system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+body.font-arial #letter {
+  font-family: Arial, Helvetica, system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+body.font-noto #letter {
+  font-family:
+    "Noto Sans",
+    "Noto Sans Symbols",
+    "Noto Sans Symbols 2",
+    "Noto Sans CJK JP",
+    "Noto Sans CJK KR",
+    "Noto Sans CJK SC",
+    "Noto Sans CJK TC",
+    "Noto Color Emoji",
+    system-ui,
+    -apple-system,
+    BlinkMacSystemFont,
+    sans-serif;
+}
+
+/* Light mode overrides */
+body.light-mode {
+  background: #f5f5f5;
+  color: #111;
+}
+
+body.light-mode #letter {
+  color: #111;
+}
+
+body.light-mode #controls button,
+body.light-mode #admin-panel,
+body.light-mode .epilepsy-dialog,
+body.light-mode .settings-dialog {
+  background: #ffffff;
+  color: #111;
+  border-color: #cccccc;
+}
+
+body.light-mode #controls button.active,
+body.light-mode #admin-panel #inf-toggle.active {
+  background: #e4e4e4;
+  border-color: #999999;
+}
+
+body.light-mode #indicator,
+body.light-mode #char-counter {
+  color: #555555;
+}
+
+/* Prevent cursed background animation overriding light-mode base color when not cursed */
+body.light-mode:not(.cursed):not(.ultra-cursed):not(.super-cursed) {
+  animation: none;
+}
+
+/* Announcement banner */
+#announcement-banner {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  background: #ffeb3b;
+  color: #000;
+  font-size: 0.78rem;
+  padding: 6px 10px;
+  text-align: center;
+  z-index: 500;
+}
+
+/* Settings modal */
+#settings-modal {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.75);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+#settings-modal[hidden] {
+  display: none;
+}
+
+.settings-dialog {
+  width: min(90vw, 360px);
+  padding: 14px 16px 12px;
+  border-radius: 14px;
+  background: #101010;
+  border: 1px solid #444;
+  box-shadow: 0 14px 40px rgba(0, 0, 0, 0.9);
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+.settings-title {
+  font-size: 0.98rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #ffd966;
+}
+
+.settings-body {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  font-size: 0.9rem;
+  color: #ddd;
+}
+
+.settings-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+}
+
+.settings-row select {
+  min-width: 120px;
+  height: 26px;
+  border-radius: 6px;
+  border: 1px solid #555;
+  background: #181818;
+  color: #fff;
+  font-size: 0.85rem;
+  padding: 2px 8px;
+}
+
+.settings-row input[type="checkbox"] {
+  width: 18px;
+  height: 18px;
+}
+
+.settings-subrow {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+  font-size: 0.8rem;
+  color: #ccc;
+}
+
+.settings-subrow input[type="color"] {
+  width: 40px;
+  height: 24px;
+  padding: 0;
+  border-radius: 6px;
+  border: 1px solid #555;
+  background: transparent;
+}
+
+.settings-actions {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 6px;
+}
+
+.settings-actions button {
+  min-width: 80px;
+  height: 32px;
+  padding: 0 14px;
+  border-radius: 999px;
+  border: 1px solid #555;
+  background: #181818;
+  color: #fff;
+  font-size: 0.85rem;
+  cursor: pointer;
+}
+
+#app {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: calc(env(safe-area-inset-top) + 32px) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left);
+  gap: 4vh;
+}
+
+#letter {
+  font-size: 24vh;
+  line-height: 1.1;
+  text-align: center;
+  user-select: text;
+  will-change: opacity, transform;
+  opacity: 1;
+  padding-top: 0.1em;
+}
+
+#letter.fade {
+  opacity: 0;
+  transform: scale(0.98);
+}
+
+#controls {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4vw;
+  flex-wrap: wrap;
+}
+
+#controls button {
+  min-width: 56px;
+  height: 56px;
+  padding: 0 12px;
+  border-radius: 12px;
+  border: 1px solid #444;
+  background: #111;
+  color: #fff;
+  font-size: 1rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  touch-action: manipulation;
+}
+
+/* Cursed button slight accent */
+#cursed-btn {
+  font-size: 1.4rem;
+  min-width: 56px;
+  border-color: #660000;
+  box-shadow: 0 0 8px rgba(255, 0, 0, 0.4);
+  animation: cursed-btn-pulse 0.9s infinite alternate;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Ensure the 󼤤 button uses the Catrinity font explicitly */
+#cursed-ultra-btn {
+  font-family: "Catrinity", system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+/* 神 button special look */
+#cursed-super-btn {
+  font-size: 1.4rem;
+  min-width: 56px;
+  border-color: #004466;
+  box-shadow: 0 0 10px rgba(0, 200, 255, 0.7);
+}
+
+/* 光 button ultra-fast highlight */
+#cursed-light-btn {
+  font-size: 1.4rem;
+  min-width: 56px;
+  border-color: #ffaa00;
+  box-shadow: 0 0 12px rgba(255, 200, 0, 0.85);
+}
+
+/* ﷽ button ultra-universe mode */
+#cursed-universe-btn {
+  font-size: 1.4rem;
+  min-width: 56px;
+  border-color: #ffffff;
+  box-shadow: 0 0 14px rgba(180, 220, 255, 0.95);
+}
+
+#controls button.active {
+  background: #2a2a2a;
+  border-color: #888;
+}
+
+#controls button.icon {
+  width: 56px;
+  border-radius: 999px;
+  font-size: 1.2rem;
+}
+
+#controls button:active {
+  background: #222;
+  transform: scale(0.96);
+}
+
+/* Cursed mode visuals */
+body.cursed {
+  animation: cursed-bg 0.4s infinite alternate;
+}
+
+#letter.cursed {
+  animation: cursed-letter 0.18s infinite alternate;
+  text-shadow: 0 0 12px rgba(255,255,255,0.8);
+}
+
+/* ultra cursed: more intense shake + 󼤤 storm background */
+body.ultra-cursed #letter.cursed {
+  animation: cursed-letter-ultra 0.12s infinite alternate;
+}
+
+.cursed-ultra-bg {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+  z-index: -1;
+}
+
+/* Universe cursed overlay with GIF background */
+.cursed-universe-bg {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: -1;
+  background-image: url("https://media0.giphy.com/media/v1.Y2lkPTZjMDliOTUyMG9jNnZidDc3NjVmY2VkeW5rOWQ0eHd3ZXd0c25tOWkydHdmZmhtaCZlcD12MV9naWZzX3NlYXJjaCZjdD1n/3og0IFrHkIglEOg8Ba/200.gif");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  opacity: 0.9;
+}
+
+.cursed-ultra-glyph {
+  position: absolute;
+  font-family: "Catrinity", system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+  font-size: 3rem;
+  opacity: 0.2;
+  color: rgba(255, 255, 255, 0.4);
+  animation-name: cursed-ultra-float;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+}
+
+/* super cursed (神) : mega shake + color strobe + sonic boom overlay */
+body.super-cursed {
+  animation: super-cursed-bg 0.16s infinite alternate;
+}
+
+.super-cursed-letter {
+  animation: super-cursed-letter 0.08s infinite alternate;
+  text-shadow: 0 0 18px rgba(255,255,255,0.95);
+}
+
+/* Sonic boom expanding ring */
+.sonic-boom {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.sonic-boom::before {
+  content: "";
+  width: 0;
+  height: 0;
+  border-radius: 9999px;
+  border: 4px solid rgba(255, 255, 255, 0.9);
+  box-shadow: 0 0 40px rgba(0, 255, 255, 0.9);
+  opacity: 0;
+}
+
+.sonic-boom-active::before {
+  animation: sonic-boom 0.45s ease-out forwards;
+}
+
+/* Cursed button active look */
+#cursed-btn.active {
+  background: #4b0000;
+  border-color: #ff2222;
+  box-shadow: 0 0 14px rgba(255,0,0,0.95);
+  animation: cursed-btn-pulse 0.4s infinite alternate, cursed-btn-glitch 0.18s infinite steps(2, end);
+}
+
+@keyframes cursed-btn-pulse {
+  0% {
+    transform: scale(1) translateY(0);
+    filter: hue-rotate(0deg);
+  }
+  100% {
+    transform: scale(1.06) translateY(-1px);
+    filter: hue-rotate(25deg);
+  }
+}
+
+@keyframes cursed-btn-glitch {
+  0% {
+    text-shadow: 1px 0 2px rgba(255,0,0,0.9), -1px 0 2px rgba(0,255,255,0.8);
+  }
+  50% {
+    text-shadow: -2px 0 3px rgba(255,0,255,0.9), 2px 0 3px rgba(0,255,0,0.9);
+  }
+  100% {
+    text-shadow: 2px 0 2px rgba(255,255,0,0.9), -2px 0 2px rgba(0,0,0,0.9);
+  }
+}
+
+@keyframes cursed-bg {
+  0% {
+    background-color: #000000;
+  }
+  25% {
+    background-color: #120012;
+  }
+  50% {
+    background-color: #001212;
+  }
+  75% {
+    background-color: #120000;
+  }
+  100% {
+    background-color: #050505;
+  }
+}
+
+@keyframes cursed-letter {
+  0% {
+    transform: translate(-1px, 0) rotate(-1deg) scale(1.01);
+  }
+  25% {
+    transform: translate(2px, -1px) rotate(1deg) scale(1.03);
+  }
+  50% {
+    transform: translate(-2px, 1px) rotate(-2deg) scale(0.99);
+  }
+  75% {
+    transform: translate(1px, 2px) rotate(2deg) scale(1.04);
+  }
+  100% {
+    transform: translate(0, -2px) rotate(-1deg) scale(1.02);
+  }
+}
+
+/* stronger shake for ultra cursed 󼤤 mode */
+@keyframes cursed-letter-ultra {
+  0% {
+    transform: translate(-3px, -1px) rotate(-2deg) scale(1.03);
+  }
+  25% {
+    transform: translate(4px, -2px) rotate(2deg) scale(1.06);
+  }
+  50% {
+    transform: translate(-4px, 2px) rotate(-3deg) scale(0.98);
+  }
+  75% {
+    transform: translate(3px, 4px) rotate(3deg) scale(1.08);
+  }
+  100% {
+    transform: translate(0, -4px) rotate(-2deg) scale(1.04);
+  }
+}
+
+/* floating background 󼤤 glyphs */
+@keyframes cursed-ultra-float {
+  0% {
+    transform: translateY(0px) translateX(0px) rotate(0deg);
+    opacity: 0.15;
+  }
+  50% {
+    transform: translateY(-40px) translateX(20px) rotate(15deg);
+    opacity: 0.3;
+  }
+  100% {
+    transform: translateY(-80px) translateX(-10px) rotate(-10deg);
+    opacity: 0.1;
+  }
+}
+
+/* super cursed background strobe */
+@keyframes super-cursed-bg {
+  0% {
+    background-color: #000;
+  }
+  25% {
+    background-color: #330044;
+  }
+  50% {
+    background-color: #440000;
+  }
+  75% {
+    background-color: #004444;
+  }
+  100% {
+    background-color: #220022;
+  }
+}
+
+/* super cursed extra shake */
+@keyframes super-cursed-letter {
+  0% {
+    transform: translate(-4px, -3px) rotate(-3deg) scale(1.05);
+  }
+  25% {
+    transform: translate(5px, -4px) rotate(3deg) scale(1.08);
+  }
+  50% {
+    transform: translate(-6px, 4px) rotate(-4deg) scale(0.96);
+  }
+  75% {
+    transform: translate(4px, 6px) rotate(4deg) scale(1.1);
+  }
+  100% {
+    transform: translate(0, -6px) rotate(-3deg) scale(1.03);
+  }
+}
+
+/* sonic boom ring animation */
+@keyframes sonic-boom {
+  0% {
+    width: 0;
+    height: 0;
+    opacity: 0.9;
+    border-width: 6px;
+  }
+  70% {
+    width: 140vmin;
+    height: 140vmin;
+    opacity: 0.3;
+    border-width: 2px;
+  }
+  100% {
+    width: 180vmin;
+    height: 180vmin;
+    opacity: 0;
+    border-width: 1px;
+  }
+}
+
+#indicator {
+  min-width: 72px;
+  text-align: center;
+  font-size: 1rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #aaa;
+}
+
+/* character counter and category indicator next to indicator */
+#char-counter {
+  font-size: 0.8rem;
+  color: #777;
+  margin-left: 4px;
+}
+
+#category-indicator {
+  font-size: 0.8rem;
+  color: #999;
+  margin-left: 4px;
+  text-transform: none;
+}
+
+/* Admin panel */
+#admin-panel {
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  padding: 8px 12px;
+  border-radius: 12px;
+  background: #080808;
+  border: 1px solid #222;
+}
+
+#admin-panel .admin-field {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  font-size: 0.75rem;
+  color: #bbb;
+}
+
+#admin-panel .max-wrapper {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+#admin-panel .max-wrapper input[type="text"] {
+  width: 140px;
+  padding: 4px 6px;
+  border-radius: 8px;
+  border: 1px solid #444;
+  background: #111;
+  color: #fff;
+  font: inherit;
+  text-align: center;
+}
+
+#admin-panel #inf-toggle {
+  min-width: 40px;
+  height: 32px;
+  padding: 0 8px;
+  border-radius: 999px;
+  border: 1px solid #444;
+  background: #111;
+  color: #fff;
+  font-size: 0.85rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+#admin-panel #inf-toggle.active {
+  background: #2a2a2a;
+  border-color: #888;
+}
+
+#admin-panel label {
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+#admin-panel input[type="number"] {
+  width: 96px;
+  padding: 4px 6px;
+  border-radius: 8px;
+  border: 1px solid #444;
+  background: #111;
+  color: #fff;
+  font: inherit;
+  text-align: center;
+}
+
+/* Epilepsy warning modal */
+#epilepsy-modal {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.85);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+#epilepsy-modal[hidden] {
+  display: none;
+}
+
+.epilepsy-dialog {
+  width: min(90vw, 420px);
+  padding: 16px 18px 14px;
+  border-radius: 14px;
+  background: #101010;
+  border: 1px solid #444;
+  box-shadow: 0 14px 40px rgba(0, 0, 0, 0.9);
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+.epilepsy-title {
+  font-size: 1rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #ffd966;
+}
+
+.epilepsy-body {
+  font-size: 0.9rem;
+  line-height: 1.4;
+  color: #ddd;
+}
+
+.epilepsy-noshow {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.8rem;
+  color: #aaa;
+}
+
+.epilepsy-noshow input {
+  width: 16px;
+  height: 16px;
+}
+
+.epilepsy-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  margin-top: 4px;
+}
+
+.epilepsy-actions button {
+  min-width: 80px;
+  height: 36px;
+  padding: 0 14px;
+  border-radius: 999px;
+  border: 1px solid #555;
+  background: #181818;
+  color: #fff;
+  font-size: 0.85rem;
+  cursor: pointer;
+}
+
+#epilepsy-close-btn {
+  background: #181818;
+}
+
+#epilepsy-start-btn {
+  background: #ffd966;
+  color: #000;
+  border-color: #e6c555;
+}
+
+/* Category modal */
+#category-modal {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.75);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+#category-modal[hidden] {
+  display: none;
+}
+
+.category-dialog {
+  width: min(92vw, 380px);
+  max-height: 80vh;
+  padding: 14px 16px 12px;
+  border-radius: 14px;
+  background: #101010;
+  border: 1px solid #444;
+  box-shadow: 0 14px 40px rgba(0, 0, 0, 0.9);
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+.category-title {
+  font-size: 0.98rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #ffd966;
+}
+
+.category-body {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  font-size: 0.86rem;
+  color: #ddd;
+  overflow-y: auto;
+  padding-right: 4px;
+}
+
+.category-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.category-label {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex: 1;
+}
+
+.category-label input[type="checkbox"] {
+  width: 16px;
+  height: 16px;
+}
+
+.category-jump-btn {
+  flex-shrink: 0;
+  min-width: 64px;
+  height: 30px;
+  padding: 0 10px;
+  border-radius: 999px;
+  border: 1px solid #555;
+  background: #181818;
+  color: #fff;
+  font-size: 0.78rem;
+  cursor: pointer;
+}
+
+.category-actions {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 6px;
+}
+
+#category-close-btn {
+  min-width: 80px;
+  height: 32px;
+  padding: 0 14px;
+  border-radius: 999px;
+  border: 1px solid #555;
+  background: #181818;
+  color: #fff;
+  font-size: 0.85rem;
+  cursor: pointer;
+}
+
+/* Custom category modal */
+#custom-category-modal {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.75);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+#custom-category-modal[hidden] {
+  display: none;
+}
+
+.customcat-dialog {
+  width: min(92vw, 380px);
+  max-height: 80vh;
+  padding: 14px 16px 12px;
+  border-radius: 14px;
+  background: #101010;
+  border: 1px solid #444;
+  box-shadow: 0 14px 40px rgba(0, 0, 0, 0.9);
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+.customcat-title {
+  font-size: 0.95rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #ffd966;
+}
+
+.customcat-body {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  font-size: 0.86rem;
+  color: #ddd;
+}
+
+.customcat-row {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.customcat-column {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.customcat-row span,
+.customcat-column span {
+  font-size: 0.78rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: #aaa;
+}
+
+.customcat-row input,
+.customcat-column textarea {
+  width: 100%;
+  padding: 6px 8px;
+  border-radius: 8px;
+  border: 1px solid #444;
+  background: #111;
+  color: #fff;
+  font-size: 0.85rem;
+  resize: vertical;
+}
+
+.customcat-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+  margin-top: 4px;
+}
+
+.customcat-actions button {
+  min-width: 80px;
+  height: 32px;
+  padding: 0 10px;
+  border-radius: 999px;
+  border: 1px solid #555;
+  background: #181818;
+  color: #fff;
+  font-size: 0.8rem;
+  cursor: pointer;
+}
+
+/* Online custom DB modal */
+#custom-db-modal {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.75);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+#custom-db-modal[hidden] {
+  display: none;
+}
+
+.customdb-dialog {
+  width: min(92vw, 380px);
+  max-height: 80vh;
+  padding: 14px 16px 12px;
+  border-radius: 14px;
+  background: #101010;
+  border: 1px solid #444;
+  box-shadow: 0 14px 40px rgba(0, 0, 0, 0.9);
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+.customdb-header {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.customdb-title {
+  font-size: 0.95rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #ffd966;
+}
+
+.customdb-subtitle {
+  font-size: 0.75rem;
+  color: #aaa;
+}
+
+.customdb-body {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  font-size: 0.84rem;
+  color: #ddd;
+}
+
+#customdb-list {
+  max-height: 50vh;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding-right: 4px;
+}
+
+.customdb-item {
+  border-radius: 8px;
+  border: 1px solid #333;
+  padding: 6px 8px;
+  background: #151515;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.customdb-item-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 6px;
+}
+
+.customdb-item-name {
+  font-weight: 600;
+  font-size: 0.86rem;
+  color: #ffe082;
+}
+
+.customdb-item-meta {
+  font-size: 0.72rem;
+  color: #888;
+}
+
+.customdb-item-preview {
+  font-size: 0.86rem;
+  color: #eee;
+  word-break: break-all;
+}
+
+.customdb-item-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 6px;
+  margin-top: 2px;
+}
+
+.customdb-item-actions button {
+  min-width: 64px;
+  height: 26px;
+  padding: 0 8px;
+  border-radius: 999px;
+  border: 1px solid #555;
+  background: #181818;
+  color: #fff;
+  font-size: 0.78rem;
+  cursor: pointer;
+}
+
+.customdb-pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.8rem;
+  color: #aaa;
+}
+
+.customdb-pagination button {
+  width: 28px;
+  height: 28px;
+  border-radius: 999px;
+  border: 1px solid #555;
+  background: #181818;
+  color: #fff;
+  font-size: 0.8rem;
+  cursor: pointer;
+}
+
+.customdb-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+  margin-top: 4px;
+}
+
+.customdb-actions button {
+  min-width: 80px;
+  height: 32px;
+  padding: 0 10px;
+  border-radius: 999px;
+  border: 1px solid #555;
+  background: #181818;
+  color: #fff;
+  font-size: 0.8rem;
+  cursor: pointer;
+}
+
+/* Quiz modal */
+#quiz-modal {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.78);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1100;
+}
+
+#quiz-modal[hidden] {
+  display: none;
+}
+
+.quiz-dialog {
+  width: min(92vw, 380px);
+  max-height: 80vh;
+  padding: 14px 16px 12px;
+  border-radius: 14px;
+  background: #101010;
+  border: 1px solid #444;
+  box-shadow: 0 14px 40px rgba(0, 0, 0, 0.9);
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  font-family: "Catrinity", system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+.quiz-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 6px;
+}
+
+.quiz-title {
+  font-size: 0.95rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #ffd966;
+}
+
+.quiz-mute {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 0.78rem;
+  color: #ddd;
+}
+
+.quiz-mute input {
+  width: 16px;
+  height: 16px;
+}
+
+.quiz-body {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  font-size: 0.86rem;
+  color: #ddd;
+}
+
+/* Quiz difficulty description (shown before start) */
+.quiz-description {
+  font-size: 0.8rem;
+  color: #bbb;
+  line-height: 1.4;
+}
+
+.quiz-config {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.quiz-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+}
+
+.quiz-row span {
+  font-size: 0.78rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: #aaa;
+}
+
+#quiz-count-input {
+  width: 72px;
+  padding: 4px 6px;
+  border-radius: 8px;
+  border: 1px solid #444;
+  background: #111;
+  color: #fff;
+  font-size: 0.85rem;
+  text-align: center;
+}
+
+#quiz-difficulty-select {
+  min-width: 140px;
+  height: 28px;
+  border-radius: 6px;
+  border: 1px solid #555;
+  background: #181818;
+  color: #fff;
+  font-size: 0.82rem;
+  padding: 2px 8px;
+}
+
+.quiz-current {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-top: 4px;
+}
+
+.quiz-letter {
+  font-size: 8vh;
+  text-align: center;
+  padding: 4px 0;
+  user-select: none;
+}
+
+/* Zoomed-in multiple-choice view: only a ~25% area of the letter is visible */
+.quiz-letter.zoomed {
+  position: relative;
+  width: 50%;
+  height: 50%;
+  margin: 0 auto;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.quiz-letter.zoomed .quiz-letter-inner {
+  display: inline-block;
+  font-size: 24vh;
+  /* show only a portion of the letter; tweak origin so it's like a small area */
+  transform: scale(2.5);
+  transform-origin: 25% 25%;
+}
+
+.quiz-question-text {
+  font-size: 0.86rem;
+  text-align: center;
+  color: #ccc;
+}
+
+#quiz-answer-input {
+  width: 100%;
+  padding: 6px 8px;
+  border-radius: 8px;
+  border: 1px solid #444;
+  background: #111;
+  color: #fff;
+  font-size: 0.9rem;
+}
+
+.quiz-feedback {
+  min-height: 1.2em;
+  font-size: 0.8rem;
+  text-align: center;
+  color: #ffd966;
+}
+
+.quiz-progress {
+  font-size: 0.78rem;
+  text-align: center;
+  color: #aaa;
+}
+
+.quiz-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+  margin-top: 4px;
+}
+
+.quiz-actions button {
+  min-width: 72px;
+  height: 32px;
+  padding: 0 10px;
+  border-radius: 999px;
+  border: 1px solid #555;
+  background: #181818;
+  color: #fff;
+  font-size: 0.8rem;
+  cursor: pointer;
+}
+
+/* Multiple-choice options for zoomed difficulty */
+#quiz-options-wrapper {
+  margin-top: 6px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.quiz-options-row {
+  display: flex;
+  gap: 6px;
+}
+
+.quiz-option-btn {
+  flex: 1;
+  min-height: 32px;
+  padding: 4px 6px;
+  border-radius: 10px;
+  border: 1px solid #555;
+  background: #181818;
+  color: #fff;
+  font-size: 1rem;
+  cursor: pointer;
+  user-select: none;
+}
+
+.quiz-option-btn.correct {
+  border-color: #4caf50;
+  background: #1b3820;
+}
+
+.quiz-option-btn.incorrect {
+  border-color: #f44336;
+  background: #3b1513;
+}
+
+/* Light mode overrides for quiz options */
+body.light-mode #quiz-modal .quiz-option-btn {
+  background: #f5f5f5;
+  color: #111;
+  border-color: #cccccc;
+}
+
+body.light-mode #quiz-modal .quiz-option-btn.correct {
+  background: #e8f5e9;
+  border-color: #4caf50;
+}
+
+body.light-mode #quiz-modal .quiz-option-btn.incorrect {
+  background: #ffebee;
+  border-color: #f44336;
+}
+
+/* Light mode overrides for quiz */
+body.light-mode #quiz-modal .quiz-dialog {
+  background: #ffffff;
+  border-color: #cccccc;
+  color: #111;
+}
+
+body.light-mode #quiz-modal #quiz-count-input,
+body.light-mode #quiz-modal #quiz-difficulty-select,
+body.light-mode #quiz-modal #quiz-answer-input {
+  background: #f5f5f5;
+  color: #111;
+  border-color: #cccccc;
+}
+
+body.light-mode #quiz-modal .quiz-question-text {
+  color: #444;
+}
+
+body.light-mode #quiz-modal .quiz-feedback {
+  color: #d48806;
+}
+
+body.light-mode #quiz-modal .quiz-progress {
+  color: #666;
+}
+
+.quiz-status-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 8px;
+}
+
+#quiz-lives-display {
+  font-size: 0.9rem;
+  color: #ff6b81;
+}
+
+/* Special blue style for "203 THROW" life loss animation */
+.quiz-lives-203 {
+  color: #4ea3ff;
+}
+
+#quiz-highscore-display {
+  font-size: 0.8rem;
+  color: #ffd966;
+  text-align: right;
+}
+
+.quiz-lives-lost {
+  animation: quiz-life-loss 0.35s ease-out;
+}
+
+@keyframes quiz-life-loss {
+  0% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(1.35);
+    opacity: 0.5;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+/* Dice modal */
+#dice-modal {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.78);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1150;
+}
+
+#dice-modal[hidden] {
+  display: none;
+}
+
+.dice-dialog {
+  width: min(92vw, 360px);
+  max-height: 80vh;
+  padding: 14px 16px 12px;
+  border-radius: 14px;
+  background: #101010;
+  border: 1px solid #444;
+  box-shadow: 0 14px 40px rgba(0, 0, 0, 0.9);
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+.dice-title {
+  font-size: 0.95rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #ffd966;
+}
+
+.dice-body {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  font-size: 0.86rem;
+  color: #ddd;
+}
+
+.dice-section {
+  padding: 8px 8px 10px;
+  border-radius: 10px;
+  background: #181818;
+  border: 1px solid #333;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.dice-section-title {
+  font-size: 0.78rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: #aaa;
+}
+
+.dice-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 8px;
+}
+
+.dice-row span {
+  font-size: 0.78rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: #aaa;
+}
+
+.dice-row input {
+  flex: 1;
+  padding: 6px 8px;
+  border-radius: 8px;
+  border: 1px solid #444;
+  background: #111;
+  color: #fff;
+  font-size: 0.85rem;
+}
+
+.dice-section button {
+  align-self: flex-end;
+  min-width: 120px;
+  height: 30px;
+  padding: 0 10px;
+  border-radius: 999px;
+  border: 1px solid #555;
+  background: #181818;
+  color: #fff;
+  font-size: 0.8rem;
+  cursor: pointer;
+}
+
+.dice-error {
+  min-height: 1.2em;
+  font-size: 0.78rem;
+  color: #ff8a80;
+  text-align: center;
+}
+
+.dice-actions {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 4px;
+}
+
+.dice-actions button {
+  min-width: 80px;
+  height: 32px;
+  padding: 0 14px;
+  border-radius: 999px;
+  border: 1px solid #555;
+  background: #181818;
+  color: #fff;
+  font-size: 0.85rem;
+  cursor: pointer;
+}
+
+/* Light mode overrides for dice modal */
+body.light-mode #dice-modal .dice-dialog {
+  background: #ffffff;
+  border-color: #cccccc;
+  color: #111;
+}
+
+body.light-mode #dice-modal .dice-row input {
+  background: #f5f5f5;
+  color: #111;
+  border-color: #cccccc;
+}
+
+body.light-mode #dice-modal .dice-section {
+  background: #fafafa;
+  border-color: #dddddd;
+}
+
+body.light-mode #dice-modal .dice-section button,
+body.light-mode #dice-modal .dice-actions button {
+  background: #f5f5f5;
+  color: #111;
+  border-color: #cccccc;
+}
+
+body.light-mode #dice-modal .dice-error {
+  color: #d32f2f;
+}
+
+/* Letter error modal */
+#letter-error-modal {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.78);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1200;
+}
+
+#letter-error-modal[hidden] {
+  display: none;
+}
+
+.letter-error-dialog {
+  width: min(92vw, 340px);
+  padding: 14px 16px 12px;
+  border-radius: 14px;
+  background: #101010;
+  border: 1px solid #444;
+  box-shadow: 0 14px 40px rgba(0, 0, 0, 0.9);
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+.letter-error-title {
+  font-size: 0.95rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #ff8a80;
+}
+
+.letter-error-body {
+  font-size: 0.86rem;
+  line-height: 1.4;
+  color: #eee;
+}
+
+.letter-error-actions {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 4px;
+}
+
+.letter-error-actions button {
+  min-width: 80px;
+  height: 32px;
+  padding: 0 14px;
+  border-radius: 999px;
+  border: 1px solid #555;
+  background: #181818;
+  color: #fff;
+  font-size: 0.85rem;
+  cursor: pointer;
+}
+
+/* Light mode overrides for letter error modal */
+body.light-mode #letter-error-modal .letter-error-dialog {
+  background: #ffffff;
+  border-color: #cccccc;
+  color: #111;
+}
+
+body.light-mode #letter-error-modal .letter-error-title {
+  color: #d32f2f;
+}
+
+body.light-mode #letter-error-modal .letter-error-body {
+  color: #333;
+}
+
+body.light-mode #letter-error-modal .letter-error-actions button {
+  background: #f5f5f5;
+  color: #111;
+  border-color: #cccccc;
+}
+
+/* Emoji support warning modal */
+#emoji-warning-modal {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.78);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1210;
+}
+
+#emoji-warning-modal[hidden] {
+  display: none;
+}
+
+.emoji-warning-dialog {
+  width: min(92vw, 360px);
+  padding: 14px 16px 12px;
+  border-radius: 14px;
+  background: #101010;
+  border: 1px solid #444;
+  box-shadow: 0 14px 40px rgba(0, 0, 0, 0.9);
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+.emoji-warning-title {
+  font-size: 0.95rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #ffd966;
+}
+
+.emoji-warning-body {
+  font-size: 0.86rem;
+  line-height: 1.4;
+  color: #eee;
+}
+
+.emoji-warning-actions {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 4px;
+}
+
+.emoji-warning-actions button {
+  min-width: 80px;
+  height: 32px;
+  padding: 0 14px;
+  border-radius: 999px;
+  border: 1px solid #555;
+  background: #181818;
+  color: #fff;
+  font-size: 0.85rem;
+  cursor: pointer;
+}
+
+/* Light mode overrides for emoji warning modal */
+body.light-mode #emoji-warning-modal .emoji-warning-dialog {
+  background: #ffffff;
+  border-color: #cccccc;
+  color: #111;
+}
+
+body.light-mode #emoji-warning-modal .emoji-warning-body {
+  color: #333;
+}
+
+body.light-mode #emoji-warning-modal .emoji-warning-actions button {
+  background: #f5f5f5;
+  color: #111;
+  border-color: #cccccc;
+}
+
