@@ -1,6 +1,6 @@
 @font-face {
   font-family: "Catrinity";
-  src: url("/Catrinity.otf.ttf") format("truetype");
+  src: url("Catrinity.otf.ttf") format("truetype");
   font-display: swap;
 }
 
