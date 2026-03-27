@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Nintendo Corrupter</title>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./styles.css">
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand">Nintendo Corrupter</div>
+    <div class="actions">
+      <button id="controlsBtn" class="btn">Controls</button>
+      <button id="bookBtn" class="btn btn-outline">Corrupt Book</button>
+      <button id="resetBtn" class="btn btn-outline">Reset</button>
+    </div>
+  </header>
+
+  <main class="stage">
+    <div id="game" class="game-frame" aria-label="Nintendo Emulator"></div>
+    <form id="corruptForm" class="corrupt-bar">
+      <label class="field">
+        <span>Seed (optional)</span>
+        <input id="seedInput" type="text" placeholder="e.g. mario123" />
+      </label>
+      <label class="field">
+        <span>Bytes to corrupt</span>
+        <input id="bytesInput" type="number" min="1" value="75" />
+      </label>
+      <label class="field">
+        <span>Base ROM (optional)</span>
+        <input id="romFileInput" type="file" accept=".sfc,.smc,.nes,.gb,.gbc,.md,.zip,.bin,.rom,.gba,application/octet-stream,.iso,.cue" />
+      </label>
+      <button id="corruptBtn" class="btn" type="submit">Load Corrupted ROM</button>
+      <button id="uploadBtn" class="btn btn-outline" type="button">Upload to Corrupt Book</button>
+    </form>
+    <section class="library">
+      <h3 class="library__title">Game Library</h3>
+      <ul id="gameLib" class="library-list"></ul>
+    </section>
+  </main>
+
+  <dialog id="controlsDialog" class="dialog">
+    <div class="dialog__header">
+      <h2 class="dialog__title">Controls</h2>
+      <button id="closeDialog" class="icon-btn" aria-label="Close">✕</button>
+    </div>
+    <div class="dialog__content">
+      <p><strong>Deprecated:</strong> Website control mappings have been removed.</p>
+      <p>To view or change controls, hover over the emulator and click the controller button (🎮) from the EmulatorJS overlay.</p>
+    </div>
+  </dialog>
+
+  <dialog id="bookDialog" class="dialog">
+    <div class="dialog__header">
+      <h2 class="dialog__title">Corrupt Book</h2>
+      <button id="closeBookDialog" class="icon-btn" aria-label="Close">✕</button>
+    </div>
+    <div class="dialog__content">
+      <ul id="bookList" class="book-list"></ul>
+      <div class="actions" id="bookPager">
+        <button id="prevPage" class="btn btn-outline" type="button">Prev</button>
+        <span id="pageInfo" class="hint"></span>
+        <button id="nextPage" class="btn btn-outline" type="button">Next</button>
+      </div>
+      <p class="hint">Shared corrupted ROMs. Click to load.</p>
+    </div>
+  </dialog>
+
+  <dialog id="uploadDialog" class="dialog">
+    <div class="dialog__header">
+      <h2 class="dialog__title">Upload Info</h2>
+      <button id="uploadClose" class="icon-btn" aria-label="Close">✕</button>
+    </div>
+    <div class="dialog__content">
+      <div>
+        <label>
+          <input type="radio" name="uploadCore" value="snes" checked>
+          <span class="console-icon"><img src="/snes_controller.png" alt="SNES"></span> Super Nintendo
+        </label>
+        <label style="margin-left:12px;">
+          <input type="radio" name="uploadCore" value="nes">
+          <span class="console-icon"><img src="/nes_controller.png" alt="NES"></span> NES
+        </label>
+        <label style="margin-left:12px;">
+          <input type="radio" name="uploadCore" value="gb">
+          <span class="console-icon"><img src="/gameboy.png" alt="Game Boy"></span> Game Boy / Color
+        </label>
+        <label style="margin-left:12px;">
+          <input type="radio" name="uploadCore" value="gba">
+          <span class="console-icon"><img src="/gba.png" alt="GBA"></span> Game Boy Advance
+        </label>
+        <label style="margin-left:12px;">
+          <input type="radio" name="uploadCore" value="segaMD">
+          <span class="console-icon"><img src="/genesis_controller.png" alt="Genesis"></span> Sega Genesis / Mega Drive
+        </label>
+        <label style="margin-left:12px;">
+          <input type="radio" name="uploadCore" value="cdi">
+          <span class="console-icon"><img src="/cd_icon.png" alt="CD-i"></span> Philips CD-i
+        </label>
+      </div>
+      <label class="field" style="margin-top:10px;">
+        <span>Custom title</span>
+        <input id="uploadTitle" type="text" placeholder="e.g. Ghost Pipes"/>
+      </label>
+      <div class="actions" style="margin-top:10px;">
+        <button id="uploadCancel" class="btn btn-outline" type="button">Cancel</button>
+        <button id="uploadConfirm" class="btn" type="button">Confirm</button>
+      </div>
+    </div>
+  </dialog>
+
+  <dialog id="loadConsoleDialog" class="dialog">
+    <div class="dialog__header">
+      <h2 class="dialog__title">Choose Console</h2>
+      <button id="loadClose" class="icon-btn" aria-label="Close">✕</button>
+    </div>
+    <div class="dialog__content">
+      <label><input type="radio" name="loadCore" value="snes" checked>
+        <span class="console-icon"><img src="/snes_controller.png" alt="SNES"></span> Super Nintendo
+      </label>
+      <label style="margin-left:12px;"><input type="radio" name="loadCore" value="nes">
+        <span class="console-icon"><img src="/nes_controller.png" alt="NES"></span> NES
+      </label>
+      <label style="margin-left:12px;"><input type="radio" name="loadCore" value="gb">
+        <span class="console-icon"><img src="/gameboy.png" alt="Game Boy"></span> Game Boy / Color
+      </label>
+      <label style="margin-left:12px;"><input type="radio" name="loadCore" value="gba">
+        <span class="console-icon"><img src="/gba.png" alt="GBA"></span> Game Boy Advance
+      </label>
+      <label style="margin-left:12px;"><input type="radio" name="loadCore" value="segaMD">
+        <span class="console-icon"><img src="/genesis_controller.png" alt="Genesis"></span> Sega Genesis / Mega Drive
+      </label>
+      <label style="margin-left:12px;"><input type="radio" name="loadCore" value="cdi">
+        <span class="console-icon"><img src="/cd_icon.png" alt="CD-i"></span> Philips CD-i
+      </label>
+      <div class="actions" style="margin-top:10px;">
+        <button id="loadCancel" class="btn btn-outline" type="button">Cancel</button>
+        <button id="loadConfirm" class="btn" type="button">Confirm</button>
+      </div>
+    </div>
+  </dialog>
+
+  <script type="module" src="./main.js"></script>
+</body>
+</html>

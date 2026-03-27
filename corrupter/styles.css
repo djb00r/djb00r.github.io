@@ -1,0 +1,70 @@
+:root { --bg: #fff; --fg: #0c0c0c; --muted:#6b6b6b; --border:#e7e7e7; }
+* { box-sizing: border-box; }
+html, body { height: 100%; }
+body {
+  margin: 0; background: var(--bg); color: var(--fg);
+  font-family: "Noto Sans", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+}
+.topbar {
+  position: sticky; top: 0; z-index: 10;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 14px 16px; border-bottom: 1px solid var(--border); background: var(--bg);
+}
+.brand { font-weight: 600; letter-spacing: 0.2px; }
+.actions { display: flex; gap: 8px; }
+.btn {
+  appearance: none; border: none; padding: 10px 14px; border-radius: 8px;
+  background: #111; color: #fff; cursor: pointer; transition: transform .08s ease, opacity .15s ease;
+}
+.btn:hover { transform: translateY(-1px); }
+.btn:active { transform: translateY(0); opacity: .9; }
+.btn-outline { background: transparent; color: var(--fg); border: 1px solid var(--border); }
+.stage { padding: 16px; display: grid; gap: 16px; }
+.game-frame {
+  width: 100%; max-width: 640px; aspect-ratio: 4/3; margin: 0 auto; border: 1px solid var(--border);
+  border-radius: 12px; overflow: hidden; background: #000;
+}
+.dialog {
+  width: min(520px, 92vw); border: 1px solid var(--border); border-radius: 12px; padding: 0;
+}
+.dialog::backdrop { background: rgba(0,0,0,.3); }
+.dialog__header {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 14px 16px; border-bottom: 1px solid var(--border);
+}
+.dialog__title { margin: 0; font-size: 18px; }
+.icon-btn { border: none; background: transparent; font-size: 18px; cursor: pointer; }
+.dialog__content { padding: 12px 16px 18px; }
+.keys { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: 1fr 1fr; gap: 8px 16px; }
+.keys li { display: flex; justify-content: space-between; border-bottom: 1px dashed #eee; padding: 6px 0; }
+.keys span { color: var(--muted); }
+.keys strong { font-weight: 600; }
+.hint { color: var(--muted); margin: 12px 0 0; font-size: 13px; }
+.corrupt-bar {
+  display: grid; gap: 10px; grid-template-columns: 1fr 1fr 1fr auto auto;
+  align-items: end; border: 1px solid var(--border); padding: 12px; border-radius: 10px;
+}
+.field { display: grid; gap: 6px; }
+.field span { font-size: 12px; color: var(--muted); }
+.field input {
+  padding: 10px 12px; border: 1px solid var(--border); border-radius: 8px; font: inherit;
+}
+.book-list { list-style: none; margin: 0; padding: 0; display: grid; gap: 8px; }
+.book-list li { display: grid; grid-template-columns: 1fr auto auto; gap: 8px; align-items: center; padding: 8px; border: 1px solid var(--border); border-radius: 8px; }
+.book-list .meta { font-size: 12px; color: var(--muted); }
+#bookPager { justify-content: center; gap: 12px; }
+.library { border: 1px solid var(--border); border-radius: 10px; padding: 12px; }
+.library__title { margin: 0 0 8px; font-size: 14px; color: var(--muted); }
+.library-list { list-style: none; margin: 0; padding: 0; display: grid; gap: 8px; }
+.library-list li { display: grid; grid-template-columns: auto 1fr auto; gap: 8px; align-items: center; padding: 8px; border: 1px solid var(--border); border-radius: 8px; }
+.library-list .meta { font-size: 12px; color: var(--muted); }
+.console-icon { display:inline-flex; align-items:center; justify-content:center; width: 36px; height: 24px; }
+.console-icon img { max-width:100%; max-height:100%; object-fit: contain; }
+.icon-nes { font-weight: 700; color: #d00; font-size: 12px; }
+.icon-snes { grid-template-columns: repeat(2, 8px); grid-template-rows: repeat(2, 8px); gap: 3px; width: 22px; height: 22px; transform: rotate(45deg); transform-origin: center; }
+.icon-snes .dot { width: 8px; height: 8px; border-radius: 50%; display: block; }
+.icon-snes .r { background: #ff3b30; } .icon-snes .g { background: #34c759; } .icon-snes .b { background: #0a84ff; } .icon-snes .y { background: #ffcc00; }
+.tabs{display:flex;gap:6px;margin-bottom:8px}
+.tab{border:1px solid var(--border);background:transparent;padding:6px 10px;border-radius:8px;cursor:pointer}
+.tab[aria-selected="true"]{background:#111;color:#fff;border-color:#111}
+.tabpanel[hidden]{display:none}
