@@ -1,0 +1,278 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Peppa Pig OS</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Add Boot Screen -->
+    <div id="boot-screen">
+        <div class="boot-content">
+            <div class="boot-logo-container">
+                <img src="peppa_bootup_logo.png" class="boot-logo" alt="Peppa Logo">
+                <div class="boot-text">
+                    <div class="hasbro-text">Hasbro<sup>®</sup></div>
+                    <div class="peppa-text">Peppa Pig<span class="os-text">OS</span></div>
+                </div>
+            </div>
+            <div class="boot-progress-bar">
+                <div class="boot-progress"></div>
+            </div>
+            <div class="boot-copyright">
+                Copyright 2010-2023<br>
+                Hasbro Corporation
+            </div>
+        </div>
+    </div>
+
+    <div class="desktop">
+        <!-- Desktop icons -->
+        <div class="desktop-icons">
+            <div class="icon" data-app="browser">
+                <img src="browser_icon.png" alt="Muddy Poodle">
+                <span>Muddy Poodle</span>
+            </div>
+            <div class="icon" data-app="peppatube">
+                <img src="peppatube_icon.png" alt="PeppaTube">
+                <span>PeppaTube</span>
+            </div>
+            <div class="icon" data-app="notes">
+                <img src="notes_icon.png" alt="Oink Notes">
+                <span>Oink Notes</span>
+            </div>
+            <div class="icon" data-app="photos">
+                <img src="photos_icon.png" alt="Muddy Photos">
+                <span>Muddy Photos</span>
+            </div>
+            <div class="icon" data-app="store">
+                <img src="peppa_store_icon.png" alt="Peppa Store">
+                <span>Peppa Store</span>
+            </div>
+            <div class="icon" data-app="fnapp">
+                <img src="peppa_angry.png" alt="FNAPP">
+                <span>FNAPP</span>
+            </div>
+            <div class="icon" data-app="peppablox">
+                <img src="peppablox_icon.png" alt="Peppablox">
+                <span>Peppablox</span>
+            </div>
+            <div class="icon" data-app="terminal">
+                <img src="terminal_icon.png" alt="Pigmanal">
+                <span>Pigmanal</span>
+            </div>
+            <div class="icon" data-app="peppabox">
+                <img src="peppabox_icon.png" alt="PeppaBox">
+                <span>PeppaBox</span>
+            </div>
+            <div class="icon" data-app="paint">
+                <img src="muddy_paint_icon.png" alt="Muddy Paint">
+                <span>Muddy Paint</span>
+            </div>
+            <div class="icon" data-app="pigpoint">
+                <img src="pigpoint_icon.png" alt="Pigpoint">
+                <span>Pigpoint</span>
+            </div>
+            <div class="icon" data-app="wordpig">
+                <img src="wordpig_icon.png" alt="Wordpig">
+                <span>Wordpig</span>
+            </div>
+            <div class="icon" data-app="peppacel">
+                <img src="peppacel_icon.png" alt="Peppacel">
+                <span>Peppacel</span>
+            </div>
+            <div class="icon" data-app="georgeanimate">
+                <img src="george_animate_icon.png" alt="GeorgeAnimate">
+                <span>GeorgeAnimate</span>
+            </div>
+            <div class="icon" data-app="daddybasics">
+                <img src="daddy_basics_icon.png" alt="Daddy's Pig Basics">
+                <span>Daddy's Pig Basics</span>
+            </div>
+            <div class="icon" data-app="music">
+                <img src="music_icon.png" alt="Peppa Music">
+                <span>Peppa Music</span>
+            </div>
+            <div class="icon" data-app="mnn">
+                <img src="mnn_icon.png" alt="MNN">
+                <span>MNN</span>
+            </div>
+        </div>
+
+        <!-- Bottom-right stack -->
+        <div class="bottom-right-stack">
+            <div class="icon stack-icon" data-app="file-explorer">
+                <img src="file_explorer_icon.png" alt="File Explorer">
+                <span>File Explorer</span>
+            </div>
+            <div class="icon stack-icon" data-app="trash">
+                <img src="trash_icon.png" alt="Trash">
+                <span>Trash</span>
+            </div>
+            <div class="icon stack-icon" data-app="antivirus">
+                <img src="antivirus_icon.png" alt="Antivirus">
+                <span>Peppa Shield</span>
+            </div>
+        </div>
+
+        <!-- App windows -->
+        <div id="windows-container"></div>
+
+        <!-- Taskbar -->
+        <div class="taskbar">
+            <div class="start-button">
+                <img src="peppa_start.png" alt="Start">
+            </div>
+            <div class="taskbar-items"></div>
+            <div class="taskbar-time" id="clock">00:00</div>
+            <div class="analog-clock">
+                <div class="clock-face">
+                    <div class="hand hour-hand"></div>
+                    <div class="hand minute-hand"></div>
+                    <div class="hand second-hand"></div>
+                    <div class="center-point"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Start Menu -->
+        <div class="start-menu" id="start-menu">
+            <div class="start-header">
+                <img src="peppa_avatar.png" alt="Peppa">
+                <span>Peppa Pig</span>
+            </div>
+            <div class="start-items">
+                <div class="start-item" data-app="browser">
+                    <img src="browser_icon.png" alt="Muddy Poodle">
+                    <span>Muddy Poodle</span>
+                </div>
+                <div class="start-item" data-app="peppatube">
+                    <img src="peppatube_icon.png" alt="PeppaTube">
+                    <span>PeppaTube</span>
+                </div>
+                <div class="start-item" data-app="notes">
+                    <img src="notes_icon.png" alt="Oink Notes">
+                    <span>Oink Notes</span>
+                </div>
+                <div class="start-item" data-app="photos">
+                    <img src="photos_icon.png" alt="Muddy Photos">
+                    <span>Muddy Photos</span>
+                </div>
+                <div class="start-item" data-app="store">
+                    <img src="peppa_store_icon.png" alt="Peppa Store">
+                    <span>Peppa Store</span>
+                </div>
+                <div class="start-item" data-app="fnapp">
+                    <img src="peppa_angry.png" alt="FNAPP">
+                    <span>FNAPP</span>
+                </div>
+                <div class="start-item" data-app="peppablox">
+                    <img src="peppablox_icon.png" alt="Peppablox">
+                    <span>Peppablox</span>
+                </div>
+                <div class="start-item" data-app="terminal">
+                    <img src="terminal_icon.png" alt="Pigmanal">
+                    <span>Pigmanal</span>
+                </div>
+                <div class="start-item" data-app="paint">
+                    <img src="muddy_paint_icon.png" alt="Muddy Paint">
+                    <span>Muddy Paint</span>
+                </div>
+                <div class="start-item" data-app="pigpoint">
+                    <img src="pigpoint_icon.png" alt="Pigpoint">
+                    <span>Pigpoint</span>
+                </div>
+                <div class="start-item" data-app="wordpig">
+                    <img src="wordpig_icon.png" alt="Wordpig">
+                    <span>Wordpig</span>
+                </div>
+                <div class="start-item" data-app="peppacel">
+                    <img src="peppacel_icon.png" alt="Peppacel">
+                    <span>Peppacel</span>
+                </div>
+                <div class="start-item" data-app="georgeanimate">
+                    <img src="george_animate_icon.png" alt="GeorgeAnimate">
+                    <span>GeorgeAnimate</span>
+                </div>
+                <div class="start-item" data-app="daddybasics">
+                    <img src="daddy_basics_icon.png" alt="Daddy's Pig Basics">
+                    <span>Daddy's Pig Basics</span>
+                </div>
+                <div class="start-item" data-app="settings">
+                    <img src="settings_icon.png" alt="Settings">
+                    <span>Settings</span>
+                </div>
+                <div class="start-item" data-action="shutdown">
+                    <img src="power_icon.png" alt="Power">
+                    <span>Shut Down</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Peppa Assistant -->
+        <img src="peppa_assistant.png" class="peppa-assistant" alt="Peppa Assistant">
+        <div class="assistant-bubble">
+            <div class="assistant-message">Hi, I'm Peppa! How can I help you today?</div>
+            <div class="assistant-input">
+                <input type="text" placeholder="Ask me anything..." id="assistant-query">
+                <button id="assistant-send">Send</button>
+            </div>
+        </div>
+
+        <!-- Photo Context Menu -->
+        <div class="photo-context-menu" id="photo-context-menu">
+            <div class="context-menu-item" id="set-as-wallpaper">Set as wallpaper</div>
+            <div class="context-menu-item" id="delete-photo">Delete photo</div>
+            <div class="context-menu-item" id="hide-menu">Cancel</div>
+        </div>
+
+        <!-- Currency Display -->
+        <div class="peppa-dollars">
+            <span class="currency-symbol">₱</span>
+            <span id="currency-amount">0</span>
+        </div>
+
+        <!-- George Bubble -->
+        <div class="george-container">
+            <img src="george_pig.png" class="george-pig" alt="George Pig">
+            <div class="george-bubble">
+                <div class="george-message">Dinosaur! *snort* Give me Peppa Dollars?</div>
+                <div class="george-buttons">
+                    <button id="george-yes">Yes</button>
+                    <button id="george-no">No</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Add black hole container -->
+        <div id="black-hole-container" class="black-hole-container">
+            <div class="black-hole"></div>
+            <div class="angry-peppa-container">
+                <img src="peppa_angry.png" class="angry-peppa" alt="Angry Peppa">
+                <div class="angry-message">HOW DARE YOU DELETE MY OS! *ANGRY SNORT*</div>
+            </div>
+        </div>
+        
+        <!-- Pink Screen of Death -->
+        <div id="pink-screen" class="pink-screen">
+            <div class="psod-content">
+                <div class="psod-header">:(</div>
+                <div class="psod-title">OINK OINK</div>
+                <div class="psod-message">
+                    Your PC ran into a problem that Peppa couldn't handle.<br>
+                    Maybe you shouldn't have deleted the OS.<br><br>
+                    Error code: MUDDY_PUDDLE_OVERFLOW
+                </div>
+                <button id="psod-restart" class="psod-restart">Restart</button>
+            </div>
+        </div>
+        
+        <!-- Add audio element for startup sound -->
+        <audio id="startup-sound" src="Progressbar_XB_Startup.ogg" preload="auto"></audio>
+        <!-- Add audio element for Peppa intro music -->
+        <audio id="peppa-intro" src="peppa-pig-intro.mp3" preload="auto"></audio>
+    </div>
+
+    <script src="scripts.js"></script>
+</body>
+</html>

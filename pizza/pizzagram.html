@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pizzagram - Pizza Social Media</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/js/all.min.js"></script>
+    <link rel="stylesheet" href="pizzagram.css">
+</head>
+<body>
+    <nav>
+        <h1><i class="fa-solid fa-pizza-slice"></i> Pizzagram</h1>
+        <a href="/" class="back-btn"><i class="fa-solid fa-arrow-left"></i> Back to Pizza Maker</a>
+    </nav>
+
+    <a href="https://websim.ai/@autumn/ice-cream-maker" class="ice-cream-link">
+        <i class="fa-solid fa-ice-cream"></i>
+        Try Ice Cream Maker!
+    </a>
+
+    <div class="container">
+        <div class="new-post">
+            <button id="share-pizza-btn" class="share-btn">
+                <i class="fa-solid fa-plus"></i> Share Your Pizza
+            </button>
+        </div>
+
+        <div class="feed" id="pizza-feed">
+            <!-- Posts will be dynamically added here -->
+        </div>
+    </div>
+
+    <script src="pizzagram.js"></script>
+</body>
+</html>

@@ -1,0 +1,111 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pizza Maker</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+<body>
+    <a href="https://websim.ai/@autumn/ice-cream-maker" class="ice-cream-link">
+        <i class="fa-solid fa-ice-cream"></i>
+        Try Ice Cream Maker!
+    </a>
+    <div class="container">
+        <h1>Build Your Own Pizza</h1>
+        
+        <div class="pizza-builder">
+            <div class="pizza-display">
+                <div class="pizza-base">
+                    <svg viewBox="0 0 300 300" class="pizza-svg">
+                        <rect x="10" y="10" width="280" height="280" rx="10" class="crust square-crust" style="display:none;" />
+                        <rect x="20" y="20" width="260" height="260" class="sauce square-sauce" style="display:none;" />
+                        <circle cx="150" cy="150" r="140" class="crust round-crust" />
+                        <circle cx="150" cy="150" r="130" class="sauce round-sauce" />
+                        <g class="rolls-container" style="display:none;"></g>
+                        <g class="toppings-container"></g>
+                    </svg>
+                </div>
+            </div>
+
+            <div class="controls">
+                <div class="shape-selection">
+                    <h3>Choose Pizza Shape</h3>
+                    <div class="shape-options">
+                        <button class="shape-btn active" data-shape="round"><i class="fa-solid fa-circle fa-icon"></i>Round Pizza</button>
+                        <button class="shape-btn" data-shape="square"><i class="fa-solid fa-square fa-icon"></i>Sicilian Square</button>
+                        <button class="shape-btn" data-shape="rolls"><i class="fa-solid fa-cookie fa-icon"></i>Pizza Rolls</button>
+                    </div>
+                </div>
+
+                <div class="sauce-selection">
+                    <h3>Choose Your Sauce</h3>
+                    <div class="sauce-options">
+                        <button class="sauce-btn active" data-sauce="tomato"><i class="fa-solid fa-droplet fa-icon"></i>Tomato</button>
+                        <button class="sauce-btn" data-sauce="white"><i class="fa-solid fa-droplet fa-icon"></i>White</button>
+                        <button class="sauce-btn" data-sauce="bbq"><i class="fa-solid fa-droplet fa-icon"></i>BBQ</button>
+                        <button class="sauce-btn" data-sauce="pesto"><i class="fa-solid fa-droplet fa-icon"></i>Pesto</button>
+                        <button class="sauce-btn" data-sauce="buffalo"><i class="fa-solid fa-droplet fa-icon"></i>Buffalo</button>
+                    </div>
+                </div>
+
+                <div class="toppings-selection">
+                    <h3>Add Toppings</h3>
+                    <div class="topping-options">
+                        <button class="topping-btn" data-topping="cheese"><i class="fa-solid fa-cheese fa-icon"></i>Cheese</button>
+                        <button class="topping-btn" data-topping="pepperoni"><i class="fa-solid fa-circle fa-icon"></i>Pepperoni</button>
+                        <button class="topping-btn" data-topping="mushroom"><i class="fa-solid fa-mushroom fa-icon"></i>Mushroom</button>
+                        <button class="topping-btn" data-topping="olive"><i class="fa-regular fa-circle fa-icon"></i>Olive</button>
+                        <button class="topping-btn" data-topping="pepper"><i class="fa-solid fa-pepper-hot fa-icon"></i>Pepper</button>
+                        <button class="topping-btn" data-topping="onion"><i class="fa-solid fa-onion fa-icon"></i>Onion</button>
+                        <button class="topping-btn" data-topping="pineapple"><i class="fa-solid fa-pineapple fa-icon"></i>Pineapple</button>
+                        <button class="topping-btn" data-topping="candy"><i class="fa-solid fa-candy-cane fa-icon"></i>Candy</button>
+                        <button class="topping-btn" data-topping="poison"><i class="fa-solid fa-skull fa-icon"></i>Poison</button>
+                        <button class="topping-btn" data-topping="bacon"><i class="fa-solid fa-bacon fa-icon"></i>Bacon</button>
+                        <button class="topping-btn" data-topping="ham"><i class="fa-solid fa-drumstick-bite fa-icon"></i>Ham</button>
+                        <button class="topping-btn" data-topping="sausage"><i class="fa-solid fa-sausage fa-icon"></i>Sausage</button>
+                        <button class="topping-btn" data-topping="anchovy"><i class="fa-solid fa-fish fa-icon"></i>Anchovy</button>
+                        <button class="topping-btn" data-topping="chicken"><i class="fa-solid fa-chicken fa-icon"></i>Chicken</button>
+                        <button class="topping-btn" data-topping="broccoli"><i class="fa-solid fa-carrot fa-icon"></i>Broccoli</button>
+                        <button class="topping-btn" data-topping="spinach"><i class="fa-solid fa-leaf fa-icon"></i>Spinach</button>
+                        <button class="topping-btn" data-topping="tomato">Tomato</button>
+                        <button class="topping-btn" data-topping="garlic"><i class="fa-solid fa-garlic fa-icon"></i>Garlic</button>
+                        <button class="topping-btn" data-topping="hot-pepper">Hot Pepper</button>
+                        <button class="topping-btn" data-topping="autumn"><i class="fa-solid fa-copyright fa-icon"></i>@autumn</button>
+                        <button class="topping-btn" data-topping="shrimp"><i class="fa-solid fa-shrimp fa-icon"></i>Shrimp</button>
+                        <button class="topping-btn" data-topping="meatballs"><i class="fa-solid fa-circle fa-icon"></i>Meatballs</button>
+                        <button class="topping-btn" data-topping="artichoke"><i class="fa-solid fa-leaf fa-icon"></i>Artichoke</button>
+                        <button class="topping-btn" data-topping="eggplant"><i class="fa-solid fa-egg fa-icon"></i>Eggplant</button>
+                        <button class="topping-btn" data-topping="zucchini"><i class="fa-solid fa-carrot fa-icon"></i>Zucchini</button>
+                    </div>
+                </div>
+
+                <div class="crust-options">
+                    <h3>Crust Options</h3>
+                    <div class="crust-selection">
+                        <button class="crust-btn active" data-crust="regular"><i class="fa-solid fa-bread-slice fa-icon"></i>Regular</button>
+                        <button class="crust-btn" data-crust="thin"><i class="fa-solid fa-bread-slice fa-icon"></i>Thin</button>
+                        <button class="crust-btn" data-crust="thick"><i class="fa-solid fa-bread-slice fa-icon"></i>Thick</button>
+                        <button class="crust-btn" data-crust="stuffed"><i class="fa-solid fa-bread-slice fa-icon"></i>Stuffed</button>
+                        <button class="crust-btn" data-crust="cheese-inside"><i class="fa-solid fa-bread-slice fa-icon"></i>Cheese Inside Crust</button>
+                    </div>
+                </div>
+
+                <div class="actions">
+                    <button id="reset-btn"><i class="fa-solid fa-rotate-left fa-icon"></i>Start Over</button>
+                    <button id="bake-btn"><i class="fa-solid fa-oven fa-icon"></i>Bake My Pizza!</button>
+                    <button id="eat-btn"><i class="fa-solid fa-utensils fa-icon"></i>Eat Pizza!</button>
+                    <button id="ai-make-btn"><i class="fa-solid fa-robot fa-icon"></i>Let AI Make My Pizza</button>
+                    <button id="random-btn"><i class="fa-solid fa-dice fa-icon"></i>Totally Random Pizza</button>
+                </div>
+                <button id="ice-cream-btn"><i class="fa-solid fa-ice-cream fa-icon"></i>Make Ice Cream!</button>
+            </div>
+        </div>
+
+        <div class="message-container" id="message-container"></div>
+        <div id="rating-container"></div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

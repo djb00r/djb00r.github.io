@@ -1,0 +1,275 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Don't Break the Phone!</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="game-container">
+        <h1 class="game-title">Don't Break the Phone!</h1>
+        
+        <div class="score-container">
+            <div class="clicks-counter">
+                Clicks: <span id="clickCount">0</span>/15
+            </div>
+            <div class="danger-meter">
+                <div class="danger-bar" id="dangerBar"></div>
+            </div>
+        </div>
+
+        <div class="face-container">
+            <div class="face" id="emotionFace">😊</div>
+        </div>
+
+        <div class="phone-container">
+            <div class="phone" id="gamePhone">
+                <div class="power-button" id="powerButton"></div>
+                <div class="phone-screen" id="phoneScreen">
+                    <div class="screen-crack" id="screenCrack"></div>
+                    <div class="bootup-screen" id="bootupScreen">
+                        <img src="pear_logo.png" alt="Pear Logo" class="pear-logo">
+                        <div class="bootup-text">PearOS</div>
+                    </div>
+                    <div class="apps-screen" id="appsScreen">
+                        <div class="app-grid">
+                            <div class="app-icon" id="youtubeApp">
+                                <div class="app-icon-img">📺</div>
+                                <div class="app-name">YouTube</div>
+                            </div>
+                            <div class="app-icon" id="cameraApp">
+                                <div class="app-icon-img">📷</div>
+                                <div class="app-name">Camera</div>
+                            </div>
+                            <div class="app-icon" id="phoneApp">
+                                <div class="app-icon-img">📞</div>
+                                <div class="app-name">Phone</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="youtube-screen" id="youtubeScreen">
+                        <div class="youtube-header">📺 YouTube</div>
+                        <div class="video-list">
+                            <div class="video-item" id="soccerVideo">
+                                <div class="video-thumbnail">⚽</div>
+                                <div class="video-title">Top 10 Best Soccer Wins</div>
+                            </div>
+                            <div class="video-item" id="sharkVideo">
+                                <div class="video-thumbnail">🦈</div>
+                                <div class="video-title">Tralelelo Trallala Shark</div>
+                            </div>
+                        </div>
+                        <button class="back-button" id="youtubeBack">Back</button>
+                    </div>
+                    <div class="camera-screen" id="cameraScreen">
+                        <div class="camera-header">📷 Camera</div>
+                        <div class="camera-viewfinder">
+                            <div class="emoji-preview" id="emojiPreview">😊</div>
+                        </div>
+                        <div class="photo-counter">Photos: <span id="photoCount">0</span>/25</div>
+                        <button class="capture-button" id="captureButton">📸</button>
+                        <button class="back-button" id="cameraBack">Back</button>
+                    </div>
+                    <div class="phone-call-screen" id="phoneCallScreen">
+                        <div class="phone-header">📞 Phone</div>
+                        <div class="phone-number-display" id="phoneNumberDisplay"></div>
+                        <div class="phone-keypad">
+                            <div class="keypad-row">
+                                <button class="keypad-button" data-number="1">1</button>
+                                <button class="keypad-button" data-number="2">2</button>
+                                <button class="keypad-button" data-number="3">3</button>
+                            </div>
+                            <div class="keypad-row">
+                                <button class="keypad-button" data-number="4">4</button>
+                                <button class="keypad-button" data-number="5">5</button>
+                                <button class="keypad-button" data-number="6">6</button>
+                            </div>
+                            <div class="keypad-row">
+                                <button class="keypad-button" data-number="7">7</button>
+                                <button class="keypad-button" data-number="8">8</button>
+                                <button class="keypad-button" data-number="9">9</button>
+                            </div>
+                            <div class="keypad-row">
+                                <button class="keypad-button" data-number="*">*</button>
+                                <button class="keypad-button" data-number="0">0</button>
+                                <button class="keypad-button" data-number="#">#</button>
+                            </div>
+                        </div>
+                        <button class="call-button" id="callButton">📞 Call</button>
+                        <button class="back-button" id="phoneBack">Back</button>
+                    </div>
+                    <div class="video-player" id="videoPlayer">
+                        <div class="video-content" id="videoContent"></div>
+                        <button class="back-button" id="videoBack">Back</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="warning-text" id="warningText">
+            Try not to click the phone too much!
+        </div>
+
+        <button class="endings-button" id="endingsButton">View Endings</button>
+
+        <div class="game-over-screen" id="gameOverScreen">
+            <h2 id="endingTitle"></h2>
+            <p id="endingMessage"></p>
+            <button id="resetButton">Play Again</button>
+        </div>
+
+        <div class="endings-screen" id="endingsScreen">
+            <h2>Endings Gallery</h2>
+            <div class="endings-list">
+                <div class="ending-item">
+                    <h3>💥 Destruction Ending</h3>
+                    <p>Click the phone 15 times to break it completely.</p>
+                </div>
+                <div class="ending-item">
+                    <h3>😇 Patient Ending</h3>
+                    <p>Wait 30 seconds without clicking anything to show ultimate patience.</p>
+                </div>
+                <div class="ending-item">
+                    <h3>🔄 Reverse Ending</h3>
+                    <p>Click the face emoji 15 times to enter the reverse dimension.</p>
+                </div>
+                <div class="ending-item">
+                    <h3>⚡ Speed Demon Ending</h3>
+                    <p>Click the phone 15 times within 2 seconds to become lightning fast!</p>
+                </div>
+                <div class="ending-item">
+                    <h3>🔄 Pattern Master Ending</h3>
+                    <p>Alternate between clicking the phone and face 20 times total to master balance.</p>
+                </div>
+                <div class="ending-item">
+                    <h3>⚖️ Perfect Balance Ending</h3>
+                    <p>Click exactly 7 times, then wait exactly 7 seconds for perfect harmony.</p>
+                </div>
+                <div class="ending-item">
+                    <h3>🔐 Code Breaker Ending</h3>
+                    <p>Enter the secret sequence: Phone-Face-Phone-Face-Phone-Phone-Face.</p>
+                </div>
+                <div class="ending-item">
+                    <h3>🔨 Hammer Smash Ending</h3>
+                    <p>Grab the hammer from the toolbox and smash the phone directly to anger the emoji!</p>
+                </div>
+                <div class="ending-item">
+                    <h3>🔨 Sneaky Smash Ending</h3>
+                    <p>Use the hammer to make the emoji dumb, then break the phone 15 times without it noticing!</p>
+                </div>
+                <div class="ending-item">
+                    <h3>📱 Galaxy S7 Destruction Ending</h3>
+                    <p>Throw a Samsung Galaxy S7 at the phone causing a massive explosion that destroys both devices!</p>
+                </div>
+                <div class="ending-item">
+                    <h3>🎵 KSI Knockout Ending</h3>
+                    <p>Force the emoji to listen to KSI's "Thick of It" and watch it throw the phone to KSI HQ, knocking out KSI himself!</p>
+                </div>
+                <div class="ending-item">
+                    <h3>📱 Send Me To Heaven Ending</h3>
+                    <p>Launch the phone 250 feet in the air and watch it explode into a million pieces!</p>
+                </div>
+                <div class="ending-item">
+                    <h3>🚽 Toilet Explosion Ending</h3>
+                    <p>Throw the phone in the toilet and flush it, causing a massive water explosion!</p>
+                </div>
+                <div class="ending-item">
+                    <h3>🔌 Killstick Bricked Ending</h3>
+                    <p>Plug in a USB Killer device to fry the phone's circuits permanently!</p>
+                </div>
+                <div class="ending-item">
+                    <h3>⚽ Soccer Ball Smash Ending</h3>
+                    <p>Watch Ronaldo score and get your phone smashed by a flying soccer ball!</p>
+                </div>
+                <div class="ending-item">
+                    <h3>🤢 Cringe Death Ending</h3>
+                    <p>Make the emoji die of cringe by watching the Tralelelo Trallala Shark video!</p>
+                </div>
+                <div class="ending-item">
+                    <h3>📸 Storage Explosion Ending</h3>
+                    <p>Take 25 photos to fill up storage and cause a memory overload explosion!</p>
+                </div>
+                <div class="ending-item">
+                    <h3>📞 Dad's Revenge Ending</h3>
+                    <p>Make calls to run up the phone bill and have Dad confiscate the phone!</p>
+                </div>
+            </div>
+            <button id="closeEndingsButton">Close</button>
+        </div>
+
+        <div class="toolbox" id="toolbox">
+            <div class="hammer" id="hammer">🔨</div>
+        </div>
+
+        <button class="heaven-button" id="heavenButton">📱 Send Me To Heaven</button>
+
+        <button class="galaxy-button" id="galaxyButton">📱 Throw Galaxy S7</button>
+
+        <button class="killstick-button" id="killstickButton">🔌 Plug in Killstick</button>
+
+        <button class="toilet-button" id="toiletButton">🚽 Throw in Toilet</button>
+
+        <button class="ksi-button" id="ksiButton">🎵 Force Listen to Thick of It</button>
+
+        <div class="galaxy-s7" id="galaxyS7"></div>
+
+        <div class="heaven-screen" id="heavenScreen">
+            <div class="heaven-phone">
+                <div class="heaven-phone-screen">
+                    <h3>Send Me To Heaven</h3>
+                    <p>Throw your phone as high as you can!</p>
+                    <button class="heaven-start-button" id="heavenStartButton">START THROWING</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="toilet-screen" id="toiletScreen">
+            <div class="toilet-container">
+                <img src="toilet.png" alt="Toilet" class="toilet-image" id="toiletImage">
+                <div class="toilet-phone" id="toiletPhone"></div>
+                <button class="flush-button" id="flushButton">FLUSH</button>
+            </div>
+        </div>
+
+        <div class="ksi-screen" id="ksiScreen">
+            <div class="ksi-phone">
+                <div class="ksi-phone-screen">
+                    <img src="ksi_cover.png" alt="KSI Thick of It Cover" class="ksi-cover" id="ksiCover">
+                    <div class="ksi-playing-text">♪ I'm in the thick of it, everybody knows ♪</div>
+                </div>
+            </div>
+            <div class="angry-emoji" id="angryEmoji">😡</div>
+        </div>
+
+        <div class="ksi-hq-screen" id="ksiHqScreen">
+            <div class="ksi-hq-container">
+                <img src="ksi_hq.png" alt="KSI HQ" class="ksi-hq-image">
+                <img src="ksi.png" alt="KSI" class="ksi-person" id="ksiPerson">
+                <div class="flying-phone" id="flyingPhone"></div>
+                <div class="broken-window" id="brokenWindow"></div>
+            </div>
+        </div>
+
+        <div class="achievement-notification" id="achievementNotification">
+            <div class="achievement-icon">🏆</div>
+            <div class="achievement-content">
+                <div class="achievement-title" id="achievementTitle">Achievement Unlocked!</div>
+                <div class="achievement-description" id="achievementDescription">First steps into the game!</div>
+                <div class="achievement-points" id="achievementPoints">15G</div>
+            </div>
+        </div>
+
+        <button class="achievements-button" id="achievementsButton">🏆 Achievements</button>
+
+        <div class="achievements-screen" id="achievementsScreen">
+            <h2>Achievements</h2>
+            <div class="achievements-list" id="achievementsList">
+                <!-- Achievements will be populated here -->
+            </div>
+            <button id="closeAchievementsButton">Close</button>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
