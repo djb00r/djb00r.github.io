@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Square Push Game</title>
+    <link rel="stylesheet" href="styles.css">
+    <script type="importmap">
+        {
+            "imports": {
+                "matter-js": "https://esm.sh/matter-js@0.19.0"
+            }
+        }
+    </script>
+</head>
+<body>
+    <div id="error-screen" class="hidden">
+        <div class="error-content">
+            <h1>Resolution Not Supported</h1>
+            <p>This game needs a larger window to run correctly.</p>
+            <p>Please make your browser window bigger (or rotate / switch to a larger device) to continue playing.</p>
+            <p style="font-size:0.85rem;opacity:0.8;margin-top:6px;">
+                Tip: If you resize back to a bigger window, this message will disappear automatically.
+            </p>
+        </div>
+    </div>
+    <div id="game-container">
+        <div id="sky-background"></div>
+        <!-- Canvas will be injected here by script -->
+    </div>
+
+    <div id="ui-layer">
+        <div id="banner">
+            <div class="logo-circle">
+                <img src="/logoend (1).png" alt="The Ending Game Logo">
+            </div>
+            <button id="toggle-stalemate-btn">Disable Stalemate Ending</button>
+            <button id="toggle-cloud-ending-btn">Disable Cloud Ending</button>
+            <span>Comment to add more endings to the game!</span>
+            <button id="show-endings-btn">View Endings</button>
+            <button id="show-achievements-btn">View Achievements</button>
+            <button id="suggest-btn">Suggest Ending</button>
+            <button id="hard-reset-btn">🔄️</button>
+            <button id="start-chapter1-btn" data-chapter="1">Start Chapter 1</button>
+            <button id="start-chapter2-btn" data-chapter="2" disabled>Start Chapter 2</button>
+            <button id="start-chapter3-btn" data-chapter="3" disabled>Start Chapter 3</button>
+        </div>
+        
+        <div id="ending-screen" class="hidden">
+            <h1 id="ending-title">BAD ENDING</h1>
+            <p id="ending-description">The green square fell into the water.</p>
+            <button id="restart-btn">Try Again</button>
+        </div>
+    </div>
+
+    <!-- Suggestion Modal -->
+    <div id="suggestion-modal" class="hidden">
+        <div class="modal-content">
+            <h2>Suggest an Ending</h2>
+            <textarea id="suggestion-text" placeholder="Write a new ending... (e.g., 'Space Ending')"></textarea>
+            <div class="modal-buttons">
+                <button id="cancel-suggestion">Cancel</button>
+                <button id="submit-suggestion">Submit</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Ending List Modal -->
+    <div id="ending-list-modal" class="hidden">
+        <div class="modal-content">
+            <h2>Game Endings (48 Total)</h2>
+            <div id="endings-list">
+                <!-- Endings populated by JS -->
+            </div>
+            <div class="modal-buttons">
+                <button id="reset-progress-btn">Reset Ending Progress</button>
+                <button id="close-endings-list">Close</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Achievements List Modal -->
+    <div id="achievement-list-modal" class="hidden">
+        <div class="modal-content">
+            <h2>Achievements</h2>
+            <div id="achievements-list">
+                <!-- Achievements populated by JS -->
+            </div>
+            <div class="modal-buttons">
+                <button id="close-achievements-list">Close</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="reset-overlay" class="hidden">
+        <div class="reset-overlay-content">
+            <h2>Resetting endings…</h2>
+        </div>
+    </div>
+
+    <script type="module" src="main.js"></script>
+</body>
+</html>
+

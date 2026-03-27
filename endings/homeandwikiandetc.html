@@ -1,0 +1,726 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>The Ending Game Wiki</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+            overflow-y: auto;
+        }
+        .cube-icon {
+            display: inline-block;
+            width: 14px;
+            height: 14px;
+            border-radius: 3px;
+            margin-right: 6px;
+            vertical-align: -1px;
+        }
+        .wiki-container {
+            max-width: 900px;
+            margin: 80px auto 40px;
+            padding: 20px;
+            background: rgba(255,255,255,0.9);
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.25);
+        }
+        .wiki-section {
+            margin-bottom: 24px;
+        }
+        .wiki-section h2 {
+            margin: 0 0 8px;
+        }
+        .wiki-section p,
+        .wiki-section li {
+            font-size: 14px;
+            line-height: 1.4;
+        }
+        .wiki-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 12px;
+        }
+        .wiki-card {
+            border-radius: 8px;
+            padding: 10px 12px;
+            background: #f9f9f9;
+        }
+        .wiki-card h3 {
+            margin: 0 0 4px;
+            font-size: 15px;
+        }
+        .wiki-card small {
+            display: block;
+            font-size: 11px;
+            color: #777;
+            margin-bottom: 4px;
+        }
+        .wiki-card p {
+            margin: 0;
+        }
+        .wiki-header-links {
+            display: flex;
+            gap: 12px;
+            align-items: center;
+            font-size: 14px;
+            margin-bottom: 12px;
+        }
+        .wiki-header-links a {
+            color: #0d47a1;
+            text-decoration: none;
+            font-weight: 600;
+        }
+        .wiki-header-links a:hover {
+            text-decoration: underline;
+        }
+        .logo-circle {
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="logo-circle" onclick="window.location.href='index.html'">
+        <img src="/logoend (1).png" alt="The Ending Game Logo">
+    </div>
+
+    <audio id="bg-music" src="/wikimusic.mp3" loop autoplay></audio>
+
+    <div class="wiki-container">
+        <div class="wiki-header-links">
+            <a href="index.html">Back to Game Home</a>
+            <span>•</span>
+            <span>The Ending Game Wiki</span>
+        </div>
+
+        <div class="wiki-section">
+            <h2>Cubes</h2>
+            <div class="wiki-grid">
+                <div class="wiki-card">
+                    <h3><span class="cube-icon" style="background:#4CAF50;"></span>Green Cube</h3>
+                    <small>Player / Main target</small>
+                    <p>Your main controllable cube. Most endings involve saving or dooming Green.</p>
+                </div>
+                <div class="wiki-card">
+                    <h3><span class="cube-icon" style="background:#F44336;"></span>Red Cube</h3>
+                    <small>Enemy / Bully</small>
+                    <p>Tries to push Green into danger. Many endings are about defeating, trapping or merging with Red.</p>
+                </div>
+                <div class="wiki-card">
+                    <h3><span class="cube-icon" style="background:#007FFF;"></span>Blue Cube</h3>
+                    <small>Revenge Seeker</small>
+                    <p>Red’s old victim. Helps you push Red into lava, water or space for revenge-style endings.</p>
+                </div>
+                <div class="wiki-card">
+                    <h3><span class="cube-icon" style="background:#8D6E63;"></span>Brown Cube</h3>
+                    <small>Chill cube in the cave</small>
+                    <p>Lives in the cave. Has secret endings with sunglasses, boats, clouds, Baldi ruler and space.</p>
+                </div>
+                <div class="wiki-card">
+                    <h3><span class="cube-icon" style="background:#FFEB3B;"></span>Yellow Cube</h3>
+                    <small>TV watcher</small>
+                    <p>Lives near the freezer watching TV. Has endings about TV, roof explosions, space and friendship.</p>
+                </div>
+                <div class="wiki-card">
+                    <h3><span class="cube-icon" style="background:#D1C4E9;"></span>Cat Cube</h3>
+                    <small>Yellow’s pet</small>
+                    <p>Yellow’s pet cat lives in his house. It can drown, go to space, eat fish, become Baldi, get mad, and even push other cubes into the lake.</p>
+                </div>
+                <div class="wiki-card">
+                    <h3><span class="cube-icon" style="background:#F48FB1;"></span>Pink Cloud Cube</h3>
+                    <small>Flashbang friend</small>
+                    <p>Lives above Brown’s house. Touching Green creates bright flashbang-style endings.</p>
+                </div>
+                <div class="wiki-card">
+                    <h3><span class="cube-icon" style="background:#B3E5FC;"></span>Cloud Forms</h3>
+                    <small>Cloud Machine</small>
+                    <p>Any cube can be transformed into a cloud version with calm or sad cloud endings.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="wiki-section">
+            <h2>Locations</h2>
+            <ul>
+                <li><strong>Grass Cliff:</strong> Main fighting area where Green and Red start. Many push / boat / space endings happen here.</li>
+                <li><strong>Brown’s Cave:</strong> Inside the dirt island. Brown, the bed, bedside table, ruler and pink cloud live here.</li>
+                <li><strong>Secret Robot Wall:</strong> Dark patch at the bottom of Brown’s house. Touching it starts the robot invasion.</li>
+                <li><strong>Cloud Machine:</strong> Metal box on the far right. Touch cubes here to enter cloud mode.</li>
+                <li><strong>Freezer + Ledge:</strong> Wooden ledge near the water with a freezer. Freezes cubes for ice endings.</li>
+                <li><strong>Yellow’s House:</strong> Big yellow house on the right ledge with a breakable roof and a clickable TV.</li>
+                <li><strong>The Lake:</strong> Blue area at the bottom of the world. Almost anything that falls in here gets an ending.</li>
+                <li><strong>Space:</strong> Very top of the screen. Throw cubes high enough and they never come back.</li>
+            </ul>
+        </div>
+
+        <div class="wiki-section">
+            <h2>Modes</h2>
+            <ul>
+                <li><strong>Chapter 1 – Cliff:</strong> Classic grass cliff with water, Brown’s cave, cloud machine, freezer, boat and Yellow’s house.</li>
+                <li><strong>Chapter 2 – Lava Lab:</strong> Dark lab with a lowering platform, Green over lava, static Red watcher and Blue revenge jumps.</li>
+                <li><strong>Chapter 3 – Cage Lab:</strong> Green is trapped in a rusty cage with a bomb timer while Red watches outside.</li>
+                <li><strong>Cloud Mode:</strong> Triggered by the cloud machine. Gravity is tiny and everything turns into fluffy cloud shapes.</li>
+            </ul>
+        </div>
+
+        <div class="wiki-section">
+            <h2>Objects To Get Endings</h2>
+            <ul>
+                <li><strong>Boat:</strong> Sails across the lake. Landing different cubes on it gives boat endings.</li>
+                <li><strong>Ruler:</strong> On Brown’s bedside table. Any cube touching it becomes a Baldi version (including cloud Green).</li>
+                <li><strong>Cloud Machine:</strong> Metal box on the far right. Transforms cubes into cloud versions with special cloud endings.</li>
+                <li><strong>Freezer:</strong> On the wooden ledge near the water. Freezes cubes into ice and powers the Big Eye and Mad endings.</li>
+                <li><strong>Needle:</strong> Next to the cloud machine. Used to pop normal or cloud cubes for “POP OH NO” endings.</li>
+                <li><strong>Robot Wall:</strong> Small dark wall under Brown’s house. Touching it starts the robot invasion ending.</li>
+                <li><strong>Yellow’s TV:</strong> Click it to turn it off and make Yellow angry, or slam cubes into Yellow while he is watching.</li>
+                <li><strong>Yellow’s Roof:</strong> Hitting it with Yellow explodes the roof into many pieces for a roof boom ending.</li>
+                <li><strong>Cage Bars (Chapter 3):</strong> Break or escape them before the timer ends to avoid the cage explosion ending.</li>
+                <li><strong>Lava (Chapter 2):</strong> Slowly melts Green if he falls in, or drops Red for Blue’s revenge ending.</li>
+            </ul>
+        </div>
+
+        <div class="wiki-section">
+            <h2>Main Objective</h2>
+            <p>
+                Experiment with all cubes, machines, and locations to discover as many endings as possible.
+                Push, throw, freeze, melt, merge, explode and rescue cubes in different orders to unlock new outcomes.
+            </p>
+        </div>
+
+        <div class="wiki-section">
+            <h2>Endings</h2>
+            <p style="font-size:13px; color:#555;">
+                This list matches the in-game “Game Endings” popup and uses your current unlock progress.
+            </p>
+            <div id="wiki-endings-list"></div>
+        </div>
+        </div>
+    </div>
+<script>
+    // Same storage key as the game
+    const ENDING_STORAGE_KEY = 'unlockedEndingsV1';
+    let unlockedEndings = new Set();
+
+    function loadUnlockedEndingsWiki() {
+        try {
+            const raw = localStorage.getItem(ENDING_STORAGE_KEY);
+            if (!raw) {
+                unlockedEndings = new Set();
+                return;
+            }
+            const arr = JSON.parse(raw);
+            unlockedEndings = Array.isArray(arr) ? new Set(arr) : new Set();
+        } catch (e) {
+            unlockedEndings = new Set();
+        }
+    }
+
+    const ENDINGS = {
+        bad: {
+            title: "BAD ENDING",
+            color: "#F44336",
+            description: "The green square was pushed into the water.",
+            hint: "Throw Green into the water."
+        },
+        dance: {
+            title: "DANCE ENDING",
+            color: "#FF80AB",
+            description: "Green danced on Yellow’s roof until he forgot to be scared.",
+            hint: "Make Green do his scared animation while spinning on Yellow’s roof for about 10 seconds."
+        },
+        good: {
+            title: "GOOD ENDING",
+            color: "#4CAF50",
+            description: "The angry red square fell into the water!",
+            hint: "Make Red fall into the water instead of Green."
+        },
+        space: {
+            title: "SPACE ENDING",
+            color: "#9C27B0",
+            description: "You threw the red square into space! (Throw Red high enough)",
+            hint: "Launch Red so high that he flies off the top of the screen."
+        },
+        stalemate: {
+            title: "STALEMATE ENDING",
+            color: "#FFD700",
+            description: "Achieved uneasy peace after 1 minute (Can be disabled).",
+            hint: "Do nothing dangerous for a long time."
+        },
+        dual_kill: {
+            title: "MUTUAL DESTRUCTION ENDING",
+            color: "#000000",
+            description: "Both combatants fell into the abyss at the same time.",
+            hint: "Drop Red and Green into the water within a split second of each other."
+        },
+        secret: {
+            title: "NOT SO SECRET ENDING",
+            color: "#795548",
+            description: "You found the hidden Chill Brown Square inside the wall.",
+            hint: "Touch Brown with Green inside Brown’s cave."
+        },
+        prison: {
+            title: "PRISON ENDING",
+            color: "#607D8B",
+            description: "Red square was trapped in the dungeon for 3 seconds.",
+            hint: "Push Red deep inside the cave and keep him there."
+        },
+        cloud: {
+            title: "CLOUD ENDING",
+            color: "#29B6F6",
+            description: "Everything has become soft and fluffy... (Throw Brown Square into a cloud)",
+            hint: "Use the cloud machine on a cube and wait in cloud mode."
+        },
+        merged: {
+            title: "MERGED ENDING",
+            color: "#8D6E63",
+            description: "The hostile red and player green squares fused into a single, chill brown square (1% chance on collision).",
+            hint: "Let Red and Green collide over and over until they fuse."
+        },
+        merged2: {
+            title: "MERGED ENDING 2",
+            color: "#9C27B0",
+            description: "Blue and Red fused into a single intense purple cube after a brutal kick.",
+            hint: "Make Blue slam into Red hard on the cliff."
+        },
+        run: {
+            title: "RUN ENDING",
+            color: "#4CAF50",
+            description: "The green square escaped to the far left.",
+            hint: "Move Green all the way off the left side of the land."
+        },
+        nvm: {
+            title: "NVM ENDING",
+            color: "#F44336",
+            description: "The red square gave up and retreated far left.",
+            hint: "Let Red walk all the way off the left side."
+        },
+        sad_ending: {
+            title: "SAD ENDING",
+            color: "#A9A9A9",
+            description: "The chill brown square fell into the water.",
+            hint: "Throw Brown into the water."
+        },
+        chapter2_death: {
+            title: "LAVA DEATH",
+            color: "#FF4500",
+            description: "Red watched his rival Green melt slowly into the boiling lava.",
+            hint: "Let Green fall into the lava in Chapter 2."
+        },
+        revenge: {
+            title: "REVENGE ENDING",
+            color: "#007FFF",
+            description: "The Blue Cube, Red's old victim, achieved ultimate revenge.",
+            hint: "Use Blue to make Red die instead of Green."
+        },
+        revenge_died: {
+            title: "VERY BAD ENDING",
+            color: "#003366",
+            description: "The Blue Cube fell into the lake alone and drowned.",
+            hint: "Let only Blue fall into the water."
+        },
+        explosion: {
+            title: "CAGE EXPLOSION ENDING",
+            color: "#B71C1C",
+            description: "Green failed to break the cage in time and was destroyed by Red's trap.",
+            hint: "Stay trapped in the Chapter 3 cage until the timer runs out."
+        },
+        escape: {
+            title: "ESCAPE ENDING",
+            color: "#64DD17",
+            description: "Green successfully broke out of the cage before it exploded.",
+            hint: "Break the cage bars and touch the floor before the bomb timer hits 0."
+        },
+        boat: {
+            title: "BOAT ENDING",
+            color: "#2196F3",
+            description: "You timed your jump perfectly and landed safely in the passing boat.",
+            hint: "Jump Green into the boat as it sails past on the water."
+        },
+        red_boat: {
+            title: "RED BOAT ENDING",
+            color: "#F44336",
+            description: "Red sailed away instead of fighting, escaping on the boat.",
+            hint: "Make Red land on the boat."
+        },
+        blue_boat: {
+            title: "BLUE BOAT ENDING",
+            color: "#1E88E5",
+            description: "Blue cooled off and took a relaxing ride on the boat.",
+            hint: "Drop Blue onto the boat."
+        },
+        brown_boat: {
+            title: "BROWN BOAT ENDING",
+            color: "#6D4C41",
+            description: "Chill Brown found the coziest spot on the passing boat.",
+            hint: "Drop Brown onto the boat."
+        },
+        baldi: {
+            title: "BALDI ENDING",
+            color: "#CDDC39",
+            description: "You found the ruler, empowered Green, and transformed into Baldi.",
+            hint: "Touch the ruler with Green in Brown’s house."
+        },
+        red_baldi: {
+            title: "RED BALDI ENDING",
+            color: "#E53935",
+            description: "Red stole the ruler and became a terrifying Baldi variant.",
+            hint: "Let Red get the ruler."
+        },
+        blue_baldi: {
+            title: "BLUE BALDI ENDING",
+            color: "#1E88E5",
+            description: "Blue claimed the ruler and turned into a vengeful Baldi.",
+            hint: "Give the ruler to Blue."
+        },
+        brown_baldi: {
+            title: "BROWN BALDI ENDING",
+            color: "#6D4C41",
+            description: "Chill Brown got the ruler and became an unexpectedly strict Baldi.",
+            hint: "Push the ruler into Brown."
+        },
+        blue_space: {
+            title: "BLUE SPACE ENDING",
+            color: "#1565C0",
+            description: "You launched Blue so high it drifted forever into space.",
+            hint: "Throw Blue off the top of the screen."
+        },
+        red_space: {
+            title: "RED SPACE ENDING",
+            color: "#C62828",
+            description: "Red’s rage took it all the way into orbit.",
+            hint: "Launch Red very high without using the freezer."
+        },
+        orange_space: {
+            title: "ORANGE SPACE ENDING",
+            color: "#FB8C00",
+            description: "The chill one rocketed into space in a blaze of orange light.",
+            hint: "Throw Brown so high he leaves the screen."
+        },
+        green_cloud: {
+            title: "GREEN CLOUD ENDING",
+            color: "#A5D6A7",
+            description: "Green relaxed as a fluffy cloud cube for a while.",
+            hint: "Transform Green in the cloud machine and wait."
+        },
+        red_cloud: {
+            title: "RED CLOUD ENDING",
+            color: "#EF9A9A",
+            description: "Red simmered down into a brooding storm cloud cube.",
+            hint: "Transform Red in the cloud machine and wait."
+        },
+        blue_cloud: {
+            title: "BLUE CLOUD ENDING",
+            color: "#90CAF9",
+            description: "Blue cooled off and floated around as a calm cloud cube.",
+            hint: "Transform Blue in the cloud machine and wait."
+        },
+        brown_cloud: {
+            title: "BROWN CLOUD ENDING",
+            color: "#BCAAA4",
+            description: "Brown became the softest, sleepiest cloud cube imaginable.",
+            hint: "Transform Brown in the cloud machine and wait."
+        },
+        green_pop: {
+            title: "GREEN POP OH NO",
+            color: "#66BB6A",
+            description: "You poked Green with a needle and it popped!",
+            hint: "Touch Green with the needle."
+        },
+        red_pop: {
+            title: "RED POP OH NO",
+            color: "#EF5350",
+            description: "Red’s rage ended with a single POP from the needle.",
+            hint: "Touch Red with the needle."
+        },
+        blue_pop: {
+            title: "BLUE POP OH NO",
+            color: "#42A5F5",
+            description: "Blue burst into tiny droplets after touching the needle.",
+            hint: "Touch Blue with the needle."
+        },
+        brown_pop: {
+            title: "BROWN POP OH NO",
+            color: "#8D6E63",
+            description: "Even the chill Brown cube couldn’t survive the needle.",
+            hint: "Touch Brown with the needle."
+        },
+        cloud_pop: {
+            title: "POP OH NO (CLOUD)",
+            color: "#B3E5FC",
+            description: "Your fluffy cloud cube got popped back into nothingness.",
+            hint: "Pop a cloud-transformed cube with the needle."
+        },
+        bad_cloud: {
+            title: "BAD CLOUD ENDING",
+            color: "#90A4AE",
+            description: "Your transformed cloud cube sank sadly into the lake.",
+            hint: "Throw a cloud cube into the water."
+        },
+        space_cloud: {
+            title: "SPACE CLOUD ENDING",
+            color: "#B39DDB",
+            description: "The cloud cube drifted so high it floated into space.",
+            hint: "Send a cloud cube off the top of the screen."
+        },
+        nvm_cloud: {
+            title: "NVM CLOUD ENDING",
+            color: "#FFCDD2",
+            description: "In cloud mode, Red just floated back left and gave up.",
+            hint: "Be in cloud mode and let Red drift to the far left."
+        },
+        blue_nvm: {
+            title: "BLUE NVM ENDING",
+            color: "#1E88E5",
+            description: "Blue backed out of the fight and floated off to the left.",
+            hint: "Let Blue leave the cliff at the far left."
+        },
+        new_character: {
+            title: "NEW CHARACTER ENDING",
+            color: "#CE93D8",
+            description: "Red and Green merged in cloud mode and moved into Brown’s home as a new cloud character.",
+            hint: "In cloud mode, fuse Red and Green together."
+        },
+        cloud_baldi: {
+            title: "CLOUD BALDI ENDING",
+            color: "#FFF176",
+            description: "Cloudy Green grabbed the ruler and became a floating Baldi in the sky.",
+            hint: "As cloud Green, touch the ruler."
+        },
+        robot: {
+            title: "ROBOT INVASION ENDING",
+            color: "#9E9E9E",
+            description: "A swarm of 199 flying robots hunted down every cube after you touched the strange wall.",
+            hint: "Find and touch the dark discolored wall near Brown’s house."
+        },
+        last_second: {
+            title: "LAST SECOND ENDING",
+            color: "#00C853",
+            description: "You grabbed Green out of the water at the very last moment!",
+            hint: "Let Green touch the water and quickly drag him back up."
+        },
+        flashbang: {
+            title: "FLASHBANG ENDING",
+            color: "#FCE4EC",
+            description: "The pink cloud cube touched Green and everything went blinding white.",
+            hint: "Touch Green with the pink cloud cube in Brown’s house."
+        },
+        big_eye: {
+            title: "BIG EYE ENDING",
+            color: "#81D4FA",
+            description: "You spun Green so much his eyes went huge, then froze him solid in the freezer.",
+            hint: "Spin Green a lot, then shove him into the freezer."
+        },
+        frozen_green: {
+            title: "FROZEN GREEN CUBE",
+            color: "#4FC3F7",
+            description: "You locked Green in the freezer and turned him into an ice cube.",
+            hint: "Put Green into the freezer without Big Eye active."
+        },
+        frozen_red: {
+            title: "FROZEN RED CUBE",
+            color: "#EF5350",
+            description: "The furious Red cube got shoved into the freezer and frozen in place.",
+            hint: "Push Red into the freezer."
+        },
+        frozen_blue: {
+            title: "FROZEN BLUE CUBE",
+            color: "#42A5F5",
+            description: "Blue chilled out a little too hard in the freezer.",
+            hint: "Push Blue into the freezer."
+        },
+        frozen_brown: {
+            title: "FROZEN BROWN CUBE",
+            color: "#8D6E63",
+            description: "Chill Brown became a permanently cold cube in the freezer.",
+            hint: "Push Brown into the freezer."
+        },
+        brown_sunglasses: {
+            title: "NO SUNGLASSES ENDING",
+            color: "#5D4037",
+            description: "Red crashed into Brown so hard his sunglasses flew off and left him frowning.",
+            hint: "Hit Brown with Red."
+        },
+        mad: {
+            title: "MAD ENDING",
+            color: "#D32F2F",
+            description: "You spun Red so much he went berserk and now nothing can calm him down.",
+            hint: "Spin Red a lot or hold him too long until he gets aggressive."
+        },
+        saddest: {
+            title: "SADDEST ENDING",
+            color: "#FBC02D",
+            description: "You threw Yellow into the water and his TV time ended forever.",
+            hint: "Throw Yellow into the water."
+        },
+        yellow_baldi: {
+            title: "YELLOW BALDI ENDING",
+            color: "#FFEB3B",
+            description: "Yellow grabbed the ruler and became the loudest Baldi in the room.",
+            hint: "Let Yellow touch the ruler."
+        },
+        tv_off: {
+            title: "TV OFF ENDING",
+            color: "#F57F17",
+            description: "You turned off Yellow’s TV, he snapped, and punched straight through his own roof.",
+            hint: "Click Yellow’s TV to turn it off and watch him react."
+        },
+        yellow_space: {
+            title: "YELLOW SPACE ENDING",
+            color: "#FFF176",
+            description: "Yellow flew so high in anger he drifted all the way into space.",
+            hint: "Launch Yellow off the top of the screen."
+        },
+        what_watching: {
+            title: "WHAT ARE YOU WATCHING ENDING",
+            color: "#FDD835",
+            description: "Red crashed into Yellow, who had to explain his weird show in a speech bubble.",
+            hint: "Throw Red at Yellow while he is watching TV."
+        },
+
+        secret2: {
+            title: "NOT SO SECRET ENDING 2",
+            color: "#AED581",
+            description: "You threw Green at Yellow and crashed his peaceful TV session.",
+            hint: "Throw Green at Yellow’s house."
+        },
+        friends: {
+            title: "FRIENDS ENDING",
+            color: "#FFCC80",
+            description: "Red, Green, Blue, Yellow, Brown and the pink cloud all shared the same cliff together.",
+            hint: "Put Red, Green, Blue, Yellow, Brown and the pink cloud together on the grass cliff."
+        },
+        cat_very_sad: {
+            title: "VERY VERY SAD ENDING",
+            color: "#9E9E9E",
+            description: "You threw Yellow’s pet cat into the lake and it sank.",
+            hint: "Throw the cat cube into the water."
+        },
+        cat_baldi: {
+            title: "CAT BALDI ENDING",
+            color: "#FFEE58",
+            description: "The cat grabbed the ruler and turned into a strict Baldi cat.",
+            hint: "Let the cat touch the ruler on Brown’s table."
+        },
+        cat_space: {
+            title: "SPACE CAT ENDING",
+            color: "#BA68C8",
+            description: "The cat flew so high it drifted away into space.",
+            hint: "Throw the cat cube off the top of the screen."
+        },
+        cat_evil: {
+            title: "CAT IS EVIL ENDING",
+            color: "#6A1B9A",
+            description: "The cat shoved another cube into the lake on purpose.",
+            hint: "Use the cat to push any cube into the lake."
+        },
+        cat_yummy_fish: {
+            title: "YUMMY FISH ENDING",
+            color: "#4DD0E1",
+            description: "The cat jumped down and ate a fish that leapt out of the water.",
+            hint: "Wait for a fish to jump out of the water, then bump it with the cat."
+        },
+        cat_nvm: {
+            title: "CAT NVM ENDING",
+            color: "#AB47BC",
+            description: "You threw the cat back to the far left and it walked away from everything.",
+            hint: "Push or throw the cat off the far left side of the land."
+        },
+        cat_mad: {
+            title: "MAD CAT ENDING",
+            color: "#D81B60",
+            description: "You spun the cat so fast it went completely mad.",
+            hint: "Grab the cat and spin it at a very high speed."
+        }
+    };
+
+    function populateWikiEndingsList() {
+        loadUnlockedEndingsWiki();
+        const container = document.getElementById('wiki-endings-list');
+        if (!container) return;
+        container.innerHTML = '';
+
+        const sortedKeys = Object.keys(ENDINGS).sort();
+        const chapter23LockedKeys = new Set([
+            'chapter2_death',
+            'revenge',
+            'revenge_died',
+            'explosion',
+            'escape'
+        ]);
+
+        function getExtraNote(key) {
+            // Notes about needing Cloud Ending toggle
+            if (key === 'cloud') {
+                return 'Note: Turn on the Cloud Ending in the banner so this timed ending can trigger.';
+            }
+            // Notes about needing Stalemate disabled / more time
+            if (key === 'friends') {
+                return 'Note: Disable the Stalemate Ending so you have more time, and wait for Blue to spawn (20% chance in Chapter 1).';
+            }
+
+            // Notes about Blue being required
+            const blueRequiredKeys = new Set([
+                'revenge',
+                'revenge_died',
+                'blue_boat',
+                'blue_baldi',
+                'blue_space',
+                'blue_cloud',
+                'blue_pop',
+                'blue_nvm',
+                'friends',
+                'merged2'
+            ]);
+            if (blueRequiredKeys.has(key)) {
+                return 'Note: The cube required to get this ending is Blue, which appears 20% of the time in Chapter 1 and 50% of the time in Chapter 2.';
+            }
+
+            // Notes about rare‑chance fusion endings
+            const rareChanceKeys = new Set(['merged', 'merged2']);
+            if (rareChanceKeys.has(key)) {
+                return 'Note: This ending has about a 1% chance to happen each time the required cubes collide.';
+            }
+
+            return '';
+        }
+
+        sortedKeys.forEach(key => {
+            const ending = ENDINGS[key];
+            const item = document.createElement('div');
+            item.className = 'ending-item';
+            item.style.borderLeft = `5px solid ${ending.color}`;
+            item.style.paddingLeft = '10px';
+
+            const isUnlocked = unlockedEndings.has(key);
+
+            let descriptionHtml = '';
+            if (isUnlocked) {
+                descriptionHtml += `<p>${ending.description}</p>`;
+            } else {
+                if (chapter23LockedKeys.has(key)) {
+                    descriptionHtml += `<p>Sorry! This ending is unavailable at the moment.</p>`;
+                } else {
+                    descriptionHtml += `<p>Get this ending to unlock description !</p>`;
+                    if (ending.hint) {
+                        descriptionHtml += `<p><strong>Hint:</strong> ${ending.hint}</p>`;
+                    }
+                }
+            }
+
+            const extraNote = getExtraNote(key);
+            if (extraNote) {
+                descriptionHtml += `<p><em>${extraNote}</em></p>`;
+            }
+
+            item.innerHTML = `
+                <h3>${ending.title}</h3>
+                ${descriptionHtml}
+            `;
+            container.appendChild(item);
+        });
+    }
+
+    document.addEventListener('DOMContentLoaded', populateWikiEndingsList);
+</script>
+</body>
+</html>
