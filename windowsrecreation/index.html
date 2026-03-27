@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Windows 10 Recreation</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="desktop">
+        <!-- Desktop Icons -->
+        <div class="desktop-icon" id="recycle-bin-icon">
+            <img src="/bin-windows.png" alt="Recycle Bin">
+            <span>Recycle Bin</span>
+        </div>
+        <div class="desktop-icon" id="edge-icon">
+            <img src="/Microsoft_Edge_logo_(2019).png" alt="Microsoft Edge">
+            <span>Microsoft Edge</span>
+        </div>
+        <div class="desktop-icon" id="store-icon">
+            <img src="/Microsoft_Store_Fluent_Design_icon_(2).png" alt="Microsoft Store">
+            <span>Microsoft Store</span>
+        </div>
+        <div class="desktop-icon" id="clippy-icon">
+            <img src="/Clippy.png" alt="AI Clippy">
+            <span>AI Clippy</span>
+        </div>
+        <div class="desktop-icon" id="file-explorer-desktop-icon">
+            <img src="/file-explorer-folder-libraries-icon-18298.png" alt="File Explorer">
+            <span>File Explorer</span>
+        </div>
+        <div class="desktop-icon" id="error-generator-icon">
+            <img src="/error-cancel-abort-icon.png" alt="Error Generator">
+            <span>Error Generator</span>
+        </div>
+        <div class="desktop-icon" id="virtualbox-icon">
+            <img src="/virtualbox_icon.png" alt="VirtualBox">
+            <span>VirtualBox</span>
+        </div>
+        <div class="desktop-icon" id="control-panel-icon">
+            <img src="/control.png" alt="Control Panel">
+            <span>Control Panel</span>
+        </div>
+        <div class="desktop-icon" id="minesweeper-icon">
+            <img src="/Minesweeper_2005.webp" alt="Minesweeper">
+            <span>Minesweeper</span>
+        </div>
+        <div class="desktop-icon" id="ms-paint-icon">
+            <img src="/Paint.png" alt="MS Paint">
+            <span>MS Paint</span>
+        </div>
+        <div class="desktop-icon" id="notepad-icon">
+            <img src="/forbidden.png" alt="Notepad">
+            <span>Notepad</span>
+        </div>
+        <div class="desktop-icon" id="saved-items-icon">
+            <img src="/file-explorer-folder-libraries-icon-18298.png" alt="Saved Items">
+            <span>Saved Items</span>
+        </div>
+
+        <!-- Start Menu (initially hidden) -->
+        <div id="start-menu" class="hidden">
+            <div class="start-menu-left">
+                <div class="start-menu-links-top">
+                    <div class="start-menu-link" id="start-menu-power">
+                        <span class="start-menu-icon">💡</span>
+                        <span>Power</span>
+                    </div>
+                     <div class="start-menu-link" id="start-menu-settings">
+                        <span class="start-menu-icon">⚙️</span>
+                        <span>Settings</span>
+                    </div>
+                </div>
+                 <div class="start-menu-links-bottom">
+                    <div class="start-menu-link" id="start-menu-user">
+                        <img src="user_profile.png" alt="User" class="user-profile-pic">
+                        <span>User</span>
+                    </div>
+                </div>
+            </div>
+            <div class="start-menu-right">
+                <div class="start-menu-header">
+                    <input type="text" id="start-menu-search" placeholder="Type here to search">
+                </div>
+                <div class="start-menu-tiles-section">
+                    <h3 class="start-menu-section-header">Pinned</h3>
+                    <div id="start-menu-tiles">
+                        <!-- Tiles will be dynamically added here -->
+                    </div>
+                </div>
+                <div class="start-menu-all-apps-section">
+                     <h3 class="start-menu-section-header">All apps</h3>
+                    <div class="start-menu-all-apps" id="start-menu-all-apps">
+                        <!-- App list will be dynamically added here -->
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Dynamic Window Container -->
+        <div id="window-container">
+            <!-- Windows will be appended here by JS -->
+        </div>
+    </div>
+
+    <div id="taskbar">
+        <button id="start-button">
+            <img src="/startbutton.png" alt="Start" style="height: 24px; width: 24px;">
+        </button>
+        <div class="taskbar-icons">
+            <!-- Other taskbar icons can go here -->
+        </div>
+        <div class="system-tray">
+            <span id="time"></span>
+            <span id="date"></span>
+            <!-- Other system tray icons -->
+        </div>
+    </div>
+
+    <script type="module" src="script.js"></script>
+</body>
+</html>
