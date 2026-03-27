@@ -1,0 +1,257 @@
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  margin: 0;
+  background-color: #f0f0f0;
+  font-family: Arial, sans-serif;
+}
+
+.game-container {
+  text-align: center;
+}
+
+h1 {
+  color: #333;
+}
+
+#game-status {
+  margin: 10px 0;
+  font-size: 1.2em;
+  min-height: 1.5em;
+}
+
+#chessboard {
+  display: grid;
+  grid-template-columns: repeat(8, 60px);
+  grid-template-rows: repeat(8, 60px);
+  border: 2px solid #333;
+  margin: 20px auto;
+}
+
+.square {
+  width: 60px;
+  height: 60px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  position: relative;
+}
+
+.white {
+  background-color: #fff;
+}
+
+.black {
+  background-color: #999;
+}
+
+.pawn {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  position: absolute;
+}
+
+.pawn.white-pawn {
+  background-color: #fff;
+  border: 2px solid #000;
+}
+
+.pawn.black-pawn {
+  background-color: #000;
+  border: 2px solid #fff;
+}
+
+.square.highlight {
+  background-color: rgba(255, 255, 0, 0.5);
+}
+
+.square.valid-move {
+  background-color: rgba(0, 255, 0, 0.3);
+}
+
+button {
+  padding: 10px 20px;
+  font-size: 1.1em;
+  cursor: pointer;
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  border-radius: 5px;
+}
+
+button:hover {
+  background-color: #45a049;
+}
+
+.controls {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  margin-top: 10px;
+}
+
+button:disabled {
+  background-color: #cccccc;
+  cursor: not-allowed;
+}
+
+.move-btn {
+  font-size: 1.5em;
+  padding: 5px 15px;
+  background-color: #000;
+  border: 1px solid #333;
+  transition: background-color 0.2s;
+}
+
+.move-btn:hover {
+  background-color: #333;
+}
+
+.move-btn:disabled {
+  background-color: #666;
+  border-color: #555;
+  opacity: 0.5;
+}
+
+.mode-toggle {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin: 20px 0;
+  font-size: 1.1em;
+}
+
+.mode-toggle select {
+  padding: 5px;
+  font-size: 1em;
+  margin-left: 5px;
+}
+
+.mode-toggle .bot-controls {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+
+.mode-toggle input[type="checkbox"] {
+  margin-right: 5px;
+  transform: scale(1.2);
+}
+
+.mode-toggle label {
+  cursor: pointer;
+  user-select: none;
+}
+
+.difficulty-slider-container {
+  margin: 15px auto;
+  width: 300px;
+  text-align: center;
+  padding: 10px;
+  background: rgba(255, 255, 255, 0.9);
+  border-radius: 10px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.difficulty-slider {
+  -webkit-appearance: none;
+  width: 100%;
+  height: 10px;
+  border-radius: 5px;
+  background: linear-gradient(to right, 
+    rgb(50, 255, 50) 0%,    /* Start with green */
+    rgb(255, 255, 0) 50%,   /* Yellow in middle */
+    rgb(255, 50, 50) 100%   /* Red at end */
+  );
+  outline: none;
+  margin: 20px 0;
+}
+
+.difficulty-slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: #2196F3;
+  cursor: pointer;
+  box-shadow: 0 0 5px rgba(0,0,0,0.3);
+}
+
+.difficulty-slider::-moz-range-thumb {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: #2196F3;
+  cursor: pointer;
+  box-shadow: 0 0 5px rgba(0,0,0,0.3);
+}
+
+.difficulty-level {
+  margin-top: 10px;
+  font-size: 1.1em;
+  font-weight: bold;
+  color: #333;
+}
+
+.thinking-indicator {
+  display: none;
+  width: 200px;
+  height: 30px;
+  background-color: #eee;
+  border: 1px solid #999;
+  border-radius: 10px;
+  margin: 10px auto;
+  overflow: hidden;
+}
+
+.thinking-bar {
+  width: 0%;
+  height: 100%;
+  background: linear-gradient(90deg, #4CAF50, #45a049);
+  transition: width 0.3s linear;
+}
+
+.thinking .thinking-indicator {
+  display: block;
+}
+
+#bot-vs-bot-controls {
+  margin: 15px auto;
+  padding: 15px;
+  background: rgba(255, 255, 255, 0.9);
+  border-radius: 10px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.bot-slider-container {
+  margin: 10px 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.bot-slider-label {
+  font-weight: bold;
+  margin-bottom: 5px;
+  color: #333;
+}
+
+.bot-vs-bot-toggle {
+  margin: 15px 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+
+.bot-vs-bot-toggle label {
+  font-weight: bold;
+  color: #333;
+  cursor: pointer;
+}

@@ -1,0 +1,62 @@
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pawn Game</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="game-container">
+    <h1>Pawn Game</h1>
+    <div class="mode-toggle">
+      <div class="game-mode-controls">
+        <select id="game-mode">
+          <option value="bot">Play vs Bot</option>
+          <option value="botvsbot">Bot vs Bot</option>
+          <option value="multiplayer">Play Online</option>
+          <option value="local">Local 2-Player</option>
+        </select>
+      </div>
+      <div id="bot-controls" class="bot-controls">
+        <label>
+          <input type="checkbox" id="bot-mode" checked> Play against Bot
+        </label>
+        <div class="difficulty-slider-container">
+          <input type="range" class="difficulty-slider" id="difficulty-slider" min="1" max="10" value="5">
+          <div class="difficulty-level">Difficulty Level: <span id="difficulty-value">5</span></div>
+        </div>
+      </div>
+      <div id="bot-vs-bot-controls" style="display: none;">
+        <div class="bot-slider-container">
+          <div class="bot-slider-label">White Bot Level: <span id="white-bot-level">5</span></div>
+          <input type="range" class="difficulty-slider" id="white-bot-slider" min="1" max="10" value="5">
+        </div>
+        
+        <div class="bot-slider-container">
+          <div class="bot-slider-label">Black Bot Level: <span id="black-bot-level">5</span></div>
+          <input type="range" class="difficulty-slider" id="black-bot-slider" min="1" max="10" value="5">
+        </div>
+        
+        <div class="bot-vs-bot-toggle">
+          <label>
+            <input type="checkbox" id="bot-vs-bot-toggle"> Start Bot vs Bot
+          </label>
+        </div>
+      </div>
+    </div>
+    <div id="game-status"></div>
+    <div class="thinking-indicator">
+      <div class="thinking-bar"></div>
+    </div>
+    <div id="chessboard"></div>
+    <div class="controls">
+      <button id="rewind-btn" class="move-btn" title="Previous move">⬅️</button>
+      <button id="restart-btn">Restart Game</button>
+      <button id="forward-btn" class="move-btn" title="Next move">➡️</button>
+    </div>
+  </div>
+  <script src="bot.js"></script>
+  <script src="multiplayer.js"></script>
+  <script src="game.js"></script>
+</body>
+</html>

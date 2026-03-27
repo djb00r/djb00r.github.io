@@ -1,0 +1,46 @@
+<<<<<<< SEARCH
+    <!-- Milestones modal -->
+    <div id="milestone-modal" class="modal hidden" aria-hidden="true">
+      <div class="modal-backdrop"></div>
+      <div class="modal-content" role="dialog" aria-modal="true">
+        <button class="modal-close" id="milestone-close-btn" aria-label="Close">&times;</button>
+        <div class="modal-number">Milestones</div>
+        <div class="modal-meta">Jump to famous numbers</div>
+        <div class="milestone-list" id="milestone-list"></div>
+      </div>
+    </div>
+  </div>
+=======
+    <!-- Milestones modal -->
+    <div id="milestone-modal" class="modal hidden" aria-hidden="true">
+      <div class="modal-backdrop"></div>
+      <div class="modal-content" role="dialog" aria-modal="true">
+        <button class="modal-close" id="milestone-close-btn" aria-label="Close">&times;</button>
+        <div class="modal-number">Milestones</div>
+        <div class="modal-meta">Jump to famous numbers</div>
+        <div class="milestone-list" id="milestone-list"></div>
+      </div>
+    </div>
+
+    <!-- Settings modal -->
+    <div id="settings-modal" class="modal hidden" aria-hidden="true">
+      <div class="modal-backdrop"></div>
+      <div class="modal-content" role="dialog" aria-modal="true">
+        <button class="modal-close" id="settings-close-btn" aria-label="Close">&times;</button>
+        <div class="modal-number">Settings</div>
+        <div class="modal-meta">Customize your journey</div>
+        <div class="settings-options">
+          <label class="settings-option">
+            <input type="checkbox" id="toggle-number-effects" />
+            <span>Disable number effects</span>
+          </label>
+          <label class="settings-option">
+            <input type="checkbox" id="toggle-ai-summaries" />
+            <span>Disable AI summaries</span>
+          </label>
+        </div>
+      </div>
+    </div>
+  </div>
+>>>>>>> REPLACE
+

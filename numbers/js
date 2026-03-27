@@ -1,0 +1,368 @@
+<<<<<<< SEARCH
+const modalDescriptionEl = document.getElementById("modal-description");
+const modalCloseBtn = document.getElementById("modal-close-btn");
+// Milestones
+const milestonesBtn = document.getElementById("milestones-btn");
+const milestoneModal = document.getElementById("milestone-modal");
+const milestoneCloseBtn = document.getElementById("milestone-close-btn");
+const milestoneListEl = document.getElementById("milestone-list");
+
+let currentPage = START_PAGE;
+let currentSearchIndex = null;
+=======
+const modalDescriptionEl = document.getElementById("modal-description");
+const modalCloseBtn = document.getElementById("modal-close-btn");
+// Milestones
+const milestonesBtn = document.getElementById("milestones-btn");
+const milestoneModal = document.getElementById("milestone-modal");
+const milestoneCloseBtn = document.getElementById("milestone-close-btn");
+const milestoneListEl = document.getElementById("milestone-list");
+// Settings
+const settingsBtn = document.getElementById("settings-btn");
+const settingsModal = document.getElementById("settings-modal");
+const settingsCloseBtn = document.getElementById("settings-close-btn");
+const toggleNumberEffects = document.getElementById("toggle-number-effects");
+const toggleAiSummaries = document.getElementById("toggle-ai-summaries");
+
+let currentPage = START_PAGE;
+let currentSearchIndex = null;
+
+// Feature flags (features are enabled by default; checkboxes disable them)
+let numberEffectsEnabled = true;
+let aiSummariesEnabled = true;
+
+// Background effect thresholds
+const BG_THRESHOLDS = {
+  NEGATIVE_MAX: 0n,
+  DEFAULT_MAX: 100n,
+  GREEN_MAX: 10000n,
+  RED_MAX: 100000n,
+  PINK_MAX: 5000000n,
+  GLITCH_DARK_MAX: 100000000n,
+  GLITCH_LIGHT_MAX: 250000000000n,
+  BINARY_START: 10n ** 13n,
+  BINARY_GLITCH_MAX: 10n ** 21n,
+  BINARY_TRUE_START: 10n ** 98n,
+};
+
+const BG_CLASSES = [
+  "bg-negative",
+  "bg-default",
+  "bg-green",
+  "bg-red",
+  "bg-pink",
+  "bg-glitch-dark",
+  "bg-glitch-light",
+  "bg-binary",
+  "bg-binary-glitch",
+  "bg-binary-true",
+];
+>>>>>>> REPLACE
+
+<<<<<<< SEARCH
+// AI description
+
+async function describeNumberAI(valueStr) {
+=======
+ // AI helpers
+
+// AI description
+async function describeNumberAI(valueStr) {
+>>>>>>> REPLACE
+
+<<<<<<< SEARCH
+  } catch {
+    return fallback;
+  }
+}
+=======
+  } catch {
+    return fallback;
+  }
+}
+
+// AI equation: one simple arithmetic way to build the number
+async function equationForNumberAI(valueStr) {
+  const isInteger = !valueStr.includes(".");
+  const fallback = (() => {
+    // Simple deterministic fallback if AI isn't available
+    if (isInteger) {
+      try {
+        const n = BigInt(valueStr);
+        if (n === 0n) return "0 = 0 × 1";
+        if (n === 1n) return "1 = 1 + 0";
+        if (n === 2n) return "2 = 1 + 1";
+        if (n === 3n) return "3 = 1 + 2";
+        if (n > 0n) {
+          return `${n} = ${n - 1n} + 1`;
+        }
+        // negative
+        return `${n} = 0 - ${-n}`;
+      } catch {
+        // fall through if BigInt fails
+      }
+    }
+    // For non-integers or huge integers
+    return `${valueStr} ≈ ${valueStr} × 1`;
+  })();
+
+  if (
+    typeof websim === "undefined" ||
+    !websim.chat ||
+    !websim.chat.completions ||
+    !aiSummariesEnabled
+  ) {
+    return fallback;
+  }
+
+  try {
+    const completion = await websim.chat.completions.create({
+      messages: [
+        {
+          role: "system",
+          content:
+            "You output one short arithmetic expression that evaluates to the given number. Use only +, -, ×, ÷, and exponents (^). Prefer very simple, human-style equations like '1 + 1 = 2', '99 - 10 = 89', or '3 × 3 = 9'. If the number is not an integer, you can still show a simple decimal expression. Respond with just the equation, nothing else.",
+        },
+        {
+          role: "user",
+          content: `Number: ${valueStr}`,
+        },
+      ],
+    });
+
+    const text =
+      (completion && completion.content && completion.content.trim()) || "";
+    return text || fallback;
+  } catch {
+    return fallback;
+  }
+}
+
+// Background effects
+
+function applyNumberEffects(page) {
+  // Always clear existing background classes
+  document.body.classList.remove(...BG_CLASSES);
+
+  if (!numberEffectsEnabled) {
+    // Fall back to the base CSS background
+    return;
+  }
+
+  let cls = "bg-default";
+
+  if (page <= BG_THRESHOLDS.NEGATIVE_MAX) {
+    cls = "bg-negative";
+  } else if (page <= BG_THRESHOLDS.DEFAULT_MAX) {
+    cls = "bg-default";
+  } else if (page <= BG_THRESHOLDS.GREEN_MAX) {
+    cls = "bg-green";
+  } else if (page <= BG_THRESHOLDS.RED_MAX) {
+    cls = "bg-red";
+  } else if (page <= BG_THRESHOLDS.PINK_MAX) {
+    cls = "bg-pink";
+  } else if (page <= BG_THRESHOLDS.GLITCH_DARK_MAX) {
+    cls = "bg-glitch-dark";
+  } else if (page <= BG_THRESHOLDS.GLITCH_LIGHT_MAX) {
+    cls = "bg-glitch-light";
+  } else if (page < BG_THRESHOLDS.BINARY_START) {
+    // Between 2.5×10^11 and 10^13: treat as lighter glitchy color already handled above
+    cls = "bg-glitch-light";
+  } else if (page <= BG_THRESHOLDS.BINARY_GLITCH_MAX) {
+    cls = "bg-binary";
+  } else if (page < BG_THRESHOLDS.BINARY_TRUE_START) {
+    cls = "bg-binary-glitch";
+  } else {
+    cls = "bg-binary-true";
+  }
+
+  document.body.classList.add(cls);
+}
+>>>>>>> REPLACE
+
+<<<<<<< SEARCH
+async function openModalForNumber(valueStr) {
+  const isInteger = !valueStr.includes(".");
+  let meta = "";
+
+  if (isInteger) {
+    const n = bigintFromString(valueStr);
+    if (n !== null) {
+      const isEven = n % 2n === 0n;
+      meta = `${valueStr} is ${isEven ? "even" : "odd"}.`;
+    } else {
+      meta = `${valueStr} is an integer (very large).`;
+    }
+  } else {
+    meta = `${valueStr} is a non-integer real number.`;
+  }
+
+  modalNumberEl.textContent = valueStr;
+  modalMetaEl.textContent = meta;
+  modalDescriptionEl.textContent = "Thinking about this number…";
+  modal.classList.remove("hidden");
+  modal.setAttribute("aria-hidden", "false");
+
+  const description = await describeNumberAI(valueStr);
+  // Only update if modal is still open
+  if (!modal.classList.contains("hidden")) {
+    modalDescriptionEl.textContent = description;
+  }
+}
+=======
+async function openModalForNumber(valueStr) {
+  const isInteger = !valueStr.includes(".");
+  let meta = "";
+
+  if (isInteger) {
+    const n = bigintFromString(valueStr);
+    if (n !== null) {
+      const isEven = n % 2n === 0n;
+      meta = `${valueStr} is ${isEven ? "even" : "odd"}.`;
+    } else {
+      meta = `${valueStr} is an integer (very large).`;
+    }
+  } else {
+    meta = `${valueStr} is a non-integer real number.`;
+  }
+
+  modalNumberEl.textContent = valueStr;
+  modalMetaEl.textContent = meta;
+
+  if (!aiSummariesEnabled) {
+    modalEquationEl.textContent = "";
+    modalDescriptionEl.textContent = "AI summaries are disabled in settings.";
+    modal.classList.remove("hidden");
+    modal.setAttribute("aria-hidden", "false");
+    return;
+  }
+
+  modalEquationEl.textContent = "Finding a simple equation for this number…";
+  modalDescriptionEl.textContent = "Thinking about this number…";
+  modal.classList.remove("hidden");
+  modal.setAttribute("aria-hidden", "false");
+
+  const [equation, description] = await Promise.all([
+    equationForNumberAI(valueStr),
+    describeNumberAI(valueStr),
+  ]);
+
+  // Only update if modal is still open
+  if (!modal.classList.contains("hidden")) {
+    modalEquationEl.textContent = equation;
+    modalDescriptionEl.textContent = description;
+  }
+}
+>>>>>>> REPLACE
+
+<<<<<<< SEARCH
+  currentSearchIndex = null;
+
+  pageInput.value = formatDisplayPage(page, zoomLevel);
+  zoomLabel.textContent = `Z${zoomLevel}`;
+  // Allow paging endlessly in both directions
+  prevBtn.disabled = false;
+  setHashState(page, zoomLevel);
+}
+=======
+  currentSearchIndex = null;
+
+  pageInput.value = formatDisplayPage(page, zoomLevel);
+  zoomLabel.textContent = `Z${zoomLevel}`;
+  // Allow paging endlessly in both directions
+  prevBtn.disabled = false;
+  setHashState(page, zoomLevel);
+  applyNumberEffects(page);
+}
+>>>>>>> REPLACE
+
+<<<<<<< SEARCH
+milestoneListEl.addEventListener("click", (e) => {
+  const btn = e.target.closest(".milestone-item");
+  if (!btn || !btn.dataset.value) return;
+  const n = bigintFromString(btn.dataset.value);
+  if (!n) return;
+  closeMilestonesModal();
+  goToNumber(n);
+});
+
+window.addEventListener("keydown", (e) => {
+  if (e.key === "Escape") {
+    if (!modal.classList.contains("hidden")) {
+      closeModal();
+    } else if (!milestoneModal.classList.contains("hidden")) {
+      closeMilestonesModal();
+    }
+  }
+});
+=======
+milestoneListEl.addEventListener("click", (e) => {
+  const btn = e.target.closest(".milestone-item");
+  if (!btn || !btn.dataset.value) return;
+  const n = bigintFromString(btn.dataset.value);
+  if (!n) return;
+  closeMilestonesModal();
+  goToNumber(n);
+});
+
+// Settings events
+function openSettingsModal() {
+  settingsModal.classList.remove("hidden");
+  settingsModal.setAttribute("aria-hidden", "false");
+}
+
+function closeSettingsModal() {
+  settingsModal.classList.add("hidden");
+  settingsModal.setAttribute("aria-hidden", "true");
+}
+
+settingsBtn.addEventListener("click", () => {
+  openSettingsModal();
+});
+
+settingsCloseBtn.addEventListener("click", () => {
+  closeSettingsModal();
+});
+
+settingsModal.addEventListener("click", (e) => {
+  if (e.target.classList.contains("modal-backdrop")) {
+    closeSettingsModal();
+  }
+});
+
+toggleNumberEffects.addEventListener("change", () => {
+  // Checkbox means "disable"; when checked, turn effects off
+  numberEffectsEnabled = !toggleNumberEffects.checked;
+  applyNumberEffects(currentPage);
+});
+
+toggleAiSummaries.addEventListener("change", () => {
+  // Checkbox means "disable"; when checked, turn summaries off
+  aiSummariesEnabled = !toggleAiSummaries.checked;
+});
+
+window.addEventListener("keydown", (e) => {
+  if (e.key === "Escape") {
+    if (!modal.classList.contains("hidden")) {
+      closeModal();
+    } else if (!milestoneModal.classList.contains("hidden")) {
+      closeMilestonesModal();
+    } else if (!settingsModal.classList.contains("hidden")) {
+      closeSettingsModal();
+    }
+  }
+});
+>>>>>>> REPLACE
+
+<<<<<<< SEARCH
+const initialState = getHashState() ?? { page: START_PAGE, zoom: 0 };
+zoomLevel = initialState.zoom;
+renderPage(initialState.page);
+renderMilestones();
+=======
+const initialState = getHashState() ?? { page: START_PAGE, zoom: 0 };
+zoomLevel = initialState.zoom;
+renderPage(initialState.page);
+renderMilestones();
+>>>>>>> REPLACE
+

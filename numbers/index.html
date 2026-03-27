@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1, viewport-fit=cover"
+  />
+  <title>Numbers Without End</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div id="app">
+    <div id="search-bar">
+      <input
+        id="search-input"
+        type="text"
+        inputmode="numeric"
+        autocomplete="off"
+        spellcheck="false"
+        placeholder="Find number…"
+        aria-label="Search number"
+      />
+      <button id="search-btn" aria-label="Search">Go</button>
+    </div>
+
+    <div id="numbers-container"></div>
+
+    <div id="controls">
+      <button id="prev-btn" aria-label="Previous page">&larr;</button>
+
+      <div id="page-control">
+        <span>Page</span>
+        <input
+          id="page-input"
+          type="text"
+          inputmode="numeric"
+          autocomplete="off"
+          spellcheck="false"
+        />
+      </div>
+
+      <button id="next-btn" aria-label="Next page">&rarr;</button>
+
+      <!-- Zoom controls -->
+      <div id="zoom-control">
+        <button id="zoom-out-btn" aria-label="Zoom out">−</button>
+        <span id="zoom-label">Z0</span>
+        <button id="zoom-in-btn" aria-label="Zoom in">+</button>
+      </div>
+
+      <!-- Settings & Milestones buttons -->
+      <button id="settings-btn" aria-label="Settings">⚙</button>
+      <button id="milestones-btn" aria-label="Jump to milestones">★</button>
+    </div>
+
+    <div id="number-modal" class="modal hidden" aria-hidden="true">
+      <div class="modal-backdrop"></div>
+      <div class="modal-content" role="dialog" aria-modal="true">
+        <button class="modal-close" id="modal-close-btn" aria-label="Close">&times;</button>
+        <div class="modal-number" id="modal-number"></div>
+        <div class="modal-meta" id="modal-meta"></div>
+        <div class="modal-equation" id="modal-equation"></div>
+        <div class="modal-description" id="modal-description"></div>
+      </div>
+    </div>
+
+    <!-- Milestones modal -->
+    <div id="milestone-modal" class="modal hidden" aria-hidden="true">
+      <div class="modal-backdrop"></div>
+      <div class="modal-content" role="dialog" aria-modal="true">
+        <button class="modal-close" id="milestone-close-btn" aria-label="Close">&times;</button>
+        <div class="modal-number">Milestones</div>
+        <div class="modal-meta">Jump to famous numbers</div>
+        <div class="milestone-list" id="milestone-list"></div>
+      </div>
+    </div>
+  </div>
+
+  <script type="module" src="main.js"></script>
+</body>
+</html>
+
