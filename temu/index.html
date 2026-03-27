@@ -12,6 +12,7 @@
   </script>
 </head>
 <body>
+  
   <div id="aspect-wrapper">
     <div id="game-container">
       <img id="background" src="/background.png" alt="Brick wall background">
@@ -580,6 +581,44 @@
         </div>
     </div>
 
+   <script>
+  function fixPath(path) {
+    if (!path) return path;
+    return path.startsWith("/") ? path.substring(1) : path;
+  }
+
+  function fixAllImages(root = document) {
+    root.querySelectorAll("img").forEach(img => {
+      const original = img.getAttribute("src");
+      if (original) {
+        img.src = fixPath(original);
+      }
+      img.onerror = () => {
+        img.style.display = "none";
+      };
+    });
+  }
+
+  document.addEventListener("DOMContentLoaded", () => {
+    fixAllImages();
+  });
+
+  const observer = new MutationObserver(mutations => {
+    mutations.forEach(mutation => {
+      mutation.addedNodes.forEach(node => {
+        if (node.tagName === "IMG") {
+          node.src = fixPath(node.getAttribute("src"));
+          node.onerror = () => node.style.display = "none";
+        } else if (node.querySelectorAll) {
+          fixAllImages(node);
+        }
+      });
+    });
+  });
+
+  observer.observe(document.body, { childList: true, subtree: true });
+  </script>
+  
   <script type="module" src="/script.js"></script>
 </body>
 </html>
