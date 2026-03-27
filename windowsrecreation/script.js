@@ -1,3 +1,17 @@
+// --- GLOBAL PATH + ERROR FIX ---
+function fixPath(path) {
+    if (!path) return path;
+    return path.startsWith('/') ? path.substring(1) : path;
+}
+
+// Fix ALL images automatically
+document.addEventListener("DOMContentLoaded", () => {
+    document.querySelectorAll("img").forEach(img => {
+        img.src = fixPath(img.getAttribute("src"));
+        img.onerror = () => img.style.display = "none";
+    });
+});
+
 // --- Global State ---
 let activeWindowZIndex = 10;
 let conversationHistory = []; // For Clippy AI
