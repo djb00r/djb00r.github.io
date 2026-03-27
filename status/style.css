@@ -1,0 +1,1191 @@
+body {
+  font-family: 'Roboto', sans-serif; /* Changed font to Roboto */
+  display: flex;
+  justify-content: center;
+  align-items: flex-start; /* Align items to the top */
+  min-height: 10vh; /* Changed min-height to 10vh to prevent excessive scrolling on small content */
+  background-color: #f0f0f0;
+  margin: 0;
+  padding: 20px; /* Add padding around the content */
+  box-sizing: border-box; /* Include padding in element's total width and height */
+}
+
+.container {
+  text-align: center;
+  background-color: #fff;
+  padding: 30px;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  width: 100%; /* Make container take full width */
+  max-width: 800px; /* Limit max width */
+  display: flex; /* Use flexbox for sections */
+  flex-direction: column; /* Stack sections vertically */
+  gap: 20px; /* Add space between sections */
+}
+
+/* Sticky Note Styles */
+.sticky-note {
+  background-color: #fff8a6; /* Light yellow color like a sticky note */
+  padding: 15px;
+  border-radius: 2px;
+  box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.15);
+  transform: rotate(-1deg); /* Slight rotation for sticky note effect */
+  font-size: 16px;
+  font-weight: bold;
+  color: #333;
+  text-align: center;
+  position: relative;
+  margin: 0 auto 20px auto;
+  max-width: 300px;
+  z-index: 1;
+  border: 1px solid #e6e090;
+}
+
+.sticky-note::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 20px;
+  background-color: rgba(0,0,0,0.03);
+  border-radius: 2px 2px 0 0;
+}
+
+/* New Banner Style */
+.banner {
+    background-color: #ffeb3b; /* Yellow background */
+    color: #333; /* Dark text */
+    padding: 10px 20px;
+    margin-bottom: 20px; /* Space below the banner */
+    border-radius: 5px;
+    font-size: 1em;
+    text-align: center;
+    box-shadow: 0 1px 5px rgba(0, 0, 0, 0.1);
+}
+
+.banner a {
+    color: #1976D2; /* Blue link color */
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.banner a:hover {
+    text-decoration: underline;
+}
+
+h1 {
+  color: #333;
+  margin-bottom: 20px;
+}
+
+/* Style for each status section */
+.status-section {
+    border: 1px solid #eee;
+    padding: 15px;
+    border-radius: 5px;
+    background-color: #fafafa;
+    text-align: left; /* Align section text left */
+}
+
+.status-section h2 {
+    margin-top: 0;
+    color: #555;
+    font-size: 1.2em;
+    margin-bottom: 10px;
+    text-align: center; /* Center section title */
+}
+
+/* General status styles - REMASTERED FOR BORDER OUTLINE */
+.status {
+  display: flex;
+  flex-direction: column; /* Stack main status and description vertically */
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5em;
+  padding: 15px;
+  margin-bottom: 15px;
+  border-radius: 5px;
+  min-height: 1.8em;
+  word-break: break-word;
+  text-align: center;
+  background-color: #f5f5f5; /* Keep a light background for readability */
+  border: 2px solid #ccc; /* Default light border */
+  transition: border-color 0.3s ease; /* Smooth transition for border color */
+}
+
+.status-main {
+    display: flex; /* Flex for icon and main text */
+    align-items: center;
+    justify-content: center;
+    width: 100%; /* Take full width */
+    margin-bottom: 5px; /* Space between main status and description */
+}
+
+.status-main .material-icons-outlined {
+  margin-right: 10px;
+  font-size: 1.2em;
+  flex-shrink: 0;
+}
+
+/* Style for the detailed description */
+.status-description {
+    font-size: 0.7em; /* Smaller font size */
+    color: #666; /* Grey color for description */
+    width: 100%; /* Take full width */
+    text-align: center; /* Center the description text */
+}
+
+/* Styles for details/summary (dropdowns) */
+details.controls-details {
+    margin-top: 15px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    background-color: #fff;
+}
+
+details.controls-details summary {
+    padding: 10px 15px;
+    background-color: #f8f8f8;
+    border-bottom: 1px solid #ddd;
+    cursor: pointer;
+    font-weight: bold;
+    border-radius: 4px 4px 0 0;
+}
+
+details.controls-details[open] summary {
+    border-bottom: 1px solid #ddd;
+}
+
+details.controls-details summary::-webkit-details-marker {
+    display: none; /* Hide default marker */
+}
+
+details.controls-details summary::before {
+    content: '►'; /* Custom marker */
+    margin-right: 10px;
+    display: inline-block;
+    transition: transform 0.2s ease;
+}
+
+details.controls-details[open] summary::before {
+    transform: rotate(90deg);
+}
+
+/* Controls container */
+.controls {
+  padding: 15px;
+  display: flex; /* Use flexbox for buttons */
+  flex-wrap: wrap; /* Allow buttons to wrap */
+  gap: 8px; /* Space between buttons */
+  justify-content: center; /* Center buttons */
+}
+
+/* Generic button styles */
+.controls button {
+  padding: 8px 15px; /* Adjusted padding */
+  font-size: 0.9em; /* Slightly smaller font for more buttons */
+  cursor: pointer;
+  border: none;
+  border-radius: 5px;
+  transition: background-color 0.3s ease, opacity 0.3s ease; /* Added opacity transition */
+  flex-grow: 0; /* Prevent buttons from growing */
+  flex-shrink: 1; /* Allow buttons to shrink */
+  white-space: nowrap; /* Prevent text wrapping on buttons */
+}
+
+/* --- Status Specific Styles --- */
+
+/* Initial/Unknown State */
+.status.initial {
+    border-color: #ccc;
+}
+.status.initial .status-main {
+    color: #666; /* Grey for initial/unknown */
+}
+
+/* Idle State */
+.status.status-idle,
+.status.status-wifi-idle,
+.status.status-battery-idle {
+    border-color: #607D8B; /* Blue Grey */
+}
+.status.status-idle .status-main,
+.status.status-wifi-idle .status-main,
+.status.status-battery-idle .status-main {
+    color: #607D8B;
+}
+
+/* System Status Colors */
+.status.status-ok,
+.status.status-online,
+.status.status-unlocked {
+    border-color: #4CAF50; /* Green */
+}
+.status.status-ok .status-main,
+.status.status-online .status-main,
+.status.status-unlocked .status-main {
+    color: #4CAF50;
+}
+
+.status.status-warning,
+.status.status-infected,
+.status.status-unlockedcannotscan,
+.status.status-uncompatible,
+.status.status-appsfailedoptimize {
+    border-color: #FF9800; /* Orange */
+}
+.status.status-warning .status-main,
+.status.status-infected .status-main,
+.status.status-unlockedcannotscan .status-main,
+.status.status-uncompatible .status-main,
+.status.status-appsfailedoptimize .status-main {
+    color: #FF9800;
+}
+
+.status.status-error,
+.status.status-notfound,
+.status.status-locked,
+.status.status-severeinfection,
+.status.status-nokernel,
+.status.status-nobootloader,
+.status.status-noos,
+.status.status-malfunction,
+.status.status-updatefail,
+.status.status-wifierror,
+.status.status-wifierror-reporting,
+.status.status-updatefail-reporting,
+.status.status-appsfailedoptimize-reporting,
+.status.status-offline,
+.status.status-shuttingdown,
+.status.status-checkerlocked, /* Adding status-checkerlocked here as it implies an error/block */
+.status.status-off, /* Added System Off */
+.status.status-bigwarning, /* Added Big Warning */
+.status.status-computer-missing, /* Added Computer Missing */
+.status.status-transfering-error { /* Added Transfering Error */
+    border-color: #F44336; /* Red */
+}
+.status.status-error .status-main,
+.status.status-notfound .status-main,
+.status.status-locked .status-main,
+.status.status-severeinfection .status-main,
+.status.status-nokernel .status-main,
+.status.status-nobootloader .status-main,
+.status.status-noos .status-main,
+.status.status-malfunction .status-main,
+.status.status-updatefail .status-main,
+.status.status-wifierror .status-main,
+.status.status-wifierror-reporting .status-main,
+.status.status-updatefail-reporting .status-main,
+.status.status-appsfailedoptimize-reporting .status-main,
+.status.status-offline .status-main,
+.status.status-shuttingdown .status-main,
+.status.status-checkerlocked .status-main,
+.status.status-off .status-main, /* Added System Off */
+.status.status-bigwarning .status-main, /* Added Big Warning */
+.status.status-computer-missing .status-main, /* Added Computer Missing */
+.status.status-transfering-error .status-main { /* Added Transfering Error */
+    color: #F44336;
+}
+
+/* Initial/Booting/Scanning/Maintenance/Transfering/Unknown Transfer Statuses */
+.status.status-initial, /* Corrected class name */
+.status.status-scanning,
+.status.status-standby,
+.status.status-maintenance,
+.status.status-booting,
+.status.status-updating,
+.status.status-optimizing,
+.status.status-ultrascanning,
+.status.status-normalscan,
+.status.status-reportingtoservers,
+.status.status-transfering, /* Added Transfering */
+.status.status-unknown-transfering, /* Added Unknown Transfering */
+.status.status-downloading, /* New: Downloading */
+.status.status-sleep, /* New: Sleep */
+.status.status-hibernation { /* New: Hibernation */
+    border-color: #2196F3; /* Blue/Processing/Idle */
+}
+.status.status-initial .status-main,
+.status.status-scanning .status-main,
+.status.status-standby .status-main,
+.status.status-maintenance .status-main,
+.status.status-booting .status-main,
+.status.status-updating .status-main,
+.status.status-optimizing .status-main,
+.status.status-ultrascanning .status-main,
+.status.status-normalscan .status-main,
+.status.status-reportingtoservers .status-main,
+.status.status-transfering .status-main, /* Added Transfering */
+.status.status-unknown-transfering .status-main, /* Added Unknown Transfering */
+.status.status-downloading .status-main, /* New: Downloading */
+.status.status-sleep .status-main, /* New: Sleep */
+.status.status-hibernation .status-main { /* New: Hibernation */
+    color: #2196F3;
+}
+
+/* New System Status: Overheating (Critical - Red) */
+.status.status-overheating {
+    border-color: #F44336; /* Red */
+}
+.status.status-overheating .status-main {
+    color: #F44336;
+}
+
+/* New System Status: Overcooling (Warning - Orange) */
+.status.status-overcooling {
+    border-color: #FF9800; /* Orange */
+}
+.status.status-overcooling .status-main {
+    color: #FF9800;
+}
+
+/* New System Status: Download Finished (OK - Green) */
+.status.status-downloadfinished {
+    border-color: #4CAF50; /* Green */
+}
+.status.status-downloadfinished .status-main {
+    color: #4CAF50;
+}
+
+/* New System Status: Missing Download, Download Error (Error - Red) */
+.status.status-missingdownload,
+.status.status-downloaderror {
+    border-color: #F44336; /* Red */
+}
+.status.status-missingdownload .status-main,
+.status.status-downloaderror .status-main {
+    color: #F44336;
+}
+
+/* Style for Apps Optimized for Wifi (similar to OK) */
+.status.status-appswifioptimized {
+    border-color: #4CAF50; /* Green - OK */
+}
+.status.status-appswifioptimized .status-main {
+    color: #4CAF50;
+}
+
+/* Style for Transfering Done (similar to OK) */
+.status.status-transfering-done {
+    border-color: #4CAF50; /* Green */
+}
+.status.status-transfering-done .status-main {
+    color: #4CAF50;
+}
+
+/* --- New Memz Status Styles (Red) --- */
+.status.status-memz,
+.status.status-memz-tookover,
+.status.status-memz-nyancat,
+.status.status-memz-spreading {
+    border-color: #F44336; /* Red */
+}
+.status.status-memz .status-main,
+.status.status-memz-tookover .status-main,
+.status.status-memz-nyancat .status-main,
+.status.status-memz-spreading .status-main {
+    color: #F44336;
+}
+
+/* WiFi Status Colors */
+.status.status-btn-wifi-full,
+.status.status-btn-wifi-high,
+.status.status-btn-wifi-connected {
+    border-color: #4CAF50; /* Green */
+}
+.status.status-btn-wifi-full .status-main,
+.status.status-btn-wifi-high .status-main,
+.status.status-btn-wifi-connected .status-main {
+    color: #4CAF50;
+}
+
+.status.status-btn-wifi-medium,
+.status.status-btn-wifi-low {
+     border-color: #FF9800; /* Orange */
+}
+.status.status-btn-wifi-medium .status-main,
+.status.status-btn-wifi-low .status-main {
+     color: #FF9800;
+}
+
+.status.status-btn-wifi-none,
+.status.status-btn-wifi-disconnected,
+.status.status-btn-wifi-error {
+    border-color: #F44336; /* Red */
+}
+.status.status-btn-wifi-none .status-main,
+.status.status-btn-wifi-disconnected .status-main,
+.status.status-btn-wifi-error .status-main {
+    color: #F44336;
+}
+
+.status.status-btn-wifi-connecting {
+    border-color: #2196F3; /* Blue/Processing */
+}
+.status.status-btn-wifi-connecting .status-main {
+    color: #2196F3;
+}
+
+/* Add style for Wifi Unknown (using initial state) */
+.status.status-btn-wifi-unknown {
+    border-color: #ccc; /* Grey for unknown */
+}
+.status.status-btn-wifi-unknown .status-main {
+    color: #666; /* Grey for unknown */
+}
+
+/* Battery Status Colors */
+.status.status-btn-battery-full,
+.status.status-btn-battery-high,
+.status.status-btn-battery-charged,
+.status.status-btn-battery-protection-on {
+    border-color: #4CAF50; /* Green */
+}
+.status.status-btn-battery-full .status-main,
+.status.status-btn-battery-high .status-main,
+.status.status-btn-battery-charged .status-main,
+.status.status-btn-battery-protection-on .status-main {
+    color: #4CAF50;
+}
+
+.status.status-btn-battery-medium,
+.status.status-btn-battery-low,
+.status.status-btn-battery-discharging {
+    border-color: #FF9800; /* Orange */
+}
+.status.status-btn-battery-medium .status-main,
+.status.status-btn-battery-low .status-main,
+.status.status-btn-battery-discharging .status-main {
+    color: #FF9800;
+}
+
+.status.status-btn-battery-critical,
+.status.status-btn-battery-error,
+.status.status-replace-battery,
+.status.status-battery-cannot-charge {
+    border-color: #F44336; /* Red */
+}
+.status.status-btn-battery-critical .status-main,
+.status.status-btn-battery-error .status-main,
+.status.status-replace-battery .status-main,
+.status.status-battery-cannot-charge .status-main {
+    color: #F44336;
+}
+
+.status.status-btn-battery-charging {
+    border-color: #2196F3; /* Blue/Processing */
+}
+.status.status-btn-battery-charging .status-main {
+    color: #2196F3;
+}
+
+/* Add style for Battery Unknown (using initial state) */
+.status.status-btn-battery-unknown {
+    border-color: #ccc; /* Grey for unknown */
+}
+.status.status-btn-battery-unknown .status-main {
+    color: #666; /* Grey for unknown */
+}
+
+/* Add style for Battery Dead (using critical red) */
+.status.status-battery-dead {
+    border-color: #F44336; /* Red - Critical */
+}
+.status.status-battery-dead .status-main {
+    color: #F44336;
+}
+
+/* Volume Status Colors */
+.status.status-volume-100,
+.status.status-volume-75,
+.status.status-volume-auto,
+.status.status-volume-mono,
+.status.status-volume-stereo {
+    border-color: #4CAF50; /* Green */
+}
+.status.status-volume-100 .status-main,
+.status.status-volume-75 .status-main,
+.status.status-volume-auto .status-main,
+.status.status-volume-mono .status-main,
+.status.status-volume-stereo .status-main {
+    color: #4CAF50;
+}
+
+.status.status-volume-50,
+.status.status-volume-25,
+.status.status-volume-caution,
+.status.status-volume-left-only,
+.status.status-volume-right-only {
+    border-color: #FF9800; /* Orange */
+}
+.status.status-volume-50 .status-main,
+.status.status-volume-25 .status-main,
+.status.status-volume-caution .status-main,
+.status.status-volume-left-only .status-main,
+.status.status-volume-right-only .status-main {
+    color: #FF9800;
+}
+
+.status.status-volume-muted,
+.status.status-volume-error {
+    border-color: #F44336; /* Red */
+}
+.status.status-volume-muted .status-main,
+.status.status-volume-error .status-main {
+    color: #F44336;
+}
+
+/* Add style for Volume Unknown (using initial state) */
+.status.status-volume-unknown {
+    border-color: #ccc; /* Grey for unknown */
+}
+.status.status-volume-unknown .status-main {
+    color: #666; /* Grey for unknown */
+}
+
+/* --- Internet/Browsing Status Specific Styles (New) --- */
+
+/* Browsing/Watching (Processing/Active) */
+.status.status-internet-browsing,
+.status.status-youtube-watching {
+    border-color: #2196F3; /* Blue/Processing */
+}
+.status.status-internet-browsing .status-main,
+.status.status-youtube-watching .status-main {
+    color: #2196F3;
+}
+
+/* Errors */
+.status.status-internet-error,
+.status.status-youtube-error {
+    border-color: #F44336; /* Red */
+}
+.status.status-internet-error .status-main,
+.status.status-youtube-error .status-main {
+    color: #F44336;
+}
+
+/* Finished (OK) */
+.status.status-youtube-finished {
+    border-color: #4CAF50; /* Green */
+}
+.status.status-youtube-finished .status-main {
+    color: #4CAF50;
+}
+
+/* Unknown/Homepage (Idle/Unknown) */
+.status.status-youtube-unknown {
+    border-color: #607D8B; /* Blue Grey/Idle */
+}
+.status.status-youtube-unknown .status-main {
+    color: #607D8B;
+}
+
+/* New Volume Status - Headphones */
+.status.status-volume-headphones {
+    border-color: #4CAF50; /* Green - Standard output */
+}
+.status.status-volume-headphones .status-main {
+    color: #4CAF50;
+}
+
+/* New Microphone Status Styles */
+.status.status-microphone-on {
+    border-color: #4CAF50; /* Green - OK */
+}
+.status.status-microphone-on .status-main {
+    color: #4CAF50;
+}
+
+.status.status-microphone-muted {
+    border-color: #607D8B; /* Blue Grey - Idle/Muted */
+}
+.status.status-microphone-muted .status-main {
+    color: #607D8B;
+}
+
+.status.status-microphone-error,
+.status.status-microphone-broken,
+.status.status-microphone-bad,
+.status.status-microphone-missing {
+    border-color: #F44336; /* Red - Error */
+}
+.status.status-microphone-error .status-main,
+.status.status-microphone-broken .status-main,
+.status.status-microphone-bad .status-main,
+.status.status-microphone-missing .status-main {
+    color: #F44336;
+}
+
+/* Add style for Microphone Unknown (using initial state) */
+.status.status-microphone-unknown {
+    border-color: #ccc; /* Grey for unknown */
+}
+.status.status-microphone-unknown .status-main {
+    color: #666; /* Grey for unknown */
+}
+
+/* New System Statuses - Input/Output */
+.status.status-keyboard-unplugged,
+.status.status-mouse-unplugged,
+.status.status-kbmouse-unplugged,
+.status.status-no-output,
+.status.status-no-input,
+.status.status-upgrade-failed,
+.status.status-downgrade-failed {
+    border-color: #F44336; /* Red - Error/Disconnected */
+}
+.status.status-keyboard-unplugged .status-main,
+.status.status-mouse-unplugged .status-main,
+.status.status-kbmouse-unplugged .status-main,
+.status.status-no-output .status-main,
+.status.status-no-input .status-main,
+.status.status-upgrade-failed .status-main,
+.status.status-downgrade-failed .status-main {
+    color: #F44336;
+}
+
+.status.status-glitchy-output,
+.status.status-glitchy-input,
+.status.status-outdated {
+    border-color: #FF9800; /* Orange - Warning/Unstable */
+}
+.status.status-glitchy-output .status-main,
+.status.status-glitchy-input .status-main,
+.status.status-outdated .status-main {
+    color: #FF9800;
+}
+
+/* New System Statuses - Updates */
+.status.status-uptodate,
+.status.status-upgrade-completed,
+.status.status-downgrade-completed {
+    border-color: #4CAF50; /* Green - OK */
+}
+.status.status-uptodate .status-main,
+.status.status-upgrade-completed .status-main,
+.status.status-downgrade-completed .status-main {
+    color: #4CAF50;
+}
+
+.status.status-upgrading,
+.status.status-downgrading {
+    border-color: #2196F3; /* Blue - Processing */
+}
+.status.status-upgrading .status-main,
+.status.status-downgrading .status-main {
+    color: #2196F3;
+}
+
+/* --- New Phone Status Styles --- */
+
+/* Powering On, Opening App, Deleting App, Using App, Taking Photos (Processing) */
+.status.status-phone-poweringon,
+.status.status-phone-openingapp,
+.status.status-phone-deletingapp,
+.status.status-phone-usingapp,
+.status.status-phone-takingphotos {
+    border-color: #2196F3; /* Blue - Processing */
+}
+.status.status-phone-poweringon .status-main,
+.status.status-phone-openingapp .status-main,
+.status.status-phone-deletingapp .status-main,
+.status.status-phone-usingapp .status-main,
+.status.status-phone-takingphotos .status-main {
+    color: #2196F3;
+}
+
+/* Shutting Down (Off) */
+.status.status-phone-shuttingdown {
+    border-color: #F44336; /* Red - Off/Shutdown */
+}
+.status.status-phone-shuttingdown .status-main {
+    color: #F44336;
+}
+
+/* Errors, Missing OS, App Error (Error) */
+.status.status-phone-error,
+.status.status-phone-missingos,
+.status.status-phone-apperror {
+    border-color: #F44336; /* Red - Error */
+}
+.status.status-phone-error .status-main,
+.status.status-phone-missingos .status-main,
+.status.status-phone-apperror .status-main {
+    color: #F44336;
+}
+
+/* --- New Camera Status Styles --- */
+
+/* On, With Filter On (OK) */
+.status.status-camera-on,
+.status.status-camera-filter {
+    border-color: #4CAF50; /* Green - OK */
+}
+.status.status-camera-on .status-main,
+.status.status-camera-filter .status-main {
+    color: #4CAF50;
+}
+
+/* Flipped, Glitchy, Flipped with Filter, Flipped Recording, Flipped Photos, Bad Quality (Warning) */
+.status.status-camera-flipped,
+.status.status-camera-glitchy,
+.status.status-camera-flippedfilter,
+.status.status-camera-flippedrecording,
+.status.status-camera-flippedphotos,
+.status.status-camera-bad {
+    border-color: #FF9800; /* Orange - Warning */
+}
+.status.status-camera-flipped .status-main,
+.status.status-camera-glitchy .status-main,
+.status.status-camera-flippedfilter .status-main,
+.status.status-camera-flippedrecording .status-main,
+.status.status-camera-flippedphotos .status-main,
+.status.status-camera-bad .status-main {
+    color: #FF9800;
+}
+
+/* Off (Shutdown) */
+.status.status-camera-off {
+    border-color: #607D8B; /* Blue Grey - Off state */
+}
+.status.status-camera-off .status-main {
+    color: #607D8B;
+}
+
+/* Recording, Taking Photos (Processing) */
+.status.status-camera-recording,
+.status.status-camera-takingphotos {
+    border-color: #2196F3; /* Blue - Processing */
+}
+.status.status-camera-recording .status-main,
+.status.status-camera-takingphotos .status-main {
+    color: #2196F3;
+}
+
+/* Recording Error, Photos Error, Unknown, Error, Missing (Error) */
+.status.status-camera-recordingerror,
+.status.status-camera-photoserror,
+.status.status-camera-unknown,
+.status.status-camera-error,
+.status.status-camera-missing {
+    border-color: #F44336; /* Red - Error/Missing */
+}
+.status.status-camera-recordingerror .status-main,
+.status.status-camera-photoserror .status-main,
+.status.status-camera-unknown .status-main,
+.status.status-camera-error .status-main,
+.status.status-camera-missing .status-main {
+    color: #F44336;
+}
+
+/* New System Status - Broken Computer, Memory Issues, Plainrock124 */
+.status.status-broken-computer,
+.status.status-no-memory,
+.status.status-no-ram,
+.status.status-no-space,
+.status.status-plainrock-smashing {
+    border-color: #F44336; /* Red - Critical error */
+}
+.status.status-broken-computer .status-main,
+.status.status-no-memory .status-main,
+.status.status-no-ram .status-main,
+.status.status-no-space .status-main,
+.status.status-plainrock-smashing .status-main {
+    color: #F44336;
+}
+
+/* WiFi removing MEMZ - Processing/recovery state */
+.status.status-wifi-removing-memz {
+    border-color: #2196F3; /* Blue - Processing */
+}
+.status.status-wifi-removing-memz .status-main {
+    color: #2196F3;
+}
+
+/* --- New Console Status Styles --- */
+.status.status-console-startup,
+.status.status-console-startgame {
+    border-color: #2196F3; /* Blue - Processing */
+}
+.status.status-console-startup .status-main,
+.status.status-console-startgame .status-main {
+    color: #2196F3;
+}
+
+.status.status-console-shutdown {
+    border-color: #F44336; /* Red - Off/Shutdown */
+}
+.status.status-console-shutdown .status-main {
+    color: #F44336;
+}
+
+.status.status-console-error,
+.status.status-console-gameerror,
+.status.status-console-disknotread,
+.status.status-console-controllermissing {
+    border-color: #F44336; /* Red - Error */
+}
+.status.status-console-error .status-main,
+.status.status-console-gameerror .status-main,
+.status.status-console-disknotread .status-main,
+.status.status-console-controllermissing .status-main {
+    color: #F44336;
+}
+
+.status.status-console-playinggame {
+    border-color: #4CAF50; /* Green - OK */
+}
+.status.status-console-playinggame .status-main {
+    color: #4CAF50;
+}
+
+.status.status-console-idle {
+    border-color: #607D8B; /* Blue Grey - Idle */
+}
+.status.status-console-idle .status-main {
+    color: #607D8B;
+}
+
+.status.status-console-stickdrift {
+    border-color: #FF9800; /* Orange - Warning */
+}
+.status.status-console-stickdrift .status-main {
+    color: #FF9800;
+}
+
+/* --- New TV Status Styles --- */
+.status.status-tv-startup {
+    border-color: #2196F3; /* Blue - Processing */
+}
+.status.status-tv-startup .status-main {
+    color: #2196F3;
+}
+
+.status.status-tv-shutdown {
+    border-color: #F44336; /* Red - Off/Shutdown */
+}
+.status.status-tv-shutdown .status-main {
+    color: #F44336;
+}
+
+.status.status-tv-watchingnews,
+.status.status-tv-watchingshow,
+.status.status-tv-watchingmovie {
+    border-color: #4CAF50; /* Green - OK */
+}
+.status.status-tv-watchingnews .status-main,
+.status.status-tv-watchingshow .status-main,
+.status.status-tv-watchingmovie .status-main {
+    color: #4CAF50;
+}
+
+.status.status-tv-error,
+.status.status-tv-movieerror,
+.status.status-tv-newserror,
+.status.status-tv-showerror,
+.status.status-tv-missingremote {
+    border-color: #F44336; /* Red - Error */
+}
+.status.status-tv-error .status-main,
+.status.status-tv-movieerror .status-main,
+.status.status-tv-newserror .status-main,
+.status.status-tv-showerror .status-main,
+.status.status-tv-missingremote .status-main {
+    color: #F44336;
+}
+
+.status.status-tv-showhijacked,
+.status.status-tv-newshijacked,
+.status.status-tv-moviehijacked {
+    border-color: #9C27B0; /* Purple - Hijacked */
+}
+.status.status-tv-showhijacked .status-main,
+.status.status-tv-newshijacked .status-main,
+.status.status-tv-moviehijacked .status-main {
+    color: #9C27B0;
+}
+
+/* Emergency Alert Status - Critical warning */
+.status.status-tv-eas-alarm,
+.status.status-phone-eas-alarm {
+    border-color: #F44336; /* Red - Critical alert */
+    animation: flash 1s infinite; /* Add flashing effect for emergency */
+}
+.status.status-tv-eas-alarm .status-main,
+.status.status-phone-eas-alarm .status-main {
+    color: #F44336;
+}
+
+/* Pirated Movie Status - Warning */
+.status.status-pirated-movie {
+    border-color: #FF9800; /* Orange - Warning */
+}
+.status.status-pirated-movie .status-main {
+    color: #FF9800;
+}
+
+/* Add flashing animation for emergency alerts */
+@keyframes flash {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.5; }
+}
+
+/* --- Trash Can Status Styles --- */
+.status.status-trash-empty {
+    border-color: #4CAF50; /* Green - OK */
+}
+.status.status-trash-empty .status-main {
+    color: #4CAF50;
+}
+
+.status.status-trash-onefile,
+.status.status-trash-tenfiles {
+    border-color: #607D8B; /* Blue Grey - Idle */
+}
+.status.status-trash-onefile .status-main,
+.status.status-trash-tenfiles .status-main {
+    color: #607D8B;
+}
+
+.status.status-trash-hundredfiles,
+.status.status-trash-full {
+    border-color: #FF9800; /* Orange - Warning */
+}
+.status.status-trash-hundredfiles .status-main,
+.status.status-trash-full .status-main {
+    color: #FF9800;
+}
+
+.status.status-trash-emptying {
+    border-color: #2196F3; /* Blue - Processing */
+}
+.status.status-trash-emptying .status-main {
+    color: #2196F3;
+}
+
+.status.status-trash-emptying-error {
+    border-color: #F44336; /* Red - Error */
+}
+.status.status-trash-emptying-error .status-main {
+    color: #F44336;
+}
+
+.status.status-trash-emptying-finished {
+    border-color: #4CAF50; /* Green - OK */
+}
+.status.status-trash-emptying-finished .status-main {
+    color: #4CAF50;
+}
+
+.status.status-trash-inception {
+    border-color: #9C27B0; /* Purple - Special/Caution */
+    animation: flash 1s infinite; /* Add flashing effect for caution */
+}
+.status.status-trash-inception .status-main {
+    color: #9C27B0;
+}
+
+/* --- Added styles for extreme battery and smash statuses --- */
+.status.status-battery-overfull,
+.status.status-battery-superfull,
+.status.status-battery-ultrafull,
+.status.status-battery-megafull {
+    border-color: #FF9800; /* Orange warning for absurd levels */
+}
+.status.status-battery-overfull .status-main,
+.status.status-battery-superfull .status-main,
+.status.status-battery-ultrafull .status-main,
+.status.status-battery-megafull .status-main {
+    color: #FF9800;
+}
+
+/* Battery Exploding - critical, uses a pulsing red glow */
+.status.status-battery-exploding {
+    border-color: #D32F2F; /* Deep red */
+    box-shadow: 0 0 18px rgba(211,47,47,0.45), inset 0 0 8px rgba(211,47,47,0.25);
+    animation: pulse-explode 0.9s infinite;
+}
+.status.status-battery-exploding .status-main {
+    color: #D32F2F;
+}
+@keyframes pulse-explode {
+    0% { transform: scale(1); opacity: 1; }
+    50% { transform: scale(1.02); opacity: 0.8; }
+    100% { transform: scale(1); opacity: 1; }
+}
+
+/* Trash nested / infinite inception styles */
+.status.status-trash-inception {
+    border-color: #9C27B0; /* Purple - Special/Caution */
+    animation: flash 1s infinite; /* existing */
+}
+.status.status-trash-inception .status-main {
+    color: #9C27B0;
+}
+/* Double-nested caution (more intense) */
+.status.status-trash-inception-2 {
+    border-color: #7B1FA2; /* Slightly darker purple */
+    animation: flash 0.8s infinite;
+    box-shadow: 0 0 12px rgba(124,58,237,0.2);
+}
+.status.status-trash-inception-2 .status-main {
+    color: #7B1FA2;
+}
+/* Infinite-loop inception - special animated rainbow border */
+.status.status-trash-infinite {
+    border-width: 3px;
+    border-style: solid;
+    border-image: linear-gradient(90deg, #FF5722, #FFEB3B, #8BC34A, #00BCD4, #3F51B5) 1;
+    animation: spin-border 2.5s linear infinite;
+}
+.status.status-trash-infinite .status-main {
+    color: #FF5722;
+}
+@keyframes spin-border {
+    0% { filter: hue-rotate(0deg); }
+    100% { filter: hue-rotate(360deg); }
+}
+
+/* Infinite full as special green (playful) */
+.status.status-battery-infinitefull {
+    border-color: #4CAF50;
+}
+.status.status-battery-infinitefull .status-main {
+    color: #4CAF50;
+}
+
+/* --- HTTP Status Colors --- */
+/* Informational / Continue (blue-ish) */
+.status.status-http-100 {
+    border-color: #2196F3;
+}
+.status.status-http-100 .status-main { color: #2196F3; }
+
+/* Custom Plainrock (chaotic purple) */
+.status.status-http-124 {
+    border-color: #9C27B0;
+}
+.status.status-http-124 .status-main { color: #9C27B0; }
+
+/* Client errors (orange/red) */
+.status.status-http-400,
+.status.status-http-403,
+.status.status-http-404,
+.status.status-http-418,
+.status.status-http-420,
+.status.status-http-429 {
+    border-color: #FF9800;
+}
+.status.status-http-400 .status-main,
+.status.status-http-403 .status-main,
+.status.status-http-404 .status-main,
+.status.status-http-418 .status-main,
+.status.status-http-420 .status-main,
+.status.status-http-429 .status-main {
+    color: #FF9800;
+}
+
+/* Server errors (red) */
+.status.status-http-500,
+.status.status-http-502 {
+    border-color: #F44336;
+}
+.status.status-http-500 .status-main,
+.status.status-http-502 .status-main {
+    color: #F44336;
+}
+
+/* Unknown / ??? status - neutral grey with subtle pulse */
+.status.status-http-unknown {
+    border-color: #757575;
+    box-shadow: 0 0 8px rgba(117,117,117,0.12);
+    animation: subtle-pulse 2.5s ease-in-out infinite;
+}
+.status.status-http-unknown .status-main { color: #757575; }
+@keyframes subtle-pulse {
+    0% { transform: translateY(0); opacity: 1; }
+    50% { transform: translateY(-2px); opacity: 0.9; }
+    100% { transform: translateY(0); opacity: 1; }
+}
+
+/* Plainrock smashing uses the existing plainrock-smashing red styling */
+.status.status-plainrock-smashing {
+    border-color: #F44336; /* Red - Critical / Destructive */
+}
+.status.status-plainrock-smashing .status-main {
+    color: #F44336;
+}
+
+/* --- MP3 Player Status Styles --- */
+/* Powering On, Adding/Removing (Processing - Blue) */
+.status.status-mp3-poweringon,
+.status.status-mp3-adding,
+.status.status-mp3-removing {
+    border-color: #2196F3; /* Blue - Processing */
+}
+.status.status-mp3-poweringon .status-main,
+.status.status-mp3-adding .status-main,
+.status.status-mp3-removing .status-main {
+    color: #2196F3;
+}
+
+/* MP3 Player Infected / MEMZ styles */
+.status.status-mp3-memz,
+.status.status-mp3-memz-nyancat {
+    border-color: #F44336; /* Red - Infection */
+}
+.status.status-mp3-memz .status-main,
+.status.status-mp3-memz-nyancat .status-main {
+    color: #F44336;
+}
+
+/* --- New Phone Status Styles (Idle & Needs Recovery) --- */
+/* Phone Idle (neutral/idle) */
+.status.status-phone-idle {
+    border-color: #607D8B; /* Blue Grey - Idle */
+}
+.status.status-phone-idle .status-main {
+    color: #607D8B;
+}
+
+/* Phone Needs Recovery (error/attention) */
+.status.status-phone-needs-recovery {
+    border-color: #F44336; /* Red - Needs recovery */
+}
+.status.status-phone-needs-recovery .status-main {
+    color: #F44336;
+}
+
+/* Idle (Neutral/Grey) */
+.status.status-mp3-idle {
+    border-color: #607D8B; /* Blue Grey - Idle */
+}
+.status.status-mp3-idle .status-main {
+    color: #607D8B;
+}
+
+/* Playing (OK - Green) */
+.status.status-mp3-playing {
+    border-color: #4CAF50; /* Green - OK */
+}
+.status.status-mp3-playing .status-main {
+    color: #4CAF50;
+}
+
+/* Music Error / Corrupt / Needs Recovery (Error - Red) */
+.status.status-mp3-music-error,
+.status.status-mp3-music-corrupt,
+.status.status-mp3-corrupt,
+.status.status-mp3-needs-recovery,
+.status.status-mp3-plainrock-smashing {
+    border-color: #F44336; /* Red - Error / Critical */
+}
+.status.status-mp3-music-error .status-main,
+.status.status-mp3-music-corrupt .status-main,
+.status.status-mp3-corrupt .status-main,
+.status.status-mp3-needs-recovery .status-main,
+.status.status-mp3-plainrock-smashing .status-main {
+    color: #F44336;
+}

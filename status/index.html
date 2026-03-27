@@ -1,0 +1,532 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>System Status</title>
+  <link rel="stylesheet" href="style.css">
+  <!-- Using outlined icons -->
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined" rel="stylesheet">
+  <!-- Add Roboto font -->
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+  <script type="importmap">
+    {
+      "imports": {}
+    }
+  </script>
+</head>
+<body>
+  <div class="container">
+    <div class="banner">
+      Check out my other version! <a href="https://websim.com/@Screen_/system-status-5" target="_blank">https://websim.com/@Screen_/system-status-5</a>
+    </div>
+
+    <div id="status-counter" class="sticky-note">
+      <span id="status-count">Loading...</span> status options available
+    </div>
+
+    <h1>System Status Display</h1>
+
+    <!-- System Status Section -->
+    <section class="status-section">
+      <h2>System Status</h2>
+      <div id="system-status-display" class="status initial">
+        <div class="status-main">
+          <span id="system-status-icon" class="material-icons-outlined">report</span>
+          <span id="system-status-text">Initializing...</span>
+        </div>
+        <span id="system-status-description" class="status-description">System is starting up and performing initial checks.</span>
+      </div>
+      <details class="controls-details">
+        <summary>System Controls</summary>
+        <div class="controls">
+          <button id="btn-system-ok">System OK</button>
+          <button id="btn-system-warning">System Warning</button>
+          <button id="btn-system-error">System Error</button>
+          <button id="btn-system-notfound">No System Found</button>
+          <button id="btn-system-locked">System Locked</button>
+          <button id="btn-system-infected">System Infected</button>
+          <button id="btn-system-initial">Initializing</button>
+          <button id="btn-system-scanning">Deep Scanning</button>
+          <button id="btn-system-standby">System Standby</button>
+          <button id="btn-system-maintenance">System Maintenance</button>
+          <button id="btn-system-offline">System Offline</button>
+          <button id="btn-system-online">System Online</button>
+          <button id="btn-system-nokernel">No Kernel Found</button>
+          <button id="btn-system-nobootloader">No Bootloader Found</button>
+          <button id="btn-system-unlocked">System Unlocked</button>
+          <button id="btn-system-severeinfection">System Severe Infection</button>
+          <button id="btn-system-unknown">Unknown Status</button>
+          <button id="btn-system-booting">System Booting</button>
+          <button id="btn-system-updating">System Updating</button>
+          <button id="btn-system-optimizing">Optimizing Apps</button>
+          <button id="btn-system-ultrascanning">Ultra Deep Scan</button>
+          <button id="btn-system-noos">No OS Found</button>
+          <button id="btn-system-unlockedcannotscan">Unlocked: Cannot Scan</button>
+          <button id="btn-system-normalscan">Normal Scan</button>
+          <button id="btn-system-malfunction">System Malfunction</button>
+          <button id="btn-system-updatefail">Update Fail</button>
+          <button id="btn-system-uncompatible">System Uncompatible with Services</button>
+          <button id="btn-system-wifierror">Wifi Error</button>
+          <button id="btn-system-reportingtoservers">Reporting To Servers</button>
+          <button id="btn-system-wifierror-reporting">Wifi Error, Reporting To Servers</button>
+          <button id="btn-system-updatefail-reporting">Update Fail, Reporting To Servers</button>
+          <button id="btn-system-shuttingdown">Shutting Down</button>
+          <button id="btn-system-appsfailedoptimize">Apps Failed to Optimize</button>
+          <button id="btn-system-checkerlocked">Status Checker Locked</button>
+          <button id="btn-system-appsfailedoptimize-reporting">Apps Failed, Reporting To Servers</button>
+          <button id="btn-system-idle">System Idle</button>
+          <!-- New button for Apps Optimized for Wifi -->
+          <button id="btn-system-appswifioptimized">Apps Optimized for Wifi</button>
+          <!-- New button for System Off -->
+          <button id="btn-system-off">System Off</button>
+          <!-- New button for Big Warning Detected -->
+          <button id="btn-system-bigwarning">Big Warning Detected</button>
+          <!-- New buttons for Transfering and Computer Missing -->
+          <button id="btn-system-computermissing">Computer Missing</button>
+          <button id="btn-system-transfering">Transfering Data</button>
+          <button id="btn-system-transferingdone">Transfering Done</button>
+          <button id="btn-system-transferingerror">Transfering Error</button>
+          <button id="btn-system-unknowntransfering">Unknown Transfer Status</button>
+          <!-- New buttons for System Status -->
+          <button id="btn-system-overheating">System Overheating</button>
+          <button id="btn-system-overcooling">System Overcooling</button>
+          <button id="btn-system-sleep">System Sleep</button>
+          <button id="btn-system-hibernation">System Hibernation</button>
+          <button id="btn-system-downloading">Downloading</button>
+          <button id="btn-system-downloadfinished">Download Finished</button>
+          <button id="btn-system-missingdownload">Missing Download</button>
+          <button id="btn-system-downloaderror">Download Error</button>
+          <!-- New buttons for Memz Status -->
+          <button id="btn-system-memz">Memz Status</button>
+          <button id="btn-system-memztookover">Memz Took Over</button>
+          <!-- New button for Memz Nyan Cat Status -->
+          <button id="btn-system-memz-nyancat">Memz Nyan Cat</button>
+          <!-- New System Statuses -->
+          <button id="btn-system-keyboard-unplugged">Keyboard Unplugged</button>
+          <button id="btn-system-mouse-unplugged">Mouse Unplugged</button>
+          <button id="btn-system-kbmouse-unplugged">Mouse and Keyboard Unplugged</button>
+          <button id="btn-system-no-output">No Output</button>
+          <button id="btn-system-no-input">No Input</button>
+          <button id="btn-system-glitchy-output">Glitchy Output</button>
+          <button id="btn-system-glitchy-input">Glitchy Input</button>
+          <button id="btn-system-outdated">Outdated Status</button>
+          <button id="btn-system-uptodate">Up to date status</button>
+          <button id="btn-system-upgrading">Upgrading Status</button>
+          <button id="btn-system-upgrade-completed">Completed Upgrade status</button>
+          <button id="btn-system-upgrade-failed">Upgrade Failed status</button>
+          <button id="btn-system-downgrading">Downgrading status</button>
+          <button id="btn-system-downgrade-completed">Completed Downgrade status</button>
+          <button id="btn-system-downgrade-failed">Downgrade Failed</button>
+          <button id="btn-system-broken-computer">Broken Computer</button>
+          <button id="btn-system-no-memory">No Memory</button>
+          <button id="btn-system-no-ram">No RAM</button>
+          <button id="btn-system-no-space">No Space Left</button>
+          <button id="btn-system-plainrock-smashing">Plainrock124 Smashing Computer</button>
+          <button id="btn-system-pirated-movie">Watching Pirated Movie</button>
+          <!-- New system statuses -->
+          <button id="btn-system-no-cpu">System Status: No CPU</button>
+          <button id="btn-system-empty-disk">System Status: Empty Disk</button>
+          <button id="btn-system-installingapp">Installing App</button>
+          <button id="btn-system-install-app-failed">Install App Failed</button>
+          <button id="btn-system-install-app-finished">Install App Finished</button>
+          <button id="btn-system-uninstallingapp">Uninstalling App</button>
+          <button id="btn-system-uninstall-app-failed">Uninstall App Failed</button>
+          <button id="btn-system-uninstall-app-finished">Uninstall App Finished</button>
+        </div>
+      </details>
+    </section>
+
+    <!-- Wifi Status Section -->
+    <section class="status-section">
+      <h2>Wi-Fi Status</h2>
+      <div id="wifi-status-display" class="status initial">
+        <div class="status-main">
+          <span id="wifi-status-icon" class="material-icons-outlined">signal_wifi_off</span>
+          <span id="wifi-status-text">Unknown</span>
+        </div>
+        <span id="wifi-status-description" class="status-description">Wi-Fi status could not be determined.</span>
+      </div>
+      <details class="controls-details">
+        <summary>Wi-Fi Controls</summary>
+        <div class="controls">
+          <button id="btn-wifi-full">Wifi Level: Full</button>
+          <button id="btn-wifi-high">Wifi Level: High (75%)</button>
+          <button id="btn-wifi-medium">Wifi Level: Medium (50%)</button>
+          <button id="btn-wifi-low">Wifi Level: Low (25%)</button>
+          <button id="btn-wifi-none">Wifi Level: None (0%)</button>
+          <button id="btn-wifi-connected">Wifi: Connected</button>
+          <button id="btn-wifi-disconnected">Wifi: Disconnected</button>
+          <button id="btn-wifi-connecting">Wifi: Connecting...</button>
+          <button id="btn-wifi-error">Wifi: Error</button>
+          <button id="btn-wifi-unknown">Wifi: Unknown</button>
+          <button id="btn-wifi-idle">Wifi: Idle</button>
+          <button id="btn-wifi-memz">Wifi Infected by MEMZ</button>
+          <button id="btn-wifi-memz-spreading">Wifi Infecting Connected Devices with MEMZ</button>
+          <button id="btn-wifi-removing-memz">WiFi Removing MEMZ</button>
+          <!-- New WiFi statuses -->
+          <button id="btn-wifi-on-data">WiFi: On (Data)</button>
+          <button id="btn-wifi-on-5g">WiFi: On 5G</button>
+          <button id="btn-wifi-on-4g">WiFi: On 4G</button>
+          <button id="btn-wifi-on-3g">WiFi: On 3G</button>
+          <button id="btn-wifi-on-2g">WiFi: On 2G</button>
+          <button id="btn-wifi-on-1g">WiFi: On 1G</button>
+          <button id="btn-wifi-on-edge">WiFi: On Edge</button>
+        </div>
+      </details>
+    </section>
+
+    <!-- Battery Status Section -->
+    <section class="status-section">
+      <h2>Battery Status</h2>
+      <div id="battery-status-display" class="status initial">
+        <div class="status-main">
+          <span id="battery-status-icon" class="material-icons-outlined">battery_unknown</span>
+          <span id="battery-status-text">Unknown</span>
+        </div>
+        <span id="battery-status-description" class="status-description">Battery status could not be determined.</span>
+      </div>
+      <details class="controls-details">
+        <summary>Battery Controls</summary>
+        <div class="controls">
+          <button id="btn-battery-full">Battery: Full (100%)</button>
+          <button id="btn-battery-high">Battery: High (75%)</button>
+          <button id="btn-battery-medium">Battery: Medium (50%)</button>
+          <button id="btn-battery-low">Battery: Low (25%)</button>
+          <button id="btn-battery-critical">Battery: Critical (5%)</button>
+          <button id="btn-battery-charging">Battery: Charging</button>
+          <button id="btn-battery-charged">Battery: Charged</button>
+          <button id="btn-battery-discharging">Battery: Discharging</button>
+          <button id="btn-battery-error">Battery: Error</button>
+          <button id="btn-battery-unknown">Battery: Unknown</button>
+          <button id="btn-battery-protection-on">Battery Protection: On</button>
+          <button id="btn-battery-idle">Battery: Idle</button>
+          <button id="btn-battery-dead">Battery: Dead (0%)</button>
+          <!-- New Battery Statuses -->
+          <button id="btn-battery-replace">Replace Battery</button>
+          <button id="btn-battery-cannotcharge">Battery Cannot Charge</button>
+          <button id="btn-battery-exploding">Battery: Exploding</button>
+
+          <!-- Extreme / Fun Battery Statuses -->
+          <button id="btn-battery-overfull">Battery: Over-Full (101%)</button>
+          <button id="btn-battery-superfull">Battery: Super-Full (200%)</button>
+          <button id="btn-battery-ultrafull">Battery: Ultra-Full (1000%)</button>
+          <button id="btn-battery-megafull">Battery: Mega-Full (1000000000000000000005%)</button>
+          <button id="btn-battery-infinitefull">Battery: Infinite-Full (infinite%)</button>
+
+          <!-- Battery being smashed by Plainrock124 -->
+          <button id="btn-battery-plainrock-smashing">Battery: Plainrock124 Smashing Battery</button>
+        </div>
+      </details>
+    </section>
+
+    <!-- Volume Status Section -->
+    <section class="status-section">
+      <h2>Volume Status</h2>
+      <div id="volume-status-display" class="status initial">
+        <div class="status-main">
+          <span id="volume-status-icon" class="material-icons-outlined">volume_off</span>
+          <span id="volume-status-text">Unknown</span>
+        </div>
+        <span id="volume-status-description" class="status-description">Volume status could not be determined.</span>
+      </div>
+      <details class="controls-details">
+        <summary>Volume Controls</summary>
+        <div class="controls">
+          <button id="btn-volume-100">Volume: 100%</button>
+          <button id="btn-volume-75">Volume: 75%</button>
+          <button id="btn-volume-50">Volume: 50%</button>
+          <button id="btn-volume-25">Volume: 25%</button>
+          <button id="btn-volume-muted">Volume: Muted</button>
+          <button id="btn-volume-unknown">Volume: Unknown (no audio devices)</button>
+          <button id="btn-volume-above100">Volume: Above 100% (caution)</button>
+          <button id="btn-volume-auto">Volume: Auto % on</button>
+          <button id="btn-volume-error">Volume: Error</button>
+          <!-- New Volume Statuses -->
+          <button id="btn-volume-left-only">Volume: Left Channel Only</button>
+          <button id="btn-volume-right-only">Volume: Right Channel Only</button>
+          <button id="btn-volume-mono">Volume: Mono</button>
+          <button id="btn-volume-stereo">Volume: Stereo</button>
+          <button id="btn-volume-headphones">Volume: Headphones</button>
+          <!-- New Volume -->
+          <button id="btn-volume-speakers">Volume: Speakers</button>
+        </div>
+      </details>
+    </section>
+
+    <!-- Internet/Browsing Status Section -->
+    <section class="status-section">
+      <h2>Internet/Browsing Status</h2>
+      <div id="internet-status-display" class="status initial">
+        <div class="status-main">
+          <span id="internet-status-icon" class="material-icons-outlined">wifi_off</span>
+          <span id="internet-status-text">Unknown</span>
+        </div>
+        <span id="internet-status-description" class="status-description">Internet and browsing status could not be determined.</span>
+      </div>
+      <details class="controls-details">
+        <summary>Internet/Browsing Controls</summary>
+        <div class="controls">
+          <button id="btn-internet-browsing">Browsing Internet</button>
+          <button id="btn-internet-browsing-error">Browsing Internet Error</button>
+          <button id="btn-internet-youtube-watching">Watching Youtube Status</button>
+          <button id="btn-internet-youtube-error">Youtube Error</button>
+          <button id="btn-internet-youtube-finished">Youtube Finished Video status</button>
+          <button id="btn-internet-youtube-unknown">Youtube Unknown Video (Still on homepage) status</button>
+          <button id="btn-internet-watching-plainrock">Watching Plainrock124</button>
+          <button id="btn-internet-memz">Internet Infected by MEMZ</button>
+        </div>
+      </details>
+    </section>
+
+    <!-- New Microphone Status Section -->
+    <section class="status-section">
+      <h2>Microphone Status</h2>
+      <div id="microphone-status-display" class="status initial">
+        <div class="status-main">
+          <span id="microphone-status-icon" class="material-icons-outlined">mic_off</span>
+          <span id="microphone-status-text">Unknown</span>
+        </div>
+        <span id="microphone-status-description" class="status-description">Microphone status could not be determined.</span>
+      </div>
+      <details class="controls-details">
+        <summary>Microphone Controls</summary>
+        <div class="controls">
+          <button id="btn-microphone-on">Microphone On</button>
+          <button id="btn-microphone-muted">Microphone Muted</button>
+          <button id="btn-microphone-error">Microphone Error</button>
+          <button id="btn-microphone-broken">Broken Microphone</button>
+          <button id="btn-microphone-bad">Bad Microphone</button>
+          <button id="btn-microphone-missing">Missing Microphone</button>
+          <button id="btn-microphone-memz">Microphone Infected by MEMZ</button>
+          <button id="btn-microphone-plainrock-smashing">Plainrock124 Smashing Microphone</button>
+        </div>
+      </details>
+    </section>
+
+    <!-- New Phone Status Section -->
+    <section class="status-section">
+      <h2>Phone Status</h2>
+      <div id="phone-status-display" class="status initial">
+        <div class="status-main">
+          <span id="phone-status-icon" class="material-icons-outlined">phone_android</span>
+          <span id="phone-status-text">Unknown</span>
+        </div>
+        <span id="phone-status-description" class="status-description">Phone status could not be determined.</span>
+      </div>
+      <details class="controls-details">
+        <summary>Phone Controls</summary>
+        <div class="controls">
+          <button id="btn-phone-poweringon">Powering On Phone</button>
+          <button id="btn-phone-shuttingdown">Shutting Down Phone</button>
+          <button id="btn-phone-openingapp">Opening an App</button>
+          <button id="btn-phone-error">Phone Error</button>
+          <button id="btn-phone-missingos">Missing Phone OS</button>
+          <button id="btn-phone-deletingapp">Deleting App</button>
+          <button id="btn-phone-apperror">App Error</button>
+          <button id="btn-phone-usingapp">Using App</button>
+          <button id="btn-phone-takingphotos">Taking Photos</button>
+          <!-- New phone status -->
+          <button id="btn-phone-addingapp">Phone Status: Adding App</button>
+          <button id="btn-phone-memz">Phone Infected by MEMZ</button>
+          <button id="btn-phone-memz-nyancat">Phone Showing Nyan Cat MEMZ</button>
+          <button id="btn-phone-plainrock-smashing">Plainrock124 Smashing Phone</button>
+          <button id="btn-phone-eas-alarm">Phone Emergency Alert</button>
+          <!-- New phone statuses requested -->
+          <button id="btn-phone-idle">Phone Status: Idle</button>
+          <button id="btn-phone-needs-recovery">Phone Status: Needs Recovery</button>
+        </div>
+      </details>
+    </section>
+
+    <!-- MP3 Player Status Section -->
+    <section class="status-section">
+      <h2>MP3 Player Status</h2>
+      <div id="mp3-status-display" class="status initial">
+        <div class="status-main">
+          <span id="mp3-status-icon" class="material-icons-outlined">audiotrack</span>
+          <span id="mp3-status-text">Unknown</span>
+        </div>
+        <span id="mp3-status-description" class="status-description">MP3 player status could not be determined.</span>
+      </div>
+      <details class="controls-details">
+        <summary>MP3 Player Controls</summary>
+        <div class="controls">
+          <button id="btn-mp3-poweringon">Powering On MP3 Player</button>
+          <button id="btn-mp3-shuttingdown">Shutting Down MP3 Player</button>
+          <button id="btn-mp3-idle">Idle MP3 Player</button>
+          <button id="btn-mp3-playing">Playing Music</button>
+          <button id="btn-mp3-music-error">Music Error</button>
+          <button id="btn-mp3-music-corrupt">Music Corrupt</button>
+          <button id="btn-mp3-corrupt">MP3 Player Corrupt</button>
+          <button id="btn-mp3-adding-music">Adding Music/Songs</button>
+          <button id="btn-mp3-removing-music">Removing Music/Song</button>
+          <button id="btn-mp3-unknown">Unknown MP3 Player</button>
+          <button id="btn-mp3-needs-recovery">MP3 Player Needs Recovery</button>
+          <button id="btn-mp3-plainrock-smashing">Plainrock124 Smashing MP3 Player</button>
+          <button id="btn-mp3-memz">MP3 Player Infected by MEMZ</button>
+          <button id="btn-mp3-memz-nyancat">MP3 Player Showing Nyan Cat MEMZ</button>
+        </div>
+      </details>
+    </section>
+
+    <!-- New Camera Status Section -->
+    <section class="status-section">
+      <h2>Camera Status</h2>
+      <div id="camera-status-display" class="status initial">
+        <div class="status-main">
+          <span id="camera-status-icon" class="material-icons-outlined">camera_alt</span>
+          <span id="camera-status-text">Unknown</span>
+        </div>
+        <span id="camera-status-description" class="status-description">Camera status could not be determined.</span>
+      </div>
+      <details class="controls-details">
+        <summary>Camera Controls</summary>
+        <div class="controls">
+          <button id="btn-camera-on">Camera On</button>
+          <button id="btn-camera-flipped">Camera On but Flipped</button>
+          <button id="btn-camera-off">Camera Off</button>
+          <button id="btn-camera-glitchy">Glitchy Camera</button>
+          <button id="btn-camera-filter">Camera with Filter On</button>
+          <button id="btn-camera-flippedfilter">Flipped Camera with Filter On</button>
+          <button id="btn-camera-recording">Camera Recording</button>
+          <button id="btn-camera-recordingerror">Camera Recording Error</button>
+          <button id="btn-camera-flippedrecording">Camera Flipped Recording</button>
+          <button id="btn-camera-takingphotos">Camera Taking Photos</button>
+          <button id="btn-camera-photoserror">Camera Photos Error</button>
+          <button id="btn-camera-flippedphotos">Flipped Camera Taking Photos</button>
+          <button id="btn-camera-unknown">Unknown Camera</button>
+          <button id="btn-camera-error">Camera Error</button>
+          <button id="btn-camera-missing">Missing Camera</button>
+          <button id="btn-camera-bad">Bad Camera</button>
+          <button id="btn-camera-memz">Camera Infected by MEMZ</button>
+          <button id="btn-camera-memz-nyancat">Camera Showing Nyan Cat MEMZ</button>
+          <button id="btn-camera-plainrock-smashing">Plainrock124 Smashing Camera</button>
+        </div>
+      </details>
+    </section>
+
+    <!-- New Console Status Section -->
+    <section class="status-section">
+      <h2>Console Status</h2>
+      <div id="console-status-display" class="status initial">
+        <div class="status-main">
+          <span id="console-status-icon" class="material-icons-outlined">gamepad</span>
+          <span id="console-status-text">Unknown</span>
+        </div>
+        <span id="console-status-description" class="status-description">Console status could not be determined.</span>
+      </div>
+      <details class="controls-details">
+        <summary>Console Controls</summary>
+        <div class="controls">
+          <button id="btn-console-startup">Console Starting Up</button>
+          <button id="btn-console-shutdown">Console Shutting Down</button>
+          <button id="btn-console-startgame">Console Starting Game</button>
+          <button id="btn-console-error">Console Error</button>
+          <button id="btn-console-playinggame">Console Playing Game</button>
+          <button id="btn-console-gameerror">Console Game Error</button>
+          <button id="btn-console-disknotread">Console Disk Can't Be Read</button>
+          <button id="btn-console-idle">Console Idle</button>
+          <button id="btn-console-unknown">Console Unknown Status</button>
+          <button id="btn-console-controllermissing">Console Controller Missing</button>
+          <button id="btn-console-memz">Console Infected by MEMZ</button>
+          <button id="btn-console-memz-nyancat">Console Showing MEMZ Nyan Cat</button>
+          <button id="btn-console-plainrock-smashing">Plainrock124 Smashing Console</button>
+          <button id="btn-console-stickdrift">Controller Stick Drift</button>
+        </div>
+      </details>
+    </section>
+
+    <!-- New TV Status Section -->
+    <section class="status-section">
+      <h2>TV Status</h2>
+      <div id="tv-status-display" class="status initial">
+        <div class="status-main">
+          <span id="tv-status-icon" class="material-icons-outlined">tv</span>
+          <span id="tv-status-text">Unknown</span>
+        </div>
+        <span id="tv-status-description" class="status-description">TV status could not be determined.</span>
+      </div>
+      <details class="controls-details">
+        <summary>TV Controls</summary>
+        <div class="controls">
+          <button id="btn-tv-startup">TV Starting Up</button>
+          <button id="btn-tv-shutdown">TV Shutting Down</button>
+          <button id="btn-tv-error">TV Error</button>
+          <button id="btn-tv-watchingnews">TV Watching News</button>
+          <button id="btn-tv-watchingshow">TV Watching Show</button>
+          <button id="btn-tv-watchingmovie">TV Watching Movie</button>
+          <button id="btn-tv-movieerror">TV Movie Error</button>
+          <button id="btn-tv-newserror">TV News Error</button>
+          <button id="btn-tv-showerror">TV Show Error</button>
+          <button id="btn-tv-showhijacked">TV Show Hijacked</button>
+          <button id="btn-tv-newshijacked">TV News Hijacked</button>
+          <button id="btn-tv-moviehijacked">TV Movie Hijacked</button>
+          <button id="btn-tv-unknown">TV Unknown</button>
+          <button id="btn-tv-missingremote">TV Missing Remote</button>
+          <button id="btn-tv-memz">TV Infected by MEMZ</button>
+          <button id="btn-tv-memz-nyancat">TV Showing MEMZ Nyan Cat</button>
+          <button id="btn-tv-eas-alarm">TV Emergency Alert</button>
+          <button id="btn-tv-plainrock-smashing">Plainrock124 Smashing TV</button>
+        </div>
+      </details>
+    </section>
+
+    <!-- New Trash Can Status Section -->
+    <section class="status-section">
+      <h2>Trash Can Status</h2>
+      <div id="trash-status-display" class="status initial">
+        <div class="status-main">
+          <span id="trash-status-icon" class="material-icons-outlined">delete</span>
+          <span id="trash-status-text">Unknown</span>
+        </div>
+        <span id="trash-status-description" class="status-description">Trash can status could not be determined.</span>
+      </div>
+      <details class="controls-details">
+        <summary>Trash Can Controls</summary>
+        <div class="controls">
+          <button id="btn-trash-empty">Trash Can Empty</button>
+          <button id="btn-trash-onefile">Trash Can with 1 File</button>
+          <button id="btn-trash-tenfiles">Trash Can with 10 Files</button>
+          <button id="btn-trash-hundredfiles">Trash Can with 100 Files</button>
+          <button id="btn-trash-full">Trash Can Full</button>
+          <button id="btn-trash-emptying">Trash Can Emptying</button>
+          <button id="btn-trash-emptying-error">Trash Can Emptying Error</button>
+          <button id="btn-trash-emptying-finished">Trash Can Emptying Finished</button>
+          <button id="btn-trash-inception">Trash Can has Trash Can inside (CAUTION)</button>
+          <button id="btn-trash-inception-2">Trash Can has Trash Can has Trash Can inside</button>
+          <button id="btn-trash-infinite">Trash Can has Infinite loops of Trash Can inside</button>
+          <button id="btn-trash-unknown">Unknown Trash Can (no trash can)</button>
+        </div>
+      </details>
+    </section>
+
+    <!-- New HTTP Status Section -->
+    <section class="status-section">
+      <h2>HTTP Status</h2>
+      <div id="http-status-display" class="status initial">
+        <div class="status-main">
+          <span id="http-status-icon" class="material-icons-outlined">http</span>
+          <span id="http-status-text">Unknown</span>
+        </div>
+        <span id="http-status-description" class="status-description">HTTP status could not be determined.</span>
+      </div>
+      <details class="controls-details">
+        <summary>HTTP Controls</summary>
+        <div class="controls">
+          <button id="btn-http-100">100 Continue</button>
+          <button id="btn-http-124">124 Plainrock</button>
+          <button id="btn-http-400">400 Bad Request</button>
+          <button id="btn-http-403">403 Forbidden</button>
+          <button id="btn-http-404">404 Not Found</button>
+          <button id="btn-http-418">418 I'm a teapot</button>
+          <button id="btn-http-420">420 Error</button>
+          <button id="btn-http-429">429 Too Many Requests</button>
+          <button id="btn-http-500">500 Internal Server Error</button>
+          <button id="btn-http-502">502 Bad Gateway</button>
+        </div>
+      </details>
+    </section>
+
+  </div>
+  <script type="module" src="script.js"></script>
+</body>
+</html>
