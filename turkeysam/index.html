@@ -1,0 +1,34 @@
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Spinning 3D Turkey Sandwiches</title>
+    <link rel="stylesheet" href="./style.css" />
+    <script type="importmap">
+      {
+        "imports": {
+          "three": "https://unpkg.com/three@0.150.0/build/three.module.js",
+          "three/examples/jsm/loaders/FontLoader.js": "https://unpkg.com/three@0.150.0/examples/jsm/loaders/FontLoader.js",
+          "three/examples/jsm/geometries/TextGeometry.js": "https://unpkg.com/three@0.150.0/examples/jsm/geometries/TextGeometry.js"
+        }
+      }
+    </script>
+  </head>
+  <body>
+    <!-- Container for the Three.js canvas -->
+    <div id="container"></div>
+    <!-- Background audio playing in a loop -->
+    <audio id="bg-audio" loop autoplay>
+      <source src="/mars.mp3" type="audio/mpeg" />
+    </audio>
+    <script type="module" src="./script.js"></script>
+    <script>
+      const bgAudio = document.getElementById("bg-audio");
+      bgAudio.loop = true;
+      if (bgAudio.paused) {
+        document.addEventListener("click", () => {
+          bgAudio.play().catch(error => console.error("Error playing audio:", error));
+        }, { once: true });
+      }
+    </script>
+  </body>
+</html>

@@ -1,0 +1,11 @@
+body {
+  margin: 0;
+  overflow: hidden;
+  background-color: #f0f0f0; /* Matches config.backgroundColor */
+}
+
+#container {
+  width: 100vw;
+  height: 100vh;
+  position: relative;
+}
