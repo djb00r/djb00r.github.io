@@ -1,0 +1,585 @@
+<html>
+<head>
+  <title>Talking Tom Recreation</title>
+  <link rel="stylesheet" href="/style.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script type="importmap">
+    {
+      "imports": {
+        "gsap": "https://cdn.jsdelivr.net/npm/gsap@3.12.2/index.js"
+      }
+    }
+  </script>
+</head>
+<body>
+  <div id="aspect-wrapper">
+    <div id="game-container">
+      <img id="background" src="/background.png" alt="Brick wall background">
+      <img id="talking-tom" src="/talking_tom.png" alt="Talking Tom">
+      
+      <!-- Banner Ad with fixed styles -->
+      <div id="banner-ad" style="display: flex !important; opacity: 1 !important; visibility: visible !important; position: absolute !important; top: 0 !important; left: 0 !important; right: 0 !important; z-index: 999 !important;">
+          <img id="banner-ad-img" src="/Screenshot 2025-05-05 111840 (1).png" alt="Banner Ad" style="display: block !important; opacity: 1 !important; visibility: visible !important;">
+      </div>
+
+      <!-- Top bar buttons -->
+      <div class="top-bar">
+        <button id="camera-btn" class="icon-button" title="Camera"><img src="/camera_icon.png" alt="Camera"></button>
+        <button id="video-btn" class="icon-button" title="Record Video"><img src="/video_icon.png" alt="Video"></button>
+        <!-- Orientation Button moved to bottom -->
+        <button id="info-btn" class="icon-button" title="Info"><img src="/info_icon.png" alt="Info"></button>
+        <button id="ad-btn" class="icon-button ad-button" title="Watch Ad"><img src="/ad_icon.png" alt="Ad Icon"></button>
+      </div>
+
+      <!-- Bottom buttons -->
+      <div class="bottom-left-buttons page-1-buttons">
+        <!-- WebSim Button -->
+        <button id="websim-btn" class="icon-button large-icon" title="WebSim.ai"><img src="/60420785_3111111111111111111111111111111112x311111111111111111111111111112_1 (1).webp" alt="WebSim"></button>
+        <!-- Piano button -->
+        <button id="piano-btn" class="icon-button large-icon" title="Piano"><img src="/piano_icon.png" alt="Piano"></button>
+        <!-- Mario Game button -->
+        <button id="mario-btn" class="icon-button large-icon" title="Mario Game"><img src="/mario_hat_icon.png" alt="Mario Game"></button>
+        <!-- Bird button -->
+        <button id="bird-btn" class="icon-button large-icon" title="Bird"><img src="/bird_icon.png" alt="Bird"></button>
+        <button id="fart-btn" class="icon-button large-icon" title="Fart"><img src="/fart_icon.png" alt="Fart"></button>
+        <!-- Phone button -->
+        <button id="phone-btn" class="icon-button large-icon" title="Phone"><img src="/phone_icon.png" alt="Phone"></button>
+        <button id="paw-btn" class="icon-button large-icon" title="Scratch"><img src="/paw_icon.png" alt="Paw"></button>
+        <!-- Blocks button -->
+        <button id="blocks-btn" class="icon-button large-icon" title="Blocks"><img src="/blocks_icon.png" alt="Blocks"></button>
+        <!-- Shop button -->
+        <button id="shop-btn" class="icon-button large-icon" title="Shop"><img src="/shop_icon.png" alt="Shop"></button>
+      </div>
+      
+      <!-- Page 2 buttons (initially hidden) -->
+      <div class="bottom-left-buttons page-2-buttons hidden">
+        <!-- WebSim Button (only one that stays visible) -->
+        <button id="websim-btn-2" class="icon-button large-icon" title="WebSim.ai"><img src="/60420785_3111111111111111111111111111111112x311111111111111111111111111112_1 (1).webp" alt="WebSim"></button>
+        <!-- Dance button -->
+        <button id="dance-btn" class="icon-button large-icon" title="Dance"><img src="/dance_button_icon.png" alt="Dance"></button>
+        <!-- Ben button -->
+        <button id="ben-btn" class="icon-button large-icon" title="Ben"><img src="/ben_button_icon.png" alt="Ben"></button>
+        <!-- Sound Test button -->
+        <button id="sound-test-btn" class="icon-button large-icon" title="Sound Test"><img src="/sound_test_icon.png" alt="Sound Test"></button>
+        <!-- Leaderboard button -->
+        <button id="leaderboard-btn" class="icon-button large-icon" title="Leaderboard"><img src="/leaderboard_icon.png" alt="Leaderboard"></button>
+      </div>
+
+      <div class="bottom-right-buttons">
+         <button id="eat-btn" class="icon-button large-icon eat-button" title="Eat"><img src="/eat_icon.png" alt="Eat"></button>
+         <span id="eat-count" title="Food Count">10</span>
+      </div>
+
+      <!-- Swap Button (Bottom Left) -->
+      <div class="swap-button-container">
+        <button id="swap-btn" class="icon-button large-icon" title="Swap Buttons"><img src="/swap_button_icon.png" alt="Swap"></button>
+      </div>
+
+      <!-- Microphone and Orientation Buttons (Center Bottom) -->
+      <div class="bottom-center-buttons">
+           <button id="mic-btn" class="icon-button large-icon" title="Talk"><img src="/microphone_icon.png" alt="Microphone"></button>
+           <button id="orientation-btn" class="icon-button large-icon" title="Change Orientation"><img src="/asset_orientation_icon.png" alt="Change Orientation"></button>
+      </div>
+
+      <!-- Sound Test Overlay (initially hidden) -->
+      <div id="sound-test-overlay" class="hidden">
+        <div class="sound-test-content">
+            <div class="sound-test-header">
+                <h2>Sound Test Panel</h2>
+                <button id="sound-test-close-btn" title="Close">&times;</button>
+            </div>
+            <div class="sound-test-grid">
+                <!-- Sound buttons will be generated by JavaScript -->
+            </div>
+        </div>
+      </div>
+
+      <!-- Leaderboard Overlay (initially hidden) -->
+      <div id="leaderboard-overlay" class="hidden">
+        <div class="leaderboard-content">
+            <div class="leaderboard-header">
+                <h2>Leaderboard</h2>
+                <button id="leaderboard-close-btn" title="Close">&times;</button>
+            </div>
+            <div class="leaderboard-tabs">
+                <button id="coins-tab" class="leaderboard-tab active">Coins</button>
+                <button id="food-tab" class="leaderboard-tab">Food</button>
+            </div>
+            <div class="leaderboard-stats">
+                <div class="leaderboard-info">
+                    <p>Your stats are shown in <span class="highlight-text">highlighted text</span>.</p>
+                </div>
+                <div id="coins-leaderboard" class="leaderboard-panel active">
+                    <div class="leaderboard-loading">Loading coin stats...</div>
+                    <table class="leaderboard-table">
+                        <thead>
+                            <tr>
+                                <th>Rank</th>
+                                <th>Player</th>
+                                <th>Coins</th>
+                                <th>Last Updated</th>
+                            </tr>
+                        </thead>
+                        <tbody id="coins-leaderboard-body">
+                            <!-- Will be populated by JavaScript -->
+                        </tbody>
+                    </table>
+                </div>
+                <div id="food-leaderboard" class="leaderboard-panel">
+                    <div class="leaderboard-loading">Loading food stats...</div>
+                    <table class="leaderboard-table">
+                        <thead>
+                            <tr>
+                                <th>Rank</th>
+                                <th>Player</th>
+                                <th>Food</th>
+                                <th>Last Updated</th>
+                            </tr>
+                        </thead>
+                        <tbody id="food-leaderboard-body">
+                            <!-- Will be populated by JavaScript -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="leaderboard-footer">
+                <div class="stats-summary">
+                    <p>Your coins: <span id="your-coins-count">0</span></p>
+                    <p>Your food eaten: <span id="your-food-count">0</span></p>
+                </div>
+                <button id="update-stats-btn">Update My Stats</button>
+            </div>
+        </div>
+      </div>
+
+      <!-- Phone Interface (initially hidden) -->
+      <div id="phone-interface" class="hidden">
+          <div class="phone-header">
+              <h2>Phone</h2>
+              <div class="phone-header-controls">
+                  <button id="phone-home-btn" title="Home"><span>⌂</span></button>
+                  <button id="phone-close-btn" title="Close Phone">&times;</button>
+              </div>
+          </div>
+          <div class="phone-screen">
+              <div class="phone-tom-display">
+                  <img src="/talking_tom.png" alt="Talking Tom on Phone">
+              </div>
+              <div class="phone-apps">
+                  <button class="phone-app-btn" data-app="weather" title="Weather App">
+                      <img src="/weather_app_icon.png" alt="Weather">
+                      <span>Weather</span>
+                  </button>
+                  <button class="phone-app-btn" data-app="camera" title="Camera App">
+                      <img src="/camera_app_icon.png" alt="Camera">
+                      <span>Camera</span>
+                  </button>
+                  <button class="phone-app-btn" data-app="music" title="Music App">
+                      <img src="/music_app_icon.png" alt="Music">
+                      <span>Music</span>
+                  </button>
+                  <button class="phone-app-btn" data-app="game" title="Game App">
+                      <img src="/game_app_icon.png" alt="Game">
+                      <span>Game</span>
+                  </button>
+                  <button class="phone-app-btn" data-app="warning" title="Warning App">
+                      <img src="/warning_app_icon.png" alt="Warning">
+                      <span>Warning</span>
+                  </button>
+              </div>
+          </div>
+          <div class="phone-app-container">
+              <!-- Weather App (initially hidden) -->
+              <div class="phone-app weather-app hidden">
+                  <div class="app-header">
+                      <h3>Weather</h3>
+                      <button class="app-back-btn">&larr;</button>
+                  </div>
+                  <div class="weather-content">
+                      <div class="weather-location-chooser">
+                          <select id="weather-city-selector">
+                              <option value="tom-city">Talking Tom City</option>
+                              <option value="angela-city">Angela's Town</option>
+                              <option value="hank-city">Hank's Village</option>
+                              <option value="ben-city">Ben's Playground</option>
+                          </select>
+                      </div>
+                      <div class="weather-location">Talking Tom City</div>
+                      <div class="weather-icon">☀️</div>
+                      <div class="weather-temp">72°F</div>
+                      <div class="weather-desc">Sunny</div>
+                      <div class="weather-forecast">
+                          <div class="forecast-day">
+                              <div>Mon</div>
+                              <div>☀️</div>
+                              <div>75°</div>
+                          </div>
+                          <div class="forecast-day">
+                              <div>Tue</div>
+                              <div>🌤️</div>
+                              <div>72°</div>
+                          </div>
+                          <div class="forecast-day">
+                              <div>Wed</div>
+                              <div>🌧️</div>
+                              <div>65°</div>
+                          </div>
+                          <div class="forecast-day">
+                              <div>Thu</div>
+                              <div>⛅</div>
+                              <div>70°</div>
+                          </div>
+                      </div>
+                      <button id="weather-refresh-btn">Refresh</button>
+                  </div>
+              </div>
+              
+              <!-- Camera App (initially hidden) -->
+              <div class="phone-app camera-app hidden">
+                  <div class="app-header">
+                      <h3>Camera</h3>
+                      <button class="app-back-btn">&larr;</button>
+                  </div>
+                  <div class="camera-content">
+                      <div class="camera-preview">
+                          <img src="/talking_tom.png" alt="Camera Preview">
+                      </div>
+                      <div class="camera-filters">
+                          <button class="camera-filter-btn" data-filter="normal">Normal</button>
+                          <button class="camera-filter-btn" data-filter="sepia">Sepia</button>
+                          <button class="camera-filter-btn" data-filter="invert">Invert</button>
+                          <button class="camera-filter-btn" data-filter="grayscale">B&W</button>
+                      </div>
+                      <div class="camera-controls">
+                          <button class="camera-capture-btn"></button>
+                          <button class="camera-flip-btn">Flip</button>
+                      </div>
+                  </div>
+              </div>
+              
+              <!-- Music App (initially hidden) -->
+              <div class="phone-app music-app hidden">
+                  <div class="app-header">
+                      <h3>Music</h3>
+                      <button class="app-back-btn">&larr;</button>
+                  </div>
+                  <div class="music-content">
+                      <div class="music-album-art">
+                          <img src="/talking_tom_logo.png" alt="Album Art">
+                      </div>
+                      <div class="music-info">
+                          <div class="music-title">Talking Tom Theme</div>
+                          <div class="music-artist">Talking Tom</div>
+                      </div>
+                      <div class="music-playlist">
+                          <select id="music-track-selector">
+                              <option value="theme">Tom Theme</option>
+                              <option value="star">Star Power</option>
+                              <option value="game">Game Music</option>
+                          </select>
+                      </div>
+                      <div class="music-progress">
+                          <div class="music-progress-bar"></div>
+                      </div>
+                      <div class="music-time">
+                          <span class="music-current-time">0:00</span>
+                          <span class="music-total-time">3:30</span>
+                      </div>
+                      <div class="music-controls">
+                          <button class="music-prev-btn">⏮️</button>
+                          <button class="music-play-btn">▶️</button>
+                          <button class="music-next-btn">⏭️</button>
+                      </div>
+                      <div class="music-volume">
+                          <span>🔈</span>
+                          <input type="range" id="music-volume-slider" min="0" max="100" value="70">
+                          <span>🔊</span>
+                      </div>
+                  </div>
+              </div>
+              
+              <!-- Game App (initially hidden) -->
+              <div class="phone-app game-app hidden">
+                  <div class="app-header">
+                      <h3>Games</h3>
+                      <button class="app-back-btn">&larr;</button>
+                  </div>
+                  <div class="game-content">
+                      <div class="game-list">
+                          <div class="game-item" data-game="mario">
+                              <img src="/mario_hat_icon.png" alt="Mario Game">
+                              <span>Mario Run</span>
+                          </div>
+                          <div class="game-item" data-game="bird">
+                              <img src="/bird_icon.png" alt="Bird Game">
+                              <span>Bird Catch</span>
+                          </div>
+                          <div class="game-item" data-game="piano">
+                              <img src="/piano_icon.png" alt="Piano Game">
+                              <span>Piano Master</span>
+                          </div>
+                          <div class="game-item" data-game="blocks">
+                              <img src="/blocks_icon.png" alt="Blocks Game">
+                              <span>Block Builder</span>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+
+              <!-- Warning App (initially hidden) -->
+              <div class="phone-app warning-app hidden">
+                  <div class="app-header">
+                      <h3>System Warning</h3>
+                      <button class="app-back-btn">&larr;</button>
+                  </div>
+                  <div class="warning-content">
+                      <div class="warning-icon">⚠️</div>
+                      <h2>System Warning</h2>
+                      <p>Critical system error detected!</p>
+                      <p>The following components may be affected:</p>
+                      <ul>
+                          <li>Memory allocation</li>
+                          <li>System registry</li>
+                          <li>Device drivers</li>
+                      </ul>
+                      <p>Would you like to attempt system recovery?</p>
+                      <div class="warning-buttons">
+                          <button id="warning-cancel-btn">Cancel</button>
+                          <button id="warning-fix-btn">Fix Now</button>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+
+      <!-- Piano Keyboard (initially hidden) -->
+      <div id="piano-keyboard" class="hidden">
+          <div class="piano-key white-key" data-note="c">C</div>
+          <div class="piano-key black-key" data-note="c-sharp">C#</div>
+          <div class="piano-key white-key" data-note="d">D</div>
+          <div class="piano-key black-key" data-note="d-sharp">D#</div>
+          <div class="piano-key white-key" data-note="e">E</div>
+          <div class="piano-key white-key" data-note="f">F</div>
+          <div class="piano-key black-key" data-note="f-sharp">F#</div>
+          <div class="piano-key white-key" data-note="g">G</div>
+          <div class="piano-key black-key" data-note="g-sharp">G#</div>
+          <div class="piano-key white-key" data-note="a">A</div>
+          <div class="piano-key black-key" data-note="a-sharp">A#</div>
+          <div class="piano-key white-key" data-note="b">B</div>
+      </div>
+
+      <!-- Shop panel (initially hidden) -->
+      <div id="shop-panel" class="hidden">
+          <div class="shop-header">
+              <h2>SHOP</h2>
+              <div class="shop-tabs">
+                  <button id="food-shop-tab" class="shop-tab active">Food</button>
+                  <button id="skins-shop-tab" class="shop-tab">Skins</button>
+              </div>
+          </div>
+          <div class="shop-content">
+              <!-- Food Shop Panel -->
+              <div id="food-shop" class="shop-panel active">
+                  <div class="shop-item">
+                      <div class="shop-item-details">
+                          <div class="shop-item-coins">1 <img src="/coin_item.png" alt="Coin"></div>
+                          <div class="shop-item-arrow">→</div>
+                          <div class="shop-item-food">2 <img src="/eat_icon.png" alt="Food"></div>
+                      </div>
+                      <button id="buy-food-btn" class="shop-buy-btn">BUY</button>
+                  </div>
+              </div>
+              
+              <!-- Skins Shop Panel -->
+              <div id="skins-shop" class="shop-panel">
+                  <div class="skins-intro">
+                      <p>Change your character's appearance with skins!</p>
+                  </div>
+                  <div class="skins-list">
+                      <div class="skin-item" data-skin="tom">
+                          <div class="skin-preview">
+                              <img src="/talking_tom.png" alt="Tom Skin">
+                          </div>
+                          <div class="skin-details">
+                              <div class="skin-name">Tom (Default)</div>
+                              <div class="skin-price">0 <img src="/coin_item.png" alt="Coin"></div>
+                          </div>
+                          <button class="skin-action-btn selected" disabled>SELECTED</button>
+                      </div>
+                      <div class="skin-item" data-skin="ben">
+                          <div class="skin-preview">
+                              <img src="/talking_ben_dog.png" alt="Ben Skin">
+                          </div>
+                          <div class="skin-details">
+                              <div class="skin-name">Ben</div>
+                              <div class="skin-price">50 <img src="/coin_item.png" alt="Coin"></div>
+                          </div>
+                          <button class="skin-action-btn">BUY</button>
+                      </div>
+                  </div>
+              </div>
+          </div>
+          <div class="shop-footer">
+              <div class="shop-stats">
+                  <p>Your Coins: <span id="shop-coin-count">0</span></p>
+                  <p>Your Food: <span id="shop-food-count">10</span></p>
+              </div>
+              <button id="shop-close-btn">CLOSE</button>
+          </div>
+      </div>
+
+      <!-- Food selection panel -->
+      <div id="food-panel" class="hidden">
+          <button class="food-button" data-food="chili" title="Chili"><img src="/chili_icon.png" alt="Chili"></button>
+          <button class="food-button" data-food="sandwich" title="Sandwich"><img src="/sandwich_icon.png" alt="Sandwich"></button>
+          <button class="food-button" data-food="milk" title="Milk"><img src="/milk_icon.png" alt="Milk"></button>
+          <button class="food-button" data-food="cake" title="Cake"><img src="/cake_icon.png" alt="Cake"></button>
+          <button class="food-button" data-food="popsicle" title="Popsicle"><img src="/popsicle_icon.png" alt="Popsicle"></button>
+          <button class="food-button" data-food="watermelon" title="Watermelon"><img src="/watermelon_icon.png" alt="Watermelon"></button>
+          <!-- New Broccoli food item -->
+          <button class="food-button" data-food="broccoli" title="Broccoli"><img src="/broccoli_icon.png" alt="Broccoli"></button>
+          <!-- New Bubbles food item -->
+          <button class="food-button" data-food="bubbles" title="Bubbles"><img src="/bubbles_icon.png" alt="Bubbles"></button>
+          <!-- New Gummy food item -->
+          <button class="food-button" data-food="gummy" title="Gummy Bear"><img src="/gummy_icon.png" alt="Gummy Bear"></button>
+          <!-- New Cookie food item -->
+          <button class="food-button" data-food="cookie" title="Cookie"><img src="/cookie_icon.png" alt="Cookie"></button>
+          <div class="food-panel-footer">
+               <img src="/cutlery_panel_icon.png" alt="Cutlery Icon" class="food-panel-icon">
+          </div>
+      </div>
+
+      <!-- Mario Game Canvas (initially hidden) -->
+      <div id="mario-game-container" class="hidden">
+          <canvas id="mario-game-canvas"></canvas>
+          <div id="mario-game-controls">
+              <button id="mario-left-btn">←</button>
+              <button id="mario-jump-btn">Jump</button>
+              <button id="mario-right-btn">→</button>
+          </div>
+          <div id="mario-game-ui">
+              <div id="mario-score">Coins: <span id="coin-count">0</span></div>
+              <button id="mario-exit-btn">Exit</button>
+          </div>
+      </div>
+
+      <!-- Aspect Ratio Animation Bars -->
+      <div id="aspect-bar-top" class="aspect-bar"></div>
+      <div id="aspect-bar-bottom" class="aspect-bar"></div>
+
+      <!-- Vomit Element (initially hidden) -->
+      <div id="vomit-stream" class="hidden"></div>
+      <div id="coin-progress">
+        <div id="coin-progress-bar"></div>
+      </div>
+    </div>
+     <!-- Ad Shower Overlay (initially hidden) -->
+    <div id="ad-shower-overlay" class="hidden"></div>
+  </div>
+
+    <!-- BSOD Overlay (initially hidden) -->
+    <div id="bsod-overlay" class="hidden">
+        <div class="bsod-content">
+            <p>A problem has been detected and the Talking Tom app has been shut down to prevent damage to your computer/device.</p>
+            <p>ERROR: UNEXPECTED_INTERACTION_ERROR</p>
+            <p>If this is the first time you've seen this Stop error screen, restart your device. If this screen appears again, follow these steps:</p>
+            <p>- Check to make sure any new hardware or software is properly installed.</p>
+            <p>- If this is a new installation, ask your hardware or software manufacturer for any Windows updates you might need.</p>
+            <p>If problems continue, disable or remove any newly installed hardware or software. Disable BIOS memory options such as caching or shadowing. If you need to use Safe Mode to remove or disable components, restart your device, press F8 to select Advanced Startup Options, and then select Safe Mode.</p>
+            <p>Technical information:</p>
+            <p>*** STOP: 0x000000F4 (0x00000003, 0x89FDA030, 0x89FDA1AC, 0x805D4AE8)</p>
+            <br>
+            <div class="bsod-images">
+                <img src="/talking_tom_sad.png" alt="Sad Talking Tom">
+                <img src="/talking_tom_watermelon.png" alt="Watermelon Tom">
+            </div>
+            <br>
+            <p>Beginning dump of physical memory</p>
+            <p>Physical memory dump complete.</p>
+            <p>Contact your app vendor.</p>
+        </div>
+    </div>
+
+    <!-- Microphone Error Overlay (initially hidden) -->
+    <div id="mic-error-overlay" class="hidden">
+        <div class="mic-error-content">
+            <div class="mic-error-image">
+                 <img src="/talking_tom_sad.png" alt="Sad Talking Tom">
+            </div>
+            <div class="mic-error-text">
+                <p>I can't hear you! I need microphone access to talk to you.</p>
+            </div>
+            <div class="mic-error-footer">
+                <button id="mic-error-ok-btn">OK</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- No Food Overlay (initially hidden) -->
+    <div id="no-food-overlay" class="hidden">
+        <div class="no-food-content">
+            <div class="no-food-image">
+                 <img src="/talking_tom_sad.png" alt="Sad Talking Tom">
+            </div>
+            <div class="no-food-text">
+                <p>I'm hungry! You've run out of food!</p>
+                <p>Visit the shop to buy more food with your coins.</p>
+            </div>
+            <div class="no-food-footer">
+                <button id="no-food-shop-btn">GO TO SHOP</button>
+                <button id="no-food-ok-btn">OK</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Camera Snapshot Overlay (initially hidden) -->
+    <div id="camera-snapshot-overlay" class="hidden">
+        <div class="camera-snapshot-content">
+            <div class="snapshot-image-container">
+                <img id="snapshot-image" src="/talking_tom.png" alt="Snapshot">
+            </div>
+            <div class="snapshot-controls">
+                <button id="snapshot-save-btn">Save</button>
+                <button id="snapshot-discard-btn">Discard</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Game Victory Screen (initially hidden) -->
+    <div id="game-victory-overlay" class="hidden">
+        <div class="victory-content">
+            <h2>You saved Angela!</h2>
+            <div class="victory-image">
+                <img src="/talking_tom_mario.png" alt="Tom in Mario hat">
+                <img src="/angela_cat.png" alt="Angela cat">
+            </div>
+            <p>You collected <span id="victory-coins">0</span> coins!</p>
+            <button id="victory-ok-btn">OK</button>
+        </div>
+    </div>
+
+    <!-- Game Over Screen (initially hidden) -->
+    <div id="game-over-overlay" class="hidden">
+        <div class="game-over-content">
+            <h2>Game Over!</h2>
+            <p>Tom couldn't reach Angela this time.</p>
+            <button id="game-over-retry-btn">Try Again</button>
+            <button id="game-over-exit-btn">Exit</button>
+        </div>
+    </div>
+
+    <!-- Skin Purchased Overlay -->
+    <div id="skin-purchased-overlay" class="hidden">
+        <div class="skin-purchased-content">
+            <h2>New Skin Unlocked!</h2>
+            <div class="skin-preview-large">
+                <img id="purchased-skin-preview" src="/talking_ben_dog.png" alt="Purchased Skin">
+            </div>
+            <p>You've unlocked the <span id="purchased-skin-name">Ben</span> skin!</p>
+            <button id="skin-purchased-ok-btn">OK</button>
+        </div>
+    </div>
+
+  <script type="module" src="/script.js"></script>
+</body>
+</html>
