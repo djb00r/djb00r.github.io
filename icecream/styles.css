@@ -1,0 +1,403 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Arial', sans-serif;
+}
+
+body {
+    background-color: #f0f8ff;
+    color: #333;
+}
+
+.container {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+h1 {
+    text-align: center;
+    margin-bottom: 30px;
+    color: #8a2be2;
+    font-size: 2.4rem;
+}
+
+.ice-cream-builder {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+@media (min-width: 768px) {
+    .ice-cream-builder {
+        flex-direction: row;
+    }
+}
+
+.ice-cream-display {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.ice-cream-base {
+    width: 100%;
+    max-width: 400px;
+    aspect-ratio: 1 / 1;
+    position: relative;
+}
+
+.ice-cream-svg {
+    width: 100%;
+    height: 100%;
+}
+
+.cone {
+    fill: #d2b48c;
+    stroke: #a0816c;
+    stroke-width: 2;
+}
+
+.scoop {
+    transition: fill 0.3s ease;
+}
+
+.scoop[data-flavor="vanilla"] {
+    fill: #fff5e6;
+}
+
+.scoop[data-flavor="chocolate"] {
+    fill: #513526;
+}
+
+.scoop[data-flavor="strawberry"] {
+    fill: #ffb6c1;
+}
+
+.scoop[data-flavor="mint"] {
+    fill: #98ff98;
+}
+
+.scoop[data-flavor="coffee"] {
+    fill: #6f4e37;
+}
+
+.scoop[data-flavor="bubblegum"] {
+    fill: #ffc1cc;
+}
+
+.scoop[data-flavor="pistachio"] {
+    fill: #93c572;
+}
+
+.scoop[data-flavor="mango"] {
+    fill: #ffbd00;
+}
+
+.scoop[data-flavor="blueberry"] {
+    fill: #4b0082;
+}
+
+.scoop[data-flavor="cotton-candy"] {
+    fill: #ffbcd9;
+}
+
+.scoop[data-flavor="pumpkin"] {
+    fill: #ff7518;
+}
+
+.scoop[data-flavor="black-sesame"] {
+    fill: #696969;
+}
+
+.scoop[data-flavor="birthday-cake"] {
+    fill: #f5f5f5;
+}
+
+.controls {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+h3 {
+    margin-bottom: 10px;
+    color: #8a2be2;
+}
+
+.flavor-options, .topping-options, .cone-options, .scoop-options {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+button {
+    padding: 8px 16px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    background-color: #f0f8ff;
+    border: 2px solid #8a2be2;
+    color: #8a2be2;
+    font-weight: bold;
+    transition: all 0.2s ease;
+}
+
+button i {
+    margin-right: 5px;
+}
+
+button:hover {
+    background-color: #e6e6fa;
+}
+
+button.active {
+    background-color: #8a2be2;
+    color: white;
+}
+
+.topping-btn.active {
+    background-color: #9370db;
+    color: white;
+}
+
+.actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+#reset-btn {
+    background-color: #999;
+    border-color: #666;
+    color: white;
+}
+
+#serve-btn {
+    flex: 1;
+    background-color: #ff69b4;
+    border-color: #ff1493;
+    color: white;
+    font-size: 1.1rem;
+    padding: 10px;
+}
+
+#serve-btn:hover {
+    background-color: #ff1493;
+}
+
+#random-btn {
+    background-color: #FFA500;
+    border-color: #FF8C00;
+    color: white;
+}
+
+#random-btn:hover {
+    background-color: #FF8C00;
+}
+
+#eat-btn {
+    background-color: #32CD32;
+    border-color: #228B22;
+    color: white;
+}
+
+#eat-btn:hover {
+    background-color: #228B22;
+}
+
+.message-container {
+    margin-top: 30px;
+    text-align: center;
+    padding: 15px;
+    border-radius: 5px;
+    font-size: 1.1rem;
+    display: none;
+}
+
+.message-container.success {
+    display: block;
+    background-color: #e6e6fa;
+    color: #8a2be2;
+}
+
+.rating-container {
+    margin-top: 20px;
+    text-align: center;
+    padding: 15px;
+    border-radius: 5px;
+    font-size: 1.1rem;
+    display: none;
+    background-color: #f0f8ff;
+    border: 2px solid #8a2be2;
+}
+
+.rating-container.show {
+    display: block;
+}
+
+.rating-stars {
+    font-size: 1.5rem;
+    color: gold;
+    margin: 10px 0;
+}
+
+/* Topping styles */
+.topping {
+    transition: all 0.3s ease;
+}
+
+.sprinkles rect {
+    fill: #ff69b4;
+}
+
+.sprinkles rect:nth-child(even) {
+    fill: #00bfff;
+}
+
+.sprinkles rect:nth-child(3n) {
+    fill: #ffff00;
+}
+
+.chocolate-chips {
+    fill: #3e2723;
+}
+
+.cookie {
+    fill: #a0816c;
+}
+
+.cherry {
+    fill: #ff0000;
+}
+
+.nuts {
+    fill: #8b4513;
+}
+
+.caramel path {
+    fill: none;
+    stroke: #cd853f;
+    stroke-width: 3;
+}
+
+.poison {
+    fill: #8B008B;
+}
+
+.poison-effect {
+    animation: poisonEffect 2s ease forwards;
+}
+
+@keyframes poisonEffect {
+    0% { filter: none; }
+    100% { filter: hue-rotate(180deg) saturate(200%); }
+}
+
+.gummy-bears {
+    fill: #FF69B4;
+}
+
+.gummy-bears:nth-child(even) {
+    fill: #00FF00;
+}
+
+.gummy-bears:nth-child(3n) {
+    fill: #FFA500;
+}
+
+.oreo {
+    fill: #000000;
+}
+
+.marshmallow {
+    fill: #FFFFFF;
+    stroke: #F5F5F5;
+    stroke-width: 1;
+}
+
+.brownie {
+    fill: #3E2723;
+}
+
+.waffle {
+    fill: #D2B48C;
+}
+
+.fruit {
+    fill: #FF0000;
+}
+
+.fruit:nth-child(even) {
+    fill: #FFA500;
+}
+
+.fruit:nth-child(3n) {
+    fill: #008000;
+}
+
+.coconut {
+    fill: #FFFFFF;
+}
+
+.m&ms {
+    fill: #FF0000;
+}
+
+.m&ms:nth-child(even) {
+    fill: #0000FF;
+}
+
+.m&ms:nth-child(3n) {
+    fill: #FFFF00;
+}
+
+.m&ms:nth-child(4n) {
+    fill: #008000;
+}
+
+.honey {
+    fill: #FFA500;
+}
+
+.cinnamon {
+    fill: #D2691E;
+}
+
+/* Ice cream serving animation */
+@keyframes serve {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.05) translateY(-5px); }
+    100% { transform: scale(1); }
+}
+
+.serving {
+    animation: serve 1s ease infinite;
+}
+
+/* Scoop Flavor Selector */
+.scoop-flavor-selector {
+    display: flex;
+    margin-bottom: 10px;
+    gap: 10px;
+}
+
+.scoop-label {
+    padding: 5px 10px;
+    background-color: #e6e6fa;
+    border-radius: 5px;
+    cursor: pointer;
+    border: 2px solid #8a2be2;
+    color: #8a2be2;
+    font-weight: bold;
+}
+
+.scoop-label.active {
+    background-color: #8a2be2;
+    color: white;
+}

@@ -1,0 +1,115 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ice Cream Maker</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Build Your Own Ice Cream</h1>
+        
+        <div class="ice-cream-builder">
+            <div class="ice-cream-display">
+                <div class="ice-cream-base">
+                    <svg viewBox="0 0 300 300" class="ice-cream-svg">
+                        <g class="cone-container">
+                            <path d="M100,100 Q150,20 200,100 L200,220 Q150,240 100,220 Z" class="cone triangle-cone" />
+                            <path d="M90,100 L90,220 Q150,240 210,220 L210,100 Z" class="cone waffle-cup-cone" style="display:none;" />
+                            <ellipse cx="150" cy="220" rx="60" ry="20" class="cone cup-cone" style="display:none;" />
+                        </g>
+                        <g class="scoops-container">
+                            <ellipse cx="150" cy="100" rx="50" ry="30" class="scoop scoop-1" data-flavor="vanilla" />
+                            <ellipse cx="150" cy="70" rx="45" ry="25" class="scoop scoop-2" style="display:none;" data-flavor="vanilla" />
+                            <ellipse cx="150" cy="40" rx="40" ry="20" class="scoop scoop-3" style="display:none;" data-flavor="vanilla" />
+                        </g>
+                        <g class="toppings-container"></g>
+                    </svg>
+                </div>
+            </div>
+
+            <div class="controls">
+                <div class="cone-selection">
+                    <h3>Choose Your Cone <i class="fas fa-ice-cream"></i></h3>
+                    <div class="cone-options">
+                        <button class="cone-btn active" data-cone="triangle"><i class="fas fa-triangle"></i> Waffle Cone</button>
+                        <button class="cone-btn" data-cone="waffle-cup"><i class="fas fa-glass-whiskey"></i> Waffle Cup</button>
+                        <button class="cone-btn" data-cone="cup"><i class="fas fa-mug-hot"></i> Cup</button>
+                    </div>
+                </div>
+                
+                <div class="scoop-selection">
+                    <h3>Number of Scoops <i class="fas fa-layer-group"></i></h3>
+                    <div class="scoop-options">
+                        <button class="scoop-btn active" data-scoops="1"><i class="fas fa-circle"></i> 1 Scoop</button>
+                        <button class="scoop-btn" data-scoops="2"><i class="fas fa-circle"></i><i class="fas fa-circle"></i> 2 Scoops</button>
+                        <button class="scoop-btn" data-scoops="3"><i class="fas fa-circle"></i><i class="fas fa-circle"></i><i class="fas fa-circle"></i> 3 Scoops</button>
+                    </div>
+                </div>
+
+                <div class="flavor-selection">
+                    <h3>Choose Your Flavors <i class="fas fa-ice-cream"></i></h3>
+                    <div class="scoop-flavor-selector">
+                        <div class="scoop-label active" data-scoop="1">Scoop 1</div>
+                        <div class="scoop-label" data-scoop="2">Scoop 2</div>
+                        <div class="scoop-label" data-scoop="3">Scoop 3</div>
+                    </div>
+                    <div class="flavor-options">
+                        <button class="flavor-btn active" data-flavor="vanilla"><i class="fas fa-circle"></i> Vanilla</button>
+                        <button class="flavor-btn" data-flavor="chocolate"><i class="fas fa-circle"></i> Chocolate</button>
+                        <button class="flavor-btn" data-flavor="strawberry"><i class="fas fa-circle"></i> Strawberry</button>
+                        <button class="flavor-btn" data-flavor="mint"><i class="fas fa-circle"></i> Mint</button>
+                        <button class="flavor-btn" data-flavor="coffee"><i class="fas fa-circle"></i> Coffee</button>
+                        <button class="flavor-btn" data-flavor="bubblegum"><i class="fas fa-circle"></i> Bubblegum</button>
+                        <button class="flavor-btn" data-flavor="pistachio"><i class="fas fa-circle"></i> Pistachio</button>
+                        <button class="flavor-btn" data-flavor="mango"><i class="fas fa-circle"></i> Mango</button>
+                        <button class="flavor-btn" data-flavor="blueberry"><i class="fas fa-circle"></i> Blueberry</button>
+                        <button class="flavor-btn" data-flavor="cotton-candy"><i class="fas fa-circle"></i> Cotton Candy</button>
+                        <button class="flavor-btn" data-flavor="pumpkin"><i class="fas fa-circle"></i> Pumpkin</button>
+                        <button class="flavor-btn" data-flavor="black-sesame"><i class="fas fa-circle"></i> Black Sesame</button>
+                        <button class="flavor-btn" data-flavor="birthday-cake"><i class="fas fa-circle"></i> Birthday Cake</button>
+                    </div>
+                </div>
+
+                <div class="toppings-selection">
+                    <h3>Add Toppings <i class="fas fa-candy-cane"></i></h3>
+                    <div class="topping-options">
+                        <button class="topping-btn" data-topping="sprinkles"><i class="fas fa-sparkles"></i> Sprinkles</button>
+                        <button class="topping-btn" data-topping="chocolate-chips"><i class="fas fa-cookie"></i> Chocolate Chips</button>
+                        <button class="topping-btn" data-topping="cookie"><i class="fas fa-cookie-bite"></i> Cookie Pieces</button>
+                        <button class="topping-btn" data-topping="cherry"><i class="fas fa-apple-whole"></i> Cherry</button>
+                        <button class="topping-btn" data-topping="nuts"><i class="fas fa-seedling"></i> Nuts</button>
+                        <button class="topping-btn" data-topping="caramel"><i class="fas fa-droplet"></i> Caramel</button>
+                        <button class="topping-btn" data-topping="poison" data-dangerous="true"><i class="fas fa-skull-crossbones"></i> Poison</button>
+                        <button class="topping-btn" data-topping="gummy-bears"><i class="fas fa-teddy-bear"></i> Gummy Bears</button>
+                        <button class="topping-btn" data-topping="oreo"><i class="fas fa-cookie"></i> Oreo Crumbs</button>
+                        <button class="topping-btn" data-topping="marshmallow"><i class="fas fa-cloud"></i> Marshmallows</button>
+                        <button class="topping-btn" data-topping="brownie"><i class="fas fa-square"></i> Brownie Bits</button>
+                        <button class="topping-btn" data-topping="waffle"><i class="fas fa-grip-horizontal"></i> Waffle Cone</button>
+                        <button class="topping-btn" data-topping="fruit"><i class="fas fa-apple-alt"></i> Fresh Fruit</button>
+                        <button class="topping-btn" data-topping="coconut"><i class="fas fa-wind"></i> Coconut Flakes</button>
+                        <button class="topping-btn" data-topping="m&ms"><i class="fas fa-bullseye"></i> M&Ms</button>
+                        <button class="topping-btn" data-topping="honey"><i class="fas fa-jar"></i> Honey</button>
+                        <button class="topping-btn" data-topping="cinnamon"><i class="fas fa-mortar-pestle"></i> Cinnamon</button>
+                    </div>
+                </div>
+
+                <div class="actions">
+                    <button id="reset-btn"><i class="fas fa-undo"></i> Start Over</button>
+                    <button id="serve-btn"><i class="fas fa-utensils"></i> Serve My Ice Cream!</button>
+                    <button id="random-btn"><i class="fas fa-random"></i> Random Ice Cream</button>
+                    <button id="eat-btn"><i class="fas fa-bite-mark"></i> Eat My Ice Cream</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="message-container" id="message-container"></div>
+        <div class="rating-container" id="rating-container"></div>
+    </div>
+
+    <script type="module" src="config.js"></script>
+    <script type="module" src="iceCreamState.js"></script>
+    <script type="module" src="iceCreamUI.js"></script>
+</body>
+</html>
