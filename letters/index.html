@@ -1,0 +1,228 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Falling Letters</title>
+    <link rel="stylesheet" href="styles.css">
+    <!-- Load Matter.js directly instead of using import map -->
+    <script src="https://cdn.jsdelivr.net/npm/matter-js@0.19.0/build/matter.min.js"></script>
+    <!-- Add Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Add Google Fonts API for font options -->
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Open+Sans:wght@400;700&family=Lato:wght@400;700&family=Montserrat:wght@400;700&family=Oswald:wght@400;700&family=Raleway:wght@400;700&family=Ubuntu:wght@400;700&family=Pacifico&family=Bangers&family=Creepster&family=Satisfy&family=Permanent+Marker&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div id="container">
+        <!-- Eye button for toggling ribbon visibility -->
+        <button id="toggle-ribbon-button" class="toggle-ribbon">
+            <i class="fas fa-eye"></i>
+        </button>
+        
+        <!-- Unfollow button (hidden by default) -->
+        <button id="unfollow-button" class="unfollow-button hidden">
+            <i class="fas fa-eye-slash"></i> Unfollow
+        </button>
+        
+        <!-- Delete mode indicator (hidden by default) -->
+        <div id="delete-mode-indicator" class="delete-mode-indicator hidden">
+            <i class="fas fa-trash"></i> Delete Mode Active - Click on any character to delete it
+            <button id="exit-delete-mode" class="btn-red">Exit Delete Mode</button>
+        </div>
+        
+        <!-- Clone mode indicator (hidden by default) -->
+        <div id="clone-mode-indicator" class="clone-mode-indicator hidden">
+            <i class="fas fa-sheep"></i> Clone Mode Active - Click on any character to clone it
+            <button id="exit-clone-mode" class="btn-green">Exit Clone Mode</button>
+        </div>
+        
+        <!-- Ribbon interface -->
+        <div id="ribbon" class="ribbon">
+            <!-- Ribbon tabs -->
+            <div class="ribbon-tabs">
+                <button class="tab-button active" data-tab="text">
+                    <i class="fas fa-font"></i> Text
+                </button>
+                <button class="tab-button" data-tab="physics">
+                    <i class="fas fa-atom"></i> Physics
+                </button>
+                <button class="tab-button" data-tab="effects">
+                    <i class="fas fa-magic"></i> Effects
+                </button>
+                <button class="tab-button" data-tab="spawn">
+                    <i class="fas fa-plus-circle"></i> Spawn Objects
+                </button>
+                <button class="tab-button" data-tab="spawn-specific">
+                    <i class="fas fa-table"></i> Spawn...
+                </button>
+                <button class="tab-button" data-tab="tools">
+                    <i class="fas fa-tools"></i> Tools
+                </button>
+                
+                <!-- Search box -->
+                <div class="ribbon-search">
+                    <input type="text" id="button-search" placeholder="Search buttons...">
+                    <i class="fas fa-search"></i>
+                </div>
+            </div>
+            
+            <!-- Tab content -->
+            <div class="ribbon-content">
+                <!-- Text tab -->
+                <div class="tab-content active" id="text-tab">
+                    <button id="custom-text-button" class="btn-blue">
+                        <i class="fas fa-keyboard"></i> Add Custom Text
+                    </button>
+                    <button id="letter-button" class="btn-green">
+                        <i class="fas fa-font"></i> Spawn Random Letter
+                    </button>
+                    <button id="emoji-button" class="btn-yellow">
+                        <i class="far fa-smile"></i> Spawn Emoji
+                    </button>
+                    <button id="respawn-button" class="btn-purple">
+                        <i class="fas fa-redo"></i> Respawn All Letters
+                    </button>
+                    <button id="random-font-button" class="btn-cyan">
+                        <i class="fas fa-random"></i> Random Font
+                    </button>
+                    <button id="choose-font-button" class="btn-orange">
+                        <i class="fas fa-font"></i> Choose Font
+                    </button>
+                    <button id="choose-size-button" class="btn-teal">
+                        <i class="fas fa-text-height"></i> Choose Size
+                    </button>
+                    <button id="resize-button" class="btn-green">
+                        <i class="fas fa-expand"></i> Change Letter Size
+                    </button>
+                </div>
+                
+                <!-- Physics tab -->
+                <div class="tab-content" id="physics-tab">
+                    <button id="gravity-button" class="btn-blue">
+                        <i class="fas fa-arrow-down"></i> Toggle Gravity
+                    </button>
+                    <button id="reverse-gravity-button" class="btn-green">
+                        <i class="fas fa-arrow-up"></i> Reverse Gravity
+                    </button>
+                    <button id="magnet-button" class="btn-purple">
+                        <i class="fas fa-magnet"></i> Letter Magnet
+                    </button>
+                    <button id="wind-button" class="btn-cyan">
+                        <i class="fas fa-wind"></i> Spawn Wind
+                    </button>
+                    <button id="freeze-button" class="btn-ice">
+                        <i class="far fa-snowflake"></i> Freeze Letters
+                    </button>
+                </div>
+                
+                <!-- Effects tab -->
+                <div class="tab-content" id="effects-tab">
+                    <button id="tornado-button" class="btn-teal">
+                        <i class="fas fa-sync-alt"></i> Tornado Effect
+                    </button>
+                    <button id="blackhole-button" class="btn-black">
+                        <i class="fas fa-circle"></i> Spawn Black Hole
+                    </button>
+                    <button id="explode-button" class="btn-orange">
+                        <i class="fas fa-bomb"></i> Explode Letters
+                    </button>
+                    <button id="fireworks-button" class="btn-red">
+                        <i class="fas fa-sparkles"></i> Fireworks
+                    </button>
+                    <button id="blender-button" class="btn-purple">
+                        <i class="fas fa-blender"></i> Letter Blender
+                    </button>
+                    <button id="water-button" class="btn-blue">
+                        <i class="fas fa-water"></i> Water Effect
+                    </button>
+                    <button id="rain-button" class="btn-cyan">
+                        <i class="fas fa-cloud-rain"></i> Letter Rain
+                    </button>
+                    <button id="shuffle-button" class="btn-yellow">
+                        <i class="fas fa-random"></i> Shuffle Letters
+                    </button>
+                    <button id="upside-down-button" class="btn-purple">
+                        <i class="fas fa-retweet"></i> Upside Down
+                    </button>
+                </div>
+                
+                <!-- Spawn Objects tab -->
+                <div class="tab-content" id="spawn-tab">
+                    <button id="car-button" class="btn-red">
+                        <i class="fas fa-car"></i> Spawn Car
+                    </button>
+                    <button id="ball-button" class="btn-orange">
+                        <i class="fas fa-basketball-ball"></i> Spawn Bouncy Ball
+                    </button>
+                    <button id="ragdoll-button" class="btn-blue">
+                        <i class="fas fa-user"></i> Spawn Ragdoll
+                    </button>
+                    <button id="trampoline-button" class="btn-green">
+                        <i class="fas fa-angle-double-up"></i> Spawn Trampoline
+                    </button>
+                    <button id="spring-button" class="btn-purple">
+                        <i class="fas fa-compress-alt"></i> Spawn Spring
+                    </button>
+                    <button id="platform-button" class="btn-teal">
+                        <i class="fas fa-grip-lines"></i> Spawn Platform
+                    </button>
+                    <button id="chain-button" class="btn-gray">
+                        <i class="fas fa-link"></i> Spawn Chain
+                    </button>
+                    <button id="bubble-button" class="btn-cyan">
+                        <i class="fas fa-circle"></i> Spawn Bubbles
+                    </button>
+                    <button id="conveyor-button" class="btn-brown">
+                        <i class="fas fa-conveyor-belt"></i> Spawn Conveyor
+                    </button>
+                    <button id="tower-button" class="btn-yellow">
+                        <i class="fas fa-building"></i> Letter Tower
+                    </button>
+                </div>
+                
+                <!-- Spawn Specific tab -->
+                <div class="tab-content" id="spawn-specific-tab">
+                    <button id="open-specific-spawn" class="btn-blue">
+                        <i class="fas fa-th-large"></i> Choose Character to Spawn
+                    </button>
+                </div>
+                
+                <!-- Tools tab -->
+                <div class="tab-content" id="tools-tab">
+                    <button id="list-button" class="btn-blue">
+                        <i class="fas fa-list"></i> List All Objects
+                    </button>
+                    <button id="delete-button" class="btn-red">
+                        <i class="fas fa-trash-alt"></i> Delete Character
+                    </button>
+                    <button id="clone-button" class="btn-green">
+                        <i class="fas fa-sheep"></i> Clone Character
+                    </button>
+                    <button id="clear-all-button" class="btn-red">
+                        <i class="fas fa-trash"></i> Clear All
+                    </button>
+                    <button id="worst-song-button" class="worst-song-button">
+                        <i class="fas fa-music"></i> WORST SONG EVER
+                    </button>
+                </div>
+            </div>
+        </div>
+        
+        <div id="text-container">
+            <span class="google-text">
+                <span style="color:#4285F4">G</span><span style="color:#EA4335">o</span><span style="color:#FBBC05">o</span><span style="color:#4285F4">g</span><span style="color:#34A853">l</span><span style="color:#EA4335">e</span>
+            </span>
+            <span class="websim-text">WebSim</span>
+            Drag these falling letters!
+        </div>
+        
+        <div id="emoji-container" class="center"></div>
+        <div id="special-chars-container" class="left"></div>
+        <div id="russian-container" class="left"></div>
+        <div id="numbers-container" class="left"></div>
+        <div id="uppercase-container" class="right"></div>
+        <div id="lowercase-container" class="right"></div>
+        <audio id="worst-song" src="/KSI - Thick Of It (feat. Trippie Redd) [Official Music Video].mp3"></audio>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
