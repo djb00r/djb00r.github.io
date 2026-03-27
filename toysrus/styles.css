@@ -1,0 +1,642 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f0f0f0;
+    color: #333;
+    line-height: 1.6;
+}
+
+.top-banner {
+    background-color: #e01a22;
+    color: white;
+    text-align: center;
+    padding: 12px;
+    font-weight: bold;
+    width: 100%;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+}
+
+.top-banner a {
+    color: #ffff00;
+    text-decoration: underline;
+}
+
+.top-banner a:hover {
+    text-decoration: none;
+}
+
+.secondary-banner {
+    background-color: #ff8c00; /* Orange color */
+    color: white;
+    text-align: center;
+    padding: 12px;
+    font-weight: bold;
+    width: 100%;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+}
+
+.secondary-banner a {
+    color: #ffff00;
+    text-decoration: underline;
+}
+
+.secondary-banner a:hover {
+    text-decoration: none;
+}
+
+.modern-banner {
+    background-color: #000; /* Black color */
+    color: white;
+    text-align: center;
+    padding: 12px;
+    font-weight: bold;
+    width: 100%;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+}
+
+.modern-banner a {
+    color: #00ffff; /* Cyan color for links in modern banner */
+    text-decoration: underline;
+}
+
+.modern-banner a:hover {
+    text-decoration: none;
+}
+
+.container {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+h1 {
+    text-align: center;
+    margin-bottom: 30px;
+    color: #0066aa;
+}
+
+.timeline-container {
+    background-color: white;
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.year-display {
+    text-align: center;
+    font-size: 32px;
+    font-weight: bold;
+    margin-bottom: 15px;
+    color: #e01a22;
+}
+
+.slider-container {
+    width: 100%;
+    margin-bottom: 30px;
+}
+
+.slider {
+    width: 100%;
+    height: 15px;
+    border-radius: 5px;
+    background: #d3d3d3;
+    outline: none;
+    -webkit-appearance: none;
+    appearance: none;
+}
+
+.slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    background: #e01a22;
+    cursor: pointer;
+}
+
+.slider::-moz-range-thumb {
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    background: #e01a22;
+    cursor: pointer;
+}
+
+.year-labels {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 5px;
+    font-size: 12px;
+    color: #666;
+}
+
+.store-scene {
+    position: relative;
+    height: 300px;
+    background: linear-gradient(to bottom, #87ceeb, #e8f4f8);
+    border-radius: 5px;
+    overflow: hidden;
+    margin-bottom: 20px;
+}
+
+.ground {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 60px;
+    background-color: #555;
+    background-image: linear-gradient(90deg, #444 0%, #555 100%);
+    display: none;
+}
+
+.parking-lot {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 110px;
+    background-color: #555;
+    z-index: 1;
+    background-image: repeating-linear-gradient(90deg, transparent, transparent 50px, #fff 50px, #fff 52px);
+}
+
+.car {
+    position: absolute;
+    width: 40px;
+    height: 20px;
+    z-index: 2;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    box-shadow: 0 2px 3px rgba(0,0,0,0.3);
+    transition: all 0.3s ease;
+}
+
+.car::before, .car::after {
+    display: none;
+}
+
+.car.construction-vehicle {
+    width: 55px;
+    height: 25px;
+}
+
+.car.blue, .car.green, .car.yellow, .car.purple, .car.teal, .car.orange {
+    background-color: transparent;
+}
+
+.building {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    bottom: 110px;
+    width: 500px;
+    height: 200px;
+    transition: all 0.5s ease;
+}
+
+.roof {
+    height: 30px;
+    background-color: #333;
+    border-radius: 5px 5px 0 0;
+}
+
+.facade {
+    height: 170px;
+    background-color: #f8f8f8;
+    position: relative;
+}
+
+.sign-area {
+    position: absolute;
+    top: 20px;
+    left: 0;
+    width: 100%;
+    height: 80px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+#main-logo {
+    height: 60px;
+    width: 240px;
+    background-image: url('toysrus_logo.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    margin-bottom: 5px;
+    transition: opacity 0.5s ease;
+}
+
+#babies-logo {
+    height: 40px;
+    width: 200px;
+    background-image: url('babiesrus_logo.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    opacity: 0;
+    transition: opacity 0.5s ease;
+}
+
+.doors {
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 200px;
+    height: 60px;
+    background-color: #444;
+    display: flex;
+    justify-content: space-around;
+}
+
+.doors::before, .doors::after {
+    content: '';
+    width: 80px;
+    height: 100%;
+    background-color: rgba(173, 216, 230, 0.5);
+}
+
+/* Year-specific styles */
+.for-sale {
+    height: 50px;
+    opacity: 0.8;
+}
+
+.for-sale .facade {
+    background-color: #8B4513;
+    position: relative;
+    height: 50px;
+}
+
+.for-sale .roof {
+    display: none;
+}
+
+.for-sale .facade::before {
+    content: 'FOR SALE';
+    position: absolute;
+    top: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: white;
+    padding: 10px 15px;
+    border: 2px solid #333;
+    font-weight: bold;
+    font-size: 20px;
+    color: white;
+    text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
+}
+
+.closed.for-sale {
+    height: 200px;
+}
+
+.closed.for-sale .facade {
+    background-color: #d9d9d9;
+    height: 170px;
+}
+
+.closed.for-sale .roof {
+    display: block;
+    background-color: #333;
+}
+
+.closed.for-sale .facade::before {
+    content: '';
+    width: 120px;
+    height: 120px;
+    background-image: url('for_sale_sign.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    top: auto;
+    bottom: -100px;
+    border: none;
+    padding: 0;
+    z-index: 10;
+}
+
+.coming-soon .facade::after {
+    content: '';
+    position: absolute;
+    width: 300px;
+    height: 60px;
+    background-image: url('coming_soon_banner.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    top: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.ollies-coming-soon .facade {
+    background-color: #ffffff;
+}
+
+.ollies-coming-soon .roof {
+    background-color: #e01a22;
+}
+
+.ollies-coming-soon #main-logo {
+    opacity: 1;
+    background-image: url('ollies_logo.png');
+}
+
+.ollies-coming-soon .facade::after {
+    content: '';
+    position: absolute;
+    width: 300px;
+    height: 60px;
+    background-image: url('coming_soon_banner.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    top: 90px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.ollies-coming-soon .facade::before,
+.ollies-coming-soon .facade::after:not(:first-of-type) {
+    content: '';
+    position: absolute;
+    width: 60px;
+    height: 60px;
+    background-image: url('ollies_face.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.ollies-coming-soon .facade::before {
+    left: 20px;
+    top: 50px;
+}
+
+.construction {
+    height: 100px;
+    opacity: 0.7;
+}
+
+.construction .facade {
+    background-color: #ccc;
+    background-image: linear-gradient(90deg, #ccc 0%, #ddd 20%, #ccc 40%, #ddd 60%, #ccc 80%, #ddd 100%);
+}
+
+.construction .roof {
+    background-color: #333;
+}
+
+.construction #main-logo {
+    opacity: 0;
+}
+
+.completed {
+    height: 200px;
+}
+
+.completed .facade {
+    background-color: #4d94ff;
+}
+
+.completed .roof {
+    background-color: #00366b;
+}
+
+.redesigned .facade {
+    background-color: #fff;
+}
+
+.shutting-down .facade {
+    background-color: #e6e6e6;
+    position: relative;
+}
+
+.shutting-down .facade::before,
+.shutting-down .facade::after {
+    content: '';
+    position: absolute;
+    width: 80px;
+    height: 120px;
+    background-image: url('sale_poster.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    top: 40px;
+}
+
+.shutting-down .facade::before {
+    left: 20px;
+}
+
+.shutting-down .facade::after {
+    right: 20px;
+}
+
+.shutting-down #main-logo {
+    opacity: 0.5;
+}
+
+.closed .facade {
+    background-color: #d9d9d9;
+}
+
+.closed #main-logo, .closed #babies-logo {
+    opacity: 0;
+}
+
+.ollies .facade {
+    background-color: #ffffff;
+}
+
+.ollies .roof {
+    background-color: #e01a22;
+}
+
+.ollies .facade::before,
+.ollies .facade::after {
+    content: '';
+    position: absolute;
+    width: 60px;
+    height: 60px;
+    background-image: url('ollies_face.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    top: 50px;
+}
+
+.ollies .facade::before {
+    left: 20px;
+}
+
+.ollies .facade::after {
+    right: 20px;
+}
+
+.info-panel {
+    background-color: #f9f9f9;
+    padding: 15px;
+    border-radius: 5px;
+    border-left: 4px solid #e01a22;
+}
+
+.info-panel h2 {
+    margin-bottom: 10px;
+    color: #333;
+}
+
+.brick-building {
+    height: 200px;
+}
+
+.brick-building .facade {
+    background-color: #9c2e0e;
+    background-image: linear-gradient(90deg, #9c2e0e 0%, #b3331f 20%, #9c2e0e 40%, #b3331f 60%, #9c2e0e 80%, #b3331f 100%);
+    position: relative;
+}
+
+.brick-building .roof {
+    background-color: #333;
+}
+
+.brick-building .facade::before {
+    content: '';
+    width: 120px;
+    height: 120px;
+    background-image: url('for_sale_sign.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    position: absolute;
+    top: 50px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.sold {
+    height: 50px;
+}
+
+.sold .facade {
+    background-color: #8B4513;
+    position: relative;
+    height: 50px;
+}
+
+.sold .roof {
+    display: none;
+}
+
+.sold .facade::before {
+    content: '';
+    width: 120px;
+    height: 120px;
+    background-image: url('sold_sign.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    position: absolute;
+    top: -30px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.worldgreen-plaza::after {
+    content: 'Worldgreen Plaza';
+    position: absolute;
+    bottom: -25px;
+    left: 0;
+    width: 100%;
+    text-align: center;
+    font-size: 14px;
+    font-weight: bold;
+    color: #333;
+}
+
+.wii-release .facade::before,
+.wii-release .facade::after {
+    content: '';
+    position: absolute;
+    width: 120px;
+    height: 60px;
+    background-image: url('wii_banner.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    border: none;
+    top: 30px;
+}
+
+.wii-release .facade::before {
+    left: 20px;
+}
+
+.wii-release .facade::after {
+    right: 20px;
+}
+
+@media (max-width: 768px) {
+    .building {
+        width: 90%;
+    }
+    
+    .year-labels {
+        font-size: 10px;
+    }
+}
+
+/* Comparison Overlay Styles */
+.comparison-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.8);
+    z-index: 1000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+
+.overlay-content {
+    position: relative;
+    max-width: 90%;
+    max-height: 90%;
+}
+
+.comparison-image {
+    max-width: 100%;
+    max-height: 80vh;
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.2);
+    border: 2px solid white;
+}
+
+.click-instruction {
+    position: absolute;
+    bottom: -30px;
+    left: 0;
+    width: 100%;
+    text-align: center;
+    color: white;
+    font-size: 14px;
+    text-shadow: 1px 1px 2px black;
+}
+
+@media (max-width: 768px) {
+    .comparison-image {
+        max-height: 60vh;
+    }
+}

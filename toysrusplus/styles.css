@@ -1,0 +1,1601 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f0f0f0;
+    color: #333;
+    line-height: 1.6;
+}
+
+.top-banner {
+    background-color: #e01a22;
+    color: white;
+    text-align: center;
+    padding: 12px;
+    font-weight: bold;
+    width: 100%;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+}
+
+.hot-page-banner {
+    background-color: #e01a22;
+    color: white;
+    text-align: center;
+    padding: 12px;
+    font-weight: bold;
+    width: 100%;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    font-size: 16px;
+}
+
+.logo-merger-banner {
+    background-color: #000000;
+    color: white;
+    text-align: center;
+    padding: 12px;
+    font-weight: bold;
+    width: 100%;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+}
+
+.logo-merger-banner a {
+    color: #ffff00;
+    text-decoration: underline;
+}
+
+.logo-merger-banner a:hover {
+    text-decoration: none;
+}
+
+.top-banner a {
+    color: #ffff00;
+    text-decoration: underline;
+}
+
+.top-banner a:hover {
+    text-decoration: none;
+}
+
+.secondary-banner {
+    background-color: #ff8c00; /* Orange color */
+    color: white;
+    text-align: center;
+    padding: 12px;
+    font-weight: bold;
+    width: 100%;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+}
+
+.secondary-banner a {
+    color: #ffff00;
+    text-decoration: underline;
+}
+
+.secondary-banner a:hover {
+    text-decoration: none;
+}
+
+.container {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+h1 {
+    text-align: center;
+    margin-bottom: 30px;
+    color: #0066aa;
+}
+
+.timeline-container {
+    background-color: white;
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.year-display {
+    text-align: center;
+    font-size: 32px;
+    font-weight: bold;
+    margin-bottom: 15px;
+    color: #e01a22;
+}
+
+.slider-container {
+    width: 100%;
+    margin-bottom: 30px;
+}
+
+.slider {
+    width: 100%;
+    height: 15px;
+    border-radius: 5px;
+    background: #d3d3d3;
+    outline: none;
+    -webkit-appearance: none;
+    appearance: none;
+}
+
+.slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    background: #e01a22;
+    cursor: pointer;
+}
+
+.slider::-moz-range-thumb {
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    background: #e01a22;
+    cursor: pointer;
+}
+
+.year-labels {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 5px;
+    font-size: 12px;
+    color: #666;
+    overflow: hidden;
+}
+
+.year-labels span {
+    display: none;
+    cursor: pointer;
+    padding: 2px 4px;
+    border-radius: 3px;
+    transition: background-color 0.2s;
+}
+
+.year-labels span:hover {
+    background-color: #f0f0f0;
+    color: #e01a22;
+}
+
+.year-labels span.visible {
+    display: block;
+}
+
+.store-scene {
+    position: relative;
+    height: 300px;
+    background: linear-gradient(to bottom, #87ceeb, #e8f4f8);
+    border-radius: 5px;
+    overflow: hidden;
+    margin-bottom: 20px;
+}
+
+.ground {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 60px;
+    background-color: #555;
+    background-image: linear-gradient(90deg, #444 0%, #555 100%);
+    display: none;
+}
+
+.parking-lot {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 110px;
+    background-color: #555;
+    z-index: 1;
+    background-image: repeating-linear-gradient(90deg, transparent, transparent 50px, #fff 50px, #fff 52px);
+}
+
+.car {
+    position: absolute;
+    width: 40px;
+    height: 20px;
+    z-index: 2;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    box-shadow: 0 2px 3px rgba(0,0,0,0.3);
+    transition: all 0.3s ease;
+}
+
+.car::before, .car::after {
+    display: none;
+}
+
+.car.construction-vehicle {
+    width: 55px;
+    height: 25px;
+}
+
+.car.blue, .car.green, .car.yellow, .car.purple, .car.teal, .car.orange {
+    background-color: transparent;
+}
+
+.building {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    bottom: 110px;
+    width: 500px;
+    height: 200px;
+    transition: all 0.5s ease;
+}
+
+.roof {
+    height: 30px;
+    background-color: #333;
+    border-radius: 5px 5px 0 0;
+}
+
+.facade {
+    height: 170px;
+    position: relative;
+}
+
+.sign-area {
+    position: absolute;
+    top: 20px;
+    left: 0;
+    width: 100%;
+    height: 80px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+#main-logo {
+    height: 60px;
+    width: 240px;
+    background-image: url('toysrus_logo.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    margin-bottom: 5px;
+    transition: opacity 0.5s ease;
+}
+
+#babies-logo {
+    height: 40px;
+    width: 200px;
+    background-image: url('babiesrus_logo.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    opacity: 0;
+    transition: opacity 0.5s ease;
+}
+
+.doors {
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 200px;
+    height: 60px;
+    background-color: #444;
+    display: flex;
+    justify-content: space-around;
+}
+
+.doors::before, .doors::after {
+    content: '';
+    width: 80px;
+    height: 100%;
+    background-color: rgba(173, 216, 230, 0.5);
+}
+
+/* Year-specific styles */
+.for-sale {
+    height: 50px;
+    opacity: 0.8;
+}
+
+.for-sale .facade {
+    background-color: #8B4513;
+    position: relative;
+    height: 50px;
+}
+
+.for-sale .roof {
+    display: none;
+}
+
+.for-sale .facade::before {
+    content: 'FOR SALE';
+    position: absolute;
+    top: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: white;
+    padding: 10px 15px;
+    border: 2px solid #333;
+    font-weight: bold;
+    font-size: 20px;
+    color: white;
+    text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
+}
+
+.closed.for-sale {
+    height: 200px;
+}
+
+.closed.for-sale .facade {
+    background-color: #d9d9d9;
+    height: 170px;
+}
+
+.closed.for-sale .roof {
+    display: block;
+    background-color: #333;
+}
+
+.closed.for-sale .facade::before {
+    content: '';
+    width: 120px;
+    height: 120px;
+    background-image: url('for_sale_sign.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    top: auto;
+    bottom: -100px;
+    border: none;
+    padding: 0;
+    z-index: 10;
+}
+
+.coming-soon .facade::after {
+    content: '';
+    position: absolute;
+    width: 300px;
+    height: 60px;
+    background-image: url('coming_soon_banner.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    top: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.ollies-coming-soon .facade {
+    background-color: #ffffff;
+}
+
+.ollies-coming-soon .roof {
+    background-color: #e01a22;
+}
+
+.ollies-coming-soon #main-logo {
+    opacity: 1;
+    background-image: url('ollies_logo.png');
+}
+
+.ollies-coming-soon .facade::after {
+    content: '';
+    position: absolute;
+    width: 300px;
+    height: 60px;
+    background-image: url('coming_soon_banner.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    top: 90px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.ollies-coming-soon .facade::before,
+.ollies-coming-soon .facade::after:not(:first-of-type) {
+    content: '';
+    position: absolute;
+    width: 60px;
+    height: 60px;
+    background-image: url('ollies_face.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.ollies-coming-soon .facade::before {
+    left: 20px;
+    top: 50px;
+}
+
+.construction {
+    height: 100px;
+    opacity: 0.7;
+}
+
+.construction .facade {
+    background-color: #ccc;
+    background-image: linear-gradient(90deg, #ccc 0%, #ddd 20%, #ccc 40%, #ddd 60%, #ccc 80%, #ddd 100%);
+}
+
+.construction .roof {
+    background-color: #333;
+}
+
+.construction #main-logo {
+    opacity: 0;
+}
+
+.completed {
+    height: 200px;
+}
+
+.completed .facade {
+    background-color: #4d94ff;
+}
+
+.completed .roof {
+    background-color: #00366b;
+}
+
+.redesigned .facade {
+    background-color: #fff;
+}
+
+.shutting-down .facade {
+    background-color: #e6e6e6;
+    position: relative;
+}
+
+.shutting-down .facade::before,
+.shutting-down .facade::after {
+    content: '';
+    position: absolute;
+    width: 80px;
+    height: 120px;
+    background-image: url('sale_poster.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    top: 40px;
+}
+
+.shutting-down .facade::before {
+    left: 20px;
+}
+
+.shutting-down .facade::after {
+    right: 20px;
+}
+
+.shutting-down #main-logo {
+    opacity: 0.5;
+}
+
+.closed .facade {
+    background-color: #d9d9d9;
+}
+
+.closed #main-logo, .closed #babies-logo {
+    opacity: 0;
+}
+
+.ollies .facade {
+    background-color: #ffffff;
+}
+
+.ollies .roof {
+    background-color: #e01a22;
+}
+
+.ollies .facade::before,
+.ollies .facade::after {
+    content: '';
+    position: absolute;
+    width: 60px;
+    height: 60px;
+    background-image: url('ollies_face.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    top: 50px;
+}
+
+.ollies .facade::before {
+    left: 20px;
+}
+
+.ollies .facade::after {
+    right: 20px;
+}
+
+.info-panel {
+    background-color: #f9f9f9;
+    padding: 15px;
+    border-radius: 5px;
+    border-left: 4px solid #e01a22;
+}
+
+.info-panel h2 {
+    margin-bottom: 10px;
+    color: #333;
+}
+
+.brick-building {
+    height: 200px;
+}
+
+.brick-building .facade {
+    background-color: #9c2e0e;
+    background-image: linear-gradient(90deg, #9c2e0e 0%, #b3331f 20%, #9c2e0e 40%, #b3331f 60%, #9c2e0e 80%, #b3331f 100%);
+    position: relative;
+}
+
+.brick-building .roof {
+    background-color: #333;
+}
+
+.brick-building .facade::before {
+    content: '';
+    width: 120px;
+    height: 120px;
+    background-image: url('for_sale_sign.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    position: absolute;
+    top: 50px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.sold {
+    height: 50px;
+}
+
+.sold .facade {
+    background-color: #8B4513;
+    position: relative;
+    height: 50px;
+}
+
+.sold .roof {
+    display: none;
+}
+
+.sold .facade::before {
+    content: '';
+    width: 120px;
+    height: 120px;
+    background-image: url('sold_sign.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    position: absolute;
+    top: -30px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.worldgreen-plaza::after {
+    content: 'Worldgreen Plaza';
+    position: absolute;
+    bottom: -25px;
+    left: 0;
+    width: 100%;
+    text-align: center;
+    font-size: 14px;
+    font-weight: bold;
+    color: #333;
+}
+
+.wii-release .facade::before,
+.wii-release .facade::after {
+    content: '';
+    position: absolute;
+    width: 120px;
+    height: 60px;
+    background-image: url('wii_banner.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    border: none;
+    top: 30px;
+}
+
+.wii-release .facade::before {
+    left: 20px;
+}
+
+.wii-release .facade::after {
+    right: 20px;
+}
+
+@media (max-width: 768px) {
+    .building {
+        width: 90%;
+    }
+    
+    .year-labels {
+        font-size: 10px;
+    }
+}
+
+/* Comparison Overlay Styles */
+.comparison-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.8);
+    z-index: 1000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+
+.overlay-content {
+    position: relative;
+    max-width: 90%;
+    max-height: 90%;
+}
+
+.comparison-image {
+    max-width: 100%;
+    max-height: 80vh;
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.2);
+    border: 2px solid white;
+}
+
+.click-instruction {
+    position: absolute;
+    bottom: -30px;
+    left: 0;
+    width: 100%;
+    text-align: center;
+    color: white;
+    font-size: 14px;
+    text-shadow: 1px 1px 2px black;
+}
+
+@media (max-width: 768px) {
+    .comparison-image {
+        max-height: 60vh;
+    }
+}
+
+.empty-ollies .facade {
+    background-color: #ffffff;
+    opacity: 0.7;
+}
+
+.empty-ollies #main-logo {
+    opacity: 0.3;
+}
+
+.ollies-closing .facade {
+    background-color: #ffffff;
+    position: relative;
+}
+
+.ollies-closing .facade::before,
+.ollies-closing .facade::after {
+    content: '';
+    position: absolute;
+    width: 80px;
+    height: 120px;
+    background-image: url('sale_poster.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    top: 40px;
+}
+
+.ollies-closing .facade::before {
+    left: 20px;
+}
+
+.ollies-closing .facade::after {
+    right: 20px;
+}
+
+.walmart .facade {
+    background-color: #0071ce;
+}
+
+.walmart .roof {
+    background-color: #ffc220;
+}
+
+.walmart #main-logo {
+    background-image: none;
+    position: relative;
+}
+
+.walmart #main-logo::before {
+    content: 'WALMART';
+    position: absolute;
+    font-size: 28px;
+    font-weight: bold;
+    color: white;
+    text-align: center;
+    width: 100%;
+    top: 15px;
+}
+
+.walmart-popular .facade {
+    background-color: #0071ce;
+}
+
+.walmart-redesign .facade {
+    background-color: #0071ce;
+    background-image: linear-gradient(180deg, #0071ce 0%, #0085ef 100%);
+}
+
+.switch-release .facade {
+    background-color: #0071ce;
+    position: relative;
+}
+
+.switch-release .facade::before,
+.switch-release .facade::after {
+    content: 'SWITCH 5';
+    position: absolute;
+    background-color: #e60012;
+    color: white;
+    padding: 10px 15px;
+    border-radius: 5px;
+    font-weight: bold;
+    top: 20px;
+}
+
+.switch-release .facade::before {
+    left: 20px;
+}
+
+.switch-release .facade::after {
+    right: 20px;
+}
+
+.less-popular .facade {
+    background-color: #0071ce;
+    opacity: 0.8;
+}
+
+.closing-announcement .facade {
+    background-color: #0071ce;
+    position: relative;
+}
+
+.closing-announcement .facade::before {
+    content: 'CLOSING SOON';
+    position: absolute;
+    background-color: #e60012;
+    color: white;
+    padding: 10px 15px;
+    border-radius: 5px;
+    font-weight: bold;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.closed-walmart .facade {
+    background-color: #d9d9d9;
+}
+
+.closed-walmart #main-logo::before {
+    content: '';
+}
+
+.roblox-construction {
+    height: 250px;
+}
+
+.roblox-construction .facade {
+    height: 220px;
+    background-color: #f2f2f2;
+    position: relative;
+}
+
+.roblox-construction .facade::before {
+    content: 'FUTURE HOME OF ROBLOX HQ';
+    position: absolute;
+    background-color: #00a2ff;
+    color: white;
+    padding: 10px 15px;
+    border-radius: 5px;
+    font-weight: bold;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.roblox-10floors {
+    height: 350px;
+}
+
+.roblox-10floors .facade {
+    height: 320px;
+    background-color: #00a2ff;
+    background-image: linear-gradient(180deg, #00a2ff 0%, #0071ce 100%);
+}
+
+.roblox-30floors {
+    height: 450px;
+}
+
+.roblox-30floors .facade {
+    height: 420px;
+    background-color: #00a2ff;
+    background-image: linear-gradient(180deg, #00a2ff 0%, #0071ce 100%);
+}
+
+.roblox-complete {
+    height: 550px;
+}
+
+.roblox-complete .facade {
+    height: 520px;
+    background-color: #00a2ff;
+    background-image: linear-gradient(180deg, #00a2ff 0%, #0071ce 100%);
+}
+
+.roblox-complete #main-logo::before,
+.roblox-30floors #main-logo::before,
+.roblox-10floors #main-logo::before {
+    content: 'ROBLOX';
+    position: absolute;
+    font-size: 28px;
+    font-weight: bold;
+    color: white;
+    text-align: center;
+    width: 100%;
+    top: 15px;
+}
+
+.metablox-hq {
+    height: 550px;
+}
+
+.metablox-hq .facade {
+    height: 520px;
+    background-color: #00a2ff;
+    background-image: linear-gradient(180deg, #00a2ff 0%, #7848FF 100%);
+}
+
+.metablox-hq #main-logo::before {
+    content: 'METABLOX';
+    position: absolute;
+    font-size: 28px;
+    font-weight: bold;
+    color: white;
+    text-align: center;
+    width: 100%;
+    top: 15px;
+}
+
+.sued-metablox .facade {
+    height: 520px;
+    background-color: #00a2ff;
+    background-image: linear-gradient(180deg, #00a2ff 0%, #7848FF 100%);
+    position: relative;
+}
+
+.sued-metablox .facade::before {
+    content: 'UNDER LITIGATION';
+    position: absolute;
+    background-color: #e60012;
+    color: white;
+    padding: 10px 15px;
+    border-radius: 5px;
+    font-weight: bold;
+    top: 200px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.closing-metablox .facade {
+    height: 520px;
+    background-color: #7848FF;
+    opacity: 0.7;
+}
+
+.demolition .facade {
+    height: 520px;
+    background-color: #7848FF;
+    opacity: 0.5;
+    position: relative;
+}
+
+.demolition .facade::before {
+    content: 'SCHEDULED FOR DEMOLITION';
+    position: absolute;
+    background-color: #e60012;
+    color: white;
+    padding: 10px 15px;
+    border-radius: 5px;
+    font-weight: bold;
+    top: 200px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.empty-lot {
+    height: 50px;
+}
+
+.empty-lot .facade {
+    background-color: #8B4513;
+    position: relative;
+    height: 50px;
+}
+
+.empty-lot .roof {
+    display: none;
+}
+
+.empty-lot .facade::before {
+    content: '';
+    width: 120px;
+    height: 120px;
+    background-image: url('for_sale_sign.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    position: absolute;
+    top: -30px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.apartment {
+    height: 350px;
+}
+
+.apartment .facade {
+    height: 320px;
+    background-color: #f2f2f2;
+    background-image: linear-gradient(180deg, #f2f2f2 0%, #d9d9d9 100%);
+    position: relative;
+}
+
+.apartment .facade::before {
+    content: 'WORLDGREEN RESIDENCES';
+    position: absolute;
+    background-color: #3C7A89;
+    color: white;
+    padding: 10px 15px;
+    border-radius: 5px;
+    font-weight: bold;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.apartment-occupied .facade {
+    height: 320px;
+    background-color: #f2f2f2;
+    background-image: linear-gradient(180deg, #f2f2f2 0%, #d9d9d9 100%);
+    position: relative;
+}
+
+.store-scene {
+    transition: all 0.5s ease;
+}
+
+.zoomed-out-10 {
+    height: 400px;
+    transform: scale(0.9);
+}
+
+.zoomed-out-30 {
+    height: 500px;
+    transform: scale(0.8);
+}
+
+.zoomed-out-50 {
+    height: 600px;
+    transform: scale(0.7);
+}
+
+/* Added apartment zoom out classes */
+.zoomed-out-apartment {
+    height: 400px;
+    transform: scale(0.85);
+}
+
+/* Small plot styles */
+.small-plot {
+    height: 30px;
+}
+
+.small-plot .facade {
+    background-color: #8B4513;
+    position: relative;
+    height: 30px;
+}
+
+.small-plot .roof {
+    display: none;
+}
+
+/* House styles */
+.house {
+    height: 150px;
+}
+
+.house .facade {
+    height: 120px;
+    background-color: #f8d8a8;
+    position: relative;
+}
+
+.house .roof {
+    background-color: #8B4513;
+    height: 30px;
+}
+
+/* Diner styles */
+.diner {
+    height: 180px;
+}
+
+.diner .facade {
+    height: 150px;
+    background-color: #f2f2f2;
+    position: relative;
+}
+
+.diner .roof {
+    background-color: #e74c3c;
+    height: 30px;
+}
+
+.diner #main-logo {
+    background-image: url('joes_diner_logo.png');
+}
+
+/* Corner store styles */
+.corner-store {
+    height: 170px;
+}
+
+.corner-store .facade {
+    height: 140px;
+    background-color: #ecf0f1;
+    position: relative;
+}
+
+.corner-store .roof {
+    background-color: #27ae60;
+    height: 30px;
+}
+
+.corner-store #main-logo {
+    background-image: url('jeffs_corner_store_logo.png');
+}
+
+/* Music store styles */
+.music-store {
+    height: 180px;
+}
+
+.music-store .facade {
+    height: 150px;
+    background-color: #2c3e50;
+    position: relative;
+}
+
+.music-store .roof {
+    background-color: #8e44ad;
+    height: 30px;
+}
+
+.music-store #main-logo {
+    background-image: url('rock_music_store_logo.png');
+}
+
+/* Walmart logo styling */
+.walmart #main-logo {
+    background-image: url('walmart_logo.png');
+    opacity: 1;
+}
+
+/* Roblox logo styling */
+.roblox-complete #main-logo,
+.roblox-30floors #main-logo,
+.roblox-10floors #main-logo {
+    background-image: url('roblox_logo.png');
+    opacity: 1;
+}
+
+/* Metablox logo styling */
+.metablox-hq #main-logo,
+.sued-metablox #main-logo,
+.closing-metablox #main-logo {
+    background-image: url('metablox_logo.png');
+    opacity: 1;
+}
+
+/* Going out of business styles */
+.going-out-of-business .facade::before,
+.going-out-of-business .facade::after {
+    content: '';
+    position: absolute;
+    width: 80px;
+    height: 120px;
+    background-image: url('going_out_of_business_banner.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    top: 40px;
+}
+
+.going-out-of-business .facade::before {
+    left: 20px;
+}
+
+.going-out-of-business .facade::after {
+    right: 20px;
+}
+
+/* Year label styling for less cluttered timeline */
+.year-labels {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 5px;
+    font-size: 12px;
+    color: #666;
+    overflow: hidden;
+}
+
+.year-labels span {
+    display: none;
+}
+
+.year-labels span.visible {
+    display: block;
+}
+
+/* Flying car styles */
+.flying-car {
+    box-shadow: 0 10px 15px rgba(0, 150, 255, 0.3);
+    animation: hover 3s infinite ease-in-out;
+}
+
+@keyframes hover {
+    0% {
+        transform: translateY(0) rotate(0deg);
+    }
+    50% {
+        transform: translateY(-5px) rotate(0deg);
+    }
+    100% {
+        transform: translateY(0) rotate(0deg);
+    }
+}
+
+/* Car evolution styles */
+.vintage-car {
+    filter: sepia(0.3);
+}
+
+.classic-car {
+    filter: sepia(0.1);
+}
+
+.future-car {
+    filter: brightness(1.2);
+}
+
+/* Historic building styles */
+.uk-flag {
+    height: 100px;
+}
+
+.uk-flag .facade {
+    background-color: transparent;
+    height: 30px;
+    position: relative;
+}
+
+.uk-flag .roof {
+    display: none;
+}
+
+.uk-flag .facade::before {
+    content: '';
+    position: absolute;
+    width: 5px;
+    height: 100px;
+    background-color: #8B4513;
+    top: -70px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.uk-flag .facade::after {
+    content: '';
+    position: absolute;
+    width: 30px;
+    height: 20px;
+    background: linear-gradient(to bottom, #00247d 0%, #00247d 50%, #cf142b 50%, #cf142b 100%);
+    top: -90px;
+    left: 50%;
+    transform: translateX(-50%);
+    box-shadow: 0 2px 4px rgba(0,0,0,0.3);
+}
+
+.cabin {
+    height: 120px;
+}
+
+.cabin .facade {
+    height: 90px;
+    background-color: #8B4513;
+    position: relative;
+}
+
+.cabin .roof {
+    height: 30px;
+    background-color: #5D4037;
+    transform: perspective(200px) rotateX(20deg);
+}
+
+.cabin .facade::before,
+.cabin .facade::after {
+    content: '';
+    position: absolute;
+    width: 20px;
+    height: 30px;
+    background-color: rgba(0, 0, 0, 0.5);
+    top: 30px;
+}
+
+.cabin .facade::before {
+    left: 100px;
+}
+
+.cabin .facade::after {
+    right: 100px;
+}
+
+.cabin-fire {
+    height: 120px;
+}
+
+.cabin-fire .facade {
+    height: 90px;
+    background-color: #8B4513;
+    position: relative;
+    overflow: hidden;
+}
+
+.cabin-fire .roof {
+    height: 30px;
+    background-color: #5D4037;
+    transform: perspective(200px) rotateX(20deg);
+    position: relative;
+}
+
+.cabin-fire .facade::before,
+.cabin-fire .roof::before {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 80px;
+    background: linear-gradient(to top, #FF9800, #F44336, transparent);
+    top: 0;
+    left: 0;
+    animation: fire 2s infinite alternate;
+}
+
+@keyframes fire {
+    0% { transform: scaleY(0.8); opacity: 0.7; }
+    100% { transform: scaleY(1.2); opacity: 1; }
+}
+
+.burned-ruins {
+    height: 50px;
+}
+
+.burned-ruins .facade {
+    height: 50px;
+    background-color: #424242;
+    opacity: 0.8;
+    position: relative;
+}
+
+.burned-ruins .roof {
+    display: none;
+}
+
+.burned-ruins .facade::before,
+.burned-ruins .facade::after {
+    content: '';
+    position: absolute;
+    width: 10px;
+    height: 60px;
+    background-color: #212121;
+    top: -10px;
+}
+
+.burned-ruins .facade::before {
+    left: 30%;
+}
+
+.burned-ruins .facade::after {
+    right: 30%;
+}
+
+.usa-ownership {
+    height: 80px;
+}
+
+.usa-ownership .facade {
+    background-color: transparent;
+    height: 30px;
+    position: relative;
+}
+
+.usa-ownership .roof {
+    display: none;
+}
+
+.usa-ownership .facade::before {
+    content: '';
+    position: absolute;
+    width: 5px;
+    height: 80px;
+    background-color: #8B4513;
+    top: -50px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.usa-ownership .facade::after {
+    content: '';
+    position: absolute;
+    width: 30px;
+    height: 20px;
+    background-image: linear-gradient(
+        to bottom,
+        #3C3B6E 7.7%,
+        #FFFFFF 7.7%, #FFFFFF 15.4%,
+        #3C3B6E 15.4%, #3C3B6E 23.1%,
+        #FFFFFF 23.1%, #FFFFFF 30.8%,
+        #3C3B6E 30.8%, #3C3B6E 38.5%,
+        #FFFFFF 38.5%, #FFFFFF 46.2%,
+        #3C3B6E 46.2%, #3C3B6E 53.9%,
+        #FFFFFF 53.9%, #FFFFFF 61.6%,
+        #3C3B6E 61.6%, #3C3B6E 69.3%,
+        #FFFFFF 69.3%, #FFFFFF 77%,
+        #3C3B6E 77%, #3C3B6E 84.7%,
+        #FFFFFF 84.7%, #FFFFFF 92.4%,
+        #3C3B6E 92.4%
+    );
+    top: -70px;
+    left: 50%;
+    transform: translateX(-50%);
+    box-shadow: 0 2px 4px rgba(0,0,0,0.3);
+}
+
+.simple-shop {
+    height: 150px;
+}
+
+.simple-shop .facade {
+    height: 120px;
+    background-color: #A1887F;
+    position: relative;
+}
+
+.simple-shop .roof {
+    height: 30px;
+    background-color: #3E2723;
+}
+
+.simple-shop .facade::before {
+    content: '';
+    position: absolute;
+    width: 60px;
+    height: 40px;
+    background-color: rgba(255, 255, 255, 0.3);
+    top: 40px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.simple-shop.thriving .facade {
+    background-color: #A1887F;
+}
+
+.simple-shop.thriving .facade::after {
+    content: 'OPEN';
+    position: absolute;
+    color: white;
+    background-color: #4CAF50;
+    padding: 5px 10px;
+    font-size: 12px;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.simple-shop.closing .facade {
+    background-color: #A1887F;
+    opacity: 0.8;
+}
+
+.simple-shop.closing .facade::after {
+    content: 'CLOSING';
+    position: absolute;
+    color: white;
+    background-color: #F44336;
+    padding: 5px 10px;
+    font-size: 12px;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.for-sale-old {
+    height: 50px;
+}
+
+.for-sale-old .facade {
+    background-color: #795548;
+    position: relative;
+    height: 50px;
+}
+
+.for-sale-old .roof {
+    display: none;
+}
+
+.for-sale-old .facade::before {
+    content: 'FOR SALE';
+    position: absolute;
+    top: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: white;
+    padding: 5px 10px;
+    border: 2px solid #333;
+    font-weight: bold;
+    font-size: 16px;
+}
+
+/* Horse styles */
+.horse {
+    position: absolute;
+    width: 30px;
+    height: 25px;
+    z-index: 2;
+    background-color: #8B4513;
+    border-radius: 50% 50% 0 0;
+    box-shadow: 0 2px 3px rgba(0,0,0,0.3);
+}
+
+.horse::before {
+    content: '';
+    position: absolute;
+    width: 10px;
+    height: 15px;
+    background-color: #8B4513;
+    top: -10px;
+    left: 5px;
+    border-radius: 50% 50% 0 0;
+}
+
+.horse::after {
+    content: '';
+    position: absolute;
+    width: 20px;
+    height: 2px;
+    background-color: #5D4037;
+    bottom: -2px;
+    left: 5px;
+}
+
+/* Geoffrey mascot styles */
+.geoffrey-mascot {
+    position: absolute;
+    width: 60px;
+    height: 100px;
+    background-image: url('geoffrey_giraffe.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    bottom: 110px;
+    right: 50px;
+    z-index: 3;
+    transition: opacity 0.5s ease;
+}
+
+/* Add vintage filter for early years */
+.vintage-filter {
+    filter: grayscale(100%) contrast(90%) sepia(10%);
+    position: relative;
+}
+
+.vintage-filter::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: radial-gradient(transparent 50%, rgba(0,0,0,0.3) 100%);
+    pointer-events: none;
+    z-index: 10;
+}
+
+.vintage-filter::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: url('data:image/png;base64,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');
+    opacity: 0.2;
+    z-index: 11;
+    pointer-events: none;
+}
+
+/* Add language selector styles */
+.language-selector {
+    position: absolute;
+    top: 10px;
+    right: 20px;
+    z-index: 100;
+}
+
+#language-selector {
+    padding: 5px 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    background-color: white;
+    font-size: 14px;
+    cursor: pointer;
+}
+
+#language-selector:hover {
+    border-color: #aaa;
+}
+
+.trap-banner {
+    background-color: #0071ce; /* Blue color */
+    color: white;
+    text-align: center;
+    padding: 12px;
+    font-weight: bold;
+    width: 100%;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+}
+
+.trap-banner a {
+    color: #ffff00;
+    text-decoration: underline;
+}
+
+.trap-banner a:hover {
+    text-decoration: none;
+}
+
+.top-banner {
+    background-color: #e01a22;
+    color: white;
+    text-align: center;
+    padding: 12px;
+    font-weight: bold;
+    width: 100%;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+}
