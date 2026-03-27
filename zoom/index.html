@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Cosmic Zoom</title>
+    <link rel="stylesheet" href="style.css">
+    <script type="importmap">
+        {
+            "imports": {
+                "three": "https://esm.sh/three@0.160.0",
+                "three/addons/": "https://esm.sh/three@0.160.0/examples/jsm/",
+                "gsap": "https://esm.sh/gsap@3.12.2"
+            }
+        }
+    </script>
+</head>
+<body>
+    <div id="container"></div>
+    <div id="ui">
+        <div id="info">
+            <h1 id="object-name">Loading...</h1>
+            <p id="object-size">10<sup>0</sup> meters</p>
+            <p id="object-desc">The scale of the universe.</p>
+        </div>
+        <div id="controls">
+            <div id="click-hint" style="display: none; color: #ff00ff; margin-bottom: 8px; font-weight: bold; animation: hintPulse 2s infinite; font-size: 0.9rem; text-shadow: 0 0 10px #ff00ff;">Tap a bubble to enter another reality</div>
+            <div class="zoom-hint">Drag up/down to zoom or use the scroll wheel below</div>
+            <div id="progress-bar-container">
+                <div id="progress-bar"></div>
+            </div>
+            <div id="fast-scroll-container">
+                <input type="range" id="fast-scroll-slider" min="-2000" max="2000" step="0.1" value="0">
+            </div>
+        </div>
+    </div>
+    <div id="overlay">Left Click/Drag: Zoom &nbsp; | &nbsp; Right Click/Drag: Rotate &nbsp; | &nbsp; WASD: Move Camera</div>
+    
+    <div id="details-modal">
+        <h2 id="modal-name">Object Name</h2>
+        <div id="modal-size" class="size">10^0 meters</div>
+        <!-- Container for 3D preview or image -->
+        <div id="modal-visual" style="width:100%; max-width:100%; height:220px; margin:15px 0; position:relative; overflow:hidden; border-radius:8px; background:rgba(0,0,0,0.6);">
+        </div>
+        <!-- Image for items that include an artwork / photo -->
+        <img id="modal-image" src="" alt="" style="max-width:100%; border-radius:8px; margin:15px 0; display:none;" />
+        <p id="modal-desc">Description</p>
+        <button class="close-btn" id="modal-close">Close</button>
+    </div>
+
+    <button id="back-home-btn">Return to Primary Universe</button>
+
+    <script type="module" src="app.js"></script>
+</body>
+</html>

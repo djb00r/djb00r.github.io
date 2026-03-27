@@ -1,0 +1,343 @@
+<html lang="en">
+<head>
+  <!-- Add type="module" to load ES modules -->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>YTP Maker Reopend</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="icon" href="ytp-maker-03-02-2025.png" type="image/png">
+  <script src="https://cdn.jsdelivr.net/npm/websimsocket/dist/websimsocket.js"></script>
+  <!-- Note the type="module" here -->
+  <script type="module" src="effects.js"></script>
+  <script type="module" src="app.js"></script>
+</head>
+<body>
+  <div class="intro-screen">
+    <div class="intro-content">
+      <div class="intro-text">
+        <span class="production-text">Autumn Productions Presents</span>
+        <div class="copyright">
+          <div class="copyright-circle">©</div>
+        </div>
+        <div class="creator-info">
+          <span>Original by phgvr</span>
+          <img src="https://avatars.websim.ai/ea3cfbba-a522-42bc-b0f8-ab7fa115b53b/WMlACdWo75NhHy9LH.webp" alt="phgvr avatar">
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="ytp-splash">
+    <div class="splash-content">
+      <img src="ytp-maker-reopend-2-19-2025.png" alt="YTP Maker Reopend Logo" class="splash-logo">
+      <div class="hot-banner">
+        <span class="fire-emoji">🔥</span> NOW ON HOT PAGE! <span class="fire-emoji">🔥</span>
+      </div>
+      <div class="ytp-quotes">
+        <div class="quote">SPAGHETTI</div>
+        <div class="quote">SMOKE WEED EVERYDAY</div>
+        <div class="quote">GET NOSCOPED</div>
+        <div class="quote">OH BABY A TRIPLE</div>
+        <div class="quote">MOM GET THE CAMERA</div>
+        <div class="quote">TACTICAL NUKE INCOMING</div>
+        <div class="quote">WOMBO COMBO</div>
+        <div class="quote">THAT AIN'T FALCO</div>
+        <div class="quote">HAPPY FEET</div>
+        <div class="quote">WHERE YOU AT</div>
+        <div class="quote">DAMN SON WHERE'D YOU FIND THIS</div>
+        <div class="quote">ILLUMINATI CONFIRMED</div>
+        <div class="quote">DORITOS + MTN DEW = MLG</div>
+        <div class="quote">360 NOSCOPE</div>
+      </div>
+      <div class="splash-loading-bar">
+        <div class="splash-loading-progress"></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="ie-warning">
+    <h1>⚠️ Internet Explorer Not Supported ⚠️</h1>
+    <p>For the best experience, please use a modern browser like Chrome, Firefox, Safari, or Edge.</p>
+  </div>
+
+  <div class="container" style="display:none;">
+    <div class="logo-container">
+      <img src="ytp-maker-reopend-2-19-2025.png" alt="YTP Maker Reopend Logo" class="logo">
+      <div class="slogan">MAKE. SHARE. REKT.</div>
+    </div>
+
+    <div class="tabs">
+      <button class="tab-btn" data-tab="make">Make YTP</button>
+      <button class="tab-btn" data-tab="community">Community</button>
+      <button class="tab-btn" data-tab="changelog">Changelog</button>
+      <button class="tab-btn" data-tab="help">Help</button>
+      <button class="tab-btn" data-tab="settings">Settings</button>
+      <button class="tab-btn" data-tab="more-games">More Games</button>
+    </div>
+
+    <div id="makeTab" class="tab-content active" style="display:block;">
+      <div class="upload-section">
+        <input type="file" id="videoInput" accept="video/*">
+        <label for="videoInput">
+          Choose Video File
+        </label>
+      </div>
+
+      <div class="preview-section">
+        <h2>Preview</h2>
+        <div class="video-container">
+          <div class="video-wrapper">
+            <video id="sourceVideo" controls></video>
+            <div class="video-placeholder" id="sourcePlaceholder">Original Video</div>
+          </div>
+          <div class="video-wrapper">
+            <video id="outputVideo" controls></video>
+            <div class="video-placeholder hidden" id="outputPlaceholder">YTP Preview</div>
+          </div>
+        </div>
+
+        <div class="controls">
+          <label for="intensitySlider">
+            Intensity: <span id="intensityValue">5</span>
+            <input type="range" id="intensitySlider" min="1" max="10" value="5">
+          </label>
+
+          <div id="experimentalMenu">
+            <label class="experimental-feature">
+              <input type="checkbox" id="audioToggle" checked> MLG Sounds (Enabled by default)
+            </label>
+          </div>
+
+          <div id="durationPickerContainer">
+            <label for="durationInput">
+              Duration Override (seconds, max 30s):
+              <input type="number" id="durationInput" value="10" min="1" max="30">
+            </label>
+          </div>
+          <label class="setting-option">
+            <input type="checkbox" id="durationToggle">Override Video Duration
+          </label>
+        </div>
+
+        <button id="generateBtn" disabled>Generate YTP</button>
+        <button class="download-btn" id="downloadBtn" style="display:none;">Download YTP</button>
+        <button class="publish-btn" id="publishBtn" style="display:none;">Share YTP</button>
+        <button class="tutorial-btn" id="tutorialBtn">
+          <span class="mario-icon">🍄</span> Tutorial
+        </button>
+        <div id="tutorialOverlay" class="tutorial-overlay">
+          <img src="https://upload.wikimedia.org/wikipedia/en/5/5c/Mario_by_Shigehisa_Nakaue.png" alt="Mario Tutor" class="mario-tutor">
+          <div class="speech-bubble"></div>
+        </div>
+        <div class="xp-loading-bar"></div>
+      </div>
+    </div>
+
+    <div id="communityTab" class="tab-content" style="display:none;">
+      <div class="community-feed" id="ytpFeed">
+        <h2>Community YTP Feed</h2>
+        <p>Loading community feed...</p>
+      </div>
+    </div>
+
+    <div id="changelogTab" class="tab-content" style="display:none;">
+      <div class="changelog-section">
+        <h2>Changelog</h2>
+        <div class="hot-banner">
+          <span class="fire-emoji">🔥</span> WE ARE NOW ON THE HOT PAGE! <span class="fire-emoji">🔥</span> THANK YOU!
+        </div>
+        <div class="version">
+          <h3>Version 2.5.02 - Games Update</h3>
+          <ul>
+            <li>🎮 Added More Games tab to discover other awesome projects</li>
+            <li>🌐 Added projects popup with easy navigation to game collection</li>
+            <li>✨ Minor UI improvements and polish</li>
+          </ul>
+        </div>
+        <div class="version">
+          <h3>Version 2.501 - Secret Update</h3>
+          <ul>
+            <li>🎵 Added a secret easter egg... try to find it!</li>
+            <li>🧹 Some spring cleaning of splash screen content</li>
+          </ul>
+        </div>
+        <div class="version">
+          <h3>Version 2.5 - Splash Update</h3>
+          <ul>
+            <li>✨ Added new splash screen with random MLG quotes</li>
+            <li>🔥 Added HOT PAGE banner to splash screen</li>
+            <li>🎵 Added chance for special meme sound on startup</li>
+          </ul>
+        </div>
+        <div class="version">
+          <h3>Version 2.4 - Audio Update</h3>
+          <ul>
+            <li>🔊 Added MLG sound effects by default (airhorn, ohhhh, noice, and more!)</li>
+            <li>⚡ Sound effects now play every 1-2 seconds for maximum MLG impact</li>
+            <li>🎵 Audio system completely reworked for better synchronization</li>
+            <li>🎮 Added Mario sounds for extra gaming authenticity</li>
+          </ul>
+        </div>
+        <div class="version">
+          <h3>Version 2.3</h3>
+          <ul>
+            <li>🍄 Tutorial Mario is here to guide new users!</li>
+            <li>✨ Improved error handling and user feedback.</li>
+            <li>🛠️ Bug fixes and performance improvements.</li>
+          </ul>
+        </div>
+        <div class="version">
+          <h3>Version 2.2</h3>
+          <ul>
+            <li>🌐 Community tab now features comments on YTP posts!</li>
+            <li>👍 MLG-style reactions for community posts (OHHHHHHHHHHHHHHH for like and This is the biggest piece of dog poop for dislike).</li>
+            <li>🔥 "HOT PAGE" banner to celebrate recent popularity.</li>
+          </ul>
+        </div>
+        <div class="version">
+          <h3>Version 2.1</h3>
+          <ul>
+            <li>🎧 Experimental audio effects added (MLG sounds)!</li>
+            <li>🐛 Fixed social media reactions not working.</li>
+            <li>🛠️ Various bug fixes and stability improvements.</li>
+          </ul>
+        </div>
+        <div class="version">
+          <h3>Version 2.0</h3>
+          <ul>
+            <li>😂 MLG effects, Doritos, and more!</li>
+            <li>🛠️ Major bug fixes and performance improvements.</li>
+          </ul>
+        </div>
+        <div class="version">
+          <h3>Version 1.21</h3>
+          <ul>
+            <li>🐛 Fixed a critical bug.</li>
+            <li>🚫 Dropped support for Firefox (temporarily).</li>
+          </ul>
+        </div>
+        <div class="version">
+          <h3>Version 1.2</h3>
+          <ul>
+            <li>🐛 Bug fixes and stability improvements.</li>
+          </ul>
+        </div>
+        <div class="version">
+          <h3>Version 1.1</h3>
+          <ul>
+            <li>🎉 Added social media sharing features.</li>
+            <li>✨ More video effects added.</li>
+            <li>🚀 Performance improvements.</li>
+          </ul>
+        </div>
+        <div class="version">
+          <h3>Version 1.0</h3>
+          <ul>
+            <li>🚀 Website reopened with no changes from the original version.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div id="helpTab" class="tab-content" style="display:none;">
+      <div class="help-section">
+        <h2>Help &amp; Tips</h2>
+
+        <h3>Getting Started</h3>
+        <p>Welcome to YTP Maker Reopend! Here's a quick guide to get you started:</p>
+        <ul>
+          <li><strong>Choose Video File:</strong> Click the "Choose Video File" button to upload a video from your computer. Supported formats: MP4, WebM, MOV, AVI, M4V, MPEG, MKV. Max file size: 100MB.</li>
+          <li><strong>Adjust Intensity:</strong> Use the intensity slider to control the amount of effects applied to your YTP. Higher intensity = more MLG!</li>
+          <li><strong>Generate YTP:</strong> Click the "Generate YTP" button. Processing takes 1-2 minutes.</li>
+          <li><strong>Download/Share:</strong> Once generated, you can download your YTP or share it with the community!</li>
+        </ul>
+
+        <h3>Experimental Audio (MLG Sounds)</h3>
+        <p>Enable "Experimental Audio" in the settings for added MLG sound effects. This feature is still in development and may be improved.</p>
+
+        <h3>Troubleshooting</h3>
+        <p><strong>Video Upload Issues:</strong></p>
+        <ul>
+          <li>Ensure your video file is in a supported format and under 100MB.</li>
+          <li>Check your internet connection.</li>
+          <li>Try refreshing the page.</li>
+        </ul>
+        <p><strong>Generation Errors:</strong></p>
+        <ul>
+          <li>Reduce intensity and try again.</li>
+          <li>Some videos may not process correctly due to format or content.</li>
+        </ul>
+
+        <h3>Tips for Best YTPs</h3>
+        <ul>
+          <li>Use short clips for best results.</li>
+          <li>Experiment with different intensity levels.</li>
+          <li>Share your creations with the community and have fun!</li>
+        </ul>
+      </div>
+    </div>
+
+    <div id="settingsTab" class="tab-content" style="display:none;">
+      <div class="settings-section">
+        <h2>Settings</h2>
+
+        <div class="setting-group">
+          <h3>Theme</h3>
+          <label for="themeSelector">Choose Theme:</label>
+          <select id="themeSelector" class="setting-input">
+            <option value="default">Default Style</option>
+            <option value="classic">Classic Red</option>
+            <option value="light">Light Mode</option>
+            <option value="future">Future Black</option>
+          </select>
+        </div>
+
+        <div class="setting-group">
+          <h3>Duration</h3>
+          <label class="setting-option">
+            <input type="checkbox" id="durationToggle"> Override Video Duration
+          </label>
+          <div id="durationPickerContainer" style="display:none;">
+            <label for="durationInput">
+              Duration (seconds, max 30s):
+              <input type="number" id="durationInput" value="10" min="1" max="30" class="setting-input">
+            </label>
+          </div>
+          <p class="deprecated-warning">
+            ⚠️ Duration Picker is deprecated here and will be moved to experimental settings in a future update.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <div id="moreGamesTab" class="tab-content" style="display:none;">
+      <div class="games-section">
+        <h2>More Games & Projects</h2>
+        <p>Check out my other awesome projects and games!</p>
+        <a href="https://websim.ai/@autumn" target="_blank" class="games-link">
+          <span class="icon">🎮</span>
+          Visit My Game Collection
+        </a>
+      </div>
+    </div>
+
+    <div class="bsod" style="display:none;">
+      <h1>A PROBLEM HAS BEEN DETECTED AND YTP MAKER HAS BEEN SHUT DOWN TO PREVENT DAMAGE TO YOUR COMPUTER.</h1>
+      <div class="bsod-content">
+        <p>Technical information:</p>
+        <p class="error-code">ERROR_CODE: UNKNOWN_ERROR</p>
+        <p class="tip">If problems continue, try restarting the site.</p>
+        <button class="restart-btn">Restart YTP Maker</button>
+      </div>
+    </div>
+    <div class="projects-content">
+      <h2>Check Out My Other Projects!</h2>
+      <a href="https://websim.ai/@autumn" target="_blank" class="games-link">
+        <span class="icon">🎮</span>
+        Visit My Game Collection
+      </a>
+      <button class="close-popup">×</button>
+    </div>
+  </div>
+</body>
+</html>

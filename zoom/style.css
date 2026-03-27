@@ -1,0 +1,340 @@
+body, html {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    background-color: #000;
+    color: white;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+#container {
+    width: 100%;
+    height: 100%;
+}
+
+#ui {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 20px;
+    box-sizing: border-box;
+    text-shadow: 0 0 10px rgba(0,0,0,0.8);
+}
+
+#info {
+    max-width: 400px;
+    background: linear-gradient(to bottom, rgba(0,0,0,0.5), transparent);
+    padding: 20px;
+    border-radius: 10px;
+}
+
+#object-name {
+    font-size: 2.5rem;
+    margin: 0;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+}
+
+#object-size {
+    font-size: 1.2rem;
+    color: #00d4ff;
+    margin: 5px 0;
+}
+
+#object-desc {
+    font-size: 1rem;
+    opacity: 0.8;
+    line-height: 1.4;
+}
+
+#controls {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+}
+
+.zoom-hint {
+    font-size: 0.8rem;
+    opacity: 0.5;
+    text-transform: uppercase;
+}
+
+@keyframes hintPulse {
+    0% { opacity: 0.5; transform: scale(0.98); }
+    50% { opacity: 1; transform: scale(1.05); }
+    100% { opacity: 0.5; transform: scale(0.98); }
+}
+
+#progress-bar-container {
+    width: 80%;
+    height: 4px;
+    background: rgba(255,255,255,0.1);
+    border-radius: 2px;
+    overflow: hidden;
+}
+
+#progress-bar {
+    width: 0%;
+    height: 100%;
+    background: #00d4ff;
+    transition: width 0.1s ease-out;
+}
+
+#fast-scroll-container {
+    width: 90%;
+    max-width: 600px;
+    margin-top: 10px;
+    padding: 15px 0;
+    pointer-events: auto;
+}
+
+#fast-scroll-slider {
+    -webkit-appearance: none;
+    width: 100%;
+    height: 12px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 6px;
+    outline: none;
+    cursor: pointer;
+    border: 1px solid rgba(0, 212, 255, 0.3);
+}
+
+#fast-scroll-slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 30px;
+    height: 30px;
+    background: #00d4ff;
+    border: 2px solid white;
+    border-radius: 50%;
+    cursor: pointer;
+    box-shadow: 0 0 10px rgba(0, 212, 255, 0.8);
+}
+
+#fast-scroll-slider::-moz-range-thumb {
+    width: 30px;
+    height: 30px;
+    background: #00d4ff;
+    border: 2px solid white;
+    border-radius: 50%;
+    cursor: pointer;
+    box-shadow: 0 0 10px rgba(0, 212, 255, 0.8);
+}
+
+#overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.8);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.5rem;
+    cursor: pointer;
+    z-index: 100;
+    transition: opacity 0.5s ease;
+}
+
+#details-modal {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 90%;
+    max-width: 500px;
+    background: rgba(10, 10, 20, 0.95);
+    border: 1px solid rgba(0, 212, 255, 0.3);
+    border-radius: 15px;
+    padding: 30px;
+    box-sizing: border-box;
+    display: none;
+    flex-direction: column;
+    z-index: 200;
+    pointer-events: auto;
+    box-shadow: 0 0 30px rgba(0, 212, 255, 0.2);
+}
+
+#details-modal h2 {
+    margin: 0 0 10px 0;
+    color: #00d4ff;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+#details-modal .size {
+    font-size: 0.9rem;
+    color: #aaa;
+    margin-bottom: 20px;
+}
+
+#details-modal p {
+    line-height: 1.6;
+    margin-bottom: 20px;
+}
+
+#details-modal .close-btn {
+    align-self: flex-end;
+    padding: 10px 20px;
+    background: #00d4ff;
+    color: black;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+    text-transform: uppercase;
+    transition: background 0.2s;
+}
+
+#details-modal .close-btn:hover {
+    background: #009dbd;
+}
+
+#back-home-btn {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    padding: 12px 24px;
+    background: rgba(255, 255, 255, 0.1);
+    color: white;
+    border: 1px solid rgba(0, 212, 255, 0.5);
+    border-radius: 30px;
+    font-family: inherit;
+    font-weight: bold;
+    cursor: pointer;
+    z-index: 150;
+    display: none;
+    backdrop-filter: blur(5px);
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+#back-home-btn:hover {
+    background: rgba(0, 212, 255, 0.2);
+    border-color: #00d4ff;
+    box-shadow: 0 0 15px rgba(0, 212, 255, 0.4);
+}
+
+/* Settings panel and button */
+#settings-btn {
+    position: absolute;
+    top: 18px;
+    right: 18px; /* moved to top-right corner */
+    z-index: 250;
+    min-width: 64px; /* wider tap target for touch */
+    height: 44px;
+    padding: 0 12px;
+    border-radius: 10px;
+    border: 1px solid rgba(255,255,255,0.08);
+    background: linear-gradient(180deg, rgba(8,8,12,0.9), rgba(12,12,18,0.8));
+    color: #ffffff;
+    font-size: 0.95rem;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    pointer-events: auto;
+    box-shadow: 0 12px 30px rgba(0,0,0,0.7), 0 6px 18px rgba(0, 212, 255, 0.04) inset;
+    backdrop-filter: blur(8px);
+    transform: translateZ(0); /* establish a 3D context */
+    transition: transform 0.18s ease, box-shadow 0.18s ease, background 0.18s ease;
+}
+
+#settings-btn:hover {
+    background: linear-gradient(180deg, rgba(18,18,24,0.95), rgba(14,14,22,0.92));
+    transform: translateY(-4px) translateZ(8px) rotateX(2deg);
+    box-shadow: 0 22px 44px rgba(0,0,0,0.75), 0 8px 26px rgba(0, 212, 255, 0.06) inset;
+}
+
+#settings-panel {
+    position: absolute;
+    top: 18px;
+    right: 74px; /* align panel to the right near the button */
+    width: 300px;
+    max-width: calc(100% - 100px);
+    perspective: 900px; /* give children a 3D perspective */
+    z-index: 260;
+    pointer-events: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    transform-style: preserve-3d;
+    opacity: 0;
+    transition: opacity 0.22s cubic-bezier(.2,.9,.2,1), transform 0.22s cubic-bezier(.2,.9,.2,1), box-shadow 0.22s;
+}
+
+/* inner floating card that actually gets the 3D look */
+#settings-panel > .floating-card {
+    width: 100%;
+    background: linear-gradient(180deg, rgba(10,10,18,0.96), rgba(18,18,28,0.94));
+    color: white;
+    border: 1px solid rgba(0,212,255,0.12);
+    border-radius: 14px;
+    padding: 14px;
+    box-shadow: 0 30px 80px rgba(0,0,0,0.7), 0 6px 20px rgba(0,212,255,0.03) inset;
+    transform-origin: right top;
+    transform: translateZ(0) rotateX(6deg) translateY(-6px);
+    will-change: transform, opacity;
+}
+
+/* Open state: pop forward and become fully opaque */
+#settings-panel.open {
+    opacity: 1;
+    transform: translateZ(18px);
+}
+
+#settings-panel.open > .floating-card {
+    transform: translateZ(24px) rotateX(0deg) translateY(0);
+}
+
+#settings-panel.open {
+    transform: scale(1);
+    opacity: 1;
+}
+
+#settings-panel h3 {
+    margin: 0;
+    color: #00d4ff;
+    font-size: 1rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+#settings-panel .setting-line {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 0.95rem;
+    color: #ddd;
+}
+
+#settings-panel input[type="checkbox"] {
+    width: 18px;
+    height: 18px;
+    accent-color: #00d4ff;
+}
+
+#settings-panel #settings-close {
+    align-self: flex-end;
+    padding: 8px 12px;
+    background: #00d4ff;
+    color: black;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: bold;
+    text-transform: uppercase;
+    font-size: 0.8rem;
+}
