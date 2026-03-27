@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>THINGS HERE</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+            background-color: #f0f0f0;
+            overflow: hidden; /* Prevent scrollbars */
+        }
+
+        .container {
+            position: relative;
+            width: 100vw;
+            height: 100vh;
+        }
+
+        img {
+            position: absolute;
+            width: 100px;
+            height: auto;
+        }
+
+        #caseoh {
+            animation: walkCaseoh 10s linear infinite;
+            bottom: 20px;
+        }
+
+        #avocado {
+            animation: walkAvocado 12s linear infinite;
+            bottom: 50px;
+        }
+
+        #mario {
+            animation: walkMario 8s linear infinite;
+            bottom: 80px;
+        }
+
+        #butter {
+            animation: walkButter 14s linear infinite;
+            bottom: 110px;
+        }
+
+        @keyframes walkCaseoh {
+            0% { left: -100px; }
+            100% { left: 100vw; }
+        }
+
+        @keyframes walkAvocado {
+            0% { left: -100px; }
+            100% { left: 100vw; }
+        }
+
+        @keyframes walkMario {
+            0% { left: -100px; }
+            100% { left: 100vw; }
+        }
+
+        @keyframes walkButter {
+            0% { left: -100px; }
+            100% { left: 100vw; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <img id="caseoh" src="https://media.tenor.com/jJIzj6dD2joAAAAC/caseoh-caseohhappy.gif" alt="Caseoh Walking">
+        <img id="avocado" src="https://i.pinimg.com/originals/52/01/93/520193651f11b13d230282a75a122e05.gif" alt="Avocado Walking">
+        <img id="mario" src="https://i.pinimg.com/originals/67/83/5f/67835f52e5d426ac16880ff558983401.gif" alt="Mario Walking">
+        <img id="butter" src="https://i.imgur.com/H7F42S5.gif" alt="Butter Walking">
+    </div>
+</body>
+</html>

@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sonic Minigame</title>
+    <style>
+        body {
+            margin: 0;
+            overflow: hidden;
+            background-color: #70c5ce; /* Sky blue */
+        }
+
+        canvas {
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <canvas id="sonicCanvas"></canvas>
+
+    <script>
+        const canvas = document.getElementById('sonicCanvas');
+        const ctx = canvas.getContext('2d');
+
+        // Game variables
+        let sonicX = 50;
+        let sonicY = 100;
+        const sonicWidth = 32;
+        const sonicHeight = 32;
+        let isJumping = false;
+        let jumpHeight = 10;
+        let velocityY = 0;
+        let gravity = 0.5;
+
+        // Adjust canvas size
+        function resizeCanvas() {
+            canvas.width = window.innerWidth;
+            canvas.height = 200; // Fixed height for better consistency
+        }
+
+        resizeCanvas(); // Initial resize
+        window.addEventListener('resize', resizeCanvas); // Resize on window changes
+
+        // Load Sonic sprite
+        const sonicSprite = new Image();
+        sonicSprite.src = 'https://i.imgur.com/Tr9X4Lq.png'; // Replace with a proper sprite URL (Sonic Running)
+
+        sonicSprite.onload = function() {
+            function drawSonic() {
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+                ctx.drawImage(sonicSprite, sonicX, sonicY, sonicWidth, sonicHeight);
+            }
+
+            function jump() {
+                if (!isJumping) {
+                    isJumping = true;
+                    velocityY = -jumpHeight;
+                }
+            }
+
+            function updateGame() {
+                if (isJumping) {
+                    sonicY += velocityY;
+                    velocityY += gravity;
+
+                    if (sonicY >= 100) {
+                        sonicY = 100;
+                        isJumping = false;
+                    }
+                }
+
+                drawSonic();
+                requestAnimationFrame(updateGame);
+            }
+
+            // Event listener for jump
+            document.addEventListener('keydown', function(event) {
+                if (event.code === 'Space') {
+                    jump();
+                }
+            });
+
+            // Start the game loop
+            updateGame();
+        };
+    </script>
+</body>
+</html>

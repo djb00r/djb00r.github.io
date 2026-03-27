@@ -1,0 +1,170 @@
+<file-changes>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Virtual Toilet</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+            background-color: #e0e0e0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            font-family: Arial, sans-serif;
+        }
+
+        .toilet-container {
+            position: relative;
+            width: 300px;
+            height: 400px;
+            background-color: #fff;
+            border: 2px solid #ccc;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .toilet-bowl {
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80%;
+            height: 60%;
+            background-color: #f0f8ff;
+            border-radius: 50%;
+            border-bottom: 4px solid #b0c4de;
+            box-shadow: inset 0 -10px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .toilet-seat {
+            position: absolute;
+            bottom: 60%;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 90%;
+            height: 10%;
+            background-color: #fff;
+            border: 2px solid #ccc;
+            border-radius: 10px;
+        }
+
+        .toilet-lid {
+            position: absolute;
+            top: 10%;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 90%;
+            height: 10%;
+            background-color: #fff;
+            border: 2px solid #ccc;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: top 0.5s;
+        }
+
+        .toilet-lid.open {
+            top: 60%;
+        }
+
+        .flush-button {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            padding: 8px 12px;
+            background-color: #4682b4;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .flush-button:hover {
+            background-color: #4169e1;
+        }
+
+        .poop {
+            position: absolute;
+            top: 30%;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 40px;
+            opacity: 0;
+            transition: opacity 0.5s, top 0.5s;
+            pointer-events: none;
+        }
+
+        .poop.show {
+            opacity: 1;
+            top: 70%;
+        }
+
+        .water {
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80%;
+            height: 0%;
+            background-color: #b0e2ff;
+            border-radius: 50%;
+            transition: height 0.5s;
+            pointer-events: none;
+        }
+
+        .water.flush {
+            height: 50%;
+        }
+    </style>
+</head>
+<body>
+    <div class="toilet-container">
+        <div class="toilet-lid"></div>
+        <div class="toilet-seat"></div>
+        <div class="toilet-bowl">
+            <div class="water"></div>
+            <div class="poop">💩</div>
+        </div>
+        <button class="flush-button">Flush</button>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const toiletLid = document.querySelector('.toilet-lid');
+            const flushButton = document.querySelector('.flush-button');
+            const poop = document.querySelector('.poop');
+            const water = document.querySelector('.water');
+            let lidOpen = false;
+
+            toiletLid.addEventListener('click', function() {
+                lidOpen = !lidOpen;
+                toiletLid.classList.toggle('open', lidOpen);
+
+                if (lidOpen) {
+                    poop.classList.add('show');
+                }
+            });
+
+            flushButton.addEventListener('click', function() {
+                if (lidOpen) {
+                    water.classList.add('flush');
+                    setTimeout(() => {
+                        poop.classList.remove('show');
+                    }, 500);
+                    setTimeout(() => {
+                        water.classList.remove('flush');
+                        lidOpen = false;
+                        toiletLid.classList.remove('open');
+                    }, 1000);
+                }
+            });
+        });
+    </script>
+</body>
+</html>
+

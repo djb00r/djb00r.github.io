@@ -1,0 +1,44 @@
+<file-changes>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mr. Paper's House</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+            background-color: #f0f0f0;
+            overflow: hidden;
+        }
+
+        .container {
+            position: relative;
+            width: 100vw;
+            height: 100vh;
+        }
+
+        img {
+            position: absolute;
+            width: 100px;
+            height: auto;
+        }
+
+        #mrpaper {
+            animation: walkMrPaper 12s linear infinite;
+            bottom: 20px;
+        }
+
+        @keyframes walkMrPaper {
+            0% { left: -100px; }
+            100% { left: 100vw; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <img id="mrpaper" src="/60420785_3111111111111111111111111111111112x311111111111111111111111111112.png" alt="Mr. Paper Walking">
+    </div>
+</body>
+</html>
+

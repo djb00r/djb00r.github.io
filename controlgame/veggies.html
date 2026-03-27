@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Throw Vegetables at CaseOh</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+            background-color: #f0f0f0;
+            overflow: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            font-family: Arial, sans-serif;
+        }
+
+        .game-container {
+            position: relative;
+            width: 800px;
+            height: 600px;
+            background-color: #fff;
+            border: 2px solid #ccc;
+            overflow: hidden;
+        }
+
+        #caseoh {
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 200px;
+            height: auto;
+        }
+
+        .vegetable {
+            position: absolute;
+            font-size: 30px;
+            cursor: pointer;
+        }
+
+        #health-bar {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            width: 200px;
+            height: 20px;
+            background-color: #ddd;
+        }
+
+        #health {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: green;
+        }
+
+        #defeat-message {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 40px;
+            color: green;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="game-container">
+        <div id="health-bar">
+            <div id="health"></div>
+        </div>
+        <img id="caseoh" src="/CaseOh.gif" alt="CaseOh">
+        <div id="defeat-message">YOU DEFEATED CASEOH!</div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const gameContainer = document.querySelector('.game-container');
+            const caseoh = document.getElementById('caseoh');
+            const healthBar = document.getElementById('health');
+            const defeatMessage = document.getElementById('defeat-message');
+            let health = 100;
+            let clickCount = 0;
+
+            const vegetables = ['🥦', '🥕', '🌽', '🌶️', '🥒'];
+
+            function createVegetable() {
+                const vegetable = document.createElement('div');
+                vegetable.classList.add('vegetable');
+                vegetable.textContent = vegetables[Math.floor(Math.random() * vegetables.length)];
+                vegetable.style.left = Math.random() * (gameContainer.offsetWidth - 30) + 'px';
+                vegetable.style.top = Math.random() * (gameContainer.offsetHeight - 300) + 'px';
+
+                vegetable.addEventListener('click', () => {
+                    health -= 6.66;
+                    clickCount++;
+                    healthBar.style.width = health + '%';
+
+                    if (health <= 0 && clickCount >= 15) {
+                        healthBar.style.width = '0%';
+                        defeatMessage.style.display = 'block';
+                        gameContainer.style.pointerEvents = 'none';
+                    }
+                    vegetable.remove();
+                });
+
+                gameContainer.appendChild(vegetable);
+            }
+
+            setInterval(createVegetable, 1000);
+        });
+    </script>
+</body>
+</html>

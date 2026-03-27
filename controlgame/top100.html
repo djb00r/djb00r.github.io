@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Top 100 Most Subscribed Gaming Channels</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .channel-list {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .channel-row {
+            display: flex;
+            align-items: center;
+            padding: 15px;
+            border-bottom: 1px solid #eee;
+            background: white;
+            margin-bottom: 10px;
+            border-radius: 8px;
+        }
+
+        .rank {
+            font-size: 24px;
+            font-weight: bold;
+            width: 50px;
+            color: #666;
+        }
+
+        .channel-avatar {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            margin-right: 15px;
+        }
+
+        .channel-info {
+            flex-grow: 1;
+        }
+
+        .channel-name {
+            font-size: 18px;
+            font-weight: bold;
+            color: #065fd4;
+        }
+
+        .subscriber-count {
+            color: #666;
+        }
+
+        .verified-badge {
+            color: #065fd4;
+            margin-left: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>Top 100 Most Subscribed Gaming Channels</h1>
+    </div>
+
+    <div class="channel-list">
+        <div class="channel-row">
+            <div class="rank">1</div>
+            <img src="/Screenshot 2025-03-04 213238.png" class="channel-avatar">
+            <div class="channel-info">
+                <div class="channel-name">KeyinGames ✓</div>
+                <div class="subscriber-count">128M subscribers</div>
+            </div>
+        </div>
+
+        <!-- Rest of top 100 channels generated via JavaScript -->
+    </div>
+
+    <script>
+        // Generate rest of top 100 channels with decreasing subscriber counts
+        const channelList = document.querySelector('.channel-list');
+        const defaultAvatar = '/60420785_3111111111111111111111111111111112x311111111111111111111111111112.png';
+        
+        for(let i = 2; i <= 100; i++) {
+            const subscribers = Math.max(900000, Math.floor(128000000 * Math.pow(0.92, i-1)));
+            const useDefaultAvatar = i <= 51;
+            
+            const channelRow = document.createElement('div');
+            channelRow.className = 'channel-row';
+            channelRow.innerHTML = `
+                <div class="rank">${i}</div>
+                <img src="${useDefaultAvatar ? defaultAvatar : '/Screenshot 2025-03-04 213238.png'}" class="channel-avatar">
+                <div class="channel-info">
+                    <div class="channel-name">GamingChannel${i} ✓</div>
+                    <div class="subscriber-count">${(subscribers/1000000).toFixed(1)}M subscribers</div>
+                </div>
+            `;
+            channelList.appendChild(channelRow);
+        }
+    </script>
+</body>
+</html>

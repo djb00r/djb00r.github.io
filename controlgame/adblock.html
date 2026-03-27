@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>AdBlock Pro Download</title>
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    .bouncing-letter {
+      position: fixed;
+      font-size: 48px;
+      font-weight: bold;
+      color: #fff;
+      user-select: none;
+      animation: bounce 3s linear infinite;
+    }
+
+    @keyframes bounce {
+      0% { transform: translate(0, 0); }
+      25% { transform: translate(100vw, 100vh); }
+      50% { transform: translate(100vw, 0); }
+      75% { transform: translate(0, 100vh); }
+      100% { transform: translate(0, 0); }
+    }
+
+    .chaos-image {
+      position: fixed;
+      width: 100px;
+      height: 100px;
+      object-fit: cover;
+      animation: dvd-bounce 10s linear infinite;
+    }
+
+    @keyframes dvd-bounce {
+      from { transform: translate(0, 0); }
+      to { transform: translate(100vw, 100vh); }
+    }
+  </style>
+</head>
+<body>
+  <div class="adblock-container">
+    <h1>AdBlock Pro 2024</h1>
+    <p>The #1 ad blocking extension! Used by millions worldwide.</p>
+    
+    <button class="download-button" id="downloadBtn">CLICK TO DOWNLOAD ADBLOCK</button>
+    
+    <div class="features-list">
+      <h3>Features:</h3>
+      <ul>
+        <li>Blocks all types of ads</li>
+        <li>Improves page load speed</li>
+        <li>Protects your privacy</li>
+        <li>Free forever!</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="chaos-mode" id="chaosScreen" style="display: none;">GAME OVER</div>
+
+  <script>
+    const images = [
+      '/a1b5319e-c56c-40ef-90eb-133d2bd10f0a.webp',
+      '/60420785_3111111111111111111111111111111112x311111111111111111111111111112.png',
+      '/Screenshot 2025-03-08 104458.png',
+      '/Screenshot 2025-03-04 213238.png',
+      '/unnamed (3).webp',
+      'https://websim.ai/blobs/0195b93f-1013-7009-9f32-b29ebdc66d8a.jpeg'
+    ];
+
+    function getRandomPosition(element) {
+      const x = window.innerWidth - element.offsetWidth;
+      const y = window.innerHeight - element.offsetHeight;
+      return {
+        x: Math.random() * x,
+        y: Math.random() * y
+      };
+    }
+
+    document.getElementById('downloadBtn').addEventListener('click', function() {
+      // Play sound
+      const audio = new Audio('/2.wav');
+      audio.play().catch(err => console.log('Audio playback error:', err));
+
+      // Add bouncing text
+      const text = "ADBLOCK PRO 2024";
+      text.split('').forEach((letter, i) => {
+        const span = document.createElement('span');
+        span.textContent = letter;
+        span.className = 'bouncing-letter';
+        span.style.left = (i * 50) + 'px';
+        span.style.animationDelay = (i * 0.1) + 's';
+        document.body.appendChild(span);
+      });
+
+      // Add bouncing images
+      for(let i = 0; i < 20; i++) {
+        const img = document.createElement('img');
+        img.src = images[Math.floor(Math.random() * images.length)];
+        img.className = 'chaos-image';
+        const pos = getRandomPosition(img);
+        img.style.left = pos.x + 'px';
+        img.style.top = pos.y + 'px';
+        img.style.animationDelay = (i * 0.2) + 's';
+        document.body.appendChild(img);
+      }
+
+      // Show BSOD after 5 seconds
+      setTimeout(() => {
+        document.querySelectorAll('.chaos-image, .bouncing-letter').forEach(el => el.remove());
+        document.getElementById('chaosScreen').style.display = 'flex';
+        audio.pause();
+      }, 5000);
+    });
+  </script>
+</body>
+</html>

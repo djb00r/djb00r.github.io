@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Channel Page</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f8f8f8;
+            color: #333;
+            margin: 0;
+            padding: 20px;
+        }
+
+        .channel-container {
+            max-width: 800px;
+            margin: 0 auto;
+            background-color: white;
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+        }
+
+        .channel-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .channel-avatar {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            margin-right: 20px;
+            object-fit: cover;
+        }
+
+        .channel-info {
+            flex-grow: 1;
+        }
+
+        .channel-name {
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        .channel-description {
+            font-size: 14px;
+            color: #666;
+        }
+
+        .video-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 20px;
+        }
+
+        .video-item {
+            border: 1px solid #eee;
+            border-radius: 8px;
+            overflow: hidden;
+            background-color: #f9f9f9;
+        }
+
+        .video-thumbnail {
+            width: 100%;
+            height: 150px;
+            object-fit: cover;
+        }
+
+        .video-title {
+            font-size: 16px;
+            font-weight: bold;
+            padding: 10px;
+            margin: 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="channel-container">
+        <div class="channel-header">
+            <img src="/60420785_3111111111111111111111111111111112x311111111111111111111111111112.png" alt="Channel Avatar" class="channel-avatar">
+            <div class="channel-info">
+                <h1 class="channel-name" id="channel-name-header"></h1>
+                <p class="channel-description">Welcome to my channel! Here you'll find the best retro gaming content. Subscribe for more!</p>
+            </div>
+        </div>
+
+        <h2>Latest Uploads</h2>
+        <div class="video-grid" id="video-grid">
+            <!-- Videos will be dynamically added here -->
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Function to extract query parameters from URL
+            function getQueryParam(name) {
+                const urlParams = new URLSearchParams(window.location.search);
+                return urlParams.get(name);
+            }
+
+            const channelName = getQueryParam('channel');
+            const channelNameHeader = document.getElementById('channel-name-header');
+            channelNameHeader.textContent = channelName || 'Unknown Channel';
+            
+            const videoGrid = document.getElementById('video-grid');
+            const videoThumbnails = [
+                '/Screenshot 2025-03-04 213238.png',
+                '/unnamed (3).webp',
+                '/60420785_3111111111111111111111111111111112x311111111111111111111111111112.png',
+                '/a/a1b5319e-c56c-40ef-90eb-133d2bd10f0a'
+            ];
+
+            // Generate video items dynamically
+            for (let i = 0; i < 12; i++) {
+                const videoItem = document.createElement('div');
+                videoItem.className = 'video-item';
+                videoItem.innerHTML = `
+                    <img src="${videoThumbnails[i % videoThumbnails.length]}" alt="Video Thumbnail" class="video-thumbnail">
+                    <h3 class="video-title">Video Title ${i + 1}</h3>
+                `;
+                
+                videoItem.addEventListener('click', () => {
+                    window.location.href = 'under_construction.html';
+                });
+                
+                videoGrid.appendChild(videoItem);
+            }
+        });
+    </script>
+</body>
+</html>
