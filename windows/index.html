@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OS Pet</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=VT323&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div id="path-selector">
+        <button id="windows-button" class="path-button active">Windows</button>
+        <button id="server-button" class="path-button">Win Server</button>
+        <button id="msdos-button" class="path-button">MS-DOS</button>
+        <button id="macos-button" class="path-button">macOS</button>
+        <button id="ios-button" class="path-button">iOS</button>
+        <button id="iphone-button" class="path-button">iPhone</button>
+        <button id="linux-button" class="path-button">Linux</button>
+        <button id="android-button" class="path-button">Android</button>
+        <button id="playstation-button" class="path-button">PlayStation</button>
+        <button id="xbox-button" class="path-button">Xbox</button>
+        <button id="nintendo-button" class="path-button">Nintendo</button>
+        <button id="webos-button" class="path-button">WebOS</button>
+        <button id="palm-button" class="path-button">Palm OS</button>
+        <button id="winphone-button" class="path-button">Windows Phone</button>
+        <button id="os2-button" class="path-button">OS/2</button>
+        <button id="computers-button" class="path-button">Computers</button>
+        <button id="sega-button" class="path-button">Sega</button>
+        <button id="scratch-button" class="path-button">Scratch</button>
+        <button id="websim-button" class="path-button">WebSim OS</button>
+        <button id="chromeos-button" class="path-button">ChromeOS</button>
+        <button id="progressbar-button" class="path-button">ProgressBar</button>
+        <button id="amiga-button" class="path-button">AmigaOS</button>
+        <button id="redstar-button" class="path-button">Red Star OS</button>
+        <button id="symbian-button" class="path-button">Symbian</button>
+    </div>
+    <div id="game-container">
+        <div id="os-window">
+            <div class="title-bar" id="title-bar">
+                <span id="window-title">My Windows Pet</span>
+                <div class="window-buttons" id="window-buttons">
+                    <div class="window-button minimize">-</div>
+                    <div class="window-button maximize">[]</div>
+                    <div class="window-button close">X</div>
+                </div>
+            </div>
+            <div class="window-content">
+                <h1 id="os-name">Windows 1.0</h1>
+                <div id="pet-area">
+                    <img id="os-logo" src="win1.png" alt="Windows 1.0 Logo">
+                </div>
+                <div id="progress-bar-container">
+                    <div id="progress-bar"></div>
+                </div>
+                <p id="progress-label">Evolution Progress</p>
+            </div>
+        </div>
+        <div id="controls">
+            <button id="feed-button" class="action-button">Install Updates</button>
+            <button id="clean-button" class="action-button">Defragment Disk</button>
+            <button id="play-button" class="action-button">Run Solitaire</button>
+            <button id="add-companion-button" class="action-button">Add Companion</button>
+            <button id="quick-upgrade-button" class="action-button">Quick Upgrade</button>
+            <button id="downgrade-button" class="action-button">Downgrade Version</button>
+        </div>
+        <div id="final-message" class="os-window-like" style="display: none;">
+            <h2>Congratulations!</h2>
+            <p id="final-message-text">Your Windows Pet has reached its final form!</p>
+            <button id="restart-button" class="action-button">Start Over</button>
+        </div>
+        <div id="death-screen" style="display: none;">
+            <div id="death-screen-content"></div>
+        </div>
+    </div>
+    <button id="dummy-button" class="action-button">Click!</button>
+    <script src="script.js"></script>
+</body>
+</html>
