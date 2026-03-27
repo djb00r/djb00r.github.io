@@ -1,0 +1,4 @@
+description: "A simple pixel art animation of a classic blue progress bar filling up from left to right, then resetting. Repeats in a loop. On a transparent background."
+transparent: true
+aspect: landscape
+

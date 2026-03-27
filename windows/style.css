@@ -1,0 +1,755 @@
+body {
+    background-color: #008080; /* Classic Windows teal */
+    font-family: 'VT323', monospace;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    color: #000;
+    transition: background-color 0.5s ease;
+    background-size: cover;
+    background-position: center;
+    overflow: hidden; /* Prevent scrollbars from screenpal */
+}
+
+#path-selector {
+    margin-bottom: 20px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+    max-width: 90vw;
+}
+
+.path-button {
+    min-width: 100px;
+    padding: 10px;
+    font-family: 'VT323', monospace;
+    font-size: 18px;
+    background-color: #c0c0c0;
+    border: 2px solid;
+    border-top-color: #ffffff;
+    border-left-color: #ffffff;
+    border-right-color: #000000;
+    border-bottom-color: #000000;
+    cursor: pointer;
+    box-shadow: 1px 1px 2px rgba(0,0,0,0.4);
+    opacity: 0.7;
+    transition: opacity 0.2s;
+}
+
+.path-button.active, .path-button:hover {
+    opacity: 1;
+}
+
+.path-button:active {
+    border-top-color: #000000;
+    border-left-color: #000000;
+    border-right-color: #ffffff;
+    border-bottom-color: #ffffff;
+    box-shadow: none;
+    transform: translate(1px, 1px);
+}
+
+#game-container {
+    text-align: center;
+}
+
+/* --- Base Window Styles --- */
+#os-window {
+    width: 400px;
+    background-color: #c0c0c0;
+    box-shadow: 2px 2px 5px rgba(0,0,0,0.5);
+    transition: all 0.3s ease-in-out;
+}
+
+.title-bar {
+    padding: 4px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 18px;
+    position: relative;
+    transition: all 0.3s ease-in-out;
+}
+
+.window-buttons {
+    display: flex;
+}
+
+.window-button {
+    width: 20px;
+    height: 20px;
+    margin-left: 3px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
+    font-size: 14px;
+    cursor: default;
+    transition: all 0.3s ease-in-out;
+}
+
+.window-content {
+    padding: 20px;
+    transition: all 0.3s ease-in-out;
+}
+
+#os-name {
+    margin-top: 0;
+    font-size: 28px;
+}
+
+#pet-area {
+    width: 100%;
+    height: 200px;
+    background-color: #fff;
+    border: 2px inset #808080;
+    margin: 10px 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    transition: background-color 0.2s;
+}
+
+#os-logo {
+    max-width: 90%;
+    max-height: 90%;
+    image-rendering: pixelated;
+    image-rendering: -moz-crisp-edges;
+    image-rendering: crisp-edges;
+    transition: transform 0.2s ease-in-out;
+}
+
+#os-logo:hover {
+    transform: scale(1.05);
+}
+
+/* --- THEME: CLASSIC (Win9x) - The default look --- */
+#os-window.theme-classic, #os-window:not([class*="theme-"]) {
+    border: 2px solid;
+    border-top-color: #ffffff;
+    border-left-color: #ffffff;
+    border-right-color: #000000;
+    border-bottom-color: #000000;
+}
+
+#os-window.theme-classic .title-bar, #os-window:not([class*="theme-"]) .title-bar {
+    background: linear-gradient(to right, #000080, #1084d0);
+    color: #ffffff;
+    text-shadow: 1px 1px #000;
+}
+
+#os-window.theme-classic .window-button, #os-window:not([class*="theme-"]) .window-button {
+    background-color: #c0c0c0;
+    border: 1px solid;
+    border-top-color: #ffffff;
+    border-left-color: #ffffff;
+    border-right-color: #000000;
+    border-bottom-color: #000000;
+    color: #000;
+}
+
+/* --- THEME: XP (Luna) --- */
+#os-window.theme-xp {
+    border: 1px solid #0a246a;
+    border-top: none;
+    border-radius: 8px 8px 0 0;
+}
+#os-window.theme-xp .title-bar {
+    background: linear-gradient(to bottom, #245edc, #3b75ea 4%, #4a89f2 8%, #4e8cf3 12%, #4a89f2 92%, #3b75ea 96%, #245edc);
+    border: 3px solid #082b84;
+    border-bottom: none;
+    border-radius: 6px 6px 0 0;
+    color: white;
+    font-weight: bold;
+    text-shadow: 1px 1px 2px #000;
+    padding: 2px 4px;
+}
+#os-window.theme-xp .window-buttons { align-items: flex-end; }
+#os-window.theme-xp .window-button {
+    background: #e16d56;
+    border: 1px solid #853c3c;
+    border-radius: 4px;
+    color: white;
+    width: 24px;
+    height: 24px;
+    font-size: 0;
+    box-shadow: 1px 1px 1px rgba(0,0,0,0.3);
+    position: relative;
+}
+#os-window.theme-xp .window-button.minimize,
+#os-window.theme-xp .window-button.maximize {
+    background: #3b75ea;
+    border-color: #082b84;
+}
+#os-window.theme-xp .window-button::before {
+    font-family: 'Roboto', sans-serif;
+    font-weight: bold;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 16px;
+    line-height: 1;
+}
+#os-window.theme-xp .window-button.close::before { content: '×'; }
+#os-window.theme-xp .window-button.minimize::before { content: '—'; top: 40%; }
+#os-window.theme-xp .window-button.maximize::before { content: '▫'; top: 45%; }
+
+/* --- THEME: AERO (Vista/7) --- */
+#os-window.theme-aero {
+    border: 1px solid rgba(0,0,0,0.4);
+    border-radius: 8px;
+    background: rgba(230, 230, 250, 0.9);
+}
+#os-window.theme-aero .title-bar {
+    background: linear-gradient(to bottom, rgba(255,255,255,0.7), rgba(210,225,255,0.4));
+    -webkit-backdrop-filter: blur(10px);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid rgba(0,0,0,0.2);
+    border-radius: 8px 8px 0 0;
+    color: black;
+    padding: 8px;
+    text-shadow: 0 0 2px white;
+}
+#os-window.theme-aero .window-button {
+    background: transparent;
+    border: 1px solid transparent;
+    border-radius: 4px;
+    color: #000;
+}
+#os-window.theme-aero .window-button:hover { border-color: rgba(0,0,0,0.3); }
+#os-window.theme-aero .window-button.close:hover { background-color: #e81123; color: white; }
+#os-window.theme-aero .window-button.minimize:hover,
+#os-window.theme-aero .window-button.maximize:hover { background-color: rgba(0,0,0,0.1); }
+
+/* --- THEME: METRO (Win8/10) --- */
+#os-window.theme-metro {
+    border: 1px solid #1d1d1d;
+    background: #fff;
+    font-family: 'Roboto', sans-serif;
+}
+#os-window.theme-metro .title-bar {
+    background: #fff;
+    color: #000;
+    text-shadow: none;
+    font-size: 14px;
+    padding: 8px;
+}
+#os-window.theme-metro.theme-win10 .title-bar { background: #f0f0f0; }
+#os-window.theme-metro .window-button {
+    background: transparent;
+    border: none;
+    font-weight: normal;
+    color: #000;
+    min-width: 45px;
+    height: 30px;
+    font-size: 0;
+}
+#os-window.theme-metro .window-button:hover { background-color: #e6e6e6; }
+#os-window.theme-metro .window-button.close:hover { background-color: #e81123; color: white; }
+#os-window.theme-metro .window-button::before { font-family: 'Roboto', sans-serif; font-size: 16px; font-weight: normal; }
+#os-window.theme-metro .window-button.maximize::before { content: '🗖'; }
+#os-window.theme-metro .window-button.close::before { content: '✕'; }
+#os-window.theme-metro .window-button.minimize::before { content: '—'; }
+
+/* --- THEME: FLUENT (Win11) --- */
+#os-window.theme-fluent {
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    background: #f3f3f3;
+}
+#os-window.theme-fluent .title-bar {
+    padding: 12px;
+    color: black;
+    text-shadow: none;
+    font-family: 'Roboto', sans-serif;
+}
+#os-window.theme-fluent #window-title {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+}
+#os-window.theme-fluent .window-buttons {
+    position: absolute;
+    right: 0;
+    top: 0;
+}
+#os-window.theme-fluent .window-button {
+    background: transparent;
+    border: none;
+    min-width: 45px;
+    height: 30px;
+    border-radius: 4px;
+    font-size: 0;
+}
+#os-window.theme-fluent .window-button:hover { background-color: #e6e6e6; }
+#os-window.theme-fluent .window-button.close:hover { background-color: #e81123; color: white; }
+#os-window.theme-fluent .window-button::before { font-family: 'Roboto', sans-serif; font-size: 16px; font-weight: normal; }
+#os-window.theme-fluent .window-button.maximize::before { content: '🗖'; }
+#os-window.theme-fluent .window-button.close::before { content: '✕'; }
+#os-window.theme-fluent .window-button.minimize::before { content: '—'; }
+#os-window.theme-fluent .window-content { border-radius: 0 0 8px 8px; }
+
+/* --- THEME: MACOS (All) --- */
+#os-window[class*="theme-macos"] .title-bar {
+    justify-content: center;
+    text-align: center;
+}
+#os-window[class*="theme-macos"] .window-buttons {
+    order: -1;
+    margin-right: auto;
+    position: absolute;
+    left: 8px;
+}
+#os-window[class*="theme-macos"] .window-button {
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    border: 1px solid rgba(0,0,0,0.5);
+    font-size: 0;
+}
+
+/* THEME: MACOS Classic (Platinum) */
+#os-window.theme-macos-classic { border: 1px solid #555; background: #e5e5e5; }
+#os-window.theme-macos-classic .title-bar {
+    background: #ccc; color: #000; text-shadow: none; border-bottom: 1px solid #555;
+    background-image: repeating-linear-gradient(180deg, #ccc, #ccc 1px, #bbb 1px, #bbb 2px);
+}
+#os-window.theme-macos-classic .window-button { background: #ccc; border-color: #888; }
+#os-window.theme-macos-classic .window-button.close { font-size: 10px; content: '■'; } /* Just a placeholder */
+
+/* THEME: MACOS Aqua */
+#os-window.theme-macos-aqua { border: 1px solid #aaa; }
+#os-window.theme-macos-aqua .title-bar { background: linear-gradient(#f7f7f7, #ededed); color: #000; text-shadow: none; border-bottom: 1px solid #aaa; }
+#os-window.theme-macos-aqua .window-button.close { background-color: #ff5f57; border-color: #e0443e;}
+#os-window.theme-macos-aqua .window-button.minimize { background-color: #ffbd2e; border-color: #dea123;}
+#os-window.theme-macos-aqua .window-button.maximize { background-color: #28c940; border-color: #1aab29;}
+
+/* THEME: MACOS Modern (Flat) */
+#os-window.theme-macos-modern { border: 1px solid #ccc; border-radius: 8px; background: #f6f6f6; }
+#os-window.theme-macos-modern .title-bar { background: #ebebeb; color: #000; text-shadow: none; border-bottom: 1px solid #ccc; border-radius: 8px 8px 0 0; }
+#os-window.theme-macos-modern .window-button { border: none; }
+#os-window.theme-macos-modern .window-button.close { background-color: #ff5f57; }
+#os-window.theme-macos-modern .window-button.minimize { background-color: #ffbd2e; }
+#os-window.theme-macos-modern .window-button.maximize { background-color: #28c940; }
+
+/* --- THEME: IOS CLASSIC (Skeuomorphic, iOS 1-6) --- */
+#os-window.theme-ios-classic {
+    border: 1px solid #6d6d6d;
+    border-radius: 10px;
+    background-color: #d8d8d8;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+    font-family: 'Roboto', sans-serif; /* Helvetica-like */
+}
+#os-window.theme-ios-classic .title-bar {
+    background: linear-gradient(to bottom, #72a5e1, #3b74b8);
+    color: white;
+    text-shadow: 0 -1px 0 rgba(0,0,0,0.4);
+    font-weight: bold;
+    border-bottom: 1px solid #2a5282;
+    border-radius: 9px 9px 0 0;
+    padding: 10px;
+    text-align: center;
+    justify-content: center;
+}
+#os-window.theme-ios-classic .window-buttons {
+    display: none;
+}
+#os-window.theme-ios-classic .window-content {
+    background-image: linear-gradient(180deg, #b7b7b7 1px, transparent 1px);
+    background-size: 100% 40px;
+    background-color: #cdcdcd;
+}
+#os-window.theme-ios-classic #os-name {
+    color: #4c4c4c;
+    text-shadow: 0 1px 0 white;
+}
+#os-window.theme-ios-classic #pet-area {
+    border: 1px solid #9c9c9c;
+    border-radius: 5px;
+    box-shadow: inset 0 1px 3px rgba(0,0,0,0.2);
+}
+
+/* --- THEME: IOS MODERN (Flat, iOS 7+) --- */
+#os-window.theme-ios-modern {
+    border: 1px solid #dcdcdc;
+    border-radius: 12px;
+    background: #f7f7f7;
+    font-family: 'Roboto', sans-serif;
+}
+#os-window.theme-ios-modern .title-bar {
+    background: #f7f7f7;
+    color: #000;
+    text-shadow: none;
+    border-bottom: 1px solid #dcdcdc;
+    font-weight: bold;
+    padding: 12px;
+    text-align: center;
+    border-radius: 11px 11px 0 0;
+    justify-content: center;
+}
+#os-window.theme-ios-modern .window-buttons {
+    display: none;
+}
+#os-window.theme-ios-modern .window-content {
+    padding-top: 10px;
+}
+#os-window.theme-ios-modern #os-name {
+    font-weight: 300; /* Lighter font weight for modern iOS */
+    color: #000;
+}
+#os-window.theme-ios-modern #pet-area {
+    background-color: #fff;
+    border: 1px solid #e5e5e5;
+    border-radius: 8px;
+}
+
+/* --- THEME: DOS --- */
+#os-window.theme-dos { background-color: #0000AA; border: 4px double #fff; }
+#os-window.theme-dos .title-bar { display: none; }
+#os-window.theme-dos .window-content { color: #fff; }
+#os-window.theme-dos #os-name { color: #FFFF55; }
+#os-window.theme-dos #pet-area { border: 2px inset #aaa; background-color: #000; }
+
+/* --- THEME: Linux (GNOME-like) --- */
+#os-window.theme-linux { border: 1px solid #2c2c2c; border-radius: 8px; background: #3a3a3a; color: #eee; }
+#os-window.theme-linux .title-bar { background: #2c2c2c; color: #eee; text-shadow: none; border-radius: 8px 8px 0 0; border-bottom: 1px solid #1a1a1a; justify-content: center; }
+#os-window.theme-linux .window-buttons { position: absolute; right: 8px; }
+#os-window.theme-linux .window-button { border-radius: 50%; width: 16px; height: 16px; font-size: 0; border: none; }
+#os-window.theme-linux .window-button.close { background: #e03f3f; }
+#os-window.theme-linux .window-button.maximize { background: #3b84e7; }
+#os-window.theme-linux .window-button.minimize { background: #777; }
+#os-window.theme-linux #pet-area { background-color: #4f4f4f; border-color: #222; }
+
+/* --- THEME: Amiga --- */
+#os-window.theme-amiga {
+    border: none;
+    background: #f0f0f0;
+    font-family: 'Roboto', sans-serif;
+}
+#os-window.theme-amiga .title-bar {
+    background: linear-gradient(to right, #ffffff, #bbbbbb);
+    color: #0050a0;
+    padding: 2px 5px;
+    height: 18px;
+    border-top: 2px solid #fff;
+    border-bottom: 2px solid #555;
+    text-shadow: none;
+}
+#os-window.theme-amiga .window-buttons {
+    display: none; /* Amiga buttons are complex, hiding for now */
+}
+#os-window.theme-amiga .window-content {
+    color: #000;
+}
+#os-window.theme-amiga #pet-area {
+    background: #5a87c8; /* Amiga blue */
+    border: none;
+}
+#os-window.theme-amiga h1, #os-window.theme-amiga p {
+    color: #000;
+}
+
+/* --- Progress Bar, Controls, etc --- */
+#progress-bar-container {
+    width: 100%;
+    height: 25px;
+    background-color: #c0c0c0;
+    border: 2px inset #808080;
+    padding: 2px;
+    box-sizing: border-box;
+}
+
+#progress-bar {
+    width: 0%;
+    height: 100%;
+    background: #000080;
+    transition: width 0.5s ease-in-out;
+}
+
+#progress-label {
+    margin-top: 5px;
+    font-size: 16px;
+}
+
+#controls {
+    margin-top: 20px;
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+}
+
+.action-button {
+    min-width: 120px;
+    padding: 10px;
+    font-family: 'VT323', monospace;
+    font-size: 16px;
+    background-color: #c0c0c0;
+    border: 2px solid;
+    border-top-color: #ffffff;
+    border-left-color: #ffffff;
+    border-right-color: #000000;
+    border-bottom-color: #000000;
+    cursor: pointer;
+    box-shadow: 1px 1px 2px rgba(0,0,0,0.4);
+}
+
+.action-button:active {
+    border-top-color: #000000;
+    border-left-color: #000000;
+    border-right-color: #ffffff;
+    border-bottom-color: #ffffff;
+    box-shadow: none;
+    transform: translate(1px, 1px);
+}
+
+.action-button:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+.os-window-like {
+    margin-top: 20px;
+    background-color: #c0c0c0;
+    border: 2px solid;
+    border-top-color: #ffffff;
+    border-left-color: #ffffff;
+    border-right-color: #000000;
+    border-bottom-color: #000000;
+    padding: 20px;
+    box-shadow: 2px 2px 5px rgba(0,0,0,0.5);
+}
+
+#final-message h2 {
+    margin-top: 0;
+}
+
+#screenpal {
+    position: absolute;
+    width: 100px;
+    height: auto;
+    z-index: 1000;
+    pointer-events: none;
+    image-rendering: auto; /* It's a gif, no pixelation needed */
+    /* Start off screen until JS positions it, avoids a flash at 0,0 */
+    top: -9999px;
+    left: -9999px;
+    transform: scaleX(1);
+    transition: transform 0.1s ease-in-out;
+}
+
+#dummy-button {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 500;
+}
+
+/* --- Death Screens --- */
+#death-screen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 9998; /* Below screenpal */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    cursor: pointer;
+    font-family: 'VT323', monospace;
+}
+
+#death-screen-content {
+    padding: 2em;
+}
+
+#death-screen.bsod {
+    background-color: #0000AA;
+    color: #FFFFFF;
+}
+#death-screen.bsod #death-screen-content {
+    text-align: left;
+    white-space: pre-wrap;
+    font-size: 1.5em;
+}
+
+#death-screen.plug-into-itunes {
+    background-color: #1e1e1e;
+    flex-direction: column;
+}
+#death-screen.plug-into-itunes #death-screen-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+}
+#death-screen.plug-into-itunes .itunes-logo {
+    width: 100px;
+    height: 100px;
+}
+#death-screen.plug-into-itunes .usb-cable {
+    width: 150px;
+}
+#death-screen.plug-into-itunes p {
+    color: #fff;
+    font-family: 'Roboto', sans-serif;
+    font-size: 1.5em;
+}
+
+#death-screen.kernel-panic-mac {
+    background-color: #000000;
+    color: #FFFFFF;
+    font-family: 'Roboto', sans-serif;
+}
+#death-screen.kernel-panic-mac #death-screen-content {
+    max-width: 600px;
+    border-radius: 20px;
+    border: 5px solid #555;
+    background: rgba(100,100,100,0.5);
+    backdrop-filter: blur(10px);
+}
+
+#death-screen.no-signal-webos {
+    background-color: #000;
+    color: #fff;
+    font-family: 'Roboto', sans-serif;
+    font-size: 3em;
+}
+#death-screen.no-signal-webos #death-screen-content {
+    border: 5px solid #fff;
+    padding: 1em 2em;
+    background: #111;
+}
+
+#death-screen.kernel-panic-linux {
+    background-color: #000000;
+    color: #FFFFFF;
+    text-align: left;
+    white-space: pre;
+    font-family: 'VT323', monospace;
+    font-size: 1.2em;
+    align-items: flex-start;
+}
+
+#death-screen.no-command-android {
+    background-color: #000000;
+    flex-direction: column;
+}
+#death-screen.no-command-android img {
+    width: 100px;
+    margin-bottom: 20px;
+}
+#death-screen.no-command-android p {
+    color: #cccccc;
+    font-size: 1.5em;
+    font-family: 'Roboto', sans-serif;
+}
+
+#death-screen.rsod-ps {
+    background: linear-gradient(to bottom, #7f0000, #ff0000);
+    color: #FFFFFF;
+}
+#death-screen.rsod-ps #death-screen-content {
+    font-size: 2em;
+    text-shadow: 2px 2px 4px #000;
+}
+
+#death-screen.death-xbox {
+    background-color: #000000;
+    color: #107c10;
+    font-family: 'Roboto', sans-serif;
+}
+
+#death-screen.hardware-failure {
+    background-color: #111;
+    color: #ff4444; /* Red error text */
+    font-family: 'Roboto', sans-serif;
+}
+
+#death-screen.death-sega {
+    background-color: #0000a2; /* Master System blue */
+    color: #fff;
+    font-family: 'VT323', monospace;
+}
+#death-screen.death-sega #death-screen-content h2 {
+    font-size: 3em;
+    text-shadow: 3px 3px #ff0000;
+}
+#death-screen.death-sega #death-screen-content p {
+    font-size: 2em;
+}
+
+#death-screen.death-websim {
+    background-color: #f1f1f1;
+    color: #222;
+    font-family: 'Roboto', sans-serif;
+}
+#death-screen.death-websim #death-screen-content h2 {
+    font-size: 6em;
+    color: #666;
+    margin: 0;
+}
+#death-screen.death-websim #death-screen-content p {
+    font-size: 1.5em;
+    color: #444;
+}
+
+#death-screen.death-amiga {
+    background-color: #000000;
+    color: #FF0000;
+    font-family: 'VT323', monospace;
+    font-size: 1.5em;
+}
+#death-screen.death-amiga h2 {
+    font-size: 2em;
+    animation: blinker 1s linear infinite;
+}
+@keyframes blinker {
+  50% {
+    opacity: 0;
+  }
+}
+
+#death-screen.error-nintendo {
+    background-color: #000000;
+    color: #FFFFFF;
+    font-family: 'Roboto', sans-serif;
+}
+#death-screen.error-nintendo #death-screen-content {
+    max-width: 500px;
+}
+
+#death-screen-content h2 {
+    font-size: 2em;
+    margin-bottom: 1em;
+}
+
+.falling-egg {
+    position: fixed;
+    /* Start above the viewport */
+    top: -60px; /* approx height of the egg */
+    width: 40px;
+    height: auto;
+    pointer-events: none;
+    z-index: 9999;
+    animation-name: fall;
+    animation-timing-function: ease-in; /* a little acceleration */
+    animation-fill-mode: forwards;
+}
+
+@keyframes fall {
+    from {
+        transform: translateY(0) rotate(0deg);
+    }
+    to {
+        /* Fall to just below the viewport and spin twice */
+        transform: translateY(110vh) rotate(720deg);
+    }
+}
