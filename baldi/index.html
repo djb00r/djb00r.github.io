@@ -1,0 +1,66 @@
+<html>
+<head>
+    <title>Baldi Video Reactor</title>
+    <link rel="stylesheet" href="styles.css">
+    <!-- Add html2canvas for YouTube frame captuare -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+</head>
+<body>
+    <div class="baldi-section">
+        <img src="/Baldi Reacting Cropped.png" alt="Baldi Reacting" id="baldiImg">
+    </div>
+    <div class="container">
+        <div class="mode-selector">
+            <button id="videoModeBtn" class="mode-btn active">Video Mode</button>
+            <button id="photoModeBtn" class="mode-btn">Photo Mode</button>
+            <button id="audioModeBtn" class="mode-btn">Sound Mode</button>
+            <button id="youtubeModeBtn" class="mode-btn">YouTube Mode</button>
+            <button id="screenModeBtn" class="mode-btn">Screen Share</button>
+        </div>
+        <div class="video-section">
+            <div id="videoMode">
+                <input type="file" id="videoInput" accept="video/*">
+            </div>
+            <div id="photoMode" style="display: none;">
+                <input type="file" id="photoInput" accept="image/*">
+                <div class="photo-settings">
+                    <input type="number" id="reactionInterval" min="1" value="5" placeholder="Reaction interval (seconds)">
+                    <button id="startReactions">Start Reactions</button>
+                    <button id="stopReactions">Stop Reactions</button>
+                </div>
+            </div>
+            <div id="audioMode" style="display: none;">
+                <input type="file" id="audioInput" accept="audio/*">
+                <audio id="audioPlayer" controls style="width: 100%; margin-top: 10px;"></audio>
+                <div class="audio-visualizer">
+                    <canvas id="audioVisualizer"></canvas>
+                </div>
+            </div>
+            <div id="youtubeMode" style="display: none;">
+                <div class="youtube-controls">
+                    <input type="text" id="youtubeUrl" placeholder="Enter YouTube URL or Video ID">
+                    <button id="loadYoutubeVideo">Load Video</button>
+                </div>
+                <div id="youtubePlayer"></div>
+            </div>
+            <div id="screenMode" style="display: none;">
+                <div class="screen-controls">
+                    <button id="startScreenShare" class="start-screen-btn">Start Screen Sharing</button>
+                    <button id="stopScreenShare" class="stop-screen-btn" disabled>Stop Screen Sharing</button>
+                </div>
+                <video id="screenShareVideo" autoplay muted style="width: 100%; margin-top: 10px;"></video>
+            </div>
+            <video id="videoPlayer" controls></video>
+        </div>
+        <div class="assist-section">
+            <input type="text" id="assistInput" placeholder="Ask Baldi anything...">
+            <input type="file" id="imageUploadForAssist" accept="image/*" style="display:none;">
+            <button id="assistButton">Assist Baldi</button>
+            <button id="uploadImageBtn">Upload Image</button>
+        </div>
+        <div id="timerDisplay" class="timer-display"></div>
+    </div>
+    <!-- BannerManager removed to disable the Discord banner -->
+    <script type="module" src="script.js"></script>
+</body>
+</html>

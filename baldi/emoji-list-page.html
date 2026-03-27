@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Baldi's Emoji Library</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+            font-family: 'Comic Sans MS', cursive;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            background: #f0f0f0;
+        }
+        .emoji-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        .emoji-table th, .emoji-table td {
+            border: 1px solid #ddd;
+            padding: 12px;
+            text-align: left;
+        }
+        .emoji-table th {
+            background: #4CAF50;
+            color: white;
+        }
+        .emoji-table img {
+            max-width: 50px;
+            max-height: 50px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Baldi's Emoji Library</h1>
+    <table class="emoji-table" id="emojiTable">
+        <thead>
+            <tr>
+                <th>Emoji Code</th>
+                <th>Emoji</th>
+                <th>Description</th>
+            </tr>
+        </thead>
+        <tbody id="emojiTableBody">
+            <!-- Emojis will be dynamically inserted here -->
+        </tbody>
+    </table>
+
+    <script type="module">
+        import { getEmojiList } from './emoji-config.js';
+
+        const tableBody = document.getElementById('emojiTableBody');
+
+        const emojiList = getEmojiList();
+
+        emojiList.forEach(emoji => {
+            const row = document.createElement('tr');
+            row.innerHTML = `
+                <td>${emoji.code}</td>
+                <td>${emoji.html}</td>
+                <td>${emoji.description}</td>
+            `;
+            tableBody.appendChild(row);
+        });
+    </script>
+</body>
+</html>
