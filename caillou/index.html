@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Caillou's Boring School Day</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="header">
+        <div id="goanimate-logo">GOANIMATE</div>
+        <div id="title">Caillou's Boring School Day</div>
+        <div id="nav-links">
+            <a href="index.html" class="nav-link">Game</a>
+            <a href="characters.html" class="nav-link">Characters</a>
+            <a href="actions.html" class="nav-link">Actions Tree</a>
+        </div>
+        <div id="sound-controls">
+            <button id="toggle-sound" class="header-btn">Sound: ON</button>
+        </div>
+    </div>
+
+    <div id="game-container">
+        <div id="scene-container">
+            <div id="scene-image"></div>
+            <div id="character"></div>
+            <div id="minigame-container" class="hidden">
+                <div id="player"></div>
+                <div id="obstacles-container"></div>
+                <div id="goal"></div>
+                <div id="minigame-text">Navigate to the goal without getting caught!</div>
+            </div>
+        </div>
+        <div id="text-box">
+            <p id="story-text">Caillou is sitting in class, feeling very bored. Ms. Martin is teaching math, but Caillou doesn't want to learn. What should he do?</p>
+        </div>
+        <div id="choices-container">
+            <button id="choice1" class="choice-btn">1. Pull the fire alarm</button>
+            <button id="choice2" class="choice-btn">2. Sneak to Chuck E. Cheese's</button>
+            <button id="choice3" class="choice-btn">3. Dance on your desk</button>
+            <button id="choice4" class="choice-btn">4. Play Caillou theme song on school announcer</button>
+            <button id="choice5" class="choice-btn">5. Sneak into special ed classroom and dance on desks</button>
+            <button id="choice6" class="choice-btn">6. Sneak out to Dora for a date</button>
+        </div>
+    </div>
+    
+    <audio id="theme-song" src="caillou_theme.mp3" preload="auto"></audio>
+    <script src="script.js"></script>
+</body>
+</html>
+
