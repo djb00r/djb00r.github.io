@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Menu - Barneys Burgers</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.2/dist/gsap.min.js"></script>
+</head>
+<body>
+    <header>
+        <div class="logo-container">
+            <img src="logo.png" alt="Barneys Burgers Logo" class="logo">
+        </div>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="menu.html">Menu</a></li>
+                <li><a href="about.html">Our Story</a></li>
+                <li><a href="reviews.html">Reviews</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </nav>
+        <div class="cart-icon">
+            <span class="material-icons">shopping_cart</span>
+            <span class="cart-count">0</span>
+        </div>
+        <div class="burger-menu">
+            <div class="line"></div>
+            <div class="line"></div>
+            <div class="line"></div>
+        </div>
+    </header>
+
+    <section class="page-banner">
+        <h1>Our Super-Dino Menu</h1>
+    </section>
+
+    <div class="cart-sidebar">
+        <div class="cart-header">
+            <h3>Your Cart</h3>
+            <span class="close-cart material-icons">close</span>
+        </div>
+        <div class="cart-items">
+            <!-- Cart items will be added here dynamically -->
+        </div>
+        <div class="cart-total">
+            <h4>Total: $<span id="cart-total-amount">0.00</span></h4>
+        </div>
+        <button class="checkout-btn">Checkout</button>
+    </div>
+
+    <section class="menu">
+        <div class="menu-filters">
+            <button class="filter-btn active" data-filter="all">All</button>
+            <button class="filter-btn" data-filter="burgers">Burgers</button>
+            <button class="filter-btn" data-filter="kids">Kids</button>
+            <button class="filter-btn" data-filter="sides">Sides</button>
+            <button class="filter-btn" data-filter="drinks">Drinks</button>
+        </div>
+        <div class="menu-items">
+            <div class="menu-item limited-edition" data-category="burgers">
+                <div class="limited-badge">Limited Time</div>
+                <img src="love-burger.png" alt="I Love You Burger">
+                <h3>I Love You Burger</h3>
+                <p>Our special heart-shaped patty with extra cheese, love sauce, and premium toppings. Made with Barney's special love!</p>
+                <span class="price">$14.99</span>
+                <button class="add-to-cart-btn" data-name="I Love You Burger" data-price="14.99">Add to Cart</button>
+            </div>
+            <div class="menu-item" data-category="burgers">
+                <img src="classic-burger.png" alt="Classic Burger">
+                <h3>The Classic Barney</h3>
+                <p>Our signature burger with cheese, lettuce, tomato, and special purple sauce.</p>
+                <span class="price">$8.99</span>
+                <button class="add-to-cart-btn" data-name="The Classic Barney" data-price="8.99">Add to Cart</button>
+            </div>
+            <div class="menu-item" data-category="burgers">
+                <img src="dino-burger.png" alt="Dino Double Burger">
+                <h3>Dino Double</h3>
+                <p>Double patty with bacon, cheddar, and all the fixings for big appetites.</p>
+                <span class="price">$12.99</span>
+                <button class="add-to-cart-btn" data-name="Dino Double" data-price="12.99">Add to Cart</button>
+            </div>
+            <div class="menu-item special-edition" data-category="burgers">
+                <div class="special-badge">Barney's Favorite</div>
+                <img src="purple-burger.png" alt="Purple Passion Burger">
+                <h3>Purple Passion Burger</h3>
+                <p>Our signature burger with vibrant purple buns, purple ketchup, and juicy beef patty. As purple as Barney himself!</p>
+                <span class="price">$13.99</span>
+                <button class="add-to-cart-btn" data-name="Purple Passion Burger" data-price="13.99">Add to Cart</button>
+            </div>
+            <div class="menu-item" data-category="burgers">
+                <img src="veggie-burger.png" alt="Veggie Rex Burger">
+                <h3>Veggie Rex</h3>
+                <p>Plant-based patty with fresh avocado, tomato, lettuce and our special herb mayo.</p>
+                <span class="price">$10.99</span>
+                <button class="add-to-cart-btn" data-name="Veggie Rex" data-price="10.99">Add to Cart</button>
+            </div>
+            <div class="menu-item" data-category="burgers">
+                <img src="spicy-burger.png" alt="Spicy Volcano Burger">
+                <h3>Spicy Volcano</h3>
+                <p>Hot and spicy burger with jalapeños, pepper jack cheese, and our volcanic hot sauce.</p>
+                <span class="price">$11.99</span>
+                <button class="add-to-cart-btn" data-name="Spicy Volcano" data-price="11.99">Add to Cart</button>
+            </div>
+            <div class="menu-item" data-category="burgers">
+                <img src="breakfast-burger.png" alt="Morning Rex Burger">
+                <h3>Morning Rex</h3>
+                <p>Breakfast-inspired burger with a fried egg, hash brown, bacon, and maple syrup glaze.</p>
+                <span class="price">$12.49</span>
+                <button class="add-to-cart-btn" data-name="Morning Rex" data-price="12.49">Add to Cart</button>
+            </div>
+            <div class="menu-item" data-category="burgers">
+                <img src="cheese-burger.png" alt="Cheese Lover Burger">
+                <h3>Cheese Lover</h3>
+                <p>The ultimate cheese experience with four types of cheese: cheddar, Swiss, blue, and mozzarella.</p>
+                <span class="price">$13.49</span>
+                <button class="add-to-cart-btn" data-name="Cheese Lover" data-price="13.49">Add to Cart</button>
+            </div>
+            <div class="menu-item" data-category="burgers">
+                <img src="bbq-burger.png" alt="BBQ Rex Burger">
+                <h3>BBQ Rex</h3>
+                <p>Smoky BBQ sauce, crispy onion rings, bacon, and cheddar on a toasted bun.</p>
+                <span class="price">$12.99</span>
+                <button class="add-to-cart-btn" data-name="BBQ Rex" data-price="12.99">Add to Cart</button>
+            </div>
+            <div class="menu-item" data-category="kids">
+                <img src="pbj-sandwich.png" alt="Dino PB&J">
+                <h3>Dino PB&J</h3>
+                <p>Kid-sized peanut butter and jelly sandwich cut into a fun dinosaur shape. Perfect for little dino fans!</p>
+                <span class="price">$5.99</span>
+                <button class="add-to-cart-btn" data-name="Dino PB&J" data-price="5.99">Add to Cart</button>
+            </div>
+            <div class="menu-item" data-category="sides">
+                <img src="fries.png" alt="Prehistoric Fries">
+                <h3>Prehistoric Fries</h3>
+                <p>Crispy golden fries with our special seasoning.</p>
+                <span class="price">$3.99</span>
+                <button class="add-to-cart-btn" data-name="Prehistoric Fries" data-price="3.99">Add to Cart</button>
+            </div>
+            <div class="menu-item" data-category="sides">
+                <img src="onion-rings.png" alt="Dino Rings">
+                <h3>Dino Rings</h3>
+                <p>Crispy, golden onion rings served with purple dipping sauce.</p>
+                <span class="price">$4.99</span>
+                <button class="add-to-cart-btn" data-name="Dino Rings" data-price="4.99">Add to Cart</button>
+            </div>
+            <div class="menu-item" data-category="sides">
+                <img src="dino-nuggets.png" alt="Dino Nuggets">
+                <h3>Dino Nuggets</h3>
+                <p>Dinosaur-shaped chicken nuggets with your choice of dipping sauce.</p>
+                <span class="price">$5.99</span>
+                <button class="add-to-cart-btn" data-name="Dino Nuggets" data-price="5.99">Add to Cart</button>
+            </div>
+            <div class="menu-item" data-category="sides">
+                <img src="salad.png" alt="Prehistoric Garden Salad">
+                <h3>Prehistoric Garden Salad</h3>
+                <p>Fresh mix of greens, tomatoes, cucumbers and purple cabbage with our house dressing.</p>
+                <span class="price">$4.99</span>
+                <button class="add-to-cart-btn" data-name="Prehistoric Garden Salad" data-price="4.99">Add to Cart</button>
+            </div>
+            <div class="menu-item" data-category="drinks">
+                <img src="purple-shake.png" alt="Purple Dino Shake">
+                <h3>Purple Dino Shake</h3>
+                <p>Creamy milkshake with blueberries and a touch of magic.</p>
+                <span class="price">$5.99</span>
+                <button class="add-to-cart-btn" data-name="Purple Dino Shake" data-price="5.99">Add to Cart</button>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-logo">
+                <img src="logo-small.png" alt="Barneys Burgers Logo">
+            </div>
+            <div class="footer-links">
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="menu.html">Menu</a></li>
+                    <li><a href="about.html">Our Story</a></li>
+                    <li><a href="reviews.html">Reviews</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </div>
+            <div class="social-links">
+                <a href="#" class="social-icon">FB</a>
+                <a href="#" class="social-icon">IG</a>
+                <a href="#" class="social-icon">TW</a>
+            </div>
+        </div>
+        <div class="copyright">
+            <p>&copy; 2023 Barneys Burgers. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
